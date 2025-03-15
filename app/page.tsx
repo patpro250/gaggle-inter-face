@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Test from "./ui/test/page";
+import { Flex } from "@radix-ui/themes";
+import AsiderBar from "./ui/asideBar/page";
 
 export default function Home() {
   return (
     <>
-      <div className="text-sky-700">Home Page</div>
-      <Test />
+      <h2>home page</h2>
     </>
   );
 }

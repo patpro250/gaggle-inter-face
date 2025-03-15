@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
+import AsiderBar from "./ui/asideBar/page";
+import NavBar from "./ui/nav-bar/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +31,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Theme>{children}</Theme>
+        <Theme>
+          <div className="absolute top-0 left-0 right-0 overflow-x-hidden  z-[-2] h-screen w-screen  transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]">
+            <div className="flex over h-screen w-screen flow-x-hidden">
+              <AsiderBar />
+
+              <main className=" min-h-screen grow-10 bg-transparent">
+                <NavBar />
+                {children}
+              </main>
+            </div>
+          </div>
+        </Theme>
       </body>
     </html>
   );
