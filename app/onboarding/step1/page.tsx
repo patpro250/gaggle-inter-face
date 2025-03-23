@@ -41,7 +41,7 @@ const from = () => {
         {page === 0 && (
           <Flex className="bg-transparent h-screen w-screen  ">
             <IconForm grandImage={"/image.svg"} petitImage={"/profile.svg"} />
-            <Box className="bg-sky-50 flex-1 flex flex-col space-y-4 px-2 md:px-20 py-10 sm:py-0">
+            <Box className="bg-sky-50 flex-1 flex flex-col space-y-4 px-2 md:px-10 py-20 sm:py-0">
               <Track1 />
               <div className="bg-transparent h-auto  ">
                 {/* Input Username */}
@@ -49,11 +49,11 @@ const from = () => {
                 <div>
                   <label
                     htmlFor="input-group-1"
-                    className="block mb-2 text-lg font-medium text-gray-900 "
+                    className="block mb-2 text-base font-normal text-gray-900 "
                   >
                     Names
                   </label>
-                  <div className="relative mb-3">
+                  <div className="relative mb-1   flex items-center">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                       <svg
                         className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -68,7 +68,7 @@ const from = () => {
                     <input
                       type="text"
                       id="input-group-1"
-                      className=" border bg-gray-100 px-6 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5   border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className=" border max-w-xl focus:ring-2 outline-0 ease-in duration-100 bg-gray-100 px-6 text-gray-500 text-base rounded-lg focus:ring-blue-500 block w-full ps-10 p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Names"
                     />
                   </div>
@@ -76,7 +76,7 @@ const from = () => {
                   <div>
                     <label
                       htmlFor="input-group-1"
-                      className="block mb-2 text-lg font-medium text-gray-900 "
+                      className="block mb-2 text-base font-normal text-gray-900 "
                     >
                       Email
                     </label>
@@ -96,18 +96,18 @@ const from = () => {
                       <input
                         type="text"
                         id="input-group-1"
-                        className=" border bg-gray-100 px-6 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5   border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className=" border max-w-xl focus:ring-2 outline-0 ease-in duration-100 bg-gray-100 px-6 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=" example@gmail"
                       />
                     </div>
 
                     {/* Input phone */}
                   </div>
-                  onboarding/step1?query=2
+
                   <div>
                     <label
                       htmlFor="input-group-1"
-                      className="block mb-2 text-lg font-medium text-gray-900 "
+                      className="block mb-2 text-base font-normal text-gray-900 "
                     >
                       Telephone
                     </label>
@@ -128,7 +128,7 @@ const from = () => {
                         style={{ outline: "!none" }}
                         id="input-group-1"
                         defaultCountry="RW"
-                        className=" border bg-gray-100  text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className=" border max-w-xl focus:ring-2 outline-0 ease-in duration-100 bg-gray-100  text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="+250 00000000"
                         onChange={setValue}
                       />
@@ -138,13 +138,13 @@ const from = () => {
                     <div className="mb-6">
                       <label
                         htmlFor="large-input"
-                        className="block mb-2 text-lg font-medium text-gray-900 "
+                        className="block mb-2 font-normal text-base  text-gray-900 "
                       >
                         Library type
                       </label>
                       <input
                         type="text"
-                        className=" border bg-gray-100 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5   border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className=" border max-w-xl focus:ring-2 outline-0 ease-in duration-100 bg-gray-100 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="School Library, Public Library, Special Library"
                       />
                     </div>
@@ -154,7 +154,7 @@ const from = () => {
               <button
                 type="button"
                 onClick={handleNext}
-                className="text-white bg-sky-500 hover:bg-sky-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-base px-5 py-2.5 text-center inline-flex items-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
+                className="text-white bg-sky-500 hover:bg-sky-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-base px-5 py-1.5 text-center inline-flex items-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
               >
                 Next Page
                 <svg
@@ -197,7 +197,7 @@ const from = () => {
                     <input
                       type="text"
                       id="input-group-1"
-                      className=" border bg-gray-100  text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className=" border bg-gray-100  text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Opening hour 9:00 AM"
                     />
                   </div>
@@ -216,7 +216,7 @@ const from = () => {
                       <input
                         type="text"
                         id="input-group-1"
-                        className=" border bg-gray-100  text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className=" border bg-gray-100  text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Address"
                       />
                     </div>
@@ -234,7 +234,7 @@ const from = () => {
                       <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"></div>
                       <input
                         type="password"
-                        className=" border bg-gray-100  text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className=" border bg-gray-100  text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Password"
                       />
                     </div>
@@ -249,7 +249,7 @@ const from = () => {
                       </label>
                       <input
                         type="......."
-                        className=" border bg-gray-100 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5   border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className=" border bg-gray-100 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Retry-Password"
                       />
                     </div>
@@ -293,10 +293,8 @@ const from = () => {
         )}
 
         {page === 2 && (
-          <Box className="bg-white rounded-md shadow w-xl">
-            <Container>
-              <Congulaturation />
-            </Container>
+          <Box className="bg-white ">
+            <Congulaturation />
           </Box>
         )}
       </form>

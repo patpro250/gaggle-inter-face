@@ -7,11 +7,10 @@ import Track3 from "../../ui/formProgressTrack/step3/page";
 const Congulaturation = () => {
   return (
     <div>
-      <Box className=" w-screen h-screen bg-transparent">
-        <Track3 />
+      <Box className=" m-0 w-screen h-screen bg-[url('/11bg.png')] bg-cover bg-center  ">
         <Flex className="flex">
-          <div className=" flex-1 h-screen flex justify-center items-center bg-transparent">
-            <div className="flex space-x-3 px-4">
+          <div className="flex-1 h-screen flex flex-col space-y-8 justify-center items-center">
+            <div className="flex flex-col space-y-8 items-start space-x-3 px-4">
               <div className="flex-1 min-h-96 flex items-center bg-transparent pl-6">
                 <ol className="relative text-gray-500 border-s border-gray-200 ">
                   <li className="mb-10 ms-6">
@@ -91,21 +90,11 @@ const Congulaturation = () => {
                 </ol>
               </div>
 
-              <div className="flex-1 min-h-96 flex flex-col space-y-4 text-left justify-center">
-                <h1 className="font-[var(--font-marcellus)] text-2xl text-black capitalize ">
-                  Hello Welcome To Gaggleniti{" "}
-                </h1>
-                <p className="tracking-tight text-gray-500 md:text-lg dark:text-gray-400 text-left">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Perspiciatis dolores quia nesciunt, quae ab, id hic officia,
-                  repellat qui dolorem rerum. Accusantium non exercitationem
-                  iusto neque tenetur in modi voluptatibus!
-                </p>
-              </div>
+              <Button>Continue</Button>
             </div>
           </div>
-          <div className="h-screen flex-1 flex justify-center align-middle items-center bg-sky-50">
-            <img src="g.png" alt="" />
+          <div className="h-screen flex-1 flex items-center justify-center    bg-transparent">
+            <img className="" src="g.png" alt="" />
           </div>
         </Flex>
       </Box>
