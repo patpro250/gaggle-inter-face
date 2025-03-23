@@ -9,15 +9,17 @@ import "react-phone-number-input/style.css";
 import PhoneInput, { Value } from "react-phone-number-input";
 import Track2 from "../../ui/formProgressTrack/step2/page";
 import Congulaturation from "../congulatutation/page";
+import { useSession } from "next-auth/react";
 
 const from = () => {
+  const { data: session } = useSession();
   const searchParams = useSearchParams();
   const router = useRouter();
   const query = searchParams.get("query");
-  const [page, setPage] = useState(query ? parseInt(query) : 0); // Ensure page is an integer
+  const [page, setPage] = useState(query ? parseInt(query) : 0);
   const pagelng = [1, 2, 3];
   const [value, setValue] = useState("");
-  // Sync state with URL changes
+
   useEffect(() => {
     if (query) {
       setPage(parseInt(query));
@@ -94,10 +96,12 @@ const from = () => {
                         </svg>
                       </div>
                       <input
-                        type="text"
+                        type="email"
                         id="input-group-1"
                         className=" border max-w-xl focus:ring-2 outline-0 ease-in duration-100 bg-gray-100 px-6 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=" example@gmail"
+                        value={session?.user?.email || ""}
+                        readOnly
                       />
                     </div>
 
@@ -111,6 +115,7 @@ const from = () => {
                     >
                       Telephone
                     </label>
+
                     <div className="relative mb-4">
                       <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                         {/* <svg
@@ -249,57 +254,51 @@ const from = () => {
                       </label>
                       <input
                         type="......."
-                        className=" border bg-gray-100 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className=" border bg-gray-100 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5   border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Retry-Password"
                       />
                     </div>
                   </div>
+                  {/* Next */}
+                  <div>
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      className="text-white bg-sky-500 hover:bg-sky-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-base px-5 py-2.5 text-center inline-flex items-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
+                    >
+                      Next Page
+                      <svg
+                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M1 5h12m0 0L9 1m4 4L9 9"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <Flex className=" space-x-6 ">
-                <button
-                  type="button"
-                  onClick={handleprev}
-                  className="text-white bg-sky-500 hover:bg-sky-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-base px-5 py-2.5 text-center inline-flex items-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-                >
-                  Previous Page
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="text-white bg-sky-500 hover:bg-sky-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-base px-5 py-2.5 text-center inline-flex items-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-                >
-                  Next Page
-                  <svg
-                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
-                  </svg>
-                </button>
-              </Flex>
             </Box>
           </Flex>
         )}
 
         {page === 2 && (
-          <Box className="bg-white ">
-            <Congulaturation />
+          <Box className="bg-white rounded-md shadow w-xl">
+            <Container>
+              <Congulaturation />
+            </Container>
           </Box>
         )}
       </form>
     </div>
   );
 };
-
 export default from;

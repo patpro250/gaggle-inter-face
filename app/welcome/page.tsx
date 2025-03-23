@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Info, ArrowRightCircle } from "lucide-react";
+import GoogleSignUpButton from "./SignUpButton";
 
 export default function WelcomePage() {
   return (
@@ -26,18 +27,12 @@ export default function WelcomePage() {
       <div className="flex max-md:flex-col max-md:space-x-0 max-md:gap-4 space-x-4">
         <Link
           href="/docs"
-          className="flex items-center px-6 py-2 text-slate-900 text-sm bg-gray-200 border rounded-lg shadow hover:text-white hover:bg-slate-900 transition"
+          className="flex items-center hover:scale-105 justify-center px-6 py-2 text-slate-900 text-sm bg-gray-200 border rounded-lg shadow hover:text-white hover:bg-slate-900 transition"
         >
           Learn More
           <Info className="w-4 h-4 ml-2" />
         </Link>
-        <Link
-          href="/get-started"
-          className="flex items-center px-6 py-2 text-white text-sm bg-blue-600 rounded-lg shadow hover:bg-slate-900 transition"
-        >
-          Start Now
-          <ArrowRightCircle className="w-4 h-4 ml-2" />
-        </Link>
+        <GoogleSignUpButton />
       </div>
     </div>
   );
