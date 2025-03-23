@@ -9,6 +9,7 @@ export default function WelcomePage() {
         src="/bg.png"
         alt="Background Image"
         fill
+        sizes="100vw"
         className="object-cover hue-rotate-15 z-[-1]"
       />
       <h1 className="text-4xl max-md:text-2xl text-center font-bold text-gray-800 mb-4">
@@ -22,13 +23,13 @@ export default function WelcomePage() {
         can also lead to misplaced records, causing unnecessary frustration for
         both librarians and readers.
       </p>
-      <div className="flex space-x-4">
+      <div className="flex max-md:flex-col max-md:space-x-0 max-md:gap-4 space-x-4">
         <Link
           href="/docs"
           className="flex items-center px-6 py-2 text-slate-900 text-sm bg-gray-200 border rounded-lg shadow hover:text-white hover:bg-slate-900 transition"
         >
-          <Info className="w-4 h-4 mr-2" />
           Learn More
+          <Info className="w-4 h-4 ml-2" />
         </Link>
         <Link
           href="/get-started"
