@@ -40,8 +40,8 @@ const from = () => {
       <form action="">
         {page === 0 && (
           <Flex className="bg-transparent h-screen w-screen  ">
-            <IconForm grandImage={"image.svg"} petitImage={"profile.svg"} />
-            <Box className="bg-sky-50 flex-1 flex flex-col space-y-4 px-20 py-10">
+            <IconForm grandImage={"/image.svg"} petitImage={"/profile.svg"} />
+            <Box className="bg-sky-50 flex-1 flex flex-col space-y-4 px-2 md:px-20 py-10 sm:py-0">
               <Track1 />
               <div className="bg-transparent h-auto  ">
                 {/* Input Username */}
@@ -72,9 +72,7 @@ const from = () => {
                       placeholder="Names"
                     />
                   </div>
-
                   {/* Input email */}
-
                   <div>
                     <label
                       htmlFor="input-group-1"
@@ -105,6 +103,7 @@ const from = () => {
 
                     {/* Input phone */}
                   </div>
+                  onboarding/step1?query=2
                   <div>
                     <label
                       htmlFor="input-group-1"
