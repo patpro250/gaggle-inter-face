@@ -7,7 +7,7 @@ interface Props {
 const IconForm = ({ grandImage, petitImage }: Props) => {
   return (
     <>
-      <Box className="flex items-center justify-center h-[100vh] flex-1">
+      <div className="  hidden lg:block items-center justify-center h-[100vh] flex-1">
         <div className=" relative bg-transparent m-auto mt-36">
           <div className=" mx-auto border-sky-800  bg-gray-300 border-[8px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">
             <div className="rounded-lg overflow-hidden h-[156px] md:h-[278px] bg-white ">
@@ -31,8 +31,7 @@ const IconForm = ({ grandImage, petitImage }: Props) => {
             <img className="h-[100%] w-[100%]" src={petitImage} alt="" />
           </div>
         </div>
-      </Box>
-      ;
+      </div>
     </>
   );
 };
