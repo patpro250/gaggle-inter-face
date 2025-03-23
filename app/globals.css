@@ -1,21 +1,8 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-
-  font-family: "Ubuntu Mono", monospace;
-  font-weight: 800;
-  font-style: normal;
-}
-
-/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for Firefox */
-.no-scrollbar {
-  scrollbar-width: none;
+@layer {
+  .fe {
+    @apply bg-amber-900;
+  }
 }
