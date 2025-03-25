@@ -5,3 +5,18 @@
     @apply bg-amber-900;
   }
 }
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background-color: transparent; /* Hides the track */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #534cd194; /* Indigo color */
+  border-radius: 8px; /* Round edges */
+  min-height: 40px;
+  max-height: 50px; /* Set a minimum height */
+}
