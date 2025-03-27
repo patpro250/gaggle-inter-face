@@ -20,3 +20,17 @@
   min-height: 40px;
   max-height: 50px; /* Set a minimum height */
 }
+
+.custom-after::after {
+  content: "";
+  display: block;
+  position: absolute;
+
+  top: 10px; /* Adjust this for placement relative to your div */
+  left: -4%;
+
+  width: 20px; /* Width of the small rectangle */
+  height: 20px; /* Height of the small rectangle */
+
+  background-color: #4f46e5; /* You can adjust this color */
+}
