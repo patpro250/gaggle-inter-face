@@ -28,11 +28,11 @@ const ListComponent: React.FC<Props> = ({
           <Icon strokeWidth={1} />
         </div>
 
-        <span
+        <div
           className={`${poppins.className} flex-1 ml-3 capitalize  text-black text-[16px]  hidden md:block text-left `}
         >
           {title}
-        </span>
+        </div>
 
         <div className="text-black  text-[60px]  ">
           {SubIcon && <SubIcon strokeWidth={1} />}
