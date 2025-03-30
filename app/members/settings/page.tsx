@@ -1,7 +1,14 @@
-import React from "react";
+import PersonalInformation from "./PersonalInformation";
+import Security from "./Security";
 
 const Settings = () => {
-  return <h1>Settings Page</h1>;
+  return (
+    <>
+      <h1 className="members-title">Settings</h1>
+      <PersonalInformation />
+      <Security />
+    </>
+  );
 };
 
 export default Settings;

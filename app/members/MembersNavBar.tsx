@@ -28,7 +28,7 @@ export const DesktopNav = () => {
 
   return (
     <nav className="flex">
-      <ul className="flex max-md:hidden items-center w-full justify-between">
+      <ul className="flex max-md:hidden mb-8 items-center w-full justify-between">
         {navLinks.map((link) => {
           const Icon = iconMap[link.icon];
           return (
@@ -56,18 +56,21 @@ export const MobileNav = () => {
 
   return (
     <footer className="block md:hidden fixed bottom-0 w-full bg-white shadow-lg">
-      <nav className="flex justify-between items-center p-4">
+      <nav className="flex justify-around items-center p-2">
         {navLinks.map((link) => {
           const Icon = iconMap[link.icon];
           return (
             <Link
               key={link.href}
               href={link.href}
-              className={classNames("flex flex-col items-center text-sm", {
-                "text-primary font-bold": currentPath === link.href,
-              })}
+              className={classNames(
+                "flex flex-col items-center gap-1 xs:text-xs text-sm",
+                {
+                  "text-primary font-bold": currentPath === link.href,
+                }
+              )}
             >
-              {Icon && <Icon className="mb-1" size={24} />}
+              {Icon && <Icon className="mb-1 xs:size-5 size-6" />}
               {link.label}
             </Link>
           );
