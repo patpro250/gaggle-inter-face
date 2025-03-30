@@ -101,3 +101,7 @@ svg text {
 .custom-shape-divider-bottom-1743166455 .shape-fill {
   fill: oklch(0.962 0.018 272.314);
 }
+
+@theme {
+  --color-primary: oklch(0.55 0.1202 251.83);
+}
