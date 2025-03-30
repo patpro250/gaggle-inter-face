@@ -1,5 +1,8 @@
 const config = {
+<<<<<<< HEAD
   // darkMode: "class",
+=======
+>>>>>>> d4c1eca (Set up all pages in /members and change the readme.md)
   theme: {
     extend: {
       colors: {
