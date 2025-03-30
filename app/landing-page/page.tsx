@@ -8,7 +8,7 @@ const LandingPage = () => {
       <PageHeader />
       <div className="bg-gray-50 flex flex-col gap-5 pt-10 items-center h-screen ">
         <div>
-          <Image width={100} height={100} src="/image.svg" alt={""} />
+          <Image width={80} height={80} src="/image.svg" alt={""} />
         </div>
         <h1 className="text-2xl">
           Welcome to <span className=" text-indigo-600 ">Niti Book</span>
