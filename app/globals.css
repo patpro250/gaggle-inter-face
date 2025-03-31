@@ -4,6 +4,35 @@
   .fe {
     @apply bg-amber-900;
   }
+
+  .members-title {
+    @apply font-bold text-4xl text-center text-primary;
+  }
+
+  .members-paragraph {
+    @apply font-normal text-center mt-2 text-black;
+  }
+
+  .members-subtitle {
+    @apply font-bold text-2xl text-center text-primary;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  .table-header {
+    @apply text-black font-normal;
+  }
+  .text-gradient {
+    background: linear-gradient(
+      to right,
+      rgb(126, 135, 255),
+      rgb(90, 100, 255)
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+  }
 }
 
 .scrollbar-custom::-webkit-scrollbar {
@@ -100,4 +129,9 @@ svg text {
 
 .custom-shape-divider-bottom-1743166455 .shape-fill {
   fill: oklch(0.962 0.018 272.314);
+}
+
+@theme {
+  --color-primary: oklch(0.55 0.1202 251.83);
+  --color-black: oklch(0.32 0 0);
 }

@@ -1,11 +1,14 @@
 import { ReactNode } from "react";
+import { DesktopNav, MobileNav } from "./MembersNavBar";
 
-interface Props {
-  children: ReactNode;
-}
-
-const MembersLayout = ({ children }: Props) => {
-  return <div className="my-10 mx-40">{children}</div>;
+const MembersLayout = ({ children }: { children: ReactNode }) => {
+  return (
+    <div className="mx-40 my-7 max-md:mx-4">
+      <DesktopNav />
+      {children}
+      <MobileNav />
+    </div>
+  );
 };
 
 export default MembersLayout;
