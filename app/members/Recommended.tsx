@@ -1,37 +1,23 @@
 import BookCard from "./BookCard";
 
-type Book = {
+export type Book = {
+  id: string;
   title: string;
   author: string;
   publisher: string;
-  language: string;
   edition: string;
+  language: string;
 };
 
-const BookList: React.FC = () => {
-  const recommendedBooks: Book[] = [
-    {
-      title: "The Great Gatsby",
-      author: "F. Scott Fitzgerald",
-      publisher: "Scribner",
-      language: "English",
-      edition: "1st Edition",
+const BookList = async () => {
+  const data = await fetch("http://localhost:4000/books/recommended", {
+    headers: {
+      "x-auth-token":
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4OTZkMTQ5LWY5YjEtNDExOC1iNDE3LTBkNmJmOGFhYTI5ZiIsImVtYWlsIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJpYXQiOjE3NDMzOTQ3OTl9.bEO2h5uTalpENh8DoK9H3ANEFETuC0k4ZcsUM5mJfjg",
     },
-    {
-      title: "To Kill a Mockingbird",
-      author: "Harper Lee",
-      publisher: "J.B. Lippincott & Co.",
-      language: "English",
-      edition: "50th Anniversary Edition",
-    },
-    {
-      title: "1984",
-      author: "George Orwell",
-      publisher: "Secker & Warburg",
-      language: "English",
-      edition: "1st Edition",
-    },
-  ];
+    cache: "no-store",
+  });
+  const recommendedBooks = await data.json();
 
   return (
     <>
@@ -44,5 +30,14 @@ const BookList: React.FC = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const res = await fetch("http://localhost:3000/api/recommended");
+  const recommendedBooks = await res.json();
+
+  return {
+    props: { recommendedBooks },
+  };
+}
 
 export default BookList;

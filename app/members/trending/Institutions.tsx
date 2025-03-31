@@ -1,26 +1,11 @@
+import { fetchTrendingInstitutions } from "./fetchTrendingInstitution";
+
 type TrendingInstitution = {
+  id: string;
   name: string;
   location: string;
   type: string;
 };
-
-const trendingInstitutions: TrendingInstitution[] = [
-  {
-    name: "Harvard University",
-    location: "Cambridge, MA, USA",
-    type: "University",
-  },
-  {
-    name: "Oxford University",
-    location: "Oxford, UK",
-    type: "University",
-  },
-  {
-    name: "Massachusetts Institute of Technology (MIT)",
-    location: "Cambridge, MA, USA",
-    type: "University",
-  },
-];
 
 const getRankingSuffix = (index: number): string => {
   if (index === 0) return "1st";
@@ -29,7 +14,11 @@ const getRankingSuffix = (index: number): string => {
   return `${index + 1}th`;
 };
 
-const TrendingInstitutions = () => {
+const TrendingInstitutions = async () => {
+  const trendingInstitutions: TrendingInstitution[] =
+    await fetchTrendingInstitutions();
+  if (trendingInstitutions === null || trendingInstitutions.length === 0)
+    return <p>No data found!</p>;
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="members-subtitle">🏛️ Trending Libraries</h1>

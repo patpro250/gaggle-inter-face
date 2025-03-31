@@ -1,13 +1,8 @@
 import { Book, Bookmark, Clock, DollarSign } from "lucide-react";
+import { fetchMemberStats } from "./fetchStats";
 
-const stats = {
-  borrowed: 10,
-  overDue: 2,
-  activeReservations: 5,
-  inFines: 2000,
-};
-
-const MemberOverview = () => {
+const MemberOverview = async () => {
+  const stats = await fetchMemberStats();
   return (
     <>
       <h1 className="mt-8 text-2xl text-black mb-4 font-semibold">My Stats</h1>

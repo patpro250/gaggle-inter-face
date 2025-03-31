@@ -1,15 +1,9 @@
 import Link from "next/link";
+import { Book } from "./books/[bookId]/Book";
 
-type BookCardProps = {
-  title: string;
-  author: string;
-  publisher: string;
-  language: string;
-  edition: string;
-};
-
-const BookCard: React.FC<BookCardProps> = ({
+const BookCard: React.FC<Book> = ({
   title,
+  id,
   author,
   publisher,
   language,
@@ -34,7 +28,7 @@ const BookCard: React.FC<BookCardProps> = ({
 
         <div className="mt-4 flex justify-center">
           <Link
-            href={`/members/books/${1}`}
+            href={`/members/books/${id}`}
             className="bg-primary text-white py-2 px-4 rounded-full hover:scale-110 transition duration-300"
           >
             View Details

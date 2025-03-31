@@ -1,30 +1,10 @@
 import { Table } from "@radix-ui/themes";
+import { fetchBookLoans } from "./fetchBookLoans";
 
-const bookLoansData = [
-  {
-    title: "The Great Gatsby",
-    code: "B001",
-    author: "F. Scott Fitzgerald",
-    publisher: "Scribner",
-    overdueDays: 5,
-  },
-  {
-    title: "1984",
-    code: "B002",
-    author: "George Orwell",
-    publisher: "Secker & Warburg",
-    overdueDays: 3,
-  },
-  {
-    title: "To Kill a Mockingbird",
-    code: "B003",
-    author: "Harper Lee",
-    publisher: "J.B. Lippincott & Co.",
-    overdueDays: 0,
-  },
-];
-
-const BookLoans = () => {
+const BookLoans = async () => {
+  const bookLoans = await fetchBookLoans();
+  if (!bookLoans || bookLoans.length === 0)
+    return <p className="text-xl text-center mt-2">No book loans</p>;
   return (
     <div className="mt-8">
       <h1 className="members-subtitle mb-4">Recently borrowed</h1>
@@ -40,7 +20,7 @@ const BookLoans = () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {bookLoansData.map((book, index) => (
+          {bookLoans.map((book, index) => (
             <Table.Row key={index}>
               <Table.Cell>{book.title}</Table.Cell>
               <Table.Cell>{book.code}</Table.Cell>
