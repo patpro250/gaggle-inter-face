@@ -13,7 +13,7 @@ interface Reservation {
 const Reservations = async () => {
   const reservations: Reservation[] = await fetchReservations();
   if (!reservations || reservations.length === 0)
-    return <p className="text-center mt-4">No reservations</p>;
+    return <p className="text-3xl text-center mt-8">No reservations</p>;
   return (
     <div className="mt-8">
       <h1 className="members-subtitle mb-4">My reservations</h1>

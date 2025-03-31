@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ProfileAvatar from "./ProfileAvatar";
 
 const iconMap = {
   NotebookTabs: NotebookTabs,
@@ -27,26 +28,37 @@ export const DesktopNav = () => {
   const currentPath = usePathname();
 
   return (
-    <nav className="flex">
-      <ul className="flex max-md:hidden mb-8 items-center w-full justify-between">
+    <nav className="flex items-center mt-8 mb-8 justify-between w-full px-4">
+      <ul className="flex gap-10 items-center mx-auto">
         {navLinks.map((link) => {
           const Icon = iconMap[link.icon];
           return (
-            <li key={link.href} className="hover:text-primary hover:transition">
+            <li key={link.href} className="group hover:text-primary">
               <Link
                 href={link.href}
-                className={classNames({
-                  "text-primary font-bold": currentPath === link.href,
-                  "text-xl flex items-center": true,
-                })}
+                className={classNames(
+                  "text-xl flex items-center transition-all duration-200",
+                  {
+                    "text-primary font-bold": currentPath === link.href,
+                    "text-gray-700": currentPath !== link.href,
+                  }
+                )}
               >
-                {Icon && <Icon className="mr-2" size={20} />}
+                {Icon && (
+                  <Icon
+                    className="mr-2 transition-all duration-200 group-hover:text-primary"
+                    size={20}
+                  />
+                )}
                 {link.label}
               </Link>
             </li>
           );
         })}
       </ul>
+
+      {/* Profile Avatar on the Right */}
+      <ProfileAvatar />
     </nav>
   );
 };
@@ -55,8 +67,8 @@ export const MobileNav = () => {
   const currentPath = usePathname();
 
   return (
-    <footer className="block md:hidden fixed bottom-0 w-full bg-white shadow-lg">
-      <nav className="flex justify-around items-center p-2">
+    <footer className="block md:hidden fixed bottom-0 w-full bg-white shadow-lg z-50">
+      <nav className="flex justify-around items-center p-4 bg-white border-t-2 border-gray-200">
         {navLinks.map((link) => {
           const Icon = iconMap[link.icon];
           return (
@@ -64,13 +76,16 @@ export const MobileNav = () => {
               key={link.href}
               href={link.href}
               className={classNames(
-                "flex flex-col items-center gap-1 xs:text-xs text-sm",
+                "flex flex-col items-center gap-1 text-sm xs:text-xs transition-all duration-200",
                 {
                   "text-primary font-bold": currentPath === link.href,
+                  "text-gray-600": currentPath !== link.href,
                 }
               )}
             >
-              {Icon && <Icon className="mb-1 xs:size-5 size-6" />}
+              {Icon && (
+                <Icon className="mb-1 transition-all duration-200 group-hover:text-primary" />
+              )}
               {link.label}
             </Link>
           );

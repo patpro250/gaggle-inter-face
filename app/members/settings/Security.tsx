@@ -10,7 +10,7 @@ const Security = () => {
       <h1 className="font-bold text-2xl text-left text-primary mb-4">
         Password and Security
       </h1>
-      <div className="flex justify-between w-full">
+      <div className="flex max-sm:flex-col max-sm:gap-4 justify-between w-full">
         <button
           onClick={() => setShowModal(true)}
           className="bg-primary cursor-pointer text-white py-2 px-6 rounded-full flex items-center gap-2 shadow-md hover:bg-primary-dark transition duration-300"

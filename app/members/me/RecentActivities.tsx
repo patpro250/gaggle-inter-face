@@ -11,7 +11,7 @@ interface RecentActivity {
 const RecentActivities = async () => {
   const recentActivities: RecentActivity[] = await fetchRecentActivities();
   if (!recentActivities || recentActivities.length === 0)
-    return <p className="text-center mt-4">No recent activity</p>;
+    return <p className="text-3xl text-center mt-8">No recent activity</p>;
   return (
     <div className="mt-8">
       <h1 className="members-subtitle mb-4">Recent Activities</h1>

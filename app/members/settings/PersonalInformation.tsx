@@ -30,7 +30,7 @@ const PersonalInformation = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
   } = useForm<PersonalInformation>({
     resolver: zodResolver(personalInfoSchema),
     mode: "onChange",
@@ -155,6 +155,7 @@ const PersonalInformation = () => {
         <div className="col-span-1 md:col-span-2 flex justify-left mt-4">
           <button
             type="submit"
+            disabled={!isValid || !isDirty}
             className="bg-primary cursor-pointer text-white py-2 px-6 rounded-full flex items-center gap-2 shadow-md hover:bg-primary-dark transition duration-300"
           >
             <Save size={18} strokeWidth={1} />

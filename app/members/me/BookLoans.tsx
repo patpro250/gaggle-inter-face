@@ -4,7 +4,7 @@ import { fetchBookLoans } from "./fetchBookLoans";
 const BookLoans = async () => {
   const bookLoans = await fetchBookLoans();
   if (!bookLoans || bookLoans.length === 0)
-    return <p className="text-xl text-center mt-2">No book loans</p>;
+    return <p className="text-3xl text-center mt-8">No book loans</p>;
   return (
     <div className="mt-8">
       <h1 className="members-subtitle mb-4">Recently borrowed</h1>
