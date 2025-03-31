@@ -1,0 +1,16 @@
+import { Container } from "@radix-ui/themes";
+import TrendingInstitutions from "./Institutions";
+import TrendingBooks from "./Books";
+
+const TrendingPage = () => {
+  return (
+    <Container>
+      <h1 className="members-title">What's trending?</h1>
+      <p className="members-paragraph">What other readers are liking!</p>
+      <TrendingBooks />
+      <TrendingInstitutions />
+    </Container>
+  );
+};
+
+export default TrendingPage;
