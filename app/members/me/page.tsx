@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-
-const MyActivity = () => {
-  return <h1>My activity</h1>;
-=======
 import BookLoans from "./BookLoans";
 import MemberOverview from "./MemberOverview";
 import RecentActivities from "./RecentActivities";
@@ -22,7 +16,6 @@ const MyActivity = () => {
       <RecentActivities />
     </>
   );
->>>>>>> 15ce52c
 };
 
 export default MyActivity;
