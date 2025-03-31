@@ -1,8 +1,14 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import AsiderPageAdmin from "../ui/adminAsider/page";
 import NavBarAdminComponent from "../ui/adminNavBar/page";
 import MainContainer from "../ui/main-part/page";
 
 const NavBarAdmin = () => {
+  const path = usePathname();
+  const isValid = ["/librarian", "/home", "/page"];
+  const Real = isValid.includes(path);
   return (
     <div>
       <h1 className="m-5 text-xl"> Home Page Heading One </h1>
