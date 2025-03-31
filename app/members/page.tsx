@@ -6,7 +6,9 @@ const BooksPage = () => {
   return (
     <Container>
       <h1 className="members-title">Books</h1>
-      <p className="members-paragraph">All your favorites are here</p>
+      <p className="members-paragraph">
+        All your favorites are <span className="text-primary">here!</span>
+      </p>
       <Search />
       <Recommended />
     </Container>

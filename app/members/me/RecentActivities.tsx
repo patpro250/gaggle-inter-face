@@ -1,28 +1,17 @@
 import { Table } from "@radix-ui/themes";
+import { fetchRecentActivities } from "./fetchRecentActivities";
 
-// Sample recent activities data
-const recentActivitiesData = [
-  {
-    activityType: "Checked Out",
-    bookTitle: "The Great Gatsby",
-    date: "2025-03-01",
-    status: "Completed",
-  },
-  {
-    activityType: "Reserved",
-    bookTitle: "1984",
-    date: "2025-03-03",
-    status: "Pending",
-  },
-  {
-    activityType: "Returned",
-    bookTitle: "To Kill a Mockingbird",
-    date: "2025-03-05",
-    status: "Completed",
-  },
-];
+interface RecentActivity {
+  activityType: string;
+  bookTitle: string;
+  date: string;
+  status: string;
+}
 
-const RecentActivities = () => {
+const RecentActivities = async () => {
+  const recentActivities: RecentActivity[] = await fetchRecentActivities();
+  if (!recentActivities || recentActivities.length === 0)
+    return <p className="text-center mt-4">No recent activity</p>;
   return (
     <div className="mt-8">
       <h1 className="members-subtitle mb-4">Recent Activities</h1>
@@ -37,7 +26,7 @@ const RecentActivities = () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {recentActivitiesData.map((activity, index) => (
+          {recentActivities.map((activity, index) => (
             <Table.Row key={index}>
               <Table.Cell>{activity.activityType}</Table.Cell>
               <Table.Cell>{activity.bookTitle}</Table.Cell>

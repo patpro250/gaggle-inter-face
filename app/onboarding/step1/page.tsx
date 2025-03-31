@@ -100,7 +100,7 @@ const from = () => {
                         id="input-group-1"
                         className=" border max-w-xl focus:ring-2 outline-0 ease-in duration-100 bg-gray-100 px-6 text-gray-500 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-1.5    border-gray-500 placeholder-gray-400text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=" example@gmail"
-                        value={session?.user?.email || ""}
+                        defaultValue={session?.user?.email || ""}
                         readOnly
                       />
                     </div>

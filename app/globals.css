@@ -10,7 +10,7 @@
   }
 
   .members-paragraph {
-    @apply font-normal text-center mt-2 text-black;
+    @apply font-normal text-center mt-4 text-black;
   }
 
   .members-subtitle {
@@ -23,15 +23,6 @@
 
   .table-header {
     @apply text-black font-normal;
-  }
-  .text-gradient {
-    background: linear-gradient(
-      to right,
-      rgb(126, 135, 255),
-      rgb(90, 100, 255)
-    );
-    -webkit-background-clip: text;
-    color: transparent;
   }
 }
 
