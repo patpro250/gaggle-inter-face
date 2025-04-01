@@ -1,5 +1,5 @@
 import { AlertDialog } from "@radix-ui/themes";
-import { Plus, Search } from "lucide-react";
+import { FolderOutput, Plus, Search } from "lucide-react";
 import React from "react";
 
 const HeaderBookTable = () => {
@@ -28,6 +28,13 @@ const HeaderBookTable = () => {
         </div>
         {/* button group */}
         <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+          <button
+            type="button"
+            className="flex gap-1 bg-indigo-600 font-medium rounded-md text-white items-center justify-center py-2 px-2 text-sm"
+          >
+            <FolderOutput />
+            Export
+          </button>
           <AlertDialog.Root>
             {/* Trigger button */}
             <AlertDialog.Trigger>
