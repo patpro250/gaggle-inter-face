@@ -1,9 +1,10 @@
 import React from "react";
+import BookTable from "../../component/tableBooks/tbl/page";
 
 const BookPage = () => {
   return (
-    <div>
-      <h1>Books page</h1>
+    <div className=" p-4 pb-30 ">
+      <BookTable />
     </div>
   );
 };
