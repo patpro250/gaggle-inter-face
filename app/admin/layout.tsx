@@ -10,7 +10,7 @@ const AdiminLayout = ({ children }: Props) => {
     <div className=" h-[100vh] overflow-hidden ">
       <NavBarAdminComponent />
 
-      <main className="overflow-y-hidden h-[100vh]  flex   ">
+      <main className="overflow-hidden h-[100vh]  flex   ">
         <div>
           <AsiderPageAdmin />
         </div>

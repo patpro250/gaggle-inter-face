@@ -1,26 +1,18 @@
 "use client";
 import {
-  Activity,
   BarChart,
-  Book,
-  Building2,
   CalendarCheck2,
-  ChartNoAxesCombined,
   ChevronDown,
   House,
+  LibraryBig,
   Settings,
-  Smile,
+  ShieldUser,
   StickyNote,
-  Users,
 } from "lucide-react";
 
 import { Poppins as PoppinsFont } from "next/font/google";
-import { usePathname, redirect } from "next/navigation";
+import { usePathname } from "next/navigation";
 import ListComponent from "../listcompnent/page";
-import TriggleDropDown1 from "./triggleWithDropDown/page";
-import BookInvetory from "./Book Inventory/page";
-import BorrowingManagement from "./Borrowing Management/page";
-import ReservationBook from "./Reservation/page";
 import UserManagement from "./UserManagement/page";
 
 const poppins = PoppinsFont({
@@ -51,14 +43,30 @@ const ListGroup = () => {
           Library Management
         </p>
         <li>
-          <BookInvetory Path={path} />
+          <ListComponent
+            title="Librarians"
+            href="/admin/Librarian"
+            SubIcon={null}
+            Icon={ShieldUser}
+            Path={path}
+          />
         </li>
+
         <li>
+          <ListComponent
+            title="Books"
+            href="/admin/Book"
+            SubIcon={null}
+            Icon={LibraryBig}
+            Path={path}
+          />
+        </li>
+        {/* <li>
           <BorrowingManagement Path={path} />
         </li>
         <li>
           <ReservationBook Path={path} />
-        </li>
+        </li> */}
       </ul>
 
       {/* Librarian Management Section */}

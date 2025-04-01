@@ -106,6 +106,7 @@ svg text {
   position: absolute;
   bottom: 0;
   left: 0;
+  color: #ff000098;
   width: 100%;
   overflow: hidden;
   line-height: 0;

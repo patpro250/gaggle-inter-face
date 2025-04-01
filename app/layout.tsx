@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${marcellus.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} overflow-hidden ${marcellus.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProvider>
           <Theme>{children}</Theme>

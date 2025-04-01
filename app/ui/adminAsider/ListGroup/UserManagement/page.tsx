@@ -35,7 +35,7 @@ interface Props {
 const UserManagement = ({ Path }: Props) => {
   return (
     <div>
-      <li className="relative  ">
+      <div className="relative  ">
         <Popover.Root>
           <Popover.Trigger>
             <div>
@@ -72,7 +72,7 @@ const UserManagement = ({ Path }: Props) => {
             </ul>
           </Popover.Content>
         </Popover.Root>
-      </li>
+      </div>
     </div>
   );
 };
