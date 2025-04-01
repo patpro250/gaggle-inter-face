@@ -18,7 +18,7 @@ const Test = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="./g"
                   className="flex items-center p-2 text-base  font-normal  rounded-lg    ttext-gray-800   hover:bg-sky-300   "
                 >
                   <svg

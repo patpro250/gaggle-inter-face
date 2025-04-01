@@ -8,19 +8,24 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import ListComponent from "../../listcompnent/page";
+import ListComponentOnly from "../../listComponentOnly/page";
 
-const TriggleDropDown1 = () => {
+interface Props {
+  Path: string;
+}
+const TriggleDropDown1 = ({ Path }: Props) => {
   return (
     <div>
       <li className="relative  ">
         <Popover.Root>
           <Popover.Trigger>
             <div>
-              <ListComponent
+              <ListComponentOnly
                 title={"Setting Ui"}
-                href={"iraguha"}
+                href={""}
                 SubIcon={ChevronDown}
                 Icon={Users}
+                Path={"90"}
               />
             </div>
           </Popover.Trigger>
