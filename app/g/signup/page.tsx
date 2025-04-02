@@ -72,6 +72,14 @@ export default function Signup() {
               </Link>
             </Text>
           </div>
+          <div className="text-center w-full col-span-2">
+            <Text size="2">
+              Already have an account?{" "}
+              <Link className="text-primary underline" href="/g/login">
+                Login
+              </Link>
+            </Text>
+          </div>
           <button className="col-span-2 w-full mt-4 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition duration-300 dark:bg-primary-dark">
             Sign Up
           </button>
