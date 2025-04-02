@@ -1,5 +1,5 @@
-const SchoolsDashBoard = () => {
-  return <h1>Schools Dashboard</h1>;
+const LibraryDashboard = () => {
+  return <h1>Libraries Dashboard</h1>;
 };
 
-export default SchoolsDashBoard;
+export default LibraryDashboard;

@@ -24,6 +24,18 @@
   .table-header {
     @apply text-black font-normal;
   }
+
+  .library-bg {
+    @apply bg-gray-800;
+  }
+
+  .library-dark-bg {
+    @apply dark:bg-gray-800;
+  }
+
+  .library-title {
+    @apply text-2xl font-semibold text-gray-900 dark:text-white;
+  }
 }
 
 .scrollbar-custom::-webkit-scrollbar {

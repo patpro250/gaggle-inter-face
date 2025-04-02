@@ -4,7 +4,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 
 export default function Login() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-800">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 library-dark-bg">
       <div className="w-full max-w-md p-8 shadow-lg rounded-2xl bg-white dark:bg-gray-900 dark:text-white">
         <h2 className="text-3xl text-primary font-semibold text-center mb-6">
           Login
