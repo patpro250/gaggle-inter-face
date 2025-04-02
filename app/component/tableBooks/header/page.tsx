@@ -32,7 +32,7 @@ const HeaderBookTable = () => {
             type="button"
             className="flex gap-1 bg-indigo-600 font-medium rounded-md text-white items-center justify-center py-2 px-2 text-sm"
           >
-            <FolderOutput />
+            <FolderOutput size={18} />
             Export
           </button>
           <AlertDialog.Root>
