@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   PieChart,
@@ -10,7 +11,6 @@ import {
 
 const BookCategoryPieChart = ({ data }) => {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FF6361"];
-  console.log("Works");
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">

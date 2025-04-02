@@ -22,7 +22,7 @@ const Greetings = () => {
         <p className="text-gray-600 dark:text-gray-300">
           {getGreeting()},{" "}
           <span className="text-gray-800 dark:text-white font-medium">
-            John Doe
+            Jean Paul
           </span>
           !
         </p>

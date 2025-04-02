@@ -1,7 +1,18 @@
 "use client";
-import BookCategoryPieChart from "./_components/BookCategoryPieChart";
-import BorrowingTrendsLineChart from "./_components/BorrowingTrendsLineChart";
-import TopBooksBarChart from "./_components/TopBooksBarChart";
+import dynamic from "next/dynamic";
+
+const BookCategoryPieChart = dynamic(
+  () => import("./_components/BookCategoryPieChart"),
+  { ssr: false }
+);
+const BorrowingTrendsLineChart = dynamic(
+  () => import("./_components/BorrowingTrendsLineChart"),
+  { ssr: false }
+);
+const TopBooksBarChart = dynamic(
+  () => import("./_components/TopBooksBarChart"),
+  { ssr: false }
+);
 
 const topBooksData = [
   { bookTitle: "The Great Gatsby", borrowedCount: 120 },
@@ -30,9 +41,14 @@ const borrowingTrendsData = [
 const Analytics = () => {
   console.log("Works");
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <TopBooksBarChart data={topBooksData} />
-    </div>
+    <>
+      <h1 className="library-title mt-4">Analytics</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-4 lg:grid-cols-3 gap-6">
+        <TopBooksBarChart data={topBooksData} />
+        <BookCategoryPieChart data={bookCategoryData} />
+        <BorrowingTrendsLineChart data={borrowingTrendsData} />
+      </div>
+    </>
   );
 };
 
