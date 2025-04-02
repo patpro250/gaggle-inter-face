@@ -1,3 +1,5 @@
+import { Text } from "@radix-ui/themes/dist/cjs/components/callout";
+import Link from "next/link";
 import { FaUser, FaPhone, FaLock, FaVenusMars } from "react-icons/fa";
 
 export default function Signup() {
@@ -57,6 +59,18 @@ export default function Signup() {
               placeholder="Repeat Password"
               className="w-full py-3 pl-12 pr-5 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary transition duration-300 dark:bg-gray-800 dark:border-gray-600 dark:focus:ring-primary"
             />
+          </div>
+          <div className="text-center w-full col-span-2">
+            <Text size="2">
+              By signing up you accept our{" "}
+              <Link className="text-primary underline" href="/terms">
+                Terms
+              </Link>{" "}
+              and{" "}
+              <Link className="text-primary underline" href="/privacy">
+                privacy
+              </Link>
+            </Text>
           </div>
           <button className="col-span-2 w-full mt-4 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition duration-300 dark:bg-primary-dark">
             Sign Up
