@@ -1,5 +1,7 @@
 const MembersPage = () => {
-  return <h1>Members page</h1>;
+  return (
+    <h1 className="library-title">Members</h1>
+  );
 };
 
 export default MembersPage;

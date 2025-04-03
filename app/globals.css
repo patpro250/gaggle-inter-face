@@ -36,6 +36,14 @@
   .library-title {
     @apply text-2xl font-semibold text-gray-900 dark:text-white;
   }
+
+  .table-data {
+    @apply p-4 border-b border-r border-gray-300 dark:text-white dark:border-gray-700;
+  }
+
+  .table-r {
+    @apply hover:bg-primary hover:text-white transition-colors;
+  }
 }
 
 .scrollbar-custom::-webkit-scrollbar {

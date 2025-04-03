@@ -13,7 +13,7 @@ import SidebarItem from "./SideBarItem";
 
 export default function Sidebar() {
   return (
-    <div className="w-64 max-md:hidden h-screen bg-white library-dark-bg shadow-lg p-5 flex flex-col">
+    <div className="w-64 max-md:hidden min-h-screen bg-white library-dark-bg shadow-lg p-5 flex flex-col overflow-auto">
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
         Mater Dei Nyanza
       </h2>

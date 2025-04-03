@@ -1,5 +1,5 @@
 const ReportsPage = () => {
-  return <h1>Reports page</h1>;
+  return <h1 className="library-title">Reports page</h1>;
 };
 
 export default ReportsPage;

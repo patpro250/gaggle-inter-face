@@ -1,14 +1,16 @@
 import SearchBar from "./SearchBar";
-import Table from "./Table";
+import BooksTable from "./BooksTable";
 
 const BooksPage = () => {
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex overflow-auto justify-between">
         <h1 className="library-title">Books</h1>
         <SearchBar />
       </div>
-      <Table />
+      <div className="mt-6">
+        <BooksTable />
+      </div>
     </>
   );
 };
