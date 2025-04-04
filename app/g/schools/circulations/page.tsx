@@ -1,5 +1,23 @@
+import CirculationsActions from "./CirculationActions";
+import CirculationsOverview from "./CirculationOverview";
+import CirculationsTable from "./CirculationTable";
+import ExportButton from "./Export";
+
 const CirculationPage = () => {
-  return <h1>Circulation Page</h1>;
+  return (
+    <>
+      <div className="flex justify-between">
+        <h1 className="library-title">Circulations</h1>
+        <CirculationsActions />
+      </div>
+      <CirculationsOverview />
+      <div className="flex items-center justify-between">
+      <h1 className="library-subtitle mt-6 mb-4">Recent circulations</h1>
+      <ExportButton />
+      </div>
+      <CirculationsTable />
+    </>
+  );
 };
 
 export default CirculationPage;

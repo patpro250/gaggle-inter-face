@@ -7,6 +7,7 @@ import {
   BarChart3,
   Bookmark,
   PlusCircle,
+  GraduationCap,  // Imported GraduationCap icon for Students
 } from "lucide-react";
 import React from "react";
 import SidebarItem from "./SideBarItem";
@@ -32,6 +33,11 @@ export default function Sidebar() {
           href="/g/schools/circulations"
           icon={<RefreshCcw className="stroke-1" size={20} />}
           label="Circulations"
+        />
+        <SidebarItem
+          href="/g/schools/students"
+          icon={<GraduationCap className="stroke-1" size={20} />}  // Changed to GraduationCap icon
+          label="Students"
         />
         <SidebarItem
           href="/g/schools/members"

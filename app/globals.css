@@ -34,6 +34,10 @@
   }
 
   .library-title {
+    @apply text-3xl font-semibold text-gray-900 dark:text-white;
+  }
+
+  .library-subtitle {
     @apply text-2xl font-semibold text-gray-900 dark:text-white;
   }
 

@@ -39,10 +39,9 @@ const borrowingTrendsData = [
 ];
 
 const Analytics = () => {
-  console.log("Works");
   return (
     <>
-      <h1 className="library-title mt-4">Analytics</h1>
+      <h2 className="library-subtitle mt-6">Analytics</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-4 lg:grid-cols-3 gap-6">
         <TopBooksBarChart data={topBooksData} />
         <BookCategoryPieChart data={bookCategoryData} />
