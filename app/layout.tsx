@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Marcellus } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "react-hot-toast";
 
 const marcellus = Marcellus({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
       >
         <SessionProvider>
           <Theme>{children}</Theme>
+          <Toaster position="top-center" />
         </SessionProvider>
       </body>
     </html>

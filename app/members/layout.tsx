@@ -7,7 +7,6 @@ const MembersLayout = ({ children }: { children: ReactNode }) => {
     <>
       <DesktopNav />
       <div className="mx-40 my-7 max-md:mx-4 h-full">
-        <Toaster position="top-center" />
         {children}
         <MobileNav />
       </div>
