@@ -3,6 +3,7 @@ import {
   BarChart,
   CalendarCheck2,
   ChevronDown,
+  CircleDollarSign,
   FilePlus2,
   House,
   LibraryBig,
@@ -74,15 +75,15 @@ const ListGroup = () => {
       {/* Librarian Management Section */}
       <ul className="space-y-2 list-none">
         <p className="font-sans text-xs mt-2 mb-4 text-black">Report</p>
-        {/* <li>
+        <li>
           <ListComponent
-            title="View personal tasks"
-            href="/admin/LibrarianDashboard/tasks"
+            title="Payment & Plan"
+            href="/admin/payment"
             SubIcon={null}
-            Icon={CalendarCheck2}
+            Icon={CircleDollarSign}
             Path={path}
           />
-        </li> */}
+        </li>
 
         <li>
           <ListComponent

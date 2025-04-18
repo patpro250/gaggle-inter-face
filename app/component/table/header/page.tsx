@@ -4,9 +4,9 @@ import React from "react";
 const HeaderTable = () => {
   return (
     <div>
-      <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+      <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 ">
         {/* search form */}
-        <div className="w-full md:w-1/2">
+        {/* <div className="w-full md:w-1/2">
           <form className="flex items-center">
             <label htmlFor="simple-search" className="sr-only">
               Search
@@ -36,28 +36,21 @@ const HeaderTable = () => {
               />
             </div>
           </form>
-        </div>
+        </div> */}
         {/* button group */}
         <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-          {/* <button
-            type="button"
-            className="flex gap-1 bg-indigo-600 font-medium rounded-md text-white items-center justify-center  py-2 px-2 text-sm "
-          >
-            <Plus />
-            Add Librarian
-          </button> */}
           <div className="flex items-center space-x-3 w-full md:w-auto">
             <select
-              className=" border-2 px-2 py-2 rounded-md outline-0 text-gray-500 focus:border-indigo-500 border-gray-200"
+              className=" border-1 px-1 py-1 text-md  font-light rounded-md outline-0 text-gray-700 focus:border-indigo-500 border-gray-200"
               name=""
               id=""
             >
               <option value="All" selected>
                 {" "}
-                All Librarian
+                All
               </option>
-              <option value="All">Active Librarian</option>
-              <option value="All">Inctive Librarian</option>
+              <option value="All">Active </option>
+              <option value="All">Inctive</option>
             </select>
           </div>
         </div>

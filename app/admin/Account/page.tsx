@@ -1,8 +1,12 @@
-import React from "react";
+"use client";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import { Button, Switch } from "@radix-ui/themes";
 import { Badge, Cog, EyeIcon, Trash2, Wrench } from "lucide-react";
 import { on } from "events";
+import Loading from "../loading";
+import useAuthGuard from "../../middlwere/AdminGuid/page";
+import Link from "next/link";
 
 const activityLogs = [
   {
@@ -67,39 +71,94 @@ const activityLogs = [
   },
 ];
 const MyAccount = () => {
+  useAuthGuard();
+
+  let name123 = "";
+  let email123 = "";
+  let number123 = "";
+  let id123 = "";
+  let address = "";
+  const token = localStorage.getItem("x-auth-token");
+  if (token) {
+    const payload65 = token.split(".")[1];
+    const Decode65 = atob(payload65);
+    const payload = JSON.parse(Decode65);
+    console.log(payload);
+    id123 = payload.id;
+    email123 = payload.email;
+    name123 = payload.name;
+    number123 = payload.phone;
+    address = payload.address;
+    // console.log(payload.name);
+  }
+  const firstLetter = name123.trim().charAt(0).toUpperCase();
+  const BackgroundUser = (letter: string) => {
+    const letterColors = {
+      A: "#FF0000", // Red
+      B: "#0000FF", // Blue
+      C: "#00FF00", // Green
+      D: "#FFFF00", // Yellow
+      E: "#FFA500", // Orange
+      F: "#800080", // Purple
+      G: "#008000", // Dark Green
+      H: "#FFC0CB", // Pink
+      I: "#A52A2A", // Brown
+      J: "#D3D3D3", // Light Gray
+      K: "#000000", // Black
+      L: "#FFFFFF", // White
+      M: "#FFD700", // Gold
+      N: "#C0C0C0", // Silver
+      O: "#808080", // Gray
+      P: "#800000", // Maroon
+      Q: "#FF6347", // Tomato
+      R: "#FF4500", // OrangeRed
+      S: "#32CD32", // LimeGreen
+      T: "#40E0D0", // Turquoise
+      U: "#EE82EE", // Violet
+      V: "#F0E68C", // Khaki
+      W: "#FF1493", // DeepPink
+      X: "#8B0000", // DarkRed
+      Y: "#9ACD32", // YellowGreen
+      Z: "#4B0082", // IndigC",
+    };
+    const letter__bg = letterColors[letter];
+    return letter__bg;
+  };
+
+  const bg_color = BackgroundUser(firstLetter);
   return (
     <div className="  bg-amber-0 pb-20 ">
       <div className="min-h-50 bg-indigo-0 border-b-1 border-gray-200 p-10 flex justify-center items-center  ">
         <div className=" flex flex-col gap-5">
           <div className="flex gap-10 flex-col md:flex-row justify-items-center md:justify-center items-center">
-            <div className="bg-green-0 shadow-0 flex items-center justify-center rounded-full overflow-hidden">
-              <Image
-                height={100}
-                width={100}
-                src="/image.svg"
-                alt={"User Image"}
-              ></Image>
+            <div
+              style={{ backgroundColor: bg_color }}
+              className="bg-green-0 h-20 w-20 text-5xl text-white shadow-0 flex items-center justify-center rounded-full overflow-hidden"
+            >
+              {firstLetter}
             </div>
             <div className=" text-center md:text-left ">
               <h1 className="text-3xl font-medium text-gray-700">
-                Iraguha Patrick
+                {name123 ? name123 : "Loading name..."}
               </h1>
               <h1 className="text-md font-normal text-gray-600 mt-1">
-                Iraguha@gmail.com
+                {email123 ? email123 : "Loading email..."}
               </h1>
               <h1 className="text-md font-normal text-gray-600 mt-1">
-                +250 786684954
+                {number123 ? number123 : "Loading number..."}
               </h1>
               <p className="text-md font-normal text-gray-600 mt-1 ">
-                Director
+                {address ? address : "Loading address..."}
               </p>
             </div>
           </div>
 
           <div>
-            <button className="border-1 border-gray-200 px-3 py-2 ms-[60px] md:ms-35 rounded-md text-sm text-gray-700">
-              Edit Profile
-            </button>
+            <Link href={`/admin/Account/${id123}`}>
+              <button className="border-1 border-gray-200 px-3 py-2 ms-[60px] md:ms-35 rounded-md text-sm text-gray-700">
+                Edit Profile
+              </button>
+            </Link>
           </div>
         </div>
       </div>

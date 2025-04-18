@@ -12,6 +12,9 @@ const PageHeader = () => {
           <li className=" text-md font-normal text-gray-500 hover:underline  hover:underline-offset-8 ">
             <Link href="/">Home</Link>
           </li>
+          <li className=" text-md font-normal text-gray-500 hover:underline  hover:underline-offset-8 ">
+            <Link href="/landing-page">Log In</Link>
+          </li>
         </ul>
       </nav>
     </div>

@@ -71,79 +71,66 @@ const BookTable = () => {
     <div>
       <HeaderBookTable />
       <div className="overflow-x-auto mt-10 mb-10">
-        <table className="w-full text-sm text-left text-gray-500   ">
-          <thead className="text-xs   uppercase bg-gray-50  ">
+        <table className="w-full !text-[14px] text-left text-gray-600  border-1 border-gray-200 !rounded-md  ">
+          <thead className="text-[10px] border-1 border-gray-200   uppercase bg-gray-0  ">
             <tr>
-              <th scope="col" className="px-4 py-3">
+              <th scope="col" className="px-4 py-2">
                 Book Title
               </th>
-              <th scope="col" className="px-4 py-3">
+              <th scope="col" className="px-4 py-2">
                 Author
               </th>
-              <th scope="col" className="px-4 py-3">
+              <th scope="col" className="px-4 py-2">
                 Publisher
               </th>
-              <th scope="col" className="px-4 py-3">
+              <th scope="col" className="px-4 py-2">
                 Copies
               </th>
-              <th scope="col" className="px-4 py-3">
+              <th scope="col" className="px-4 py-2">
                 Language
               </th>
 
-              <th scope="col" className="px-4 py-3">
+              <th scope="col" className="px-4 py-2">
                 Action
               </th>
             </tr>
           </thead>
           <tbody>
             {bookData.map((data) => (
-              <tr key={data.id} className=" nth-[odd]:bg-gray-100 ">
-                <td className="px-4 py-3">{data.bookTitle}</td>
-                <td className="px-4 py-3">{data.author}</td>
-                <td className="px-4 py-3">{data.publisher}</td>
-                <td className="px-4 py-3">
-                  <span className="bg-indigo-100 text-indigo-800 text-xs font-semibold me-2 px-2.5 py-0.5 rounded-full  dark:text-indigo-500">
-                    {data.copies}
-                  </span>{" "}
-                </td>
+              <tr
+                key={data.id}
+                className=" nth-[even]:bg-gray-0 border-b-1 border-gray-200 "
+              >
+                <td className="px-4 py-2 text-[13px]">{data.bookTitle}</td>
+                <td className="px-4 py-2 text-[13px]">{data.author}</td>
+                <td className="px-4 py-2 text-[13px]">{data.publisher}</td>
+                <td className="px-4 py-2 text-[13px]">{data.copies}</td>
 
-                <td className="px-4 py-3">{data.language}</td>
-                <td className="px-4 py-3">
+                <td className="px-4 py-2 text-[13px]">{data.language}</td>
+                <td className="px-4 py-2 text-[13px]">
                   <div className=" flex gap-1 text-sm">
                     <Link
-                      className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                      href={`/admin/Librarian/${data.id}/edit`}
-                    >
-                      <UserRoundPen size={19} />
-                    </Link>{" "}
-                    <Link
-                      className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                      href={`/admin/Librarian/${data.id}/delet`}
-                    >
-                      <Trash2 size={19} color="#ff000098" />
-                    </Link>
-                    <Link
-                      className="hover:bg-gray-200 p-1 rounded-full transition-all "
+                      className="hover:bg-green-500 hover:text-white ease-in-out text-gray-600  border-1 border-gray-200 flex justify-center items-center h-5 w-5 bg-amber-0 rounded-full transition-all "
                       href={`/admin/Librarian/${data.id}/view`}
                     >
-                      <View size={19} />
+                      <View size={13} />
                     </Link>
                   </div>
                 </td>
               </tr>
             ))}
             {/* <tr className=" nth-[odd]:bg-gray-100 ">
-              <td className="px-4 py-3">Iraguha Patrick</td>
-              <td className="px-4 py-3">IraguhaPatrick@gmail.com</td>
-              <td className="px-4 py-3">+250 786914904</td>
-              <td className="px-4 py-3">Director</td>
-              <td className="px-4 py-3">
+              <td className="px-4 py-2 text-[13px]">Iraguha Patrick</td>
+              <td className="px-4 py-2 text-[13px]">IraguhaPatrick@gmail.com</td>
+              <td className="px-4 py-2 text-[13px]">+250 786914904</td>
+              <td className="px-4 py-2 text-[13px]">Director</td>
+              <td className="px-4 py-2 text-[13px]">
                 <Badge size="1" color="red">
                   Inactive
                 </Badge>
               </td>
-              <td className="px-4 py-3">23/03/2024</td>
-              <td className="px-4 py-3">
+              <td className="px-4 py-2 text-[13px]">23/03/2024</td>
+              <td className="px-4 py-2 text-[13px]">
                 <div className=" flex gap-1 text-sm">
                   <Link
                     className="hover:bg-gray-200 p-1 rounded-full transition-all "
@@ -167,17 +154,17 @@ const BookTable = () => {
               </td>
             </tr>
             <tr className=" nth-[odd]:bg-gray-100 ">
-              <td className="px-4 py-3">Iraguha Patrick</td>
-              <td className="px-4 py-3">IraguhaPatrick@gmail.com</td>
-              <td className="px-4 py-3">+250 786914904</td>
-              <td className="px-4 py-3">Director</td>
-              <td className="px-4 py-3">
+              <td className="px-4 py-2 text-[13px]">Iraguha Patrick</td>
+              <td className="px-4 py-2 text-[13px]">IraguhaPatrick@gmail.com</td>
+              <td className="px-4 py-2 text-[13px]">+250 786914904</td>
+              <td className="px-4 py-2 text-[13px]">Director</td>
+              <td className="px-4 py-2 text-[13px]">
                 <Badge size="1" color="green">
                   Active
                 </Badge>
               </td>
-              <td className="px-4 py-3">23/03/2024</td>
-              <td className="px-4 py-3">
+              <td className="px-4 py-2 text-[13px]">23/03/2024</td>
+              <td className="px-4 py-2 text-[13px]">
                 <div className=" flex gap-1 text-sm">
                   <Link
                     className="hover:bg-gray-200 p-1 rounded-full transition-all "
@@ -203,17 +190,17 @@ const BookTable = () => {
               </td>
             </tr>
             <tr className=" nth-[odd]:bg-gray-100 ">
-              <td className="px-4 py-3">Iraguha Patrick</td>
-              <td className="px-4 py-3">IraguhaPatrick@gmail.com</td>
-              <td className="px-4 py-3">+250 786914904</td>
-              <td className="px-4 py-3">Director</td>
-              <td className="px-4 py-3">
+              <td className="px-4 py-2 text-[13px]">Iraguha Patrick</td>
+              <td className="px-4 py-2 text-[13px]">IraguhaPatrick@gmail.com</td>
+              <td className="px-4 py-2 text-[13px]">+250 786914904</td>
+              <td className="px-4 py-2 text-[13px]">Director</td>
+              <td className="px-4 py-2 text-[13px]">
                 <Badge size="1" color="red">
                   Inactive
                 </Badge>
               </td>
-              <td className="px-4 py-3">23/03/2024</td>
-              <td className="px-4 py-3">
+              <td className="px-4 py-2 text-[13px]">23/03/2024</td>
+              <td className="px-4 py-2 text-[13px]">
                 <div className=" flex gap-1 text-sm">
                   <Link
                     className="hover:bg-gray-200 p-1 rounded-full transition-all "

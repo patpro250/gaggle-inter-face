@@ -3,14 +3,98 @@
 import { LockKeyhole } from "lucide-react";
 import { Orbitron } from "next/font/google";
 import Stepper1 from "../stepper/page";
+import { useInstitutionContext } from "../../admin/stateManagement/institution";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { match } from "assert";
+import { useRouter } from "next/navigation";
+import { z } from "zod";
 
+const passwordSchema = z
+  .string()
+  .min(8, "Password must be at least 8 characters")
+  .max(64, "Password must be at most 64 characters")
+  .regex(/[A-Z]/, "Password must include at least one uppercase letter")
+  .regex(/[a-z]/, "Password must include at least one lowercase letter")
+  .regex(/[0-9]/, "Password must include at least one number")
+  .regex(/[!@#$%^&*(),.?":{}|<>]/, "Password must include at least one symbol");
+const formSchema = z.object({
+  password: passwordSchema,
+});
 // Google Fonts initialization
 const orbitron = Orbitron({
   subsets: ["latin"], // Specify the character set
   weight: ["400"], // Choose the font weight (400 is regular)
 });
 
+interface groupErrors {
+  password?: string[];
+  match?: string;
+  empty?: string;
+}
+type functionErrors = groupErrors;
+// interface fuctionErrors {
+//   errors: groupErrors;
+//   setErrors: React.Dispatch<React.SetStateAction<groupErrors>>;
+// }
+
 const P2 = () => {
+  const router = useRouter();
+  const passRef = useRef<HTMLInputElement>(null);
+  const RetryPass = useRef<HTMLInputElement>(null);
+  const [errors, setErrors] = useState<functionErrors>({});
+
+  const { DataForm, setData } = useInstitutionContext();
+
+  useEffect(() => {
+    if (!DataForm.type) {
+      router.push("/pagnation-page/p2");
+    }
+  }, [DataForm, router]); // Add dependencies here
+
+  const submitHander = (e: FormEvent) => {
+    e.preventDefault();
+    let r = RetryPass.current.value;
+    let p = passRef.current.value;
+    if (r && p) {
+      const valid = formSchema.safeParse({ password: p });
+      if (!valid.success) {
+        const passvalid = valid.error.flatten().fieldErrors;
+        console.log(passvalid.password);
+        setErrors((prev) => ({
+          ...prev,
+          password: passvalid.password,
+        }));
+        return;
+      } else {
+        const vald12 = valid.data.password;
+
+        if (vald12 != r) {
+          setErrors((prev) => ({
+            ...prev,
+            match: "Please ensure both passwords match",
+          }));
+          console.log(errors.match);
+          return;
+        }
+      }
+
+      setData({ ...DataForm, password: p });
+      router.push("/pagnation-page/success");
+    } else {
+      setErrors({
+        empty: "Please ensure all required fields are filled out correctly.",
+      });
+    }
+
+    console.log(DataForm);
+  };
+
+  const handerchange = () => {
+    setErrors({
+      empty: "",
+      match: "",
+    });
+  };
   return (
     <div>
       {/* <P1 /> */}
@@ -29,8 +113,42 @@ const P2 = () => {
               <Cursor cursorColor="#4338ca" />
             </h1> */}
           </div>
+          {errors.empty && (
+            <div
+              className="p-4 mb-4 text-sm text-red-400 rounded-lg bg-red-100  "
+              role="alert"
+            >
+              <span className="font-normal">{errors.empty}</span>
+            </div>
+          )}
+          {errors.password && (
+            <div
+              className="p-4 mb-4 text-sm text-red-400 rounded-lg bg-red-100  "
+              role="alert"
+            >
+              <span className="font-normal ">
+                <ul className="list-disc px-4">
+                  {errors.password.map((data) => (
+                    <li key={data}>{data}</li>
+                  ))}
+                </ul>
+              </span>
+            </div>
+          )}
 
-          <form className=" bg-indigo-0 p-5  w-[30%] " action="">
+          {errors.match && (
+            <div
+              className="p-4 mb-4 text-sm text-red-400 rounded-lg bg-red-100  "
+              role="alert"
+            >
+              <span className="font-normal">{errors.match}</span>
+            </div>
+          )}
+
+          <form
+            onSubmit={submitHander}
+            className=" bg-indigo-0 p-5  w-[90%] xl:w-[35%] "
+          >
             <label
               className="  text-base text-gray-600  "
               htmlFor="institution"
@@ -48,8 +166,14 @@ const P2 = () => {
 
               <input
                 id="institution"
-                className={`font-normal w-full  focus:border-indigo-400 focus:bg-indigo-100 rounded-md focus:ring-indigo-200 outline-0 p-2 border-2 border-indigo-100  ps-12`}
+                className={` ${
+                  errors.match
+                    ? " p-2 border-2 border-red-300"
+                    : " p-2 border-2 border-indigo-100"
+                } font-normal w-full  focus:border-indigo-400 focus:bg-indigo-100 rounded-md focus:ring-indigo-200 outline-0  ps-12`}
                 type="password"
+                ref={passRef}
+                onChange={handerchange}
                 placeholder="Password"
               />
             </div>
@@ -67,15 +191,21 @@ const P2 = () => {
               />
 
               <input
-                id="institution"
-                className={`font-normal w-full  focus:border-indigo-400 focus:bg-indigo-100 rounded-md focus:ring-indigo-200 outline-0 p-2 border-2 border-indigo-100  ps-12`}
+                id="Re-try"
+                ref={RetryPass}
+                onChange={handerchange}
+                className={` ${
+                  errors.match
+                    ? " p-2 border-2 border-red-300"
+                    : " p-2 border-2 border-indigo-100"
+                } font-normal w-full  focus:border-indigo-400 focus:bg-indigo-100 rounded-md focus:ring-indigo-200 outline-0 p-2   ps-12`}
                 type="tel"
                 placeholder="Re-try Password"
               />
             </div>
 
-            <button className=" bg-sky-600 mt-6 w-[100%] h-10 rounded-md text-md font-medium text-white ">
-              Continue
+            <button className=" bg-sky-600 hover:opacity-90 mt-6 w-[100%] h-10 rounded-md text-md font-narmal text-white ">
+              Create Acccount
             </button>
           </form>
         </div>
