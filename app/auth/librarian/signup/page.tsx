@@ -1,6 +1,12 @@
 import { Text } from "@radix-ui/themes/dist/cjs/components/callout";
 import Link from "next/link";
 import { FaUser, FaPhone, FaLock, FaVenusMars } from "react-icons/fa";
+import { APP_NAME } from "../../../constants";
+
+export const metadata = {
+  title: `Get started | ${APP_NAME}`,
+  description: `Start using the beauty of ${APP_NAME} today.`,
+};
 
 export default function Signup() {
   return (
@@ -75,7 +81,10 @@ export default function Signup() {
           <div className="text-center w-full col-span-2">
             <Text size="2">
               Already have an account?{" "}
-              <Link className="text-primary underline" href="/g/login">
+              <Link
+                className="text-primary underline"
+                href="/auth/librarian/login"
+              >
                 Login
               </Link>
             </Text>
