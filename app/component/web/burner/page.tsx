@@ -23,7 +23,7 @@ const HeroBanner = () => {
         </div>
 
         {/* Right: Optional Image or Video */}
-        <div className="relative aspect-video w-full rounded-xl overflow-hidden shadow-lg">
+        <div className="relative aspect-video max-w-xl max-h-[400px] rounded-xl overflow-hidden shadow-lg">
           <video
             className="w-full h-full object-cover"
             autoPlay
@@ -31,7 +31,7 @@ const HeroBanner = () => {
             loop
             playsInline
           >
-            <source src="/coll-brand.mp4" type="video/mp4" />
+            <source src="/burner.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
