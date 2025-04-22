@@ -1,12 +1,15 @@
 "use client";
 
 import { LockKeyholeOpen, Mail } from "lucide-react";
-import { Text } from "@radix-ui/themes";
+import { Spinner, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormError from "../../../_components/FormError";
+import loginLibrarian from "./login";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -19,7 +22,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm<LibrarianCredentials>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
@@ -27,7 +30,11 @@ const LoginForm = () => {
 
   const onSubmit = async (data: LibrarianCredentials) => {
     const response = await loginLibrarian(data);
-    console.log(data);
+    if (response.success) {
+      redirect("/g/schools/dashboard");
+    } else {
+      toast.error(response.message);
+    }
   };
 
   return (
@@ -71,15 +78,13 @@ const LoginForm = () => {
       </div>
       <button
         type="submit"
-        className="w-full mt-4 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition duration-300 dark:bg-primary-dark"
+        className="w-full mt-4 py-3 rounded-lg flex justify-center items-center gap-4 bg-primary text-white font-semibold hover:bg-primary-dark transition duration-300 dark:bg-primary-dark"
       >
-        Login
+        {isSubmitting ? "Loading" : "Login"}
+        {isSubmitting && <Spinner size="2" />}
       </button>
     </form>
   );
 };
 
 export default LoginForm;
-function loginLibrarian(data: { email?: string; password?: string }) {
-  throw new Error("Function not implemented.");
-}

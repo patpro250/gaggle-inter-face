@@ -2,6 +2,11 @@ import MemberOfTheWeek from "./MemberOfTheWeek";
 import MembersOverview from "./MembersOverview";
 import MembersTable from "./MembersTable";
 
+export const metadata = {
+  title: "Members and Teachers",
+  description: "Manage the members of your library",
+};
+
 const MembersPage = () => {
   return (
     <>

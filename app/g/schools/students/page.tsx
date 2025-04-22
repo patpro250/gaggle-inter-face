@@ -1,6 +1,10 @@
 import StudentsOverview from "./StudentsOverview";
 import StudentsContainer from "./Students";
-import Test from "./Students";
+
+export const metadata = {
+  title: "Students",
+  description: "Manage your students and their activities",
+};
 
 const StudentsPage = () => {
   return (

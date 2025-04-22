@@ -2,6 +2,11 @@ import ActionButtons from "./ActionButtons";
 import Analytics from "./Analytics";
 import Overview from "./Overview";
 
+export const metadata = {
+  title: "Schools Dashboard",
+  description: "Overview of the schools dashboard",
+};
+
 const SchoolsDashboard = () => {
   return (
     <>

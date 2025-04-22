@@ -2,10 +2,8 @@ import { Book, Search, PlusCircle, Trash, Edit } from "lucide-react";
 
 const buttonData = [
   { icon: <PlusCircle className="w-5 h-5" />, label: "Add Book" },
-  { icon: <Search className="w-5 h-5" />, label: "Search Books" },
-  { icon: <Edit className="w-5 h-5" />, label: "Edit Book" },
-  { icon: <Trash className="w-5 h-5" />, label: "Remove Book" },
-  { icon: <Book className="w-5 h-5" />, label: "View Books" },
+  { icon: <PlusCircle className="w-5 h-5" />, label: "Add book copy" },
+  { icon: <Search className="w-5 h-5" />, label: "Find book" },
 ];
 
 const ActionButtons = () => {

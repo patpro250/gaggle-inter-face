@@ -2,6 +2,11 @@ import InterLibraryOverview from "./InterLibraryOverview";
 import InterLibraryTable from "./InterLibraryTable";
 import RequestBookButton from "./RequestBookButton";
 
+export const metadata = {
+  title: "Inter library",
+  description: "Organize inter-library activities",
+};
+
 const InterLibraryPage = () => {
   return (
     <>

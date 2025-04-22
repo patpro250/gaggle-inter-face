@@ -1,42 +1,36 @@
 import { BookOpen, Clock, Library, RefreshCcw, Users } from "lucide-react";
+import { get } from "../lib/data";
 
-const schoolStats = {
-  totalBooks: "12,345",
-  totalStudents: "4,567",
-  booksCirculated: "2,345",
-  overdueBooks: "123",
-  interLibraryRequests: "456",
-};
+const Overview = async () => {
+  const { data: schoolStats } = await get("/librarians/overview");
+  const stats = [
+    {
+      title: "Total Books",
+      value: schoolStats?.totalBooks ?? 0,
+      icon: <BookOpen className="text-blue-500" />,
+    },
+    {
+      title: "Total Students",
+      value: schoolStats?.totalStudents ?? 0,
+      icon: <Users className="text-green-500" />,
+    },
+    {
+      title: "Books Circulated",
+      value: schoolStats?.booksCirculated ?? 0,
+      icon: <RefreshCcw className="text-yellow-500" />,
+    },
+    {
+      title: "Overdue Books",
+      value: schoolStats?.overdueBooks ?? 0,
+      icon: <Clock className="text-red-500" />,
+    },
+    {
+      title: "Inter-Library Requests",
+      value: schoolStats?.interLibraryRequests ?? 0,
+      icon: <Library className="text-purple-500" />,
+    },
+  ];
 
-const stats = [
-  {
-    title: "Total Books",
-    value: schoolStats.totalBooks,
-    icon: <BookOpen className="text-blue-500" />,
-  },
-  {
-    title: "Total Students",
-    value: schoolStats.totalStudents,
-    icon: <Users className="text-green-500" />,
-  },
-  {
-    title: "Books Circulated",
-    value: schoolStats.booksCirculated,
-    icon: <RefreshCcw className="text-yellow-500" />,
-  },
-  {
-    title: "Overdue Books",
-    value: schoolStats.overdueBooks,
-    icon: <Clock className="text-red-500" />,
-  },
-  {
-    title: "Inter-Library Requests",
-    value: schoolStats.interLibraryRequests,
-    icon: <Library className="text-purple-500" />,
-  },
-];
-
-const Overview = () => {
   return (
     <div className="grid grid-cols-1 mt-3 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {stats.map((stat, index) => (

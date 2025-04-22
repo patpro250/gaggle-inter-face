@@ -4,6 +4,11 @@ import AddBook from "./AddBook";
 import BooksOverview from "./BooksOverview";
 import ExportButton from "../circulations/Export";
 
+export const metadata = {
+  title: "Books",
+  description: "Manage your books and their copies",
+};
+
 const BooksPage = () => {
   return (
     <>

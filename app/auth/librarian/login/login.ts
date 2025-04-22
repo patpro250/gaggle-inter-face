@@ -1,17 +1,11 @@
-"use server";
-
-import axios from "axios";
+import { signIn } from "../../../auth";
 import { LibrarianCredentials } from "./LoginForm";
 
 async function loginLibrarian(credentials: LibrarianCredentials) {
-  const response = await axios.post(
-    `${process.env.NEXT_PUBLIC_API_URL}/auth/librarians`,
-    credentials
-  );
-
-  if (response.status !== 200) {
-    return response.data;
-  }
-
-  return "Login successful";
+  return {
+    success: false,
+    message: "We are still testing this feature",
+  };
 }
+
+export default loginLibrarian;
