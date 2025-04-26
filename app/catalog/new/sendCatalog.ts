@@ -14,7 +14,7 @@ const sendCatalog = async (catalog: Catalog) => {
   } catch (error) {
     return {
       success: false,
-      message: error.response?.data || "An unexpected error occurred",
+      message: error?.message?.data || "An unexpected error occurred",
     };
   }
 };

@@ -30,10 +30,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} overflow-hidden ${marcellus.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider>
           <Theme>{children}</Theme>
           <Toaster position="top-center" />
-        </SessionProvider>
       </body>
     </html>
   );
