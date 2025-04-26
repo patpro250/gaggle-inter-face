@@ -7,7 +7,8 @@ import {
   BarChart3,
   Bookmark,
   PlusCircle,
-  GraduationCap,  // Imported GraduationCap icon for Students
+  GraduationCap,
+  CircleDollarSign, // Imported GraduationCap icon for Students
 } from "lucide-react";
 import React from "react";
 import SidebarItem from "./SideBarItem";
@@ -24,6 +25,12 @@ export default function Sidebar() {
           icon={<LayoutDashboard className="stroke-1" size={20} />}
           label="Dashboard"
         />
+
+        <SidebarItem
+          href="/g/schools/payment"
+          icon={<CircleDollarSign className="stroke-1" size={20} />}
+          label="Payment "
+        />
         <SidebarItem
           href="/g/schools/books"
           icon={<Book className="stroke-1" size={20} />}
@@ -36,7 +43,7 @@ export default function Sidebar() {
         />
         <SidebarItem
           href="/g/schools/students"
-          icon={<GraduationCap className="stroke-1" size={20} />}  // Changed to GraduationCap icon
+          icon={<GraduationCap className="stroke-1" size={20} />} // Changed to GraduationCap icon
           label="Students"
         />
         <SidebarItem

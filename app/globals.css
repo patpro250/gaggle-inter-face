@@ -153,6 +153,7 @@ svg text {
   width: 100%;
   overflow: hidden;
   line-height: 0;
+  /* background-color: #0000006c; */
 }
 
 .custom-shape-divider-bottom-1743166455 svg {

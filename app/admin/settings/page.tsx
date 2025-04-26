@@ -5,8 +5,17 @@ import * as Label from "@radix-ui/react-label";
 import { Save, Settings, Wrench } from "lucide-react";
 import Image from "next/image";
 import { useTypewriter } from "react-simple-typewriter";
+import useFetchData from "../stateManagement/SettingGetting";
+import Loading from "../loading";
+import { ErrorBoundaryHandler } from "next/dist/client/components/error-boundary";
+import ErrorBox from "../../component/ERR0R/page";
+import { boolean } from "zod";
 
 function SettingsPage() {
+  const url =
+    "http://localhost:4000/Institutions/20298458-d067-40c6-ac8a-9b3af4e0a718/settings";
+  const { data, loading, error } = useFetchData(url);
+
   const [text] = useTypewriter({
     words: [
       "Update your account details",
@@ -17,8 +26,29 @@ function SettingsPage() {
     ],
     loop: Infinity, // Makes the typewriter effect loop indefinitely
   });
+  let maxpL = 0;
+  let maxR = 0;
+  let FeePeriod = 0;
+  let OverDue = 0;
+  let remindDay = 0;
+  let BorrwedLimit = 0;
+  let reserved12 = null;
+  if (data) {
+    maxpL = data.circulation.maxLoanPeriod;
+    maxR = data.circulation.maxRenewals;
+    FeePeriod = data.circulation.lateFeePerDay;
+    OverDue = data.circulation.overdueGracePeriod;
+    remindDay = data.notification.reminderDaysBeforeDue;
+    BorrwedLimit = data.userPermissions.borrowerLimit;
+    reserved12 = data.userPermissions.canReserveBooks;
+  } else {
+    return <Loading />;
+  }
   return (
     <div className=" bg-amber-0 mb-20">
+      {loading && <Loading />}
+      {error && <ErrorBox error={"Server Error Wait For Gaggle Team "} />}
+      {data?.[0]?.acquisitions?.purchaseRequestsAllowed}
       {/* burner */}
       <div className=" relative min-h-60 mb-20 bg-gradient-to-br from-[#77afc3] via-[#2dccf9]/50 to-[#2dccf9]/90 overflow-hidden border-1 border-gray-200 rounded-md">
         <div className=" absolute z-10 bg-amber-0 h-full w-full xl:w-[50%] flex flex-col gap-5 justify-center ps-10 ">
@@ -133,7 +163,10 @@ function SettingsPage() {
               className="text-sm text-gray-600 mb-3 mt-3 font-light"
               htmlFor=""
             >
-              Maximum Loarn Period
+              Maximum Loarn Period :{" "}
+              <span className="rounded-sm font-extrabold bg-indigo-500 px-1 text-white  ">
+                {maxpL}
+              </span>
             </label>
             <input
               className="p-2 border-1 text-gray-700 border-gray-200 outline-0 focus:ring-4 focus:ring-indigo-100 rounded-md "
@@ -145,7 +178,10 @@ function SettingsPage() {
               className="text-sm text-gray-600 mb-3 mt-3 font-light"
               htmlFor=""
             >
-              Maximum renewals
+              Maximum renewals :{" "}
+              <span className="rounded-sm font-extrabold bg-indigo-600 px-1 text-white  ">
+                {maxR}
+              </span>
             </label>
             <input
               className="p-2 border-1 text-gray-700 border-gray-200 outline-0 focus:ring-4 focus:ring-indigo-100 rounded-md "
@@ -157,7 +193,10 @@ function SettingsPage() {
               className="text-sm text-gray-600 mb-3 mt-3 font-light"
               htmlFor=""
             >
-              Late fee Period
+              Late fee Period :{" "}
+              <span className="rounded-sm font-extrabold bg-indigo-600 px-1 text-white  ">
+                {FeePeriod}
+              </span>
             </label>
             <input
               className="p-2 border-1 text-gray-700 border-gray-200 outline-0 focus:ring-4 focus:ring-indigo-100 rounded-md "
@@ -168,11 +207,14 @@ function SettingsPage() {
               className="text-sm text-gray-600 mb-3 mt-3 font-light"
               htmlFor=""
             >
-              reserved Book
+              reserved Book :{" "}
+              <span className="rounded-sm font-extrabold bg-indigo-600 px-1 text-white  ">
+                {reserved12}
+              </span>
             </label>
             <input
               className="p-2 border-1 text-gray-700 border-gray-200 outline-0 focus:ring-4 focus:ring-indigo-100 rounded-md "
-              type="number"
+              type="text"
               placeholder="reserved Book"
             />
 
@@ -180,7 +222,10 @@ function SettingsPage() {
               className="text-sm text-gray-600 mb-3 mt-3 font-light"
               htmlFor=""
             >
-              Over Due Grace Periods
+              Over Due Grace Periods :{" "}
+              <span className="rounded-sm font-extrabold bg-indigo-600 px-1 text-white  ">
+                {OverDue}
+              </span>
             </label>
             <input
               className="p-2 border-1 text-gray-700 border-gray-200 outline-0 focus:ring-4 focus:ring-indigo-100 rounded-md "
@@ -199,7 +244,10 @@ function SettingsPage() {
               className="text-sm text-gray-600 mb-3 mt-3 font-light"
               htmlFor=""
             >
-              reminder Days Before Due
+              reminder Days Before Due :{" "}
+              <span className="rounded-sm font-extrabold bg-indigo-600 px-1 text-white  ">
+                {remindDay}
+              </span>
             </label>
             <input
               className="p-2 border-1 text-gray-700 border-gray-200 outline-0 focus:ring-4 focus:ring-indigo-100 rounded-md "
@@ -218,7 +266,10 @@ function SettingsPage() {
               className="text-sm text-gray-600 mb-3 mt-3 font-light"
               htmlFor=""
             >
-              Borrower Limit
+              Borrower Limit :{" "}
+              <span className="rounded-sm font-extrabold bg-indigo-600 px-1 text-white  ">
+                {BorrwedLimit}
+              </span>
             </label>
             <input
               className="p-2 border-1 text-gray-700 border-gray-200 outline-0 focus:ring-4 focus:ring-indigo-100 rounded-md "
