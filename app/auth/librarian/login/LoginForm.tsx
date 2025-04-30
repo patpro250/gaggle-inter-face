@@ -35,6 +35,7 @@ const LoginForm = () => {
     } else {
       toast.error(response.message);
     }
+    alert('Testing');
   };
 
   return (

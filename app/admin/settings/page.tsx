@@ -13,7 +13,7 @@ import { boolean } from "zod";
 
 function SettingsPage() {
   const url =
-    "http://localhost:4000/Institutions/20298458-d067-40c6-ac8a-9b3af4e0a718/settings";
+    "http://localhost:4001/Institutions/20298458-d067-40c6-ac8a-9b3af4e0a718/settings";
   const { data, loading, error } = useFetchData(url);
 
   const [text] = useTypewriter({
