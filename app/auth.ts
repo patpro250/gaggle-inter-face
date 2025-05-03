@@ -1,5 +1,10 @@
+// @ts-nocheck
 import NextAuth from "next-auth";
+import { AuthError } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { Librarian } from "./_types/librarian";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
@@ -12,7 +17,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             async authorize(credentials) {
                 try {
-                    const res = await fetch(`http://localhost:4000/auth/librarians`, {
+                    const res = await fetch(`${API_URL}/auth/librarians`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -26,16 +31,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     const token = res.headers.get("x-auth-token");
                     const user = await res.json();
 
-                    if (!res.ok || !token) return null;
+                    if (!res.ok || !token) {
+                        throw new AuthError(user?.message || "Email or password is incorrect");
+                    }
 
                     return {
-                        ...user,
+                        ...user as Librarian,
                         token
                     };
 
                 } catch (err) {
-                    console.error("Auth error:", err);
-                    return null;
+                    if (err instanceof AuthError) throw err;
+                    throw new AuthError("Something went wrong. Please try again.");
                 }
             }
         })

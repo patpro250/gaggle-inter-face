@@ -15,7 +15,7 @@ async function loginLibrarian(credentials: LibrarianCredentials) {
   } else {
     return {
       success: false,
-      message: result?.error || "Login failed!",
+      message: "Invalid email or password",
     };
   }
 }

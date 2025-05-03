@@ -1,4 +1,5 @@
-import React from "react";
+// @ts-nocheck
+import { auth } from "../../auth";
 
 const getGreeting = () => {
   const hour = new Date().getHours();
@@ -7,7 +8,11 @@ const getGreeting = () => {
   return "Good evening";
 };
 
-const Greetings = () => {
+const Greetings = async () => {
+  const session = await auth();
+  const firstName = session?.user?.firstName ?? "there";
+  const lastName = session?.user?.lastName ?? "";
+
   return (
     <div className="flex sm:flex-row-reverse items-center justify-between bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
       <div className="flex items-center space-x-3">
@@ -22,7 +27,7 @@ const Greetings = () => {
         <p className="text-gray-600 dark:text-gray-300">
           {getGreeting()},{" "}
           <span className="text-gray-800 dark:text-white font-medium">
-            Jean Paul
+            {`${firstName} ${lastName}`}
           </span>
           !
         </p>

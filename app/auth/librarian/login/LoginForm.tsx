@@ -35,7 +35,6 @@ const LoginForm = () => {
     } else {
       toast.error(response.message);
     }
-    alert('Testing');
   };
 
   return (
@@ -79,9 +78,10 @@ const LoginForm = () => {
       </div>
       <button
         type="submit"
+        disabled={isSubmitting}
         className="w-full mt-4 py-3 rounded-lg flex justify-center items-center gap-4 bg-primary text-white font-semibold hover:bg-primary-dark transition duration-300 dark:bg-primary-dark"
       >
-        {isSubmitting ? "Loading" : "Login"}
+        {isSubmitting ? "Please wait" : "Login"}
         {isSubmitting && <Spinner size="2" />}
       </button>
     </form>
