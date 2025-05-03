@@ -2,8 +2,12 @@ import { ReactNode } from "react";
 import Sidebar from "./SideBar";
 import React from "react";
 import Greetings from "./Greetings";
+import { auth } from "../../auth";
+import { redirect } from "next/navigation";
 
-const SchoolsDashboardLayout = ({ children }: { children: ReactNode }) => {
+const SchoolsDashboardLayout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
+  if (!session) redirect('/login');
   return (
     <div className="flex gap-4 h-screen bg-gray-100 dark:bg-gray-900">
       <Sidebar />

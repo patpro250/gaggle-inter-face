@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+import { auth } from "../auth";
 import { APP_NAME } from "../constants";
 import LoginForm from "./LoginForm";
 
@@ -6,7 +8,10 @@ export const metadata = {
   description: "Login to access a tone of features and tools we present",
 };
 
-export default function Login() {
+export default async function Login() {
+  const session = await auth();
+  if (session) redirect('/g/schools/dashboard');
+
   return (
     <div className="flex justify-center flex-col items-center min-h-screen bg-gray-100 library-dark-bg">
       <div className="w-full max-w-md p-8 shadow-lg rounded-2xl bg-white dark:bg-gray-900 dark:text-white">

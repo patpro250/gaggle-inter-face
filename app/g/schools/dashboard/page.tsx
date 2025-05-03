@@ -15,7 +15,6 @@ const SchoolsDashboard = async () => {
       <ActionButtons />
       <h1 className="library-title">Overview</h1>
       <Overview />
-      <LogoutButton />
       {/* <Analytics />  */}
     </>
   );
