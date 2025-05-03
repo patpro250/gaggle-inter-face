@@ -1,16 +1,21 @@
-"use client";
-import { signIn } from "next-auth/react";
+import { APP_NAME } from "../constants";
+import LoginForm from "./LoginForm";
 
-export default function LoginPage() {
+export const metadata = {
+  title: `Login | ${APP_NAME}`,
+  description: "Login to access a tone of features and tools we present",
+};
+
+export default function Login() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Sign in with Google</h1>
-      <button
-        onClick={() => signIn("google", { callbackUrl: "/login/done" })}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md"
-      >
-        Sign In with Google
-      </button>
+    <div className="flex justify-center flex-col items-center min-h-screen bg-gray-100 library-dark-bg">
+      <div className="w-full max-w-md p-8 shadow-lg rounded-2xl bg-white dark:bg-gray-900 dark:text-white">
+        <h2 className="text-3xl text-primary font-semibold text-center mb-6">
+          Login
+          <div className="absolute left-0 bottom-0 w-full h-1 bg-primary mt-2"></div>
+        </h2>
+        <LoginForm />
+      </div>
     </div>
   );
 }

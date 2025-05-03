@@ -12,37 +12,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             name: 'Login',
             credentials: {
                 email: { label: 'Email', type: "text" },
-                password: { label: "Password", type: "password" }
+                password: { label: "Password", type: "password" },
+                userType: { label: "User type", type: "text" }
             },
 
             async authorize(credentials) {
-                try {
-                    const res = await fetch(`${API_URL}/auth/librarians`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            email: credentials.email,
-                            password: credentials.password
-                        })
-                    });
-
-                    const token = res.headers.get("x-auth-token");
-                    const user = await res.json();
-
-                    if (!res.ok || !token) {
-                        throw new AuthError(user?.message || "Email or password is incorrect");
-                    }
-
-                    return {
-                        ...user as Librarian,
-                        token
-                    };
-
-                } catch (err) {
-                    if (err instanceof AuthError) throw err;
-                    throw new AuthError("Something went wrong. Please try again.");
+                if (credentials.userType === 'Librarian'){
+                    return await loginLibrarian(credentials);
+                } else if (credentials.userType === 'Member') {
+                    return await loginMember(credentials);
+                } else if (credentials.userType === 'Institution') {
+                    return await loginInstitution(credentials);
+                } else if (credentials.userType === 'System Admin') {
+                    return await loginAdmin(credentials);
                 }
             }
         })
@@ -70,3 +52,127 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
     secret: process.env.NEXTAUTH_SECRET
 });
+
+async function loginLibrarian(credentials) {
+    try {
+        const res = await fetch(`${API_URL}/auth/librarians`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: credentials.email,
+                password: credentials.password
+            })
+        });
+
+        const token = res.headers.get("x-auth-token");
+        const user = await res.json();
+
+        if (!res.ok || !token) {
+            throw new AuthError(user?.message || "Email or password is incorrect");
+        }
+
+        return {
+            ...user as Librarian,
+            token
+        };
+
+    } catch (err) {
+        if (err instanceof AuthError) throw err;
+        return null;
+    }
+}
+
+async function loginMember(credentials) {
+    try {
+        const res = await fetch(`${API_URL}/auth/members`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: credentials.email,
+                password: credentials.password
+            })
+        });
+
+        const token = res.headers.get("x-auth-token");
+        const user = await res.json();
+
+        if (!res.ok || !token) {
+            throw new AuthError(user?.message || "Email or password is incorrect");
+        }
+
+        return {
+            ...user as Librarian,
+            token
+        };
+
+    } catch (err) {
+        if (err instanceof AuthError) throw err;
+        return null;
+    }
+}
+
+async function loginInstitution(credentials) {
+    try {
+        const res = await fetch(`${API_URL}/auth/director`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: credentials.email,
+                password: credentials.password
+            })
+        });
+
+        const token = res.headers.get("x-auth-token");
+        const user = await res.json();
+
+        if (!res.ok || !token) {
+            throw new AuthError(user?.message || "Email or password is incorrect");
+        }
+
+        return {
+            ...user as Librarian,
+            token
+        };
+
+    } catch (err) {
+        if (err instanceof AuthError) throw err;
+        return null;
+    }
+}
+
+async function loginAdmin(credentials) {
+    try {
+        const res = await fetch(`${API_URL}/auth/admin`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: credentials.email,
+                password: credentials.password
+            })
+        });
+
+        const token = res.headers.get("x-auth-token");
+        const user = await res.json();
+
+        if (!res.ok || !token) {
+            throw new AuthError(user?.message || "Email or password is incorrect");
+        }
+
+        return {
+            ...user as Librarian,
+            token
+        };
+
+    } catch (err) {
+        if (err instanceof AuthError) throw err;
+        return null;
+    }
+}
