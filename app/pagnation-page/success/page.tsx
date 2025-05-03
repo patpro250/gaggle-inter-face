@@ -2,10 +2,11 @@
 import { Button } from "@radix-ui/themes";
 import { Merienda, Orbitron } from "next/font/google";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useInstitutionContext } from "../../admin/stateManagement/institution";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 type InstitutionData = {
   email: string;
@@ -16,21 +17,28 @@ type InstitutionData = {
   type: string;
   password: string;
 };
+
 const merienda = Merienda({
   subsets: ["latin"], // Specify the character set
   weight: ["400"], // Choose the font weight (400 is regular)
 });
 const Success = () => {
-  const { DataForm, setData } = useInstitutionContext();
+  const isSubmitting = useRef(false);
+
+  const { DataForm } = useInstitutionContext();
   const router = useRouter();
 
   const createInstitution = async (data: InstitutionData) => {
+    if (isSubmitting.current) return; // prevent double submit
+    isSubmitting.current = true;
+
     try {
       const res = await axios.post("http://localhost:4000/institutions", data);
       const token = res.headers["x-auth-token"];
 
       if (!token) {
-        router.push("/pagnation-page/"); // Guhita ujya ku pagination page niba token itabonetse
+        router.push("/pagnation-page/");
+        toast.error("Token Not Allowed");
         return;
       }
 
@@ -39,17 +47,13 @@ const Success = () => {
 
       // Redirect ujya ku admin page
       router.push("/admin");
+      toast.success("Loged In !!");
     } catch (err: any) {
       if (axios.isAxiosError(err)) {
-        console.log("Axios error:Patrick");
+        const msg = err.response?.data?.message || "Something went wrong";
+        toast.error(msg);
         return;
-        // Optional: You can handle based on status code
-        const status = err.response?.status;
-
-        // Redirect to Google Sign-in (change URL as needed)
-        router.push("/pagnation-page/");
-      } else {
-        console.log("Unexpected error:", err.message);
+        // This line uses toast to show the backend error
       }
     }
   };
