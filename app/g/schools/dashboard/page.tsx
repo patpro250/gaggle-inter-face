@@ -1,5 +1,6 @@
 import { auth } from "../../../auth";
 import LogoutButton from "../../../login/Logout";
+import AddBookModal from "../_components/AddBookModal";
 import ActionButtons from "./ActionButtons";
 import Analytics from "./Analytics";
 import Overview from "./Overview";
@@ -17,6 +18,8 @@ const SchoolsDashboard = async () => {
       <h1 className="library-title">Overview</h1>
       <Overview />
       <Analytics /> 
+      <AddBookModal />
+      <LogoutButton />
       {/* <h1 className="text-white text-2xl">{session.accessToken}</h1> */}
     </>
   );

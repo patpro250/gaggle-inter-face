@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { auth } from "../../../auth";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -10,11 +11,12 @@ const TopBooksBarChart = dynamic(() => import("./_components/TopBooksBarChart"),
 const Analytics = () => {
   const [topBooksData, setTopBooksData] = useState([]);
   const [borrowingTrendsData, setBorrowingTrendsData] = useState([]);
-
+  
   useEffect(() => {
     const fetchAnalytics = async () => {
-      const res = await fetch(`${API_URL}/librarians/analytics`);
-      const data = await res.json();
+      const session = await auth();
+      const res = await fetch(`${API_URL}/librarians/analytics`, {headers: {'x-auth-token': session.accessToken}});
+      const data = res.json();
       setTopBooksData(data.topBooksData);
       setBorrowingTrendsData(data.borrowingTrendsData);
     };

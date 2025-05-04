@@ -37,6 +37,7 @@ const LoginForm = () => {
   const onSubmit = async (data: LibrarianCredentials) => {
     const response = await loginLibrarian(data);
     if (response.success) {
+      toast.success(response.message);
       redirect("/g/schools/dashboard");
     } else {
       toast.error(response?.message || 'Invalid email or password');
