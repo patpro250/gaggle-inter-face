@@ -11,9 +11,6 @@ import {
 } from "recharts";
 
 const TopBooksBarChart = ({ data }) => {
-  if (!data || data.length === 0) {
-    return <div className="text-white">No data available</div>;
-  }
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
       <h3 className="text-xl font-normal text-gray-800 dark:text-white mb-4">

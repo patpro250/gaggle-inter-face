@@ -1,33 +1,26 @@
 "use client";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
-const BorrowingTrendsLineChart = dynamic(
-  () => import("./_components/BorrowingTrendsLineChart"),
-  { ssr: false }
-);
-const TopBooksBarChart = dynamic(
-  () => import("./_components/TopBooksBarChart"),
-  { ssr: false }
-);
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const topBooksData = [
-  { bookTitle: "The Great Gatsby", borrowedCount: 120 },
-  { bookTitle: "Moby Dick", borrowedCount: 80 },
-  { bookTitle: "War and Peace", borrowedCount: 100 },
-  { bookTitle: "1984", borrowedCount: 90 },
-  { bookTitle: "To Kill a Mockingbird", borrowedCount: 110 },
-];
-
-const borrowingTrendsData = [
-  { month: "Jan", borrowedBooks: 50 },
-  { month: "Feb", borrowedBooks: 60 },
-  { month: "Mar", borrowedBooks: 70 },
-  { month: "Apr", borrowedBooks: 80 },
-  { month: "May", borrowedBooks: 90 },
-  { month: "Jun", borrowedBooks: 100 },
-];
+const BorrowingTrendsLineChart = dynamic(() => import("./_components/BorrowingTrendsLineChart"), { ssr: false });
+const TopBooksBarChart = dynamic(() => import("./_components/TopBooksBarChart"), { ssr: false });
 
 const Analytics = () => {
+  const [topBooksData, setTopBooksData] = useState([]);
+  const [borrowingTrendsData, setBorrowingTrendsData] = useState([]);
+
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      const res = await fetch(`${API_URL}/librarians/analytics`);
+      const data = await res.json();
+      setTopBooksData(data.topBooksData);
+      setBorrowingTrendsData(data.borrowingTrendsData);
+    };
+    fetchAnalytics();
+  }, []);
+
   return (
     <>
       <h2 className="library-subtitle mt-6">Analytics</h2>

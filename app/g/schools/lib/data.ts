@@ -20,7 +20,7 @@ export async function get(url: string) {
 
     return response.status === 200 ? response.data : null;
   } catch (ex) {
-    console.error("API GET error:", ex);
+    console.error("API error:", ex);
     return null;
   }
 }
