@@ -4,6 +4,7 @@ import React from "react";
 import Greetings from "./Greetings";
 import { auth } from "../../auth";
 import { redirect } from "next/navigation";
+import AddBookModal from "./_components/AddBookModal";
 
 const SchoolsDashboardLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
@@ -13,6 +14,7 @@ const SchoolsDashboardLayout = async ({ children }: { children: ReactNode }) => 
       <Sidebar />
       <div className="flex-1 p-6 overflow-auto">
         <Greetings />
+        <AddBookModal />
         <div className="mt-6">{children}</div>
       </div>
     </div>

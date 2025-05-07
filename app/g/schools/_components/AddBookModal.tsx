@@ -9,6 +9,7 @@ import AddBook from "../books/AddBook";
 import addBook from "./addBook";
 import toast from "react-hot-toast";
 import { Spinner } from "@radix-ui/themes";
+import { useAddBookModal } from "../../../stores/useAddBookModal";
 
 const languageCodes = [
     "en", "fr", "rw"
@@ -36,6 +37,8 @@ export const addBookSchema = z.object({
 export type AddBook = z.infer<typeof addBookSchema>;
 
 const AddBookModal = () => {
+    const { isOpen, close } = useAddBookModal();
+
     const {
         register,
         handleSubmit,
@@ -72,12 +75,7 @@ const AddBookModal = () => {
 
 
     return (
-        <Dialog.Root>
-            <Dialog.Trigger asChild>
-                <button className="inline-flex h-[35px] items-center justify-center rounded bg-primary px-[15px] font-medium text-white hover:bg-primary/80 focus:outline-none focus-visible:outline-2 focus-visible:outline-primary">
-                    Add Book
-                </button>
-            </Dialog.Trigger>
+        <Dialog.Root open={isOpen} onOpenChange={(val) => !val && close()}>
             <Dialog.Portal>
                 <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm data-[state=open]:animate-overlayShow" />
                 <Dialog.Content className="fixed left-1/2 top-1/2 w-[95vw] max-w-3xl max-h-[90vh] overflow-y-auto -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white dark:bg-gray-900 p-6 shadow-lg focus:outline-none data-[state=open]:animate-contentShow">
@@ -88,7 +86,10 @@ const AddBookModal = () => {
                         Fill in the book details below and click save to continue.
                     </Dialog.Description>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                    >
                         {fields.map(([name, label, type = "text", isOptional = false]) => (
                             <fieldset key={name} className="flex flex-col gap-1">
                                 <label
@@ -96,9 +97,7 @@ const AddBookModal = () => {
                                     className="text-[15px] font-medium text-gray-700 dark:text-gray-300"
                                 >
                                     {label}
-                                    {!isOptional && (
-                                        <span className="text-red-500 ml-1">*</span>
-                                    )}
+                                    {!isOptional && <span className="text-red-500 ml-1">*</span>}
                                 </label>
                                 <input
                                     id={name}
@@ -114,9 +113,10 @@ const AddBookModal = () => {
                             </fieldset>
                         ))}
 
-                        <p className="text-sm dark:text-white text-gray-800">All fields with <span className="text-red-600">*</span> are required.</p>
+                        <p className="text-sm dark:text-white text-gray-800">
+                            All fields with <span className="text-red-600">*</span> are required.
+                        </p>
                         <div className="md:col-span-2 flex justify-end pt-4">
-
                             <button
                                 type="submit"
                                 disabled={!isValid}
