@@ -9,7 +9,7 @@ import AddBook from "../books/AddBook";
 import addBook from "./addBook";
 import toast from "react-hot-toast";
 import { Spinner } from "@radix-ui/themes";
-import { useAddBookModal } from "../../../stores/useAddBookModal";
+import { useAddBookModal } from "@/app/stores/useAddBookModal";
 
 const languageCodes = [
     "en", "fr", "rw"
