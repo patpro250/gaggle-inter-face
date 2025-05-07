@@ -19,7 +19,7 @@
   }
 
   button {
-    @apply cursor-pointer;
+    @apply cursor-pointer disabled:bg-gray-800;
   }
 
   .table-header {

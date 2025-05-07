@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as Dialog from "@radix-ui/react-dialog";
+import { Dialog } from "radix-ui";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -10,6 +10,7 @@ import addBook from "./addBook";
 import toast from "react-hot-toast";
 import { Spinner } from "@radix-ui/themes";
 import { useAddBookModal } from "@/app/stores/useAddBookModal";
+import RequiredFieldsWarning from "@/app/_components/RequiredFieldsWarning";
 
 const languageCodes = [
     "en", "fr", "rw"
@@ -113,14 +114,12 @@ const AddBookModal = () => {
                             </fieldset>
                         ))}
 
-                        <p className="text-sm dark:text-white text-gray-800">
-                            All fields with <span className="text-red-600">*</span> are required.
-                        </p>
+                       <RequiredFieldsWarning />
                         <div className="md:col-span-2 flex justify-end pt-4">
                             <button
                                 type="submit"
                                 disabled={!isValid}
-                                className="inline-flex h-[35px] disabled:bg-gray-700 items-center justify-center rounded bg-primary px-6 text-white font-medium hover:bg-primary/90 transition"
+                                className="inline-flex h-[35px] items-center justify-center rounded bg-primary px-6 text-white font-medium hover:bg-primary/90 transition"
                             >
                                 Save Book {isSubmitting && <Spinner size="2" />}
                             </button>

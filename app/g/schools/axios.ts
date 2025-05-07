@@ -1,8 +1,15 @@
+//@ts-nocheck
+import { auth } from "@/app/auth";
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
-  withCredentials: true,
-});
+export const getApiClient = async () => {
+  const session = await auth();
 
-export default api;
+  return axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    withCredentials: true,
+    headers: {
+      "x-auth-token": session.accessToken,
+    },
+  });
+};
