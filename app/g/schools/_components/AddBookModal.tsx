@@ -10,8 +10,6 @@ import addBook from "./addBook";
 import toast from "react-hot-toast";
 import { Spinner } from "@radix-ui/themes";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 const languageCodes = [
     "en", "fr", "rw"
 ];
@@ -20,7 +18,7 @@ export const addBookSchema = z.object({
     title: z.string().min(3, "Title must be at least 3 characters"),
     author: z.string().min(3, "Author must be at least 3 characters"),
     publisher: z.string().min(2, "Publisher must be at least 2 characters"),
-    published: z.coerce.date(),
+    published: z.coerce.date().optional(),
     firstAcquisition: z.coerce.date(),
     isbn: z.string().min(10, "ISBN must be at least 10 characters").optional(),
     placeOfPublication: z.string().optional(),
@@ -55,22 +53,23 @@ const AddBookModal = () => {
         }
     };
 
-    const fields: Array<[keyof AddBook, string, string?]> = [
+    const fields: Array<[keyof AddBook, string, string?, boolean?]> = [
         ["title", "Title"],
         ["author", "Author"],
         ["publisher", "Publisher"],
-        ["published", "Published Date", "date"],
+        ["published", "Published Date", "date", true],
         ["firstAcquisition", "First Acquisition", "date"],
-        ["isbn", "ISBN"],
+        ["isbn", "ISBN", "text", true],
         ["language", "Language"],
-        ["edition", "Edition"],
+        ["edition", "Edition", "text", true],
         ["numberOfPages", "Pages", "number"],
-        ["callNo", "Call No"],
-        ["barCode", "Barcode"],
-        ["ddcCode", "DDC Code"],
+        ["callNo", "Call No", "text", true],
+        ["barCode", "Barcode", "text", true],
+        ["ddcCode", "DDC Code", "text", true],
         ["genre", "Genre"],
-        ["placeOfPublication", "Place of Publication"],
+        ["placeOfPublication", "Place of Publication", "text", true],
     ];
+
 
     return (
         <Dialog.Root>
@@ -90,13 +89,16 @@ const AddBookModal = () => {
                     </Dialog.Description>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {fields.map(([name, label, type = "text"]) => (
+                        {fields.map(([name, label, type = "text", isOptional = false]) => (
                             <fieldset key={name} className="flex flex-col gap-1">
                                 <label
                                     htmlFor={name}
                                     className="text-[15px] font-medium text-gray-700 dark:text-gray-300"
                                 >
                                     {label}
+                                    {!isOptional && (
+                                        <span className="text-red-500 ml-1">*</span>
+                                    )}
                                 </label>
                                 <input
                                     id={name}
@@ -112,12 +114,13 @@ const AddBookModal = () => {
                             </fieldset>
                         ))}
 
+                        <p className="text-sm dark:text-white text-gray-800">All fields with <span className="text-red-600">*</span> are required.</p>
                         <div className="md:col-span-2 flex justify-end pt-4">
 
                             <button
                                 type="submit"
                                 disabled={!isValid}
-                                className="inline-flex h-[35px] items-center justify-center rounded bg-primary px-6 text-white font-medium hover:bg-primary/90 transition"
+                                className="inline-flex h-[35px] disabled:bg-gray-700 items-center justify-center rounded bg-primary px-6 text-white font-medium hover:bg-primary/90 transition"
                             >
                                 Save Book {isSubmitting && <Spinner size="2" />}
                             </button>

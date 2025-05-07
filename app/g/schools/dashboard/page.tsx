@@ -19,7 +19,7 @@ const SchoolsDashboard = async () => {
       <Overview />
       <Analytics /> 
       <AddBookModal />
-      <LogoutButton />
+      {/* <LogoutButton /> */}
       {/* <h1 className="text-white text-2xl">{session.accessToken}</h1> */}
     </>
   );

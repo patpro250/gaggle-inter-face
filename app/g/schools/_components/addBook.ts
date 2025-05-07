@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use server";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -8,25 +9,31 @@ import { auth } from "../../../auth";
 
 export default async function addBook(data: AddBook) {
     try {
-
         const session = await auth();
-        const res = await axios.post(`${API_URL}/books`, data, { headers: { 'x-auth-token': session.accessToken } });
-        if (res.status === 201) {
-            return {
-                success: true,
-                message: res.data
-            }
-        } else if (res.status === 400) {
+        const res = await axios.post(`${API_URL}/books`, data, {
+            headers: { "x-auth-token": session.accessToken },
+        });
+
+        return {
+            success: true,
+            message: res.data,
+        };
+    } catch (ex: any) {
+        if (ex.response) {
+            const errorMsg =
+                typeof ex.response.data === "string"
+                    ? ex.response.data
+                    : ex.response.data.message || "Something went wrong";
+
             return {
                 success: false,
-                message: res.data
-            }
+                message: errorMsg,
+            };
         }
-    } catch (ex) {
+
         return {
             success: false,
-            message: ex?.message || 'Something failed'
-        }
+            message: ex.message || "Something failed",
+        };
     }
-
 }
