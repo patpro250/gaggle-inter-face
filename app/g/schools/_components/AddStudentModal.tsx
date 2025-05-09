@@ -10,6 +10,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addStudent } from "./addStudent";
 import toast from "react-hot-toast";
+import CloseButton from "@/app/_components/CloseButton";
 
 const studentSchema = z.object({
     firstName: z.string().min(3, "First name must be at least 3 characters").max(100),
@@ -18,7 +19,7 @@ const studentSchema = z.object({
         .string()
         .min(10, "Phone number must be at least 10 digits")
         .regex(/^0\d{9}$/, "Invalid phone number"),
-    email: z.string().email("Invalid email address"),
+    email: z.string().email("Invalid email address").optional(),
     studentCard: z
         .union([
             z.string().min(3, "Student card must be at least 3 characters"),
@@ -65,7 +66,7 @@ const AddStudentModal = () => {
         ["firstName", "First Name"],
         ["lastName", "Last Name"],
         ["parentPhone", "Parent Phone"],
-        ["email", "Email"],
+        ["email", "Email", "email", true],
         ["studentCard", "Student Card", "text", true],
         ["className", "Class Name"]
     ];
@@ -120,7 +121,7 @@ const AddStudentModal = () => {
                             className="absolute top-3 right-3 inline-flex size-[25px] items-center justify-center rounded-full text-gray-500 hover:text-red-500 focus:outline-none"
                             aria-label="Close"
                         >
-                            <Cross2Icon />
+                            <CloseButton />
                         </button>
                     </Dialog.Close>
                 </Dialog.Content>

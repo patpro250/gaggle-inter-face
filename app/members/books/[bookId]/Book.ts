@@ -10,7 +10,6 @@ export type Book = {
   edition?: string;
   numberOfPages: number;
   shelfLocation: string;
-  callNo?: string;
   barCode?: string;
   ddcCode?: string;
   genre?: string;

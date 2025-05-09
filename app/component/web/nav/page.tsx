@@ -36,10 +36,10 @@ const Navbar = () => {
         {/* Sign In */}
         <div className="flex gap-3">
           <Link
-            href="/pagnation-page/"
+            href="/login"
             className="bg-blue-0 text-sm border-1 border-gray-200 hover:bg-blue-50 text-gray-700 font-medium py-1 px-4 rounded-md transition"
           >
-            Sign In
+            Login
           </Link>
         </div>
       </div>

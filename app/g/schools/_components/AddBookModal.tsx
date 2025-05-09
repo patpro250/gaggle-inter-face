@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog } from "radix-ui";
-import { Cross2Icon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import AddBook from "../books/AddBook";
@@ -11,6 +10,7 @@ import toast from "react-hot-toast";
 import { Spinner } from "@radix-ui/themes";
 import { useAddBookModal } from "@/app/stores/useAddBookModal";
 import RequiredFieldsWarning from "@/app/_components/RequiredFieldsWarning";
+import CloseButton from "@/app/_components/CloseButton";
 
 const languageCodes = [
     "en", "fr", "rw"
@@ -23,14 +23,13 @@ export const addBookSchema = z.object({
     published: z.coerce.date().optional(),
     firstAcquisition: z.coerce.date(),
     isbn: z.string().min(10, "ISBN must be at least 10 characters").optional(),
-    placeOfPublication: z.string().optional(),
+    placeOfPublication: z.string().min(4).max(50).optional(),
     language: z.enum(languageCodes as [string, ...string[]], {
         errorMap: () => ({ message: "Invalid language code" }),
     }),
     edition: z.string().max(20, "Edition must be at most 20 characters").optional(),
     numberOfPages: z.coerce.number().min(5).max(10000),
-    callNo: z.string().min(3).max(20).optional(),
-    barCode: z.string().max(15).optional(),
+    lccCode: z.string().min(4).max(50).optional(),
     ddcCode: z.string().max(15).optional(),
     genre: z.string().min(3)
 });
@@ -67,8 +66,7 @@ const AddBookModal = () => {
         ["language", "Language"],
         ["edition", "Edition", "text", true],
         ["numberOfPages", "Pages", "number"],
-        ["callNo", "Call No", "text", true],
-        ["barCode", "Barcode", "text", true],
+        ["lccCode", "LCC code", "text", true],
         ["ddcCode", "DDC Code", "text", true],
         ["genre", "Genre"],
         ["placeOfPublication", "Place of Publication", "text", true],
@@ -131,7 +129,7 @@ const AddBookModal = () => {
                             className="absolute top-3 right-3 inline-flex size-[25px] items-center justify-center rounded-full text-gray-500 hover:text-red-500 focus:outline-none"
                             aria-label="Close"
                         >
-                            <Cross2Icon />
+                            <CloseButton />
                         </button>
                     </Dialog.Close>
                 </Dialog.Content>
