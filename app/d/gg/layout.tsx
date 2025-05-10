@@ -15,7 +15,7 @@ const GGLayout = ({ children }: Props) => {
           {/* Header */}
           <Header />
           {/* Main Section */}
-          <main className="p-6 flex-1  overflow-y-auto">hello {children}</main>
+          <main className="p-6 flex-1  overflow-y-auto"> {children}</main>
         </div>
       </div>
     </div>

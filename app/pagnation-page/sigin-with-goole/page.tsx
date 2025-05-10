@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { z } from "zod";
-import { useInstitutionContext } from "../../admin/stateManagement/institution";
+
 import { useRouter } from "next/navigation";
 
 // Example list of disposable email domains (expand this list as needed)
