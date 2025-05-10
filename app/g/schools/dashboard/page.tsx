@@ -6,7 +6,7 @@ import Analytics from "./Analytics";
 import Overview from "./Overview";
 
 export const metadata = {
-  title: "Schools Dashboard",
+  title: "School Dashboard",
   description: "Overview of the schools dashboard",
 };
 

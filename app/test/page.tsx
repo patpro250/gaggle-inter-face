@@ -1,43 +1,78 @@
 "use client";
-import { signIn } from "next-auth/react";
-import { useState } from "react";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+import { useState, ChangeEvent } from "react";
+import * as Ariakit from "@ariakit/react";
+import { getSuggestions } from "../g/schools/_components/getSuggestions";
+import { Spinner } from "@radix-ui/themes";
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+interface Suggestions {
+  id: string;
+  title: string;
+}
 
-    const res = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+const Suggestions = () => {
+  const [query, setQuery] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<Suggestions[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
-    if (res?.ok) {
-      window.location.href = "/dashboard";
-    } else {
-      setError("Invalid credentials");
+  // Function to fetch suggestions based on query
+  const fetchSuggestions = async (query: string) => {
+    try {
+      setLoading(true); // Set loading state to true when fetching starts
+      const data = await getSuggestions(query);
+      setSuggestions(data || []);
+    } catch (error) {
+      console.error("Error fetching suggestions:", error);
+    } finally {
+      setLoading(false); // Set loading state to false once fetching completes
     }
   };
 
+  // Handle input change, directly trigger fetchSuggestions without debounce
+  const handleQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setQuery(value); // Update query state
+    fetchSuggestions(value); // Directly trigger API call on input change
+  };
+
+  // Handle selecting a suggestion from the dropdown
+  const handleSuggestionSelect = (title: string) => {
+    setQuery(title); // Set the input field value to the selected suggestion
+    setSuggestions([]); // Clear suggestions once an item is selected
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button type="submit">Login</button>
-      {error && <p>{error}</p>}
-    </form>
+    <div className="w-72 m-6">
+      <Ariakit.ComboboxProvider>
+        <Ariakit.ComboboxLabel className="text-sm font-medium text-gray-700 mb-2">
+          Search for a book
+        </Ariakit.ComboboxLabel>
+        <Ariakit.Combobox
+          value={query}
+          onChange={handleQueryChange}
+          placeholder="e.g., Book Title"
+          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+        {loading && (
+          <div className="mt-2">
+            <Spinner />
+          </div>
+        )}
+        <Ariakit.ComboboxPopover gutter={4} sameWidth className="bg-white shadow-lg rounded-md max-h-60 overflow-auto">
+          {suggestions.map((suggestion) => (
+            <Ariakit.ComboboxItem
+              key={suggestion.id}
+              value={suggestion.title}
+              className="px-3 py-2 hover:bg-primary hover:text-white cursor-pointer"
+              onClick={() => handleSuggestionSelect(suggestion.title)}
+            >
+              {suggestion.title}
+            </Ariakit.ComboboxItem>
+          ))}
+        </Ariakit.ComboboxPopover>
+      </Ariakit.ComboboxProvider>
+    </div>
   );
-}
+};
+
+export default Suggestions;
