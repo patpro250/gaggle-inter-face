@@ -1,7 +1,19 @@
 import { signIn } from "next-auth/react";
-import { LibrarianCredentials } from "./LoginForm";
 
-async function loginLibrarian(credentials: LibrarianCredentials) {
+enum UserType {
+  Institution = "Institution",
+  Member = "Member",
+  Librarian = "Librarian",
+  SystemAdmin = "System Admin"
+}
+
+export interface Credentials {
+  email: string;
+  password: string;
+  userType: UserType;
+}
+
+async function login(credentials: Credentials) {
   try {
   const result = await signIn("credentials", {
     ...credentials,
@@ -27,4 +39,4 @@ async function loginLibrarian(credentials: LibrarianCredentials) {
 }
 }
 
-export default loginLibrarian;
+export default login;

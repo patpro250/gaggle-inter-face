@@ -6,12 +6,13 @@ import Link from "next/link";
 import { z } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import loginLibrarian from "./login";
+import { Credentials } from "./login";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import FormError from "../_components/FormError";
 import { Select } from "radix-ui";
 import { ChevronDown } from 'lucide-react';
+import login from "./login";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -34,8 +35,8 @@ const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LibrarianCredentials) => {
-    const response = await loginLibrarian(data);
+  const onSubmit = async (data: Credentials) => {
+    const response = await login(data);
     if (response.success) {
       toast.success(response.message);
       redirect("/g/schools/dashboard");
