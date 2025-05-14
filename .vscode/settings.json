@@ -5,8 +5,10 @@
     "datainput",
     "Hander",
     "maxp",
+    "NEXTAUTH",
     "NYANZA",
     "openinghour",
+    "openinghours",
     "rolesandpermissions",
     "Sparklines",
     "useset"
