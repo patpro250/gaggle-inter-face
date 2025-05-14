@@ -7,7 +7,7 @@ import axios from "axios";
 const nameSchema = z.object({
   name: z
     .string()
-    .min(2, "Name must be at least 2 characters")
+    .min(3, "Name must be at least 2 characters")
     .nonempty("Name is required"),
 });
 
@@ -31,12 +31,13 @@ export function useVerifyName() {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:4000/verify", { name });
 
+      const res = await axios.post(
+        "http://localhost:4000/institutions/verify",
+        { name }
+      );
       if (res.data.valid) {
         setValid(true);
-      } else {
-        setError("Name is not valid");
       }
     } catch (err: any) {
       setError(err.response?.data?.message || "Something went wrong");

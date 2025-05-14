@@ -5,7 +5,7 @@ type OnboardingData = {
   name: string;
   address: string;
   phone: string;
-  openingHours?: string;
+  openingHours: string;
   type: string;
   password: string;
 };

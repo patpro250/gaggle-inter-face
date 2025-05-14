@@ -1,21 +1,22 @@
 "use client";
-import NavbarCP from "@/app/component/web/nav copy/page";
-import Navbar from "@/app/component/web/nav/page";
+
 import { useVerifyName } from "@/app/Hooks/getInsititutionName";
 import { useOnboardingStore } from "@/app/stores/useOnboardingStore";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { z } from "zod";
+
 const step2Schema = z.object({
   name: z.string().nonempty("Name is required"),
 });
+
 const Step2 = () => {
   const router = useRouter();
   const { loading, valid, verify, errorN } = useVerifyName();
   const { data, setField } = useOnboardingStore();
   const [email, setEmail] = useState(data.email || "");
+
   useEffect(() => {
     if (!data.email) {
       router.push("/d/auth12/s");
@@ -35,12 +36,26 @@ const Step2 = () => {
       toast.error(result.error.issues[0].message);
       return;
     }
-    toast(name);
+
     const handleSubmit = async () => {
       await verify(name);
-      toast(name);
     };
+
     handleSubmit();
+
+    if (errorN) return toast.error(errorN);
+
+    if (valid) {
+      toast.error(" Try Again !! Name is Taken");
+      return;
+    } else {
+      toast.success(`Great !! [ ${name} ] is Available Next`);
+
+      setField("name", name);
+
+      router.push("../../../d/auth12/sss/");
+      return;
+    }
   }
 
   return (
@@ -59,11 +74,13 @@ const Step2 = () => {
               Institution name
             </label>
             <input
-              type="email"
-              id="email"
+              type="text"
+              id="name"
               onChange={(e) => setName(e.target.value)}
               placeholder="Institution name"
-              className="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className={`mt-1 p-2 border ${
+                !valid ? "border-green-400" : "border-gray-300 "
+              } rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500`}
             />
             {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
 

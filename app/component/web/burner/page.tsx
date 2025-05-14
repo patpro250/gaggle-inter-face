@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const HeroBanner = () => {
   return (
     <section className=" min-h-[400px] bg-gradient-to-r  from-blue-50 to-white  py-20 px-6">
@@ -14,12 +16,12 @@ const HeroBanner = () => {
             improve reading skills, and bring technology to every corner of the
             learning experience.
           </p>
-          <a
-            href="#"
-            className="inline-block border-2 text-sm border-gray-200 bg-blue-0 hover:bg-blue-100 text-gray-700 font-normal py-2 px-6 rounded-md  transition"
+          <Link
+            href="../../../d/auth12/s"
+            className="inline-block border-2 text-sm border-gray-200 bg-indigo-400 hover:bg-indigo-300 text-gray-700 font-normal py-2 px-6 rounded-md  transition"
           >
             Get Started
-          </a>
+          </Link>
         </div>
 
         {/* Right: Optional Image or Video */}
