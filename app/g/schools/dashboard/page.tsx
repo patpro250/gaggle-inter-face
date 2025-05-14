@@ -1,9 +1,11 @@
-import { auth } from "../../../auth";
-import LogoutButton from "../../../login/Logout";
+
+import { auth } from "@/app/auth";
+
 import AddBookModal from "../_components/AddBookModal";
 import ActionButtons from "./ActionButtons";
 import Analytics from "./Analytics";
 import Overview from "./Overview";
+import { SignOut } from "@/app/login/Logout";
 
 export const metadata = {
   title: "School Dashboard",
@@ -17,8 +19,9 @@ const SchoolsDashboard = async () => {
       <ActionButtons />
       <h1 className="library-title">Overview</h1>
       {/* <Overview /> */}
-      <Analytics /> 
-      {/* <LogoutButton /> */}
+      <p className="text-white">{session.user.email}</p>
+      <Analytics />
+      <SignOut />
       {/* <h1 className="text-white text-2xl">{session.accessToken}</h1> */}
     </>
   );

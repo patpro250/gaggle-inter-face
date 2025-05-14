@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { redirect } from "next/navigation";
 import { auth } from "../auth";
 import { APP_NAME } from "../constants";
@@ -10,7 +11,14 @@ export const metadata = {
 
 export default async function Login() {
   const session = await auth();
-  if (session) redirect('/g/schools/dashboard');
+  if (session) {
+
+    if (session.user.libraryId) {
+      redirect('/g/schools/dashboard');
+    } else {
+      redirect('/d/admin');
+    }
+  }
 
   return (
     <div className="flex justify-center flex-col items-center min-h-screen bg-gray-100 library-dark-bg">

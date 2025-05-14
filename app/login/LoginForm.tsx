@@ -13,6 +13,7 @@ import FormError from "../_components/FormError";
 import { Select } from "radix-ui";
 import { ChevronDown } from 'lucide-react';
 import login from "./login";
+import { redirector } from "./redirect";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -39,7 +40,7 @@ const LoginForm = () => {
     const response = await login(data);
     if (response.success) {
       toast.success(response.message);
-      redirect("/g/schools/dashboard");
+      redirector(data.userType);
     } else {
       toast.error(response?.message || 'Invalid email or password');
     }

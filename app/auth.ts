@@ -132,7 +132,7 @@ async function loginInstitution(credentials) {
         const user = await res.json();
 
         if (!res.ok || !token) {
-            throw new AuthError(user?.message || "Email or password is incorrect");
+            throw new Error(user?.message || "Email or password is incorrect");
         }
 
         return {

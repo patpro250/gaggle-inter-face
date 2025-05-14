@@ -1,23 +1,14 @@
-"use client";
-import { signOut } from "next-auth/react";
+import { signOut } from "../auth"
 
-const LogoutButton = () => {
-  const handleLogout = async () => {
-    await signOut({ redirect: false });  // Prevent automatic redirect after logout
-    // Optionally, you can redirect manually after logout if needed
-    window.location.href = "/";  // Redirect to home page or login page
-  };
-
+export function SignOut() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <button
-        onClick={handleLogout}
-        className="px-6 py-3 bg-red-600 text-white font-semibold rounded-full shadow-lg hover:bg-red-700 transition-all duration-300"
-      >
-        Logout
-      </button>
-    </div>
-  );
-};
-
-export default LogoutButton;
+    <form
+      action={async () => {
+        "use server"
+        await signOut()
+      }}
+    >
+      <button type="submit" className="text-white p-4 bg-red-600">Sign Out</button>
+    </form>
+  )
+}
