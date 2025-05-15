@@ -7,7 +7,7 @@ const HeroBanner = () => {
         {/* Left: Text Content */}
         <div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900  mb-6 leading-tight">
-            Modern Library <span className="text-indigo-600">Management</span>{" "}
+            Modern Library <span className="text-indigo-600">Management System</span>{" "}
             <br /> for a Brighter Rwanda
           </h1>
           <p className="text-md leading-7 text-gray-700  mb-8">

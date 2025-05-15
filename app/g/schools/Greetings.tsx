@@ -1,4 +1,5 @@
 // @ts-nocheck
+import AvatarDropdown from "@/app/test/page";
 import { auth } from "../../auth";
 
 const getGreeting = () => {
@@ -16,11 +17,7 @@ const Greetings = async () => {
   return (
     <div className="flex sm:flex-row-reverse items-center justify-between bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
       <div className="flex items-center space-x-3">
-        <img
-          src="/10bg.png"
-          alt="User Profile"
-          className="w-10 h-10 rounded-full border-2 border-primary"
-        />
+        <AvatarDropdown />
       </div>
 
       <div className="max-sm:hidden">

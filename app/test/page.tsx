@@ -1,78 +1,43 @@
 "use client";
+import * as React from "react";
+import { useRouter } from "next/navigation";
+import { DropdownMenu } from "radix-ui";
+import { User, Settings, LogOut, Mail } from "lucide-react";
+import Link from "next/link";
+import { signOut } from "next-auth/react"
 
-import { useState, ChangeEvent } from "react";
-import * as Ariakit from "@ariakit/react";
-import { getSuggestions } from "../g/schools/_components/getSuggestions";
-import { Spinner } from "@radix-ui/themes";
-
-interface Suggestions {
-  id: string;
-  title: string;
-}
-
-const Suggestions = () => {
-  const [query, setQuery] = useState<string>("");
-  const [suggestions, setSuggestions] = useState<Suggestions[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  // Function to fetch suggestions based on query
-  const fetchSuggestions = async (query: string) => {
-    try {
-      setLoading(true); // Set loading state to true when fetching starts
-      const data = await getSuggestions(query);
-      setSuggestions(data || []);
-    } catch (error) {
-      console.error("Error fetching suggestions:", error);
-    } finally {
-      setLoading(false); // Set loading state to false once fetching completes
-    }
-  };
-
-  // Handle input change, directly trigger fetchSuggestions without debounce
-  const handleQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setQuery(value); // Update query state
-    fetchSuggestions(value); // Directly trigger API call on input change
-  };
-
-  // Handle selecting a suggestion from the dropdown
-  const handleSuggestionSelect = (title: string) => {
-    setQuery(title); // Set the input field value to the selected suggestion
-    setSuggestions([]); // Clear suggestions once an item is selected
-  };
-
+const AvatarDropdown = () => {
   return (
-    <div className="w-72 m-6">
-      <Ariakit.ComboboxProvider>
-        <Ariakit.ComboboxLabel className="text-sm font-medium text-gray-700 mb-2">
-          Search for a book
-        </Ariakit.ComboboxLabel>
-        <Ariakit.Combobox
-          value={query}
-          onChange={handleQueryChange}
-          placeholder="e.g., Book Title"
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-        {loading && (
-          <div className="mt-2">
-            <Spinner />
-          </div>
-        )}
-        <Ariakit.ComboboxPopover gutter={4} sameWidth className="bg-white shadow-lg rounded-md max-h-60 overflow-auto">
-          {suggestions.map((suggestion) => (
-            <Ariakit.ComboboxItem
-              key={suggestion.id}
-              value={suggestion.title}
-              className="px-3 py-2 hover:bg-primary hover:text-white cursor-pointer"
-              onClick={() => handleSuggestionSelect(suggestion.title)}
-            >
-              {suggestion.title}
-            </Ariakit.ComboboxItem>
-          ))}
-        </Ariakit.ComboboxPopover>
-      </Ariakit.ComboboxProvider>
-    </div>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <button
+          className="flex h-10 w-10 items-center justify-center rounded-full text-white shadow-md transition duration-200 hover:scale-105 focus:outline-none"
+          aria-label="Avatar options"
+        >
+          <img src="/10bg.png" alt="" className="w-10 h-10 rounded-full border-2 border-primary" />
+        </button>
+      </DropdownMenu.Trigger>
+
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          className="min-w-[300px] rounded-lg bg-white dark:bg-gray-800 p-3 shadow-lg border border-gray-200 dark:border-gray-700 mt-2 right-0"
+          align="end"
+          sideOffset={5}
+        >
+          <DropdownMenu.Item className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">
+            <Mail size={18} /> pazzo@gmail.com
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:bg-indigo-100 dark:hover:bg-primary">
+            <Link className="flex gap-3 items-center" href={'/g/schools/settings'}><Settings size={18} /> Settings </Link>
+          </DropdownMenu.Item>
+          <DropdownMenu.Separator className="my-2 h-px bg-gray-200 dark:bg-gray-700" />
+          <DropdownMenu.Item className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-red-600 dark:text-red-500 transition-colors hover:bg-red-50 cursor-pointer hover:text-white dark:hover:bg-red-600/30" onClick={() => signOut()}>
+            <LogOut size={18} /> Logout
+          </DropdownMenu.Item>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   );
 };
 
-export default Suggestions;
+export default AvatarDropdown;

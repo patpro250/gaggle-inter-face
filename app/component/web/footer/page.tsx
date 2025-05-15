@@ -60,8 +60,8 @@ const Footer = () => {
         {/* Contact */}
         <div>
           <h4 className="text-lg font-semibold text-white mb-3">Contact</h4>
-          <p>Email: support@gagglenit.rw</p>
-          <p>Phone: +250 78 000 0000</p>
+          <p>Email: gaggleniti@gmail.com</p>
+          <p>Phone: +250 785 578 822</p>
           <div className="mt-4 flex space-x-4">
             <Link href="#" aria-label="Facebook" className="hover:text-white">
               🌐
