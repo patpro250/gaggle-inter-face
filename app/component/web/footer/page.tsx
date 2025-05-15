@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10">
         {/* Brand Info */}
         <div>
-          <h3 className="text-2xl font-bold text-white mb-4">Gaggle Nit</h3>
+          <h3 className="text-2xl font-bold text-white mb-4">Niti Book</h3>
           <p>
             Empowering libraries in Rwanda with innovative tools and smart
             reading solutions.
@@ -77,7 +77,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-gray-700 mt-12 pt-6 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} Gaggle Nit. All rights reserved.
+        © {new Date().getFullYear()} Gaggleniti. All rights reserved.
       </div>
     </footer>
   );

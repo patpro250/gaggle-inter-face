@@ -6,7 +6,7 @@ const TestimonialsSection = () => {
           <span className="text-indigo-600">Real Impact</span> Across Rwanda
         </h2>
         <p className="text-gray-600  mt-4 max-w-2xl mx-auto">
-          Gaggle Nit is empowering schools and libraries with better tools,
+          Niti Book is empowering schools and libraries with better tools,
           smarter systems, and a brighter future for reading.
         </p>
       </div>
@@ -33,12 +33,12 @@ const TestimonialsSection = () => {
           {
             name: "Director Jean M.",
             role: "School Director – Kigali",
-            text: "Gaggle Nit completely changed the way our library works. Managing books and tracking students is now effortless.",
+            text: "Niti Book completely changed the way our library works. Managing books and tracking students is now effortless.",
           },
           {
             name: "Librarian Aline U.",
             role: "Community Librarian",
-            text: "Before Gaggle Nit, everything was manual. Now we’ve saved hours every week and our readers are more engaged.",
+            text: "Before Niti Book, everything was manual. Now we’ve saved hours every week and our readers are more engaged.",
           },
           {
             name: "Emmanuel K.",

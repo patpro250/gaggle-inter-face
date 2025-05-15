@@ -18,10 +18,10 @@ const BrandVideoCard = () => {
         {/* Text */}
         <div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800  mb-4">
-            Transforming Libraries Across Rwanda with Gaggle Nit
+            Transforming Libraries Across Rwanda with Niti Book
           </h2>
           <p className="text-gray-600  mb-6">
-            Gaggle Nit is reimagining how libraries work — bringing smart
+            Niti Book is reimagining how libraries work — bringing smart
             technology, better management tools, and a renewed focus on reading
             skills to institutions across Rwanda. We're building a future where
             every reader has access to knowledge, and every library becomes a

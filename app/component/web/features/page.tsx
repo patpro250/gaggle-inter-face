@@ -49,7 +49,7 @@ const FeaturesSection = () => {
           Libraries
         </h2>
         <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-          Gaggle Nit brings together innovation and usability to help Rwandan
+          Niti Book brings together innovation and usability to help Rwandan
           libraries lead in digital transformation.
         </p>
       </div>

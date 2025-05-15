@@ -12,8 +12,8 @@ const plans = [
     highlight: false,
   },
   {
-    name: "Premium",
-    price: "$15/month",
+    name: "Standard",
+    price: "5,000 RWf / Monthly",
     features: [
       "Unlimited book tracking",
       "Advanced librarian dashboard",
@@ -24,8 +24,8 @@ const plans = [
     highlight: true,
   },
   {
-    name: "Institution",
-    price: "Custom",
+    name: "Premium",
+    price: "10,000 RWF / Monthly",
     features: [
       "Multi-institution access",
       "Admin & director roles",

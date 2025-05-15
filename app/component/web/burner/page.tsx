@@ -11,7 +11,7 @@ const HeroBanner = () => {
             <br /> for a Brighter Rwanda
           </h1>
           <p className="text-md leading-7 text-gray-700  mb-8">
-            Gaggle Nit is leading a reading revolution — equipping Rwandan
+            Niti Book is leading a reading revolution — equipping Rwandan
             schools and institutions with powerful tools to manage libraries,
             improve reading skills, and bring technology to every corner of the
             learning experience.

@@ -7,7 +7,7 @@ const CallToAction = () => {
           <span className="text-indigo-600">Your Library?</span>
         </h2>
         <p className="mb-8 text-lg md:text-xl">
-          Join schools and institutions across Rwanda already using Gaggle Nit
+          Join schools and institutions across Rwanda already using Niti Book
           to modernize and improve their libraries.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
