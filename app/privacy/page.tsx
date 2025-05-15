@@ -14,7 +14,7 @@ const PrivacyPolicyPage = () => {
         className="inline-flex items-center text-primary hover:underline mb-6"
       >
         <HomeIcon className="w-5 h-5 mr-2" />
-        Return to Home
+        Back to Home
       </Link>
 
       <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
@@ -43,7 +43,7 @@ const PrivacyPolicyPage = () => {
                 <li>Email’s profile picture</li>
                 <li>Phone number</li>
                 <li>Payment information (credit card details)</li>
-                <li>Shipping address</li>
+
               </ul>
             </div>
 
