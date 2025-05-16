@@ -1,3 +1,4 @@
+"use client";
 import AddBookButton from "./_components/AddBookButton";
 import AddStudentButton from "./_components/AddStudentButton";
 import AddBookCopyButton from "./_components/AddBookCopyButton";

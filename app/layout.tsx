@@ -5,8 +5,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Marcellus } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
-import { Toast } from "radix-ui";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "next-themes";
 
 const marcellus = Marcellus({
   subsets: ["latin"],
@@ -31,10 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} overflow-hidden ${marcellus.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider>
-          <Toaster position="top-center" />
-          <Theme>{children}</Theme>
-        </SessionProvider>
+        <ThemeProvider attribute={'class'} enableSystem defaultTheme="dark">
+          <SessionProvider>
+            <Toaster position="top-center" />
+            <Theme>{children}</Theme>
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
