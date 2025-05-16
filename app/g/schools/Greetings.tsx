@@ -1,6 +1,7 @@
 // @ts-nocheck
-import AvatarDropdown from "@/app/test/page";
+
 import { auth } from "../../auth";
+import AvatarDropdown from "./_components/AvatarDropdown";
 
 const getGreeting = () => {
   const hour = new Date().getHours();
