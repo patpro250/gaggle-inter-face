@@ -3,6 +3,7 @@ import AddBookButton from "./_components/AddBookButton";
 import AddStudentButton from "./_components/AddStudentButton";
 import AddBookCopyButton from "./_components/AddBookCopyButton";
 import IssueBookButton from "./_components/IssueBookButton";
+import ReturnBookButton from "./_components/ReturnBookButton";
 
 const ActionButtons = () => {
   return (
@@ -11,6 +12,7 @@ const ActionButtons = () => {
       <AddBookCopyButton />
       <AddStudentButton />
       <IssueBookButton />
+      <ReturnBookButton />
     </div>
   );
 };

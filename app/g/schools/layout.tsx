@@ -8,6 +8,7 @@ import AddBookModal from "./_components/AddBookModal";
 import AddStudentModal from "./_components/AddStudentModal";
 import AddBookCopyModal from "./_components/AddBookCopyModal";
 import IssueBookModal from "./_components/IssueBookModal";
+import ReturnBookModal from "./_components/ReturnBookModal";
 
 const SchoolsDashboardLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
@@ -21,6 +22,7 @@ const SchoolsDashboardLayout = async ({ children }: { children: ReactNode }) => 
         <IssueBookModal />
         <AddBookCopyModal />
         <AddStudentModal />
+        <ReturnBookModal />
         <div className="mt-6">{children}</div>
       </div>
     </div>

@@ -8,47 +8,39 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import CloseButton from "@/app/_components/CloseButton";
 import RequiredFieldsWarning from "@/app/_components/RequiredFieldsWarning";
-import issueBook from "./issueBook";
-import { useIssueBookModal } from "@/app/stores/useIssueBookModal";
+import { useReturnBook } from "@/app/stores/useReturnBook";
 
-const issueBookSchema = z.object({
+const returnBookSchema = z.object({
     code: z.string().min(3, "Copy ID must be at least 3 characters"),
     studentCode: z.string().nonempty("Student code is required"),
-    dueDate: z
-        .string()
-        .nonempty("Due date is required")
-        .refine(
-            (date) => new Date(date) > new Date(),
-            "Due date must be in the future"
-        ),
 });
 
-export type IssueBook = z.infer<typeof issueBookSchema>;
+export type ReturnBook = z.infer<typeof returnBookSchema>;
 
-const IssueBookModal = () => {
-    const { isOpen, close } = useIssueBookModal();
+const ReturnBookModal = () => {
+    const { isOpen, close } = useReturnBook();
 
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting, isValid },
         reset,
-    } = useForm<IssueBook>({ mode: "onChange", resolver: zodResolver(issueBookSchema) });
+    } = useForm<ReturnBook>({ mode: "onChange", resolver: zodResolver(returnBookSchema) });
 
-    const onSubmit = async (data: IssueBook) => {
-        const response = await issueBook(data);
-        if (response.success) {
-            toast.success(response.message);
-            reset();
-        } else {
-            toast.error(response.message);
-        }
+    const onSubmit = async (data: ReturnBook) => {
+        // const response = await issueBook(data);
+        // if (response.success) {
+        //     toast.success(response.message);
+        //     reset();
+        // } else {
+        //     toast.error(response.message);
+        // }
+        toast.success('DOne');
     };
 
-    const fields: Array<[keyof IssueBook, string, string?]> = [
+    const fields: Array<[keyof ReturnBook, string, string?]> = [
         ["code", "Book code"],
         ["studentCode", "Student Code"],
-        ["dueDate", "Due Date", "date"]
     ];
 
     return (
@@ -57,7 +49,7 @@ const IssueBookModal = () => {
                 <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm data-[state=open]:animate-overlayShow" />
                 <Dialog.Content className="fixed left-1/2 top-1/2 w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white dark:bg-gray-900 p-8 shadow-lg focus:outline-none data-[state=open]:animate-contentShow">
                     <Dialog.Title className="text-xl font-semibold text-gray-900 dark:text-white mb-1">
-                        Issue Book
+                        Return a book
                     </Dialog.Title>
                     <Dialog.Description className="mb-4 text-gray-600 dark:text-gray-300 text-sm">
                         Fill in the book details below to issue.
@@ -91,7 +83,7 @@ const IssueBookModal = () => {
                                 disabled={!isValid || isSubmitting}
                                 className="inline-flex h-[40px] items-center justify-center rounded bg-primary px-6 text-white font-medium hover:bg-primary/90 transition disabled:opacity-50"
                             >
-                                Issue Book {isSubmitting && <Spinner size="2" />}
+                                Return Book {isSubmitting && <Spinner size="2" />}
                             </button>
                         </div>
                     </form>
@@ -110,4 +102,4 @@ const IssueBookModal = () => {
     );
 };
 
-export default IssueBookModal;
+export default ReturnBookModal;
