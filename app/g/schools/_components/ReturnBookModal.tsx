@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import CloseButton from "@/app/_components/CloseButton";
 import RequiredFieldsWarning from "@/app/_components/RequiredFieldsWarning";
 import { useReturnBook } from "@/app/stores/useReturnBook";
+import returnBook from "./returnBook";
 
 const returnBookSchema = z.object({
     code: z.string().min(3, "Copy ID must be at least 3 characters"),
@@ -28,14 +29,13 @@ const ReturnBookModal = () => {
     } = useForm<ReturnBook>({ mode: "onChange", resolver: zodResolver(returnBookSchema) });
 
     const onSubmit = async (data: ReturnBook) => {
-        // const response = await issueBook(data);
-        // if (response.success) {
-        //     toast.success(response.message);
-        //     reset();
-        // } else {
-        //     toast.error(response.message);
-        // }
-        toast.success('DOne');
+        const response = await returnBook(data);
+        if (response.success) {
+            toast.success(response.message);
+            reset();
+        } else {
+            toast.error(response.message);
+        }
     };
 
     const fields: Array<[keyof ReturnBook, string, string?]> = [
