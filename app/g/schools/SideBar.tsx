@@ -50,7 +50,7 @@ export default function Sidebar() {
           icon={<PlusCircle className="stroke-1" size={20} />}
           label="Acquisitions"
         />
-        <SidebarItem
+        {/* <SidebarItem
           href="/g/schools/inter-library"
           icon={<Library className="stroke-1" size={20} />}
           label="Inter Library"
@@ -64,7 +64,7 @@ export default function Sidebar() {
           href="/g/schools/reports"
           icon={<BarChart3 className="stroke-1" size={20} />}
           label="Reports"
-        />
+        /> */}
       </nav>
     </div>
   );
