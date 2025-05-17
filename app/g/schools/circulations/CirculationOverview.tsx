@@ -4,9 +4,10 @@ import {
   FileText,
   AlertTriangle
 } from "lucide-react";
-import { api } from "../axios";
+import { getApiClient } from "../axios";
 
 const CirculationsOverview = async () => {
+  const api = await getApiClient();
   const { data: circulationStats } = await api.get('/circulations/overview');
 
   const stats = [
