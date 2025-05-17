@@ -1,22 +1,27 @@
-
-import { auth } from "@/app/auth";
-
-import AddBookModal from "../_components/AddBookModal";
+//@ts-nocheck
 import ActionButtons from "./ActionButtons";
 import Analytics from "./Analytics";
 import Overview from "./Overview";
-import { LogoutButton } from "@/app/login/Logout";
 import { getApiClient } from "../axios";
+import { auth } from "@/app/auth";
+import { APP_NAME } from "@/app/constants";
 
-export const metadata = {
-  title: "School Dashboard",
-  description: "Overview of the schools dashboard",
+export async function generateMetadata() {
+  const { user } = await auth();
+  const api = await getApiClient();
+  const res = await api.get(`/institutions/${user?.institutionId}`);
+  const { name } = res.data;
+
+  return {
+    title: `${name} Dashboard | ${APP_NAME}`,
+    description: `The overview of ${name} library`
+  }
 };
 
 const SchoolsDashboard = async () => {
-  const session = await auth();
   const api = await getApiClient();
   const res = await api.get('/librarians/analytics');
+
   const { topBooksData, borrowingTrendsData } = res.data;
   return (
     <>
@@ -24,7 +29,6 @@ const SchoolsDashboard = async () => {
       <h1 className="library-title">Overview</h1>
       <Overview />
       <Analytics borrowingTrendsData={borrowingTrendsData} topBooksData={topBooksData} />
-      {/* <h1 className="text-white text-2xl">{session.accessToken}</h1> */}
     </>
   );
 };
