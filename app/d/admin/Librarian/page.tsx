@@ -1,4 +1,4 @@
-"use client";
+"use server";
 import React from "react";
 
 // import Table from "../../component/table/tbl/page";
@@ -11,6 +11,7 @@ import {
   UserMinus,
   UserCheck,
 } from "lucide-react";
+
 import Table from "@/app/component/table/tbl/page";
 
 const Library = () => {

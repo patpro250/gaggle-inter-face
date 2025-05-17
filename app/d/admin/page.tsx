@@ -6,6 +6,7 @@ import { Sparklines, SparklinesLine } from "react-sparklines";
 import { BookCheck, BookCopy, LibraryBig, UsersRound } from "lucide-react";
 import Graph from "@/app/component/graphBar/page";
 import LineChartComponent from "@/app/component/graphLine/page";
+import { signOut } from "next-auth/react";
 
 const NavBarAdmin = () => {
   const path = usePathname();
@@ -14,7 +15,9 @@ const NavBarAdmin = () => {
   return (
     <div className="pb-50">
       <h1 className="m-5 text-xl">Dashboard </h1>
-
+      <button className="p-4 bg-indigo-500 " onClick={() => signOut()}>
+        Sign Out
+      </button>
       <div className="bg-indigo-0 grid grid-cols-1  md:grid-cols-3 p-2 gap-6  min-h-60">
         <div className="bg-green-0 h-20 flex p-2 items-center gap-5 border-1 border-gray-200  rounded-md ">
           <div className="bg-amber-500 text-amber-300 p-4 rounded-full ">

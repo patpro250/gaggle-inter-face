@@ -3,7 +3,29 @@ import HeaderTable from "../header/page";
 import FooterTable from "../footer/page";
 import Link from "next/link";
 import { Badge } from "@radix-ui/themes";
-import { UserRoundPen, Trash2, View } from "lucide-react";
+import {
+  UserRoundPen,
+  Trash2,
+  View,
+  BookCheck,
+  CircleSlash,
+} from "lucide-react";
+<BookCheck />;
+<CircleSlash />;
+
+import { getApiClient } from "@/app/g/schools/axios";
+interface Librarian {
+  [x: string]: any;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  role: string; // Add other roles if you want
+  status: string; // Add other statuses if you want
+  librarianId: string;
+  profile: null | any; // Change `any` to a specific type if you know the structure of `profile`
+}
+
 const dummyData = [
   {
     id: "a4e0bc52-bac4-4f69-9d95-bad9ff4d85b4",
@@ -98,10 +120,14 @@ const dummyData = [
   },
 ];
 
-const Table = () => {
+const Table = async () => {
+  const api = await getApiClient(); // This is safe inside SWR
+  const { data: nm } = await api.get<Librarian>("/librarians");
+  console.log(nm);
   return (
     <div>
       <HeaderTable />
+
       <div className="overflow-x-auto mt-10 mb-10">
         <table className="w-full !text-[14px] text-left text-gray-600  border-1 border-gray-200 !rounded-md  ">
           <thead className="text-[10px] border-1 border-gray-200   uppercase bg-gray-0  ">
@@ -121,159 +147,59 @@ const Table = () => {
               <th scope="col" className="px-4 py-2">
                 Status
               </th>
-              <th scope="col" className="px-4 py-2">
+              {/* <th scope="col" className="px-4 py-2">
                 Date Added
-              </th>
+              </th> */}
               <th scope="col" className="px-4 py-2">
                 Action
               </th>
             </tr>
           </thead>
           <tbody>
-            {dummyData.map((data) => (
-              <tr className=" nth-[even]:bg-gray-0 border-b-1 border-gray-200 ">
-                <td className="px-4 py-2 text-[13px]">{data.name}</td>
+            {nm.map((data: Librarian) => (
+              <tr
+                key={data.librarianId}
+                className=" nth-[even]:bg-gray-0 border-b-1 border-gray-200 "
+              >
+                <td className="px-4 py-2 text-[13px]">
+                  {data.firstName} {data.lastName}
+                </td>
                 <td className="px-4 py-2 text-[13px]">{data.email}</td>
                 <td className="px-4 py-2 text-[13px]">{data.phone}</td>
-                <td className="px-4 py-2 text-[13px]">{data.position}</td>
+                <td className="px-4 py-2 text-[13px]">{data.role}</td>
                 <td className="px-4 py-2 text-[13px]">
                   <Badge
                     size="1"
-                    color={data.status.text == "Inactive" ? "red" : "green"}
+                    color={data.status == "PENDING" ? "orange" : "green"}
                   >
-                    {data.status.text}
+                    {data.status}
                   </Badge>
                 </td>
-                <td className="px-4 py-2 text-[13px]">{data.date}</td>
+                {/* <td className="px-4 py-2 text-[13px]">{data.date}</td> */}
                 <td className="px-4 py-2">
                   <div className=" flex gap-1 text-[13px]">
                     <Link
                       className="hover:bg-green-500 hover:text-white ease-in-out text-gray-600  border-1 border-gray-200 flex justify-center items-center h-5 w-5 bg-amber-0 rounded-full transition-all "
-                      href={`/admin/Librarian/${data.id}/edit`}
+                      href={`/d/admin/Librarian/${data.librarianId}/approve`}
                     >
-                      <UserRoundPen size={13} />
+                      <BookCheck size={13} />
                     </Link>{" "}
                     <Link
                       className="hover:bg-green-500 hover:text-white ease-in-out text-gray-600  border-1 border-gray-200 flex justify-center items-center h-5 w-5 bg-amber-0 rounded-full transition-all "
-                      href={`/admin/Librarian/${data.id}/delet`}
+                      href={`/d/admin/Librarian/${data.librarianId}/unactivate`}
                     >
-                      <Trash2 size={13} color="#ff000098" />
+                      <CircleSlash size={13} color="#ff000098" />
                     </Link>
-                    <Link
+                    {/* <Link
                       className="hover:bg-green-500 hover:text-white ease-in-out text-gray-600  border-1 border-gray-200 flex justify-center items-center h-5 w-5 bg-amber-0 rounded-full transition-all "
-                      href={`/admin/Librarian/${data.id}/view`}
+                      href={`/d/admin/Librarian/${data.librarianId}/view`}
                     >
                       <View size={13} />
-                    </Link>
+                    </Link> */}
                   </div>
                 </td>
               </tr>
             ))}
-            {/* <tr className=" nth-[odd]:bg-gray-100 ">
-              <td className="px-4 py-3">Iraguha Patrick</td>
-              <td className="px-4 py-3">IraguhaPatrick@gmail.com</td>
-              <td className="px-4 py-3">+250 786914904</td>
-              <td className="px-4 py-3">Director</td>
-              <td className="px-4 py-3">
-                <Badge size="1" color="red">
-                  Inactive
-                </Badge>
-              </td>
-              <td className="px-4 py-3">23/03/2024</td>
-              <td className="px-4 py-3">
-                <div className=" flex gap-1 text-sm">
-                  <Link
-                    className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                    href={"/admin/Librarian/3/edit"}
-                  >
-                    <UserRoundPen size={19} />
-                  </Link>{" "}
-                  <Link
-                    className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                    href={"/admin/Librarian/3/delet "}
-                  >
-                    <Trash2 size={19} color="#ff000098" />
-                  </Link>
-                  <Link
-                    className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                    href={"/admin/Librarian/3/delet"}
-                  >
-                    <View size={19} />
-                  </Link>
-                </div>
-              </td>
-            </tr>
-            <tr className=" nth-[odd]:bg-gray-100 ">
-              <td className="px-4 py-3">Iraguha Patrick</td>
-              <td className="px-4 py-3">IraguhaPatrick@gmail.com</td>
-              <td className="px-4 py-3">+250 786914904</td>
-              <td className="px-4 py-3">Director</td>
-              <td className="px-4 py-3">
-                <Badge size="1" color="green">
-                  Active
-                </Badge>
-              </td>
-              <td className="px-4 py-3">23/03/2024</td>
-              <td className="px-4 py-3">
-                <div className=" flex gap-1 text-sm">
-                  <Link
-                    className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                    href={"/admin/Librarian/4/edit"}
-                  >
-                    <UserRoundPen size={19} />
-                  </Link>
-
-                  <Link
-                    className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                    href={"/admin/Librarian/4/delet"}
-                  >
-                    <Trash2 size={19} color="#ff000098" />
-                  </Link>
-
-                  <Link
-                    className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                    href={"/admin/Librarian/4/view"}
-                  >
-                    <View size={19} />
-                  </Link>
-                </div>
-              </td>
-            </tr>
-            <tr className=" nth-[odd]:bg-gray-100 ">
-              <td className="px-4 py-3">Iraguha Patrick</td>
-              <td className="px-4 py-3">IraguhaPatrick@gmail.com</td>
-              <td className="px-4 py-3">+250 786914904</td>
-              <td className="px-4 py-3">Director</td>
-              <td className="px-4 py-3">
-                <Badge size="1" color="red">
-                  Inactive
-                </Badge>
-              </td>
-              <td className="px-4 py-3">23/03/2024</td>
-              <td className="px-4 py-3">
-                <div className=" flex gap-1 text-sm">
-                  <Link
-                    className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                    href={"/admin/Librarian/5/edit"}
-                  >
-                    <UserRoundPen size={19} />
-                  </Link>
-
-                  <Link
-                    className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                    href={"/admin/Librarian/5/delet"}
-                  >
-                    <Trash2 size={19} color="#ff000098" />
-                  </Link>
-                  <Link
-                    className="hover:bg-gray-200 p-1 rounded-full transition-all "
-                    href={"/admin/Librarian/5/view"}
-                  >
-                    <View size={19} />
-                  </Link>
-                </div>
-              </td>
-            </tr> */}
           </tbody>
         </table>
       </div>
