@@ -1,4 +1,6 @@
 import { Share, ArrowRight, RefreshCw } from "lucide-react";
+import IssueBookButton from "../dashboard/_components/IssueBookButton";
+import ReturnBookButton from "../dashboard/_components/ReturnBookButton";
 
 const buttonData = [
     { icon: <Share className="w-5 h-5" strokeWidth={1.5} />, label: "Lend Book" },
@@ -9,15 +11,8 @@ const buttonData = [
 const CirculationsActions = () => {
     return (
         <div className="flex flex-wrap gap-6 mb-4">
-            {buttonData.map((button, index) => (
-                <button
-                    key={index}
-                    className="flex items-center px-4 py-2 rounded-lg bg-primary text-white shadow-md transition-all duration-300 ease-in-out hover:bg-primary/80 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50"
-                >
-                    {button.icon}
-                    <span className="ml-2">{button.label}</span>
-                </button>
-            ))}
+            <IssueBookButton />
+            <ReturnBookButton />
         </div>
     );
 };

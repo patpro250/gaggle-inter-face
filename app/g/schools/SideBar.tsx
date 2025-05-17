@@ -1,23 +1,26 @@
+//@ts-nocheck
 import {
   LayoutDashboard,
   Book,
   RefreshCcw,
-  Library,
   Users,
-  BarChart3,
-  Bookmark,
   PlusCircle,
   GraduationCap,
-  CircleDollarSign, // Imported GraduationCap icon for Students
 } from "lucide-react";
 import React from "react";
 import SidebarItem from "./SideBarItem";
+import { auth } from "@/app/auth";
+import { getApiClient } from "./axios";
 
-export default function Sidebar() {
+export default async function Sidebar() {
+  const { user } = await auth();
+  const api = await getApiClient();
+  const res = await api.get(`/institutions/${user?.institutionId}`);
+  const { name } = res.data;
   return (
     <div className="w-64 max-md:hidden min-h-screen bg-white library-dark-bg shadow-lg p-5 flex flex-col overflow-auto">
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
-        Mater Dei Nyanza
+        {name}
       </h2>
       <nav className="space-y-4">
         <SidebarItem
