@@ -1,9 +1,7 @@
 import {
   BookOpen,
-  Clock,
   Library,
   RefreshCcw,
-  Users,
   Bookmark,
   ShieldAlert,
   PlusCircle,
@@ -16,6 +14,7 @@ const BooksOverview = async () => {
 
   const api = await getApiClient();
   const { data: bookStats } = await api.get('/books/overview');
+  
   const stats = [
     {
       title: "Total Books",

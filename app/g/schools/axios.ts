@@ -13,3 +13,5 @@ export const getApiClient = async () => {
     },
   });
 };
+
+export const api = await getApiClient();

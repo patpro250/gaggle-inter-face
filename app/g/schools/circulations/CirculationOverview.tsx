@@ -1,19 +1,14 @@
-import { 
-    RefreshCcw, 
-    CheckCircle, 
-    FileText, 
-    Clock, 
-    UserCheck, 
-    AlertTriangle 
-  } from "lucide-react";
-  
-  const circulationStats = {
-    borrowed: "2,345",
-    returned: "1,234",
-    loans: "567",
-    overdue: "89"
-  };
-  
+import {
+  RefreshCcw,
+  CheckCircle,
+  FileText,
+  AlertTriangle
+} from "lucide-react";
+import { api } from "../axios";
+
+const CirculationsOverview = async () => {
+  const { data: circulationStats } = await api.get('/circulations/overview');
+
   const stats = [
     {
       title: "Borrowed",
@@ -36,31 +31,29 @@ import {
       icon: <AlertTriangle className="text-red-500" />,
     },
   ];
-  
-  const CirculationsOverview = () => {
-    return (
-      <div className="grid grid-cols-1 mt-4 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {stats.map((stat, index) => (
-          <div
-            key={index}
-            className="flex items-center p-4 bg-white dark:bg-gray-800 shadow-md rounded-2xl"
-          >
-            <div className="p-3 bg-gray-200 dark:bg-gray-700 rounded-full">
-              {stat.icon}
-            </div>
-            <div className="ml-4">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {stat.title}
-              </p>
-              <p className="text-xl font-semibold text-gray-900 dark:text-white">
-                {stat.value}
-              </p>
-            </div>
+
+  return (
+    <div className="grid grid-cols-1 mt-4 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {stats.map((stat, index) => (
+        <div
+          key={index}
+          className="flex items-center p-4 bg-white dark:bg-gray-800 shadow-md rounded-2xl"
+        >
+          <div className="p-3 bg-gray-200 dark:bg-gray-700 rounded-full">
+            {stat.icon}
           </div>
-        ))}
-      </div>
-    );
-  };
-  
-  export default CirculationsOverview;
-  
+          <div className="ml-4">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {stat.title}
+            </p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-white">
+              {stat.value}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default CirculationsOverview;
