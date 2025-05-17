@@ -9,23 +9,26 @@ import AddStudentModal from "./_components/AddStudentModal";
 import AddBookCopyModal from "./_components/AddBookCopyModal";
 import IssueBookModal from "./_components/IssueBookModal";
 import ReturnBookModal from "./_components/ReturnBookModal";
+import { ThemeProvider } from "next-themes";
 
 const SchoolsDashboardLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
   if (!session) redirect('/login');
   return (
-    <div className="flex gap-4 h-screen bg-gray-100 dark:bg-gray-900">
-      <Sidebar />
-      <div className="flex-1 p-6 overflow-auto">
-        <Greetings />
-        <AddBookModal />
-        <IssueBookModal />
-        <AddBookCopyModal />
-        <AddStudentModal />
-        <ReturnBookModal />
-        <div className="mt-6">{children}</div>
+    <ThemeProvider attribute={'class'} enableSystem defaultTheme="dark">
+      <div className="flex gap-4 h-screen bg-gray-100 dark:bg-gray-900">
+        <Sidebar />
+        <div className="flex-1 p-6 overflow-auto">
+          <Greetings />
+          <AddBookModal />
+          <IssueBookModal />
+          <AddBookCopyModal />
+          <AddStudentModal />
+          <ReturnBookModal />
+          <div className="mt-6">{children}</div>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 };
 
