@@ -1,10 +1,9 @@
 import { BookOpen, Clock, Library, RefreshCcw, Users } from "lucide-react";
 import { getApiClient } from "../axios";
-// import { get } from "../lib/data";
 
 const Overview = async () => {
   const api = await getApiClient();
-  const { data: schoolStats } = api.get("/librarians/overview");
+  const { data: schoolStats } = await api.get("/librarians/overview");
   const stats = [
     {
       title: "Total Books",

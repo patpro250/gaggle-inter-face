@@ -18,8 +18,8 @@ const SchoolsDashboard = async () => {
     <>
       <ActionButtons />
       <h1 className="library-title">Overview</h1>
-      {/* <Overview /> */}
-      <Analytics />
+      <Overview />
+      {/* <Analytics /> */}
       {/* <h1 className="text-white text-2xl">{session.accessToken}</h1> */}
     </>
   );
