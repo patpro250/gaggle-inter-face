@@ -10,7 +10,8 @@ interface Props {
   nameInsititution: string;
 }
 const NavBarAdminComponent = ({ nameInsititution }: Props) => {
-  const firstLetter = nameInsititution.trim().charAt(0).toUpperCase();
+  // const firstLetter = nameInsititution.trim().charAt(0).toUpperCase();
+  const firstLetter = "A";
   const [showBar, setBar] = useState(false);
   const [showLogout, setLogout] = useState(false);
 

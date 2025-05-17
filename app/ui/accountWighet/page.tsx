@@ -1,22 +1,12 @@
-import Link from "next/link";
-import React from "react";
-import useAuthGuard from "../../middlwere/AdminGuid/page";
 import { useRouter } from "next/navigation";
-import Logout from "../logout/page";
+import { auth } from "@/app/auth";
 interface Props {
   IsLogout: () => void;
 }
+const {} = auth();
 const Account = ({ IsLogout }: Props) => {
   const router = useRouter();
-  useAuthGuard();
 
-  const token = localStorage.getItem("x-auth-token");
-
-  const payload = JSON.parse(atob(token.split(".")[1]));
-  console.log(payload);
-  console.log("Payload 2 : ", payload.email);
-  const email = payload.email;
-  const institutionName = payload.name;
   return (
     <>
       <div
@@ -24,8 +14,8 @@ const Account = ({ IsLogout }: Props) => {
         className="z-10  bg-white divide-y divide-gray-100 rounded-lg  dark:bg-white "
       >
         <div className="px-4 py-3 text-sm text-gray-500 dark:text-gray-900">
-          <div className="text-indigo-600">{institutionName}</div>
-          <div className="font-medium truncate">{email}</div>
+          <div className="text-indigo-600">MD</div>
+          <div className="font-medium truncate">iraguha</div>
         </div>
         <ul
           className="py-2 text-sm text-gray-700 dark:text-gray-200"

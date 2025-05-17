@@ -1,6 +1,5 @@
 import React from "react";
-import BookTable from "../../component/tableBooks/tbl/page";
-import useAuthGuard from "../../middlwere/AdminGuid/page";
+
 import {
   UsersRound,
   UserCheck,
@@ -12,6 +11,7 @@ import {
   FileArchive,
   GitPullRequestDraft,
 } from "lucide-react";
+import BookTable from "@/app/component/tableBooks/tbl/page";
 
 const BookPage = () => {
   return (
