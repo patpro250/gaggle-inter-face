@@ -8,7 +8,7 @@ const NitSkeleton = (props) => {
   const isDarkMode = (theme === "dark" || resolvedTheme === "dark");
 
   const baseColor = isDarkMode ? "#2D3748" : "#4B5563";
-  const highlightColor = isDarkMode ? "#4A5568" : "#F7FAFC";
+  const highlightColor = isDarkMode ? "#6B7280" : "#F7FAFC";
 
   return <Skeleton {...props} baseColor={baseColor} highlightColor={highlightColor} />;
 };
