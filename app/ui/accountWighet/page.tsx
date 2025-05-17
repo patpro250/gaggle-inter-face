@@ -3,7 +3,7 @@ import { auth } from "@/app/auth";
 interface Props {
   IsLogout: () => void;
 }
-const {} = auth();
+// const {} = auth();
 const Account = ({ IsLogout }: Props) => {
   const router = useRouter();
 
