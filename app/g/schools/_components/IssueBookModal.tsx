@@ -57,7 +57,7 @@ const IssueBookModal = () => {
                 <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm data-[state=open]:animate-overlayShow" />
                 <Dialog.Content className="fixed left-1/2 top-1/2 w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white dark:bg-gray-900 p-8 shadow-lg focus:outline-none data-[state=open]:animate-contentShow">
                     <Dialog.Title className="text-xl font-semibold text-gray-900 dark:text-white mb-1">
-                        Issue Book
+                        Checked out Book
                     </Dialog.Title>
                     <Dialog.Description className="mb-4 text-gray-600 dark:text-gray-300 text-sm">
                         Fill in the book details below to issue.

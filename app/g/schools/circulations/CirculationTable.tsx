@@ -38,13 +38,13 @@ const CirculationsTable = () => {
         <table className="w-full border-collapse text-sm rounded-lg border-gray-300 dark:border-gray-700">
           <thead className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
             <tr>
-              <th className="p-4 text-left rounded-tl-lg border-b border-gray-300 dark:border-gray-700">Borrower Name</th>
+              <th className="p-4 text-left rounded-tl-lg border-b border-gray-300 dark:border-gray-700">Borrower Names</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Title</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Code</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Time Since Borrowing</th>
+                            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Status</th>
+                                          <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Due Date</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Fines</th>
-              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Status</th>
-              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Due Date</th>
               <th className="p-4 text-left rounded-tr-lg border-b border-gray-300 dark:border-gray-700">Actions</th>
             </tr>
           </thead>
@@ -55,9 +55,9 @@ const CirculationsTable = () => {
                 <td className="table-data">{item.bookTitle}</td>
                 <td className="table-data">{item.bookCode}</td>
                 <td className="table-data">{item.timeSinceBorrowed}</td>
-                <td className="table-data">{item.fines}</td>
                 <td className="table-data">{item.status}</td>
-                <td className="table-data">{item.dueDate}</td>
+                 <td className="table-data">{item.dueDate}</td>
+                <td className="table-data">{item.fines}</td>
                 <td className="table-data">
                   <button className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600">
                     <RefreshCw className="w-4 h-4" />

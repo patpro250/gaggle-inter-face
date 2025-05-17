@@ -17,7 +17,7 @@ const CirculationsOverview = async () => {
       icon: <RefreshCcw className="text-blue-500" />,
     },
     {
-      title: "Returned",
+      title: "Checked In",
       value: circulationStats.returned,
       icon: <CheckCircle className="text-green-500" />,
     },

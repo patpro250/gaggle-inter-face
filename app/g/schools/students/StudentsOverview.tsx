@@ -36,7 +36,7 @@ const StudentsOverview = async () => {
             icon: <DollarSign className="text-red-500" />,
         },
         {
-            title: "Students Who Lost Books",
+            title: "Students Lost Books",
             value: studentsStats.studentsWhoLostBooks,
             icon: <AlertCircle className="text-red-600" />,
         },

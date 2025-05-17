@@ -21,43 +21,43 @@ const BooksOverview = async () => {
       value: bookStats.totalBooks,
       icon: <Library className="text-blue-500" />,
     },
-    {
-      title: "Available Books",
-      value: bookStats.available,
-      icon: <BookOpen className="text-green-500" />,
-    },
-    {
-      title: "Checked Out",
-      value: bookStats.checkedOut,
-      icon: <RefreshCcw className="text-yellow-500" />,
-    },
-    {
-      title: "Reserved",
-      value: bookStats.reserved,
-      icon: <Bookmark className="text-purple-500" />,
-    },
-    {
-      title: "Missing",
-      value: bookStats.missing,
-      icon: <ShieldAlert className="text-red-500" />,
-    },
-    {
-      title: "Damaged",
-      value: bookStats.damaged,
-      icon: <XCircle className="text-gray-500" />,
-    },
-    {
-      title: "New Arrivals",
-      value: bookStats.new,
-      icon: <PlusCircle className="text-indigo-500" />,
-    },
-    {
+      {
       title: "Old Books",
       value: bookStats.old,
       icon: <BookOpen className="text-teal-500" />,
     },
     {
-      title: "Archived Books",
+      title: "Available Book Copies",
+      value: bookStats.available,
+      icon: <BookOpen className="text-green-500" />,
+    },
+    {
+      title: "Book Copies Checked Out",
+      value: bookStats.checkedOut,
+      icon: <RefreshCcw className="text-yellow-500" />,
+    },
+    {
+      title: "Book Copies Reserved",
+      value: bookStats.reserved,
+      icon: <Bookmark className="text-purple-500" />,
+    },
+    {
+      title: "Book Copies Missed ",
+      value: bookStats.missing,
+      icon: <ShieldAlert className="text-red-500" />,
+    },
+    {
+      title: "Book Copies Damaged",
+      value: bookStats.damaged,
+      icon: <XCircle className="text-gray-500" />,
+    },
+    {
+      title: "New Book Copies Arrivals",
+      value: bookStats.new,
+      icon: <PlusCircle className="text-indigo-500" />,
+    },
+    {
+      title: "Book Copies Archived",
       value: bookStats.archived,
       icon: <Archive className="text-orange-500" />,
     }

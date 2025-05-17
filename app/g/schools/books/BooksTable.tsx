@@ -7,6 +7,7 @@ const books = [
     author: "F. Scott Fitzgerald",
     publisher: "Scribner",
     dateAcquired: "January 15, 2020",
+    totalCopies: 15,
     copiesAvailable: 5,
     actions: "Edit | Delete",
   },
@@ -15,6 +16,7 @@ const books = [
     author: "George Orwell",
     publisher: "Secker & Warburg",
     dateAcquired: "March 1, 2018",
+    totalCopies: 40,
     copiesAvailable: 12,
     actions: "Edit | Delete",
   },
@@ -23,6 +25,7 @@ const books = [
     author: "Harper Lee",
     publisher: "J.B. Lippincott & Co.",
     dateAcquired: "August 10, 2019",
+    totalCopies: 90,
     copiesAvailable: 8,
     actions: "Edit | Delete",
   },
@@ -31,6 +34,7 @@ const books = [
     author: "Harper Lee",
     publisher: "J.B. Lippincott & Co.",
     dateAcquired: "August 10, 2019",
+    totalCopies: 30,
     copiesAvailable: 8,
     actions: "Edit | Delete",
   },
@@ -39,6 +43,7 @@ const books = [
     author: "Harper Lee",
     publisher: "J.B. Lippincott & Co.",
     dateAcquired: "August 10, 2019",
+    totalCopies: 20,
     copiesAvailable: 8,
     actions: "Edit | Delete",
   },
@@ -47,6 +52,7 @@ const books = [
     author: "Harper Lee",
     publisher: "J.B. Lippincott & Co.",
     dateAcquired: "August 10, 2019",
+    totalCopies: 16,
     copiesAvailable: 8,
     actions: "Edit | Delete",
   },
@@ -55,6 +61,7 @@ const books = [
     author: "Harper Lee",
     publisher: "J.B. Lippincott & Co.",
     dateAcquired: "August 10, 2019",
+    totalCopies: 15,
     copiesAvailable: 8,
     actions: "Edit | Delete",
   },
@@ -63,6 +70,7 @@ const books = [
     author: "Harper Lee",
     publisher: "J.B. Lippincott & Co.",
     dateAcquired: "August 10, 2019",
+    totalCopies: 19,
     copiesAvailable: 8,
     actions: "Edit | Delete",
   },
@@ -80,6 +88,7 @@ const BooksTable = () => {
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Author</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Publisher</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Date Acquired</th>
+                 <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Total Copies</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Copies Available</th>
               <th className="p-4 text-left rounded-tr-lg border-b border-gray-300 dark:border-gray-700">Actions</th>
             </tr>
@@ -91,6 +100,7 @@ const BooksTable = () => {
                 <td className="table-data">{book.author}</td>
                 <td className="table-data">{book.publisher}</td>
                 <td className="table-data">{book.dateAcquired}</td>
+                <td className="table-data">{book.totalCopies}</td>
                 <td className="table-data">{book.copiesAvailable}</td>
                 <td className="table-data">{book.actions}</td>
               </tr>

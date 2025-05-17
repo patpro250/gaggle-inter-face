@@ -7,6 +7,7 @@ const students = [
     parentPhone: "123-456-7890",
     className: "Grade 10",
     status: "Active",
+    StudentCode: "907847489",
     email: "johndoe@example.com",
     studentCard: "SC12345",
   },
@@ -15,6 +16,7 @@ const students = [
     parentPhone: "987-654-3210",
     className: "Grade 9",
     status: "Inactive",
+    StudentCode: "907847489",
     email: "janesmith@example.com",
     studentCard: "SC12346",
   },
@@ -23,6 +25,7 @@ const students = [
     parentPhone: "555-123-4567",
     className: "Grade 11",
     status: "Active",
+    StudentCode: "907847489",
     email: "samjohnson@example.com",
     studentCard: "SC12347",
   },
@@ -36,10 +39,11 @@ const AllStudents = () => {
           <tr>
             <th className="p-4 text-left rounded-tl-lg border-b border-gray-300 dark:border-gray-700">Names</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Parent's Phone Number</th>
-            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Class</th>
-            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Status</th>
-            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Email</th>
             <th className="p-4 text-left rounded-tr-lg border-b border-gray-300 dark:border-gray-700">Student Card</th>
+            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Student Code</th>
+            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Class</th>
+            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Email</th>
+            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -47,10 +51,11 @@ const AllStudents = () => {
             <tr key={index} className="table-r dark:hover:bg-gray-700 transition-colors">
               <td className="table-data">{student.name}</td>
               <td className="table-data">{student.parentPhone}</td>
+              <td className="table-data">{student.studentCard}</td>
               <td className="table-data">{student.className}</td>
+              <td className="table-data">{student.StudentCode}</td>
               <td className="table-data">{student.status}</td>
               <td className="table-data">{student.email}</td>
-              <td className="table-data">{student.studentCard}</td>
             </tr>
           ))}
         </tbody>
