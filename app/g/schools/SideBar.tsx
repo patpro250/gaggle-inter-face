@@ -25,12 +25,6 @@ export default function Sidebar() {
           icon={<LayoutDashboard className="stroke-1" size={20} />}
           label="Dashboard"
         />
-
-        <SidebarItem
-          href="/g/schools/payment"
-          icon={<CircleDollarSign className="stroke-1" size={20} />}
-          label="Payment "
-        />
         <SidebarItem
           href="/g/schools/books"
           icon={<Book className="stroke-1" size={20} />}
