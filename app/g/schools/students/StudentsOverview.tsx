@@ -1,54 +1,47 @@
 import { Users, UserCheck, UserX, FileText, DollarSign, AlertCircle } from "lucide-react";
+import { getApiClient } from "../axios";
 
-const studentsStats = {
-    totalStudents: "3,500",  // Total number of students
-    activeStudents: "3,200",  // Active students
-    inactiveStudents: "300",  // Inactive students
-    studentsWithOverdueBooks: "100",  // Students with overdue books
-    studentsWithFines: "50",  // Students with fines
-    totalFines: "$500",  // Total fines amount
-    studentsWhoLostBooks: "5",  // Students who lost books
-};
+const StudentsOverview = async () => {
+    const api = await getApiClient();
+    const { data: studentsStats } = await api.get('/students/overview');
+    const stats = [
+        {
+            title: "Total Students",
+            value: studentsStats.totalStudents,
+            icon: <Users className="text-blue-500" />,
+        },
+        {
+            title: "Active Students",
+            value: studentsStats.activeStudents,
+            icon: <UserCheck className="text-green-500" />,
+        },
+        {
+            title: "Inactive Students",
+            value: studentsStats.inactiveStudents,
+            icon: <UserX className="text-red-500" />,
+        },
+        {
+            title: "Students with Overdue Books",
+            value: studentsStats.studentsWithOverdueBooks,
+            icon: <FileText className="text-yellow-500" />,
+        },
+        {
+            title: "Students with Fines",
+            value: studentsStats.studentsWithFines,
+            icon: <DollarSign className="text-gray-500" />,
+        },
+        {
+            title: "Total Fines",
+            value: studentsStats.totalFines,
+            icon: <DollarSign className="text-red-500" />,
+        },
+        {
+            title: "Students Who Lost Books",
+            value: studentsStats.studentsWhoLostBooks,
+            icon: <AlertCircle className="text-red-600" />,
+        },
+    ];
 
-const stats = [
-    {
-        title: "Total Students",
-        value: studentsStats.totalStudents,
-        icon: <Users className="text-blue-500" />,
-    },
-    {
-        title: "Active Students",
-        value: studentsStats.activeStudents,
-        icon: <UserCheck className="text-green-500" />,
-    },
-    {
-        title: "Inactive Students",
-        value: studentsStats.inactiveStudents,
-        icon: <UserX className="text-red-500" />,
-    },
-    {
-        title: "Students with Overdue Books",
-        value: studentsStats.studentsWithOverdueBooks,
-        icon: <FileText className="text-yellow-500" />,
-    },
-    {
-        title: "Students with Fines",
-        value: studentsStats.studentsWithFines,
-        icon: <DollarSign className="text-gray-500" />,
-    },
-    {
-        title: "Total Fines",
-        value: studentsStats.totalFines,
-        icon: <DollarSign className="text-red-500" />,
-    },
-    {
-        title: "Students Who Lost Books",
-        value: studentsStats.studentsWhoLostBooks,
-        icon: <AlertCircle className="text-red-600" />,
-    },
-];
-
-const StudentsOverview = () => {
     return (
         <div className="grid grid-cols-1 mt-3 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {stats.map((stat, index) => (
