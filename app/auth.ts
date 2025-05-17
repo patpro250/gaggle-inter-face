@@ -5,6 +5,7 @@ import Credentials from "next-auth/providers/credentials";
 import { Librarian } from "./_types/librarian";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+console.log(API_URL);
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -130,7 +131,7 @@ async function loginInstitution(credentials) {
     const user = await res.json();
 
     if (!res.ok || !token) {
-      throw new Error(user?.message || "Email or password is incorrect");
+      throw new AuthError(user?.message || "Email or password is incorrect");
     }
 
     return {

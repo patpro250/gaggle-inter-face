@@ -24,7 +24,7 @@ const poppins = PoppinsFont({
   subsets: ["latin"], // Specify the character set
   weight: ["200"], // Choose the font weights
 });
-
+const Root = "/d/admin/";
 const ListGroup = () => {
   const path = usePathname();
   return (
@@ -34,7 +34,7 @@ const ListGroup = () => {
         <li>
           <ListComponent
             title="Home"
-            href="/admin"
+            href={`${Root}`}
             SubIcon={null}
             Icon={House}
             Path={path}
@@ -48,7 +48,7 @@ const ListGroup = () => {
         <li>
           <ListComponent
             title="Librarians"
-            href="/admin/Librarian"
+            href={`${Root}Librarian`}
             SubIcon={null}
             Icon={ShieldUser}
             Path={path}
@@ -78,7 +78,7 @@ const ListGroup = () => {
         <li>
           <ListComponent
             title="Payment & Plan"
-            href="/admin/payment"
+            href={`${Root}payment`}
             SubIcon={null}
             Icon={CircleDollarSign}
             Path={path}
@@ -88,7 +88,7 @@ const ListGroup = () => {
         <li>
           <ListComponent
             title="Generate reports "
-            href="/admin/LibrarianDashboard/reports"
+            href={`${Root}LibrarianDashboard/reports`}
             SubIcon={null}
             Icon={FilePlus2}
             Path={path}
@@ -100,7 +100,7 @@ const ListGroup = () => {
         <li>
           <ListComponent
             title="Account"
-            href="/admin/Account"
+            href={`${Root}Account`}
             SubIcon={null}
             Icon={BarChart}
             Path={path}
@@ -129,7 +129,7 @@ const ListGroup = () => {
         <li>
           <ListComponent
             title="Settings"
-            href="/admin/settings"
+            href={`${Root}settings`}
             SubIcon={null}
             Icon={Settings}
             Path={path}

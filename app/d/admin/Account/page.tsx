@@ -5,7 +5,7 @@ import { Button, Switch } from "@radix-ui/themes";
 import { Badge, Cog, EyeIcon, Trash2, Wrench } from "lucide-react";
 import { on } from "events";
 import Loading from "../loading";
-import useAuthGuard from "../../middlwere/AdminGuid/page";
+
 import Link from "next/link";
 
 const activityLogs = [
@@ -71,27 +71,26 @@ const activityLogs = [
   },
 ];
 const MyAccount = () => {
-  useAuthGuard();
-
   let name123 = "";
   let email123 = "";
   let number123 = "";
   let id123 = "";
   let address = "";
-  const token = localStorage.getItem("x-auth-token");
-  if (token) {
-    const payload65 = token.split(".")[1];
-    const Decode65 = atob(payload65);
-    const payload = JSON.parse(Decode65);
-    console.log(payload);
-    id123 = payload.id;
-    email123 = payload.email;
-    name123 = payload.name;
-    number123 = payload.phone;
-    address = payload.address;
-    // console.log(payload.name);
-  }
-  const firstLetter = name123.trim().charAt(0).toUpperCase();
+  // const token = localStorage.getItem("x-auth-token");
+  // if (token) {
+  //   const payload65 = token.split(".")[1];
+  //   const Decode65 = atob(payload65);
+  //   const payload = JSON.parse(Decode65);
+  //   console.log(payload);
+  //   id123 = payload.id;
+  //   email123 = payload.email;
+  //   name123 = payload.name;
+  //   number123 = payload.phone;
+  //   address = payload.address;
+  //   // console.log(payload.name);
+  // };
+  const name10 = "AM";
+  const firstLetter = name10.trim().charAt(0).toUpperCase();
   const BackgroundUser = (letter: string) => {
     const letterColors = {
       A: "#FF0000", // Red
@@ -125,7 +124,7 @@ const MyAccount = () => {
     return letter__bg;
   };
 
-  const bg_color = BackgroundUser(firstLetter);
+  const bg_color = BackgroundUser("A");
   return (
     <div className="  bg-amber-0 pb-20 ">
       <div className="min-h-50 bg-indigo-0 border-b-1 border-gray-200 p-10 flex justify-center items-center  ">
@@ -273,5 +272,4 @@ const MyAccount = () => {
     </div>
   );
 };
-
 export default MyAccount;

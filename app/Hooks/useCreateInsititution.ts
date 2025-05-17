@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 // 1. Institution type enum
 export enum InstitutionType {
   UNIVERSITY = "UNIVERSITY",
@@ -66,15 +67,11 @@ export function useCreateInstitution() {
 
     try {
       setLoading(true);
-      const res = await axios.post(
-        "http://localhost:4000/institutions",
-        institution
-      );
+      const res = await axios.post(`${API_URL}/institutions`, institution);
 
       // Or setValid(res.data) if response has useful data
-      console.log("Institution created:", res.data);
+
       setCreate(true);
-      console.log(create);
     } catch (err: any) {
       console.log(err);
       const errorMessage =

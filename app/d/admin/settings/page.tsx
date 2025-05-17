@@ -8,8 +8,9 @@ import { useTypewriter } from "react-simple-typewriter";
 import useFetchData from "../stateManagement/SettingGetting";
 import Loading from "../loading";
 import { ErrorBoundaryHandler } from "next/dist/client/components/error-boundary";
-import ErrorBox from "../../component/ERR0R/page";
+
 import { boolean } from "zod";
+import ErrorBox from "@/app/component/ERR0R/page";
 
 function SettingsPage() {
   const url =

@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import HeaderTable from "../../component/table/header/page";
-import Table from "../../component/table/tbl/page";
-import useAuthGuard from "../../middlwere/AdminGuid/page";
+
+// import Table from "../../component/table/tbl/page";
+// import useAuthGuard from "../../middlwere/AdminGuid/page";
 import {
   LibraryBig,
   UsersRound,
@@ -11,9 +11,9 @@ import {
   UserMinus,
   UserCheck,
 } from "lucide-react";
+import Table from "@/app/component/table/tbl/page";
 
 const Library = () => {
-  useAuthGuard();
   return (
     <div className=" p-4 pb-30 ">
       <h1 className="mt-5 mb-5 text-xl">Librarian </h1>

@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { z } from "zod";
 import axios from "axios";
-
+import { auth } from "../auth";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 // Zod schema
 const nameSchema = z.object({
   name: z
@@ -31,11 +32,12 @@ export function useVerifyName() {
 
     try {
       setLoading(true);
-
+      const session = await auth();
       const res = await axios.post(
         "http://localhost:4000/institutions/verify",
         { name }
       );
+      console.log(res.data);
       if (res.data.valid) {
         setValid(true);
       }
