@@ -4,6 +4,7 @@ import { IssueBook } from "./IssueBookModal";
 
 export default async function issueBook(data: IssueBook) {
     try {
+        if (data?.comment === "") delete data.comment;
         const api = await getApiClient();
         const res = await api.post("/circulations/lend/student", data);
 
