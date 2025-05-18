@@ -16,12 +16,12 @@ const Overview = async () => {
       icon: <Users className="text-green-500" />,
     },
     {
-      title: "Books Circulated",
+      title: "Book Copies Circulated",
       value: schoolStats?.booksCirculated ?? 0,
       icon: <RefreshCcw className="text-yellow-500" />,
     },
     {
-      title: "Overdue Books",
+      title: "Overdue Book Copies",
       value: schoolStats?.overdueBooks ?? 0,
       icon: <Clock className="text-red-500" />,
     },

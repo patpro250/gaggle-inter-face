@@ -21,6 +21,7 @@ const issueBookSchema = z.object({
             (date) => new Date(date) > new Date(),
             "Due date must be in the future"
         ),
+    comment: z.string().min(3, "Comment must be at least 2 words").max(250).optional()
 });
 
 export type IssueBook = z.infer<typeof issueBookSchema>;
@@ -45,10 +46,11 @@ const IssueBookModal = () => {
         }
     };
 
-    const fields: Array<[keyof IssueBook, string, string?]> = [
+    const fields: Array<[keyof IssueBook, string, string?, boolean?]> = [
         ["code", "Book code"],
         ["studentCode", "Student Code"],
-        ["dueDate", "Due Date", "date"]
+        ["dueDate", "Due Date", "date"],
+        ["comment", "Comment", "text" , true],
     ];
 
     return (
@@ -67,10 +69,10 @@ const IssueBookModal = () => {
                         onSubmit={handleSubmit(onSubmit)}
                         className="grid grid-cols-1 md:grid-cols-2 gap-6"
                     >
-                        {fields.map(([name, label, type = "text"]) => (
+                        {fields.map(([name, label, type = "text", isOptional = false]) => (
                             <fieldset key={name} className="flex flex-col gap-2">
                                 <label htmlFor={name} className="text-[15px] font-medium text-gray-700 dark:text-gray-300">
-                                    {label} <span className="text-red-500 ml-1">*</span>
+                                    {label} { isOptional === false && <span className="text-red-500 ml-1">*</span>}
                                 </label>
                                 <input
                                     id={name}
