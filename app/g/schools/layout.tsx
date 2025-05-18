@@ -10,6 +10,7 @@ import AddBookCopyModal from "./_components/AddBookCopyModal";
 import IssueBookModal from "./_components/IssueBookModal";
 import ReturnBookModal from "./_components/ReturnBookModal";
 import { ThemeProvider } from "next-themes";
+import RenewCirculationModal from "./_components/RenewCirculationModal";
 
 const SchoolsDashboardLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
@@ -25,6 +26,7 @@ const SchoolsDashboardLayout = async ({ children }: { children: ReactNode }) => 
           <AddBookCopyModal />
           <AddStudentModal />
           <ReturnBookModal />
+          <RenewCirculationModal />
           <div className="mt-6">{children}</div>
         </div>
       </div>
