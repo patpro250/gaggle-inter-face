@@ -25,11 +25,11 @@ const Overview = async () => {
       value: schoolStats?.overdueBooks ?? 0,
       icon: <Clock className="text-red-500" />,
     },
-    {
-      title: "Inter-Library Requests",
-      value: schoolStats?.interLibraryRequests ?? 0,
-      icon: <Library className="text-purple-500" />,
-    },
+    // {
+    //   title: "Inter-Library Requests",
+    //   value: schoolStats?.interLibraryRequests ?? 0,
+    //   icon: <Library className="text-purple-500" />,
+    // },
   ];
 
   return (

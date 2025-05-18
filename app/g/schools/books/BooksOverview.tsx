@@ -6,7 +6,8 @@ import {
   ShieldAlert,
   PlusCircle,
   Archive,
-  XCircle
+  XCircle,
+  FilePlus
 } from "lucide-react";
 import { getApiClient } from "../axios";
 
@@ -14,17 +15,37 @@ const BooksOverview = async () => {
 
   const api = await getApiClient();
   const { data: bookStats } = await api.get('/books/overview');
-  
+
   const stats = [
     {
       title: "Total Books",
       value: bookStats.totalBooks,
       icon: <Library className="text-blue-500" />,
     },
-      {
+    {
+      title: "New Books",
+      value: bookStats.new,
+      icon: <FilePlus className="text-teal-500" />,
+    },
+    {
       title: "Old Books",
       value: bookStats.old,
-      icon: <BookOpen className="text-teal-500" />,
+      icon: <BookOpen className="text-orange-500" />,
+    },
+    {
+      title: "Total Copies",
+      value: bookStats.totalCopies,
+      icon: <Library className="text-indigo-500" />,
+    },
+    {
+      title: "New Book Copies",
+      value: bookStats.newBookCopies,
+      icon: <PlusCircle className="text-cyan-500" />,
+    },
+    {
+      title: "Damaged Copies",
+      value: bookStats.damaged,
+      icon: <XCircle className="text-gray-500" />,
     },
     {
       title: "Available Book Copies",
@@ -32,35 +53,25 @@ const BooksOverview = async () => {
       icon: <BookOpen className="text-green-500" />,
     },
     {
-      title: "Book Copies Checked Out",
-      value: bookStats.checkedOut,
-      icon: <RefreshCcw className="text-yellow-500" />,
-    },
-    {
-      title: "Book Copies Reserved",
-      value: bookStats.reserved,
-      icon: <Bookmark className="text-purple-500" />,
-    },
-    {
-      title: "Book Copies Missed ",
+      title: "Missing Copies",
       value: bookStats.missing,
       icon: <ShieldAlert className="text-red-500" />,
     },
     {
-      title: "Book Copies Damaged",
-      value: bookStats.damaged,
-      icon: <XCircle className="text-gray-500" />,
+      title: "Checked Out Copies",
+      value: bookStats.checkedOut,
+      icon: <RefreshCcw className="text-yellow-500" />,
     },
     {
-      title: "New Book Copies Arrivals",
-      value: bookStats.new,
-      icon: <PlusCircle className="text-indigo-500" />,
+      title: "Reserved Copies",
+      value: bookStats.reserved,
+      icon: <Bookmark className="text-purple-500" />,
     },
     {
-      title: "Book Copies Archived",
+      title: "Archived Book Copies",
       value: bookStats.archived,
       icon: <Archive className="text-orange-500" />,
-    }
+    },
   ];
 
   return (
