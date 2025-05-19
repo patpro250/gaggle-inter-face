@@ -6,6 +6,9 @@ import "./globals.css";
 import { Marcellus } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const marcellus = Marcellus({
   subsets: ["latin"],
@@ -25,15 +28,30 @@ const geistMono = Geist_Mono({
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            // staleTime: 5 * 60 * 1000,
+            retry: 2,
+          },
+        },
+      })
+  );
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} overflow-hidden ${marcellus.variable} ${geistMono.variable} antialiased`}
       >
-          <SessionProvider>
+        <SessionProvider>
+          <QueryClientProvider client={queryClient}>
             <Toaster position="top-center" />
             <Theme>{children}</Theme>
-          </SessionProvider>
+            <ReactQueryDevtools />
+          </QueryClientProvider>
+        </SessionProvider>
       </body>
     </html>
   );

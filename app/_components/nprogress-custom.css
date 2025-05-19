@@ -1,0 +1,10 @@
+/* app/nprogress-custom.css */
+#nprogress .bar {
+    background: #1a73e8;
+    /* Your custom color */
+    height: 3px;
+}
+
+#nprogress .peg {
+    box-shadow: 0 0 10px #1a73e8, 0 0 5px #1a73e8;
+}

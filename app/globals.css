@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import 'nprogress/nprogress.css';
 
 @layer {
   .fe {
@@ -60,25 +61,26 @@
 
 }
 
-.scrollbar-custom::-webkit-scrollbar {
-  width: 8px;
-  /* Set the width of the scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
 }
 
-.scrollbar-custom::-webkit-scrollbar-track {
-  background-color: transparent;
-  /* Hides the track */
+::-webkit-scrollbar-track {
+  background: var(--tw-bg-opacity, 1) #f0f0f0;
 }
 
-.scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: #534cd194;
-  /* Indigo color */
-  border-radius: 8px;
-  /* Round edges */
-  min-height: 40px;
-  max-height: 50px;
-  /* Set a minimum height */
+::-webkit-scrollbar-thumb {
+  background-color: #3674b5; /* Custom thumb color (primary color) */
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #1863b3; /* Hover color */
+}
+
 
 .custom-after::after {
   content: "";

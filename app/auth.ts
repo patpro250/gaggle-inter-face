@@ -5,7 +5,6 @@ import Credentials from "next-auth/providers/credentials";
 import { Librarian } from "./_types/librarian";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-console.log(API_URL);
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [

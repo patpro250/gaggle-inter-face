@@ -21,7 +21,7 @@ const BookList = async () => {
 
   return (
     <>
-      <h1 className="members-subtitle">Recommended for you!</h1>
+      <h1 className="members-subtitle">Recommended for You!</h1>
       <div className="flex flex-wrap justify-center gap-6 p-4">
         {recommendedBooks.map((book, index) => (
           <BookCard key={index} {...book} />

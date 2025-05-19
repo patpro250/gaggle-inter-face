@@ -28,7 +28,7 @@ async function login(credentials: Credentials) {
     } else if (result?.error) {
       return {
         success: false,
-        message: result.error || "Invalid email or password",
+        message: "Invalid email or password",
       };
     } else {
       return {

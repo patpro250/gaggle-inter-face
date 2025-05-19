@@ -7,7 +7,7 @@ const BooksPage = () => {
     <Container>
       <h1 className="members-title">Books</h1>
       <p className="members-paragraph">
-        All your favorites are <span className="text-primary">here!</span>
+        All Your Favorites are <span className="text-primary">Here!</span>
       </p>
       <Search />
       <Recommended />

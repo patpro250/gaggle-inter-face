@@ -43,8 +43,8 @@ const AllStudents = () => {
             <th className="p-4 text-left rounded-tr-lg border-b border-gray-300 dark:border-gray-700">Student Card</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Student Code</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Class</th>
-            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Email</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Status</th>
+            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Email</th>
           </tr>
         </thead>
         <tbody>
