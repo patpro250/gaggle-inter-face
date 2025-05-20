@@ -1,22 +1,14 @@
 "use client";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Spinner } from "@radix-ui/themes";
-import { useSession } from "next-auth/react";
-import { getApiClient } from "../axios";
-
-const fetchBooks = async () => {
-  const api = await getApiClient();
-  const response = await api.get(`/books/schools`);
-  return response.data.data;
-};
+import { fetchBooks } from "./actions";
 
 const BooksTable = () => {
   const { data: books, isLoading, isError, error } = useQuery({
     queryKey: ["books"],
     queryFn: fetchBooks,
-    staleTime: 1000 * 60 * 5, // 5 minutes caching
+    staleTime: 1000 * 60 * 5,
   });
 
   if (isLoading) {
@@ -51,13 +43,13 @@ const BooksTable = () => {
         </thead>
         <tbody>
           {books?.map((book, index) => (
-            <tr key={index} className="table-r dark:hover:bg-gray-700 transition-colors">
+            <tr key={index} className="table-r hover:bg-primary hover:text-white transition-colors">
               <td className="table-data">{book.title}</td>
               <td className="table-data">{book.author}</td>
               <td className="table-data">{book.publisher}</td>
-              <td className="table-data">{new Date(book.dateAcquired).toLocaleDateString()}</td>
+              <td className="table-data">{new Date(book.dateAquired).toLocaleDateString()}</td>
               <td className="table-data">{book.totalCopies}</td>
-              <td className="table-data">{book.copiesAvailable}</td>
+              <td className="table-data">{book.availableCopies}</td>
               <td className="table-data">
                 <button className="text-blue-500 hover:underline">View</button>
               </td>

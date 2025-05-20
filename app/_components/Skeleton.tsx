@@ -1,16 +1,23 @@
-"use client";
-import { useTheme } from "next-themes";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+'use client'
+import { useTheme } from 'next-themes'
+import clsx from 'clsx'
 
-const NitSkeleton = (props) => {
-  const { theme, resolvedTheme } = useTheme();
-  const isDarkMode = (theme === "dark" || resolvedTheme === "dark");
+const NitSkeleton = ({ width = '100%', height = '1rem', className = '' }) => {
+  const { theme, resolvedTheme } = useTheme()
+  const isDark = theme === 'dark' || resolvedTheme === 'dark'
 
-  const baseColor = isDarkMode ? "#2D3748" : "#4B5563";
-  const highlightColor = isDarkMode ? "#6B7280" : "#F7FAFC";
+  const backgroundClass = isDark ? 'bg-gray-800' : 'bg-gray-300'
 
-  return <Skeleton {...props} baseColor={baseColor} highlightColor={highlightColor} />;
-};
+  return (
+    <div
+      className={clsx(
+        'animate-pulse rounded',
+        backgroundClass,
+        className
+      )}
+      style={{ width, height }}
+    />
+  )
+}
 
-export default NitSkeleton;
+export default NitSkeleton
