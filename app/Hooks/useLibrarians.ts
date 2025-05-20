@@ -1,19 +1,39 @@
-// // hooks/useLibrarians.ts
-// import useSWR from "swr";
-// import { getApiClient } from "../g/schools/axios";
+//@ts-nocheck
+import { auth } from "@/app/auth";
 
-// const fetchLibrarians = async () => {
-//   const api = await getApiClient(); // This is safe inside SWR
-//   const res = await api.get("/librarians");
-//   return res.data;
-// };
+export const approveLibrarian = async (payload: {
+  id: string;
+  role: string;
+}) => {
+  const session = await auth();
+  console.log(session);
+  try {
+    if (!session.accessToken) {
+      throw new Error("Unauthorized: No session token found");
+    }
 
-// export default function useLibrarians() {
-//   const { data, error, isLoading } = useSWR("librarians", fetchLibrarians);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/librarians/approve/${payload.id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+        body: JSON.stringify({ role: payload.role }),
+      }
+    );
+    console.log(res);
 
-//   return {
-//     librarians: data || [],
-//     loading: isLoading,
-//     error,
-//   };
-// }
+    if (!res.ok) {
+      const errorData = await res.json();
+
+      throw new Error(errorData.message || "Failed to approve librarian");
+    }
+
+    return console.log(await res.json(), "hhhhhhhhhhhhhhhhhhhh");
+  } catch (error: any) {
+    console.error("Approve librarian error:", error);
+    throw new Error(error.message || "Something went wrong");
+  }
+};

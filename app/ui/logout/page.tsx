@@ -1,32 +1,12 @@
 "use client";
 import { Button } from "@radix-ui/themes";
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React from "react";
 interface Props {
   IsLogout: () => void;
 }
 const LogoutBoxModal = ({ IsLogout }: Props) => {
-  const router = useRouter();
-  const logout = () => {
-    const token = localStorage.getItem("x-auth-token");
-
-    if (token) {
-      localStorage.removeItem("x-auth-token");
-
-      // Double-check if token is actually removed
-      const removed = !localStorage.getItem("x-auth-token");
-
-      if (removed) {
-        console.log("Token removed. Redirecting...");
-        router.replace("/landing-page");
-      } else {
-        console.error("Failed to remove token.");
-      }
-    } else {
-      console.warn("No token found. Redirecting anyway.");
-      router.replace("/landing-page"); // optional fallback redirect
-    }
-  };
   return (
     <div className="bg-[#0000006c] absolute z-20 h-screen w-screen flex justify-center items-center">
       <div className=" bg-white overflow-hidden rounded-md shadow-2xl h-50 w-xl">
@@ -44,7 +24,7 @@ const LogoutBoxModal = ({ IsLogout }: Props) => {
               Cancel
             </button>
             <button
-              onClick={logout}
+              onClick={() => signOut()}
               className="bg-red-0 hover:bg-gray-300 transition-all ease-in-out text-sm text-gray-800 px-5 border-1 border-gray-200 rounded-sm py-1 "
             >
               Logout

@@ -16,7 +16,7 @@ const AdiminLayout = async ({ children }: Props) => {
   if (!sess) {
     redirect("/login");
   }
-  console.log(sess);
+
   // useAuthGuard();
   let name123 = sess.user.name;
   let code = sess.user.code;
@@ -51,8 +51,8 @@ const AdiminLayout = async ({ children }: Props) => {
 
   return (
     <div className=" h-[100vh] overflow-hidden ">
-      <NavBarAdminComponent nameInsititution={"hello"} />
-      <div className="bg-indigo-400 p-1 flex justify-center align-middle items-center text-white text-base font-medium">
+      <NavBarAdminComponent nameInsititution={name123} />
+      <div className=" bg-primary p-1 flex justify-center align-middle items-center text-white text-base font-medium">
         <span className=" uppercase ">
           <span className="bg-indigo-500 ms-5 text-sm font-semibold px-2 rounded-sm">
             WELCOME TO <span className="text-amber-900">{name123}</span>

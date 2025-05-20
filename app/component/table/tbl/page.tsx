@@ -14,7 +14,7 @@ import {
 <CircleSlash />;
 
 import { getApiClient } from "@/app/g/schools/axios";
-interface Librarian {
+export interface Librarian {
   [x: string]: any;
   firstName: string;
   lastName: string;
@@ -123,7 +123,7 @@ const dummyData = [
 const Table = async () => {
   const api = await getApiClient(); // This is safe inside SWR
   const { data: nm } = await api.get<Librarian>("/librarians");
-  console.log(nm);
+
   return (
     <div>
       <HeaderTable />

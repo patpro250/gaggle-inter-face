@@ -6,12 +6,13 @@ import Account from "../accountWighet/page";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import LogoutBoxModal from "../logout/page";
+import { auth } from "@/app/auth";
 interface Props {
   nameInsititution: string;
 }
 const NavBarAdminComponent = ({ nameInsititution }: Props) => {
   // const firstLetter = nameInsititution.trim().charAt(0).toUpperCase();
-  const firstLetter = "A";
+  const firstLetter = "S";
   const [showBar, setBar] = useState(false);
   const [showLogout, setLogout] = useState(false);
 
@@ -80,7 +81,7 @@ const NavBarAdminComponent = ({ nameInsititution }: Props) => {
                       <button
                         type="button"
                         style={{ backgroundColor: bg_color }}
-                        className={`relative flex items-center  justify-center  rounded-md  shadow text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden`}
+                        className={`relative flex items-center  justify-center  rounded-full  shadow text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden`}
                         id="user-menu-button"
                         aria-expanded="false"
                         aria-haspopup="true"

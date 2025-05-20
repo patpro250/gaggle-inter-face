@@ -1,11 +1,15 @@
-import React from "react";
+import Approve from "@/app/_components/approved";
+import LibrarianDetail from "@/app/_components/librarianDetail";
+
 interface Props {
   params: { id: number };
 }
-const EditLibarian = ({ params: { id } }: Props) => {
+
+const EditLibarian = async ({ params: { id } }: Props) => {
   return (
-    <div>
-      <h1> Edit ID:{id} </h1>
+    <div className="grid grid-cols-1 p-6 pt-10 gap-3 md:grid-cols-2">
+      <LibrarianDetail id={`${id}`} />
+      <Approve id={`${id}`} />
     </div>
   );
 };

@@ -167,7 +167,7 @@ const Step3 = () => {
               />
             </label>
 
-            <label className="text-md font-medium flex flex-col gap-2 text-gray-700">
+            <label className="text-md font-medium flex py-4 gap-2 text-gray-700">
               <input
                 type="checkbox"
                 checked={showPassword}

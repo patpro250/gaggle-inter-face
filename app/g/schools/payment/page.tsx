@@ -1,11 +1,10 @@
 import React from "react";
-import SelectPlan from "./paySelect/page";
-
+import { ManualPaymentForm } from "./paySelect/page";
 const Payment = () => {
   return (
     <div>
       <h1>payment</h1>
-      <SelectPlan />
+      <ManualPaymentForm />
     </div>
   );
 };

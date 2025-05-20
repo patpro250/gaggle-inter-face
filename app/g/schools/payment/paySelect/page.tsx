@@ -1,76 +1,65 @@
-"use client";
-import React from "react";
+import { useState } from "react";
 
-const SelectPlan = () => {
+export function ManualPaymentForm() {
+  const [phone, setPhone] = useState("");
+  const [confirmationCode, setConfirmationCode] = useState("");
+
+  const handleSubmit = () => {
+    // Replace with API call
+    console.log("Phone:", phone);
+    console.log("Confirmation Code:", confirmationCode);
+  };
+
   return (
-    <div>
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-10 px-4">
-        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-10">
-          Choose a Plan
-        </h2>
+    <div className="bg-white shadow rounded-lg p-6 mt-6">
+      <h2 className="text-xl font-bold mb-4">Complete Your Payment</h2>
+      <p className="text-sm text-gray-600 mb-4">
+        To activate your plan, pay ₹999 to the admin via UPI/Bank. Contact admin
+        at <strong>+91-9876543210</strong> to receive payment instructions.
+        After payment, enter the confirmation code below.
+      </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {/* Plan Card */}
-          {[
-            {
-              name: "Free Plan",
-              price: "₹0",
-              features: ["Basic Access", "Limited Books", "1 Librarian"],
-              bg: "bg-white dark:bg-gray-800",
-              btnColor: "bg-blue-500 hover:bg-blue-600 text-white",
-            },
-            {
-              name: "Standard Plan",
-              price: "₹499/mo",
-              features: ["Up to 3 Librarians", "Book Tracking", "Reports"],
-              bg: "bg-white dark:bg-gray-800",
-              btnColor: "bg-green-500 hover:bg-green-600 text-white",
-            },
-            {
-              name: "Premium Plan",
-              price: "₹999/mo",
-              features: [
-                "Unlimited Librarians",
-                "Advanced Reports",
-                "Priority Support",
-              ],
-              bg: "bg-white dark:bg-gray-800",
-              btnColor: "bg-purple-500 hover:bg-purple-600 text-white",
-            },
-          ].map((plan, i) => (
-            <div
-              key={i}
-              className={`rounded-2xl shadow-md p-6 ${plan.bg} transition-all`}
-            >
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                {plan.name}
-              </h3>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                {plan.price}
-              </p>
-              <ul className="space-y-2 mb-6">
-                {plan.features.map((feat, j) => (
-                  <li
-                    key={j}
-                    className="text-gray-700 dark:text-gray-300 flex items-center"
-                  >
-                    <span className="mr-2">✔️</span> {feat}
-                  </li>
-                ))}
-              </ul>
-              <button
-                className={`w-full py-2 px-4 rounded-xl font-semibold ${plan.btnColor}`}
-                onClick={() => console.log(`Selected ${plan.name}`)}
-              >
-                Choose Plan
-              </button>
-            </div>
-          ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Your Phone Number
+          </label>
+          <input
+            id="phone"
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+            placeholder="Enter your number"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="confirmation"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Confirmation Code
+          </label>
+          <input
+            id="confirmation"
+            value={confirmationCode}
+            onChange={(e) => setConfirmationCode(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+            placeholder="Code from admin"
+          />
         </div>
       </div>
-      ;
+
+      <button
+        onClick={handleSubmit}
+        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+      >
+        Submit and Activate Plan
+      </button>
     </div>
   );
-};
-
-export default SelectPlan;
+}
