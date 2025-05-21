@@ -16,8 +16,7 @@ export default function UserAvatar({ size = 40 }: Props) {
     const user = session?.user;
     const profile = user?.profile || null;
     const name = user?.firstName;
-    const initial = name.charAt(0).toUpperCase();
-    const second = name.charAt(1).toUpperCase();
+    const initials = (user?.firstName ?? 'U').slice(0, 2).toUpperCase();
 
     const dimension = { width: size, height: size };
 
@@ -54,7 +53,7 @@ export default function UserAvatar({ size = 40 }: Props) {
             className="rounded-full border-2 border-primary bg-primary text-white flex items-center justify-center font-bold"
             style={dimension}
         >
-            {`${initial}${second}`}
+            {initials}
         </div>
     );
 }

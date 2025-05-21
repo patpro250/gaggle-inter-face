@@ -16,11 +16,14 @@ export default async function Sidebar() {
   const { user } = await auth();
   const api = await getApiClient();
   const res = await api.get(`/institutions/${user?.institutionId}`);
-  const { name } = res.data;
+  let { name } = res.data;
+  let shortName = getShortForm(name);
+
   return (
     <div className="w-64 max-md:hidden min-h-screen bg-white library-dark-bg shadow-lg p-5 flex flex-col overflow-auto">
-      <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
-        {name}
+      <h2 className="text-2xl font-semibold flex flex-col items-baseline gap-1 text-gray-800 dark:text-white mb-6">
+        {shortName} {" "}
+        <span className="dark:text-white text-black font-light text-sm">{name}</span>
       </h2>
       <nav className="space-y-4">
         <SidebarItem
@@ -71,4 +74,15 @@ export default async function Sidebar() {
       </nav>
     </div>
   );
+}
+
+function getShortForm(name: string): string {
+  if (!name) return '';
+
+  return name
+    .split(' ')                       // Split into words
+    .filter(Boolean)                 // Remove empty strings
+    .map(word => word.slice(0, 1))   // Take first 2 characters of each word
+    .join('')
+    .toUpperCase();                  // Optional: Make it uppercase
 }
