@@ -20,15 +20,15 @@ const Step3 = () => {
       <h1> Step 1</h1>
       <div className="w-full bg-amber-0 min-h-[300px] flex flex-col justify-center items-center ">
         <div className=" max-w-3xl text-center">
-          <h1 className="text-4xl font-medium text-indigo-600 mb-4">
-            Registration Successful 🎉
+          <h1 className="text-1xl font-medium text-primary mb-4">
+            Your account has been created successfully 🎉
           </h1>
           <p className="text-gray-700 mb-6">
-            Your account has been created successfully. You can now log in.
+             Can't wait to log in!
           </p>
           <Link
             href="/login"
-            className="inline-block bg-indigo-500 w-full text-white px-6 py-2 rounded-md hover:bg-indigo-600 transition-colors"
+            className="inline-block bg-primary w-full text-white px-6 py-2 rounded-md hover:bg-primary transition-colors"
           >
             Go to Login
           </Link>
