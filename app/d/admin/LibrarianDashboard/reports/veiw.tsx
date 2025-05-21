@@ -1,24 +1,10 @@
-"use client";
+import { LibraryBig, UsersRound, BookCopy, BookCheck } from "lucide-react";
+import React from "react";
 
-import { usePathname, useRouter } from "next/navigation";
-import { Sparklines, SparklinesLine } from "react-sparklines";
-
-import { BookCheck, BookCopy, LibraryBig, UsersRound } from "lucide-react";
-import Graph from "@/app/component/graphBar/page";
-import LineChartComponent from "@/app/component/graphLine/page";
-import { signOut } from "next-auth/react";
-import WlcomeBurner from "./wlcomeBurner";
-import PeirChart from "./LibrarianDashboard/reports/peirChart";
-
-const NavBarAdmin = () => {
-  const path = usePathname();
-  const isValid = ["/librarian", "/home", "/page"];
-  const Real = isValid.includes(path);
+const VeiwCard = () => {
   return (
-    <div className="pb-50">
-      <h1 className="m-5 text-xl">Dashboard </h1>
-
-      {/* <div className="bg-indigo-0 grid grid-cols-1  md:grid-cols-3 p-2 gap-6  min-h-60">
+    <div>
+      <div className="bg-indigo-0 grid grid-cols-1  md:grid-cols-3 p-2 gap-6  min-h-60">
         <div className="bg-green-0 h-20 flex p-2 items-center gap-5 border-1 border-gray-200  rounded-md ">
           <div className="bg-amber-500 text-amber-300 p-4 rounded-full ">
             <LibraryBig />
@@ -68,24 +54,9 @@ const NavBarAdmin = () => {
             <p className="font-medium text-xl">334</p>
           </div>
         </div>
-      </div> */}
-
-      <WlcomeBurner />
-
-      {/* analyse */}
-      <h1 className="m-5 text-xl">Analytics </h1>
-
-      <div className="bg-indigo-0 grid grid-cols-1  xl:grid-cols-2 p-2 gap-4  min-h-60">
-        <div>
-          <PeirChart />
-        </div>
-
-        <div className="bg-green-0">
-          <LineChartComponent />
-        </div>
       </div>
     </div>
   );
 };
 
-export default NavBarAdmin;
+export default VeiwCard;

@@ -1,16 +1,22 @@
-"use client";
-import { useState } from "react";
 import { PlanAndHistorySection } from "./card";
 
 export default function ManualPaymentForm() {
-  const [phone, setPhone] = useState("");
-  const [confirmationCode, setConfirmationCode] = useState("");
-
-  const handleSubmit = () => {
-    // Replace with API call
-    console.log("Phone:", phone);
-    console.log("Confirmation Code:", confirmationCode);
-  };
+  const history = [
+    {
+      id: 1,
+      date: "2025-04-01",
+      amount: "₹999",
+      plan: "Institution Premium",
+      status: "Paid",
+    },
+    {
+      id: 2,
+      date: "2024-04-01",
+      amount: "₹999",
+      plan: "Institution Premium",
+      status: "Paid",
+    },
+  ]; // ✅ Correct: semicolon ends the `const` — not the function
 
   return (
     <>
@@ -24,47 +30,47 @@ export default function ManualPaymentForm() {
             instructions. After payment, enter the confirmation code below.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Your Phone Number
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-500"
-                placeholder="Enter your number"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="confirmation"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Confirmation Code
-              </label>
-              <input
-                id="confirmation"
-                value={confirmationCode}
-                onChange={(e) => setConfirmationCode(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-500"
-                placeholder="Code from admin"
-              />
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Payment History</h3>
+            <div className="overflow-x-auto">
+              <table className="min-w-full table-auto border border-gray-200 rounded-md">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                      Date
+                    </th>
+                    <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                      Plan
+                    </th>
+                    <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                      Amount
+                    </th>
+                    <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {history.map((item) => (
+                    <tr key={item.id} className="border-t">
+                      <td className="px-4 py-2 text-sm text-gray-600">
+                        {item.date}
+                      </td>
+                      <td className="px-4 py-2 text-sm text-gray-600">
+                        {item.plan}
+                      </td>
+                      <td className="px-4 py-2 text-sm text-gray-600">
+                        {item.amount}
+                      </td>
+                      <td className="px-4 py-2 text-sm text-green-600 font-medium">
+                        {item.status}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
-
-          <button
-            onClick={handleSubmit}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-          >
-            Submit and Activate Plan
-          </button>
         </div>
       </div>
     </>
