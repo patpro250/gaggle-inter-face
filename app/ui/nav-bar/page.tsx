@@ -27,6 +27,11 @@ const NavBar = () => {
             >
               About
             </Link>
+          </li> 
+          <li>
+            <Link href={`/catalog/new`} className="">
+              <button className="button-rounded">New Catalog</button>
+            </Link>
           </li>
           <li>
             <Link href={`/`} className="">
