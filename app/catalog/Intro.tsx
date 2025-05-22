@@ -6,7 +6,7 @@ const Intro = () => {
         <span className="text-orange-500">Read</span>
       </h1>
       <p className="text-center mt-3 text-gray-900 dark:text-white">
-        Search our catalog to find your next favorite book-quick, easy and
+        Search in our catalog to find your next favorite book-quick, easy and
         endless choices!
       </p>
     </div>

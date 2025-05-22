@@ -36,10 +36,10 @@ export default function AddCatalogForm() {
     >
       {/* Title */}
       <div className="relative">
-        <label className="block mb-1 text-sm font-medium">Title</label>
+        <label className="block mb-1 text-sm font-medium">Book Title</label>
         <input
           {...register("title")}
-          placeholder="Title"
+          placeholder="Book Title"
           className="w-full py-3 pl-4 pr-5 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary transition duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:focus:ring-primary"
         />
         {errors.title && <p className="text-red-500">{errors.title.message}</p>}
@@ -84,10 +84,10 @@ export default function AddCatalogForm() {
 
       {/* Published Date */}
       <div className="relative">
-        <label className="block mb-1 text-sm font-medium">Published Date</label>
+        <label className="block mb-1 text-sm font-medium">Year of Publication</label>
         <input
           {...register("published")}
-          placeholder="Published Date"
+          placeholder="Year of Publication"
           type="date"
           className="w-full py-3 pl-4 pr-5 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary transition duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:focus:ring-primary"
         />
@@ -111,10 +111,10 @@ export default function AddCatalogForm() {
 
       {/* Category */}
       <div className="relative">
-        <label className="block mb-1 text-sm font-medium">Category</label>
+        <label className="block mb-1 text-sm font-medium">Genre</label>
         <input
           {...register("category")}
-          placeholder="Category"
+          placeholder="Genre"
           className="w-full py-3 pl-4 pr-5 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary transition duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:focus:ring-primary"
         />
         {errors.category && (
@@ -150,10 +150,10 @@ export default function AddCatalogForm() {
 
       {/* LLC Code */}
       <div className="relative">
-        <label className="block mb-1 text-sm font-medium">LLC Code</label>
+        <label className="block mb-1 text-sm font-medium">LCC Code</label>
         <input
           {...register("lccCode")}
-          placeholder="LLC Code"
+          placeholder="LCC Code"
           className="w-full py-3 pl-4 pr-5 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary transition duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:focus:ring-primary"
         />
         {errors.lccCode && (
@@ -239,7 +239,7 @@ export default function AddCatalogForm() {
           className="w-full py-3 px-4 rounded-lg shadow-sm border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary transition duration-300"
         >
           <option value="">Select Format</option>
-          <option value="AUDIO">Audio</option>
+          <option value="AUDIO">Audio Book</option>
           <option value="EBOOK">E-book</option>
           <option value="HARDCOVER">Hardcover</option>
         </select>

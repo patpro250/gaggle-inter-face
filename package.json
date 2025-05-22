@@ -20,7 +20,7 @@
     "@tanstack/react-query-devtools": "^5.76.1",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/react-virtual": "^3.13.9",
-    "apexcharts": "^4.5.0",
+    "apexcharts": "^4.7.0",
     "axios": "^1.8.4",
     "chart.js": "^4.4.8",
     "classnames": "^2.5.1",
