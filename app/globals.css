@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import 'nprogress/nprogress.css';
+@import "nprogress/nprogress.css";
 
 @layer {
   .fe {
@@ -58,7 +58,6 @@
   .button-rounded {
     @apply flex items-center px-4 py-2 rounded-full bg-primary text-white shadow-md transition-all duration-300 ease-in-out hover:bg-primary/80 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50;
   }
-
 }
 
 ::-webkit-scrollbar {
@@ -80,7 +79,6 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #1863b3; /* Hover color */
 }
-
 
 .custom-after::after {
   content: "";
@@ -168,4 +166,9 @@ svg text {
 @theme {
   --color-primary: oklch(0.55 0.1202 251.83);
   --color-black: oklch(0.32 0 0);
+}
+
+/* input  */
+.input-style {
+  @apply w-md px-3 py-2 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary;
 }

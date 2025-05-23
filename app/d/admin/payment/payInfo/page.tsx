@@ -1,9 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { GetPlan } from "./getPlan";
+import { InitiPayment, PlanData } from "../InitiPayment";
+import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
+import { Spinner } from "@radix-ui/themes";
 
 // Mock DB call (replace this with actual API)
 async function getMyPlan() {
@@ -15,14 +20,32 @@ async function getMyPlan() {
 }
 
 const schema = z.object({
-  phoneNumber: z.string().min(1, "Phone number is required"),
+  phoneNumber: z
+    .string({ required_error: "Phone number is required" })
+    .regex(/^\d+$/, "Phone number must contain only digits")
+    .max(13, "Phone number cannot exceed 13 digits")
+    .min(10, "Phone number minimum 10 digits"),
+  // converts to number after validation
+
   planId: z.string().uuid("Invalid plan selected"),
-  duration: z.number().min(1, "Duration must be at least 1"),
+  amount: z
+    .string({ required_error: "amount number is required" })
+    .regex(/^\d+$/, "amount number must contain only digits")
+    .transform((val) => Number(val)), // converts to number after validation
+
+  duration: z
+    .number({
+      required_error: "Duration is required",
+      invalid_type_error: "Duration must be a number",
+    })
+    .min(1, "Duration must be at least 1"),
 });
 
 type FormData = z.infer<typeof schema>;
 
 const PaymentInfoPage = () => {
+  const [plans, setPlans] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -33,6 +56,7 @@ const PaymentInfoPage = () => {
     defaultValues: {
       phoneNumber: "",
       planId: "",
+      amount: null,
       duration: 1,
     },
   });
@@ -47,10 +71,29 @@ const PaymentInfoPage = () => {
     getMyPlan().then(setPlanSummary);
   }, []);
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data) => {
+    const response = await InitiPayment(data);
+    if (response.success) {
+      toast.success(`${response.message}`);
+      redirect("/d/admin/payment/approve");
+      return;
+    } else {
+      console.log(response);
+      toast.error(`${response.message}`);
+      return;
+    }
     console.log("Form Data:", data);
   };
 
+  useEffect(() => {
+    async function fetchPlans() {
+      const data = await GetPlan();
+      setPlans(data);
+    }
+    fetchPlans();
+  }, []);
+
+  console.log(plans);
   return (
     <div className="flex flex-col lg:flex-row max-w-6xl mx-auto p-6 gap-8">
       {/* Form */}
@@ -66,7 +109,7 @@ const PaymentInfoPage = () => {
               {...register("phoneNumber")}
               type="tel"
               placeholder="Enter your phone number"
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring"
+              className="input-style "
             />
             {errors.phoneNumber && (
               <p className="text-red-500 text-sm">
@@ -75,20 +118,44 @@ const PaymentInfoPage = () => {
             )}
           </div>
 
-          {/* Plan ID */}
+          {/* Phone Number */}
           <div>
-            <label className="block text-sm font-medium mb-1">Plan ID</label>
+            <label className="block text-sm font-medium mb-1">amount</label>
             <input
-              {...register("planId")}
-              type="text"
-              placeholder="Paste plan UUID"
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring"
+              {...register("amount")}
+              type="tel"
+              placeholder="Enter amount"
+              className="input-style "
             />
-            {errors.planId && (
-              <p className="text-red-500 text-sm">{errors.planId.message}</p>
+            {errors.amount && (
+              <p className="text-red-500 text-sm">{errors.amount.message}</p>
             )}
           </div>
 
+          {/* Plan ID */}
+
+          <label className="block text-sm font-medium mb-1">Plan ID</label>
+          <select
+            {...register("planId", { required: "Please select a plan" })}
+            className="input-style"
+          >
+            <option value="" disabled>
+              Select a plan
+            </option>
+            {!plans && (
+              <option value="" disabled>
+                <Spinner></Spinner>
+              </option>
+            )}
+            {plans.map((plan) => (
+              <option key={plan.id} value={plan.id}>
+                {plan.name}
+              </option>
+            ))}
+          </select>
+          {errors.planId && (
+            <p className="text-red-500 text-sm">{errors.planId.message}</p>
+          )}
           {/* Duration */}
           <div>
             <label className="block text-sm font-medium mb-1">
@@ -98,7 +165,7 @@ const PaymentInfoPage = () => {
               {...register("duration", { valueAsNumber: true })}
               type="number"
               min={1}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring"
+              className="input-style"
             />
             {errors.duration && (
               <p className="text-red-500 text-sm">{errors.duration.message}</p>

@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const marcellus = Marcellus({
   subsets: ["latin"],

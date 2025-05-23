@@ -59,7 +59,8 @@ const Approve = ({ id }: { id: string }) => {
         toast.success(`${response.message}`);
         return;
       } else {
-        toast.error(`${response.message}`);
+        console.log(response.message);
+        // toast.error(`${response.message}`);
         return;
       }
     } catch (error: any) {
