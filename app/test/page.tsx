@@ -1,7 +1,11 @@
-import { getBooks } from './book-helper';
-import BookTable from './BooksTable';
+import { getBooks } from "./book-helper";
+import BookTable from "./BooksTable";
 
-export default async function BooksPage({ searchParams }: { searchParams: Record<string, string> }) {
+export default async function BooksPage({
+  searchParams,
+}: {
+  searchParams: Record<string, string>;
+}) {
   const data = await getBooks({
     q: searchParams.q,
     limit: Number(searchParams.limit) || 10,

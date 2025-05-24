@@ -71,7 +71,7 @@ const PaymentHistory = () => {
                         ? "text-green-600"
                         : payment.status === "PENDING"
                         ? "text-yellow-600"
-                        : "text-red-600"
+                        : "text-primary "
                     }`}
                   >
                     {payment.status}

@@ -2,6 +2,9 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import ReactCodeInput from "react-code-input";
+import { ConfirmPayment } from "./confirm";
+import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 type FormData = {
   code: string;
@@ -16,8 +19,17 @@ export default function OTPForm() {
     defaultValues: { code: "" },
   });
 
-  const onSubmit = (data: FormData) => {
-    alert("Code entered: " + data.code);
+  const onSubmit = async (data) => {
+    const response = await ConfirmPayment(data.code);
+    if (response.success) {
+      toast.success(`${response.message}`);
+      redirect("/d/admin");
+      return;
+    } else {
+      console.log(response);
+      toast.error(`${response.message}`);
+      return;
+    }
   };
 
   return (
