@@ -23,7 +23,7 @@ const TopBooksBarChart = ({ data }) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="borrowedCount" fill="#4C6EF5" />
+          <Bar dataKey="borrowedCount" fill="#3674b5" />
         </BarChart>
       </ResponsiveContainer>
     </div>

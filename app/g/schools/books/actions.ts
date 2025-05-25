@@ -1,6 +1,6 @@
 "use server";
 
-import { getBooks } from "@/app/test/book-helper";
+import { getBooks } from "@/app/test/columns";
 import { getApiClient } from "../axios";
 
 export const fetchBooks = async () => {

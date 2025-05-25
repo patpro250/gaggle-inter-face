@@ -7,6 +7,7 @@ export async function addStudent(data: AddStudent) {
     try {
         data.parentPhone = `+25${data.parentPhone}`;
         if (data.studentCard === '') delete data.studentCard;
+        if (data.email === '') delete data.email;
         const api = await getApiClient();
 
         const res = await api.post("/students", data);

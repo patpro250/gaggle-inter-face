@@ -23,7 +23,7 @@ const BorrowingTrendsLineChart = ({ data }) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="borrowedBooks" stroke="#4C6EF5" />
+          <Line type="monotone" dataKey="borrowedBooks" stroke="#3674b5" />
         </LineChart>
       </ResponsiveContainer>
     </div>

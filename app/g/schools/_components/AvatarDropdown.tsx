@@ -1,11 +1,16 @@
 "use client";
+
 import { DropdownMenu } from "radix-ui";
 import { Settings, LogOut, Mail } from "lucide-react";
 import Link from "next/link";
-import { signOut } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react";
 import UserAvatar from "./UserAvatar";
 
 const AvatarDropdown = () => {
+    const { data: session } = useSession();
+
+    const user = session?.user;
+
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
@@ -13,7 +18,7 @@ const AvatarDropdown = () => {
                     className="flex h-10 w-10 items-center justify-center rounded-full text-white shadow-md transition duration-200 hover:scale-105 focus:outline-none"
                     aria-label="Avatar options"
                 >
-                   <UserAvatar />
+                    <UserAvatar />
                 </button>
             </DropdownMenu.Trigger>
 
@@ -23,9 +28,11 @@ const AvatarDropdown = () => {
                     align="end"
                     sideOffset={5}
                 >
-                    <DropdownMenu.Item className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">
-                        <Mail size={18} /> pazzo@gmail.com
-                    </DropdownMenu.Item>
+                    {user && (
+                        <DropdownMenu.Item className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">
+                            <Mail size={18} /> {user.email}
+                        </DropdownMenu.Item>
+                    )}
                     <DropdownMenu.Item>
                         <Link href={'/g/schools/settings'} className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:bg-primary hover:text-white dark:hover:bg-primary">
                             <Settings size={18} />
