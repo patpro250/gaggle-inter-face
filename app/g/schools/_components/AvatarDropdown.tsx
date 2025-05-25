@@ -3,14 +3,10 @@
 import { DropdownMenu } from "radix-ui";
 import { Settings, LogOut, Mail } from "lucide-react";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react"
 import UserAvatar from "./UserAvatar";
 
 const AvatarDropdown = () => {
-    const { data: session } = useSession();
-
-    const user = session?.user;
-
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
@@ -18,7 +14,7 @@ const AvatarDropdown = () => {
                     className="flex h-10 w-10 items-center justify-center rounded-full text-white shadow-md transition duration-200 hover:scale-105 focus:outline-none"
                     aria-label="Avatar options"
                 >
-                    <UserAvatar />
+                   <UserAvatar />
                 </button>
             </DropdownMenu.Trigger>
 
@@ -28,11 +24,9 @@ const AvatarDropdown = () => {
                     align="end"
                     sideOffset={5}
                 >
-                    {user && (
-                        <DropdownMenu.Item className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">
-                            <Mail size={18} /> {user.email}
-                        </DropdownMenu.Item>
-                    )}
+                    <DropdownMenu.Item className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">
+                        <Mail size={18} /> pazzo@gmail.com
+                    </DropdownMenu.Item>
                     <DropdownMenu.Item>
                         <Link href={'/g/schools/settings'} className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:bg-primary hover:text-white dark:hover:bg-primary">
                             <Settings size={18} />
@@ -40,14 +34,17 @@ const AvatarDropdown = () => {
                         </Link>
                     </DropdownMenu.Item>
 
-                    <DropdownMenu.Separator className="my-2 h-px bg-gray-200 dark:bg-gray-700" />
-                    <DropdownMenu.Item className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-red-600 dark:text-red-500 transition-colors hover:bg-red-500 cursor-pointer hover:text-white dark:hover:bg-red-600/30" onClick={() => signOut()}>
-                        <LogOut size={18} /> Logout
-                    </DropdownMenu.Item>
-                </DropdownMenu.Content>
-            </DropdownMenu.Portal>
-        </DropdownMenu.Root>
-    );
+          <DropdownMenu.Separator className="my-2 h-px bg-gray-200 dark:bg-gray-700" />
+          <DropdownMenu.Item
+            className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-red-600 dark:text-red-500 transition-colors hover:bg-red-500 cursor-pointer hover:text-white dark:hover:bg-red-600/30"
+            onClick={() => signOut()}
+          >
+            <LogOut size={18} /> Logout
+          </DropdownMenu.Item>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
+  );
 };
 
 export default AvatarDropdown;

@@ -1,6 +1,6 @@
 import React from "react";
 import LinkAsider from "./linkAsider";
-import { House } from "lucide-react";
+import { DollarSign, DollarSignIcon, House } from "lucide-react";
 
 const Asider = () => {
   return (
@@ -10,8 +10,15 @@ const Asider = () => {
         <nav className="space-y-4">
           <LinkAsider
             title={"Home"}
-            href={"./../../../d/gg/home"}
+            href={"./../../../d/gg/"}
             Icon={House}
+            Path={""}
+          />
+
+          <LinkAsider
+            title={"Payment"}
+            href={"./../../../d/gg/payment"}
+            Icon={DollarSign}
             Path={""}
           />
         </nav>
