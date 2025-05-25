@@ -191,10 +191,8 @@
 import React, { useState } from "react";
 import { CheckCircle, Clock, Send } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { Approved, fetchPayments } from "./gitData";
 import toast from "react-hot-toast";
-import { fetchApproved } from "../cmp/gitData";
-import { IconButton } from "@radix-ui/themes";
-import CopyButton from "@/app/_components/clipboard";
 
 export default function AdminPaymentPage() {
   const {
@@ -203,7 +201,7 @@ export default function AdminPaymentPage() {
     isError,
   } = useQuery({
     queryKey: ["payments"],
-    queryFn: fetchApproved,
+    queryFn: fetchPayments,
   });
 
   // Pagination state
@@ -224,9 +222,17 @@ export default function AdminPaymentPage() {
     setCurrentPage(newPage);
   };
 
+  const generateCode = async (id: string) => {
+    const res = await Approved(id);
+    if (res.success) {
+      toast.success(`${res.message}`);
+    } else {
+      toast.success(`${res.message}`);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white p-6">
-      <h1 className="text-xl font-bold mb-6">Approved payment</h1>
+      <h1 className="text-3xl font-bold mb-6">Admin Payment Dashboard</h1>
 
       {/* Payment Table */}
       <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg">
@@ -275,17 +281,16 @@ export default function AdminPaymentPage() {
                   )}
                 </td>
                 <td className="px-6 py-4">
-                  <span className="inline-flex gap-2 items-center gap-1 text-green-600 dark:text-green-400 font-medium">
-                    {payment.confirmationCode}
-                    <IconButton
-                      size="1"
-                      aria-label="Copy value"
-                      color="green"
-                      variant="ghost"
+                  {payment.status === "PENDING" ? (
+                    <button
+                      onClick={() => generateCode(payment.id)}
+                      className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-md disabled:opacity-50"
                     >
-                      <CopyButton value={payment.confirmationCode} />
-                    </IconButton>
-                  </span>
+                      <Send size={16} /> Send Code
+                    </button>
+                  ) : (
+                    <span className="text-sm text-green-700">— Paid_</span>
+                  )}
                 </td>
               </tr>
             ))}

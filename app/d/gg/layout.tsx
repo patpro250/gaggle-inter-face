@@ -1,10 +1,19 @@
 import React, { ReactNode } from "react";
 import Header from "./cmp/header";
 import Asider from "./cmp/Asider";
+import { auth } from "@/app/auth";
+import { redirect } from "next/navigation";
 interface Props {
   children: ReactNode;
 }
-const GGLayout = ({ children }: Props) => {
+const GGLayout = async ({ children }: Props) => {
+  const sess = await auth();
+  if (!sess) {
+    redirect("/login");
+  }
+
+  console.log(sess);
+
   return (
     <div className="dark">
       <div className="flex bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-100">

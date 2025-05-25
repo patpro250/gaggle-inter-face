@@ -12,11 +12,10 @@ export const metadata = {
 export default async function Login() {
   const session = await auth();
   if (session) {
-
     if (session.user.libraryId) {
-      redirect('/g/schools/dashboard');
+      redirect("/g/schools/dashboard");
     } else {
-      redirect('/d/admin');
+      redirect("/d/gg");
     }
   }
 

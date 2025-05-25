@@ -1,12 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { getApiClient } from "../g/schools/axios";
 import { fetchPayments } from "../d/admin/payment/InitiPayment";
+import { CheckCircle, Clock } from "lucide-react";
+
+const ITEMS_PER_PAGE = 5;
 
 const PaymentHistory = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const {
     data: payments = [],
     isLoading,
@@ -18,6 +21,12 @@ const PaymentHistory = () => {
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error fetching payments.</p>;
+
+  const totalPages = Math.ceil(payments.length / ITEMS_PER_PAGE);
+  const paginatedPayments = payments.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   return (
     <div>
@@ -48,7 +57,7 @@ const PaymentHistory = () => {
               </tr>
             </thead>
             <tbody>
-              {payments.map((payment, index) => (
+              {paginatedPayments.map((payment, index) => (
                 <tr key={index}>
                   <td className="px-4 py-2 text-sm text-gray-700">
                     {payment.doneAt}
@@ -65,21 +74,46 @@ const PaymentHistory = () => {
                   <td className="px-4 py-2 text-sm text-gray-700">
                     {payment.amount}
                   </td>
-                  <td
-                    className={`px-4 py-2 text-sm font-semibold ${
-                      payment.status === "SUCCESS"
-                        ? "text-green-600"
-                        : payment.status === "PENDING"
-                        ? "text-yellow-600"
-                        : "text-primary "
-                    }`}
-                  >
-                    {payment.status}
+                  <td className="px-6 py-4">
+                    {payment.status === "SUCCESS" ? (
+                      <span className="inline-flex text-sm items-center gap-1 text-green-600 dark:text-green-400 font-medium">
+                        <CheckCircle size={12} /> {payment.status}
+                      </span>
+                    ) : payment.status === "APPROVED" ? (
+                      <span className="inline-flex text-sm items-center gap-1 text-primary dark:text-primary font-medium">
+                        <CheckCircle size={16} /> {payment.status}
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
+                        <Clock size={16} /> {payment.status}
+                      </span>
+                    )}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="mt-4 flex justify-center gap-2 text-sm text-gray-700">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3  py-0 text-sm border-2 border-primary rounded  disabled:opacity-10 disabled:bg-primary disabled:text-white "
+          >
+            Prev
+          </button>
+          <span className="px-3 py-1">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-3  py-0 text-sm border-2 border-primary rounded  disabled:opacity-10 disabled:bg-primary disabled:text-white "
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
