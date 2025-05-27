@@ -36,7 +36,7 @@ const plans = [
       "Reservations",
       "Access Control",
       "Custom Branding",
-      "Bulk Code Generation",
+      "Book Code Generation",
       "Priority support",
     ],
     highlight: false,

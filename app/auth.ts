@@ -6,6 +6,13 @@ import { Librarian } from "./_types/librarian";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+export enum UserType {
+  Librarian = "Librarian",
+  Member = "Member",
+  Institution = "Institution",
+  SystemAdmin = "System Admin",
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
