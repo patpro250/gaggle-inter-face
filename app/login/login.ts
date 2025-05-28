@@ -66,7 +66,7 @@ async function login(credentials: Credentials): Promise<LoginResult> {
     if (result?.ok && !result.error) {
       return {
         success: true,
-        message: `Welcome back ${check.message?.firstName} ${check.message?.lastName || ''}`,
+        message: `Welcome back ${check.message?.name || check.message?.firstName} ${check.message?.lastName || ''}`,
       };
     }
 

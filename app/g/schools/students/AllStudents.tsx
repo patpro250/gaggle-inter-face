@@ -1,38 +1,44 @@
-import React from "react";
+"use client";
 
-// Sample data for students
-const students = [
-  {
-    name: "John Doe",
-    parentPhone: "123-456-7890",
-    StudentCode: "Grade 11",
-    className: "JD889",
-    status: "Active",
-    email: "johndoe@example.com",
-    studentCard: "SC12345",
-  },
-  {
-    name: "Jane Smith",
-    parentPhone: "987-654-3210",
-    StudentCode: "Grade 11",
-    className: "JS548",
-    status: "Inactive",
-    email: "janesmith@example.com",
-    studentCard: "SC12346",
-  },
-  {
-    name: "Sam Johnson",
-    parentPhone: "555-123-4567",
-     StudentCode: "Grade 11",
-    className: "SJ489",
-    status: "Active",
+import { useStudentsQuery } from "./hooks";
+import { Spinner } from "@radix-ui/themes";
 
-    email: "samjohnson@example.com",
-    studentCard: "SC12347",
-  },
-];
+// const students = [
+//   {
+//     name: "John Doe",
+//     parentPhone: "123-456-7890",
+//     StudentCode: "Grade 11",
+//     className: "JD889",
+//     status: "Active",
+//     email: "johndoe@example.com",
+//     studentCard: "SC12345",
+//   },
+//   {
+//     name: "Jane Smith",
+//     parentPhone: "987-654-3210",
+//     StudentCode: "Grade 11",
+//     className: "JS548",
+//     status: "Inactive",
+//     email: "janesmith@example.com",
+//     studentCard: "SC12346",
+//   },
+//   {
+//     name: "Sam Johnson",
+//     parentPhone: "555-123-4567",
+//      StudentCode: "Grade 11",
+//     className: "SJ489",
+//     status: "Active",
+
+//     email: "samjohnson@example.com",
+//     studentCard: "SC12347",
+//   },
+// ];
 
 const AllStudents = () => {
+  const { data, isLoading, error } = useStudentsQuery();
+  if (isLoading) return <Spinner />;
+  console.log(data);
+  if (error) return <p>Error occured</p>;
   return (
     <div className="overflow-x-auto rounded-xl">
       <table className="w-full border-collapse text-sm rounded-lg border-gray-300 dark:border-gray-700">
@@ -48,7 +54,7 @@ const AllStudents = () => {
           </tr>
         </thead>
         <tbody>
-          {students.map((student, index) => (
+          {data.map((student, index) => (
             <tr key={index} className="table-r dark:hover:bg-gray-700 transition-colors">
               <td className="table-data">{student.name}</td>
               <td className="table-data">{student.parentPhone}</td>
