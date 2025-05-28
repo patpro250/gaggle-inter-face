@@ -1,18 +1,18 @@
-import { fetchBooks } from "../g/schools/books/actions"
-import { BookTable, columns } from "./columns"
-import { DataTable } from "./data-table"
+import { getBooks } from "./book-helper";
+import BookTable from "./BooksTable";
 
-async function getData(): Promise<BookTable[]> {
-  const books = await fetchBooks();
-  return books;
-}
+export default async function BooksPage({
+  searchParams,
+}: {
+  searchParams: Record<string, string>;
+}) {
+  const data = await getBooks({
+    q: searchParams.q,
+    limit: Number(searchParams.limit) || 10,
+    sort: searchParams.sort,
+    cursor: searchParams.cursor,
+    language: searchParams.language,
+  });
 
-export default async function DemoPage() {
-  const data = await getData()
-
-  return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
-    </div>
-  )
+  return <BookTable serverData={data} />;
 }
