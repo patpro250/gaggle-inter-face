@@ -158,7 +158,7 @@ const AddBookCopyModal = () => {
                       {suggestions.map((suggestion) => (
                         <div
                           key={suggestion.id}
-                          className="px-3 py-2 hover:bg-primary hover:text-white cursor-pointer"
+                          className="px-3 py-2 dark:bg-gray-700 hover:bg-primary hover:text-white cursor-pointer"
                           onClick={() =>
                             handleSuggestionSelect(
                               suggestion.id,

@@ -1,6 +1,6 @@
 import CirculationsActions from "./CirculationActions";
 import CirculationsOverview from "./CirculationOverview";
-import CirculationsTable from "./CirculationTable";
+import CirculationsPage from "./CirculationsPage";
 import ExportButton from "./Export";
 
 export const metadata = {
@@ -11,7 +11,7 @@ export const metadata = {
 const CirculationPage = () => {
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between max-md:flex-col max-md:gap-2">
         <h1 className="library-title">Circulations</h1>
         <CirculationsActions />
       </div>
@@ -20,7 +20,7 @@ const CirculationPage = () => {
         <h1 className="library-subtitle mt-6 mb-4">Recent circulations</h1>
         <ExportButton />
       </div>
-      <CirculationsTable />
+      <CirculationsPage />
     </>
   );
 };

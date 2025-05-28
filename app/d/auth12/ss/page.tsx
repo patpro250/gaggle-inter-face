@@ -80,7 +80,7 @@ const Step2 = () => {
               placeholder="Institution name"
               className={`mt-1 p-2 border ${
                 !valid ? "border-green-400" : "border-gray-300 "
-              } rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+              } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary`}
             />
             {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
 
@@ -96,12 +96,12 @@ const Step2 = () => {
               disabled
               value={email}
               placeholder="Enter your email"
-              className="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors"
+            className="w-full bg-indigo-500 text-white py-2 rounded-lg hover:primary transition-colors"
           >
             {loading ? "Finding Name.." : "Continue"}
           </button>
