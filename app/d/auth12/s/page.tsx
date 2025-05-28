@@ -59,7 +59,7 @@ const Step1 = () => {
             type="submit"
             className="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition"
           >
-            Next
+            Continue
           </button>
         </form>
       </div>

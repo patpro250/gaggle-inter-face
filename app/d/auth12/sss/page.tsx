@@ -179,7 +179,7 @@ const Step3 = () => {
 
           <button
             type="submit"
-            className="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors"
+            className="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-primary transition-colors"
           >
             {loading ? "Wait..." : "Create"}
           </button>

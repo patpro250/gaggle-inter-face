@@ -46,10 +46,10 @@ const Step2 = () => {
     if (errorN) return toast.error(errorN);
 
     if (valid) {
-      toast.error(" Try Again !! Name is Taken");
+      toast.error("Name is Taken!");
       return;
     } else {
-      toast.success(`Great !! [ ${name} ] is Available Next`);
+      toast.success(`Great! ${name} is Available. Continue`);
 
       setField("name", name);
 
