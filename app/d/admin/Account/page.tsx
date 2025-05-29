@@ -272,11 +272,11 @@ export default async function InstitutionProfile() {
           </div>
         </div>
         <div className="flex gap-4">
-          <button className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">
+          <button className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-sub-primary">
             Edit Profile
           </button>
           <Link href={"/d/admin/Account/cp"}>
-            <button className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">
+            <button className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-sub-primary">
               Change Password
             </button>
           </Link>
@@ -287,7 +287,7 @@ export default async function InstitutionProfile() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white rounded-2xl shadow p-6 space-y-2">
           <h3 className="text-lg font-semibold flex items-center gap-2">
-            🏢 Institution Info
+            Institution Info
           </h3>
           <p>
             <strong>Name:</strong> {name}
@@ -296,14 +296,14 @@ export default async function InstitutionProfile() {
             <strong>Code:</strong> {code}
           </p>
           <p>
-            <strong>Established:</strong>
+            <strong>Joined at:</strong>
             {createdAt}
           </p>
         </div>
 
         <div className="bg-white rounded-2xl shadow p-6 space-y-2">
           <h3 className="text-lg font-semibold flex items-center gap-2">
-            📍 Location Details
+            Location Details
           </h3>
           <p>
             <strong>Address:</strong> {address}
@@ -321,15 +321,15 @@ export default async function InstitutionProfile() {
       <div className="bg-white rounded-2xl shadow p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
         <div>
           <p className="text-xl font-bold">24</p>
-          <p className="text-gray-600">👥 All Librarians</p>
+          <p className="text-gray-600">All Librarians</p>
         </div>
         <div>
           <p className="text-xl font-bold">320</p>
-          <p className="text-gray-600">🎓 Total Students </p>
+          <p className="text-gray-600">Total Students </p>
         </div>
         <div>
           <p className="text-xl font-bold">12</p>
-          <p className="text-gray-600">🗂 Total Books</p>
+          <p className="text-gray-600">Total Books</p>
         </div>
         {/* <div>
           <p className="text-xl font-bold">2 hours ago</p>

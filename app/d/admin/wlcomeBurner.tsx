@@ -19,11 +19,11 @@ const WlcomeBurner = () => {
       <div className=" relative min-h-60 mb-20 bg-gradient-to-br from-[#c1d8e0]   overflow-hidden border-1 border-gray-200 rounded-md">
         <div className=" absolute z-10 bg-amber-0 h-full w-full xl:w-[50%] flex flex-col gap-5 justify-center ps-10 ">
           <h1 className="text-4xl font-medium text-gray-700 mb-2 ">
-            Welcome to <span className="text-primary"> NitiBook</span> Library
+            Welcome to <span className="text-primary"> Niti Book</span> Library
           </h1>
 
           <p className="text-[12px] text-gray-600 max-w-2xl mb-8">
-            GaggleNit helps schools and institutions manage their libraries
+            NITI BOOK help schools and institutions to manage their libraries
             smarter. You’re just one step away from activating your full access.
           </p>
 

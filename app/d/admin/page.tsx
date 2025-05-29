@@ -75,7 +75,7 @@ const NavBarAdmin = () => {
       {/* analyse */}
       <h1 className="m-5 text-xl">Analytics </h1>
 
-      <div className="bg-indigo-0 grid grid-cols-1  xl:grid-cols-2 p-2 gap-4  min-h-60">
+      <div className="grid grid-cols-1  xl:grid-cols-2 p-2 gap-4  min-h-60">
         <div>
           <PeirChart />
         </div>

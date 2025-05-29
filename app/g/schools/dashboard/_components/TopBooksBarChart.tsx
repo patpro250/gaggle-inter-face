@@ -19,7 +19,7 @@ const TopBooksBarChart = ({ data }) => {
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="bookTitle" />
+          <XAxis dataKey="bookTitle "/>
           <YAxis />
           <Tooltip />
           <Legend />
