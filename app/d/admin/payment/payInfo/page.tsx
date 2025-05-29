@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 import { Spinner } from "@radix-ui/themes";
 
-// Mock DB call (replace this with actual API)
 async function getMyPlan() {
   return {
     name: "Pro Plan",
@@ -25,14 +24,12 @@ const schema = z.object({
     .regex(/^\d+$/, "Phone number must contain only digits")
     .max(13, "Phone number cannot exceed 13 digits")
     .min(10, "Phone number minimum 10 digits"),
-  // converts to number after validation
 
   planId: z.string().uuid("Invalid plan selected"),
   amount: z
     .string({ required_error: "amount number is required" })
     .regex(/^\d+$/, "amount number must contain only digits")
-    .transform((val) => Number(val)), // converts to number after validation
-
+    .transform((val) => Number(val)),
   duration: z
     .number({
       required_error: "Duration is required",
@@ -93,7 +90,6 @@ const PaymentInfoPage = () => {
     fetchPlans();
   }, []);
 
-  console.log(plans);
   return (
     <div className="flex flex-col lg:flex-row max-w-6xl mx-auto p-6 gap-8">
       {/* Form */}
@@ -120,7 +116,7 @@ const PaymentInfoPage = () => {
 
           {/* Phone Number */}
           <div>
-            <label className="block text-sm font-medium mb-1">amount</label>
+            <label className="block text-sm font-medium mb-1">Amount</label>
             <input
               {...register("amount")}
               type="tel"
@@ -134,7 +130,7 @@ const PaymentInfoPage = () => {
 
           {/* Plan ID */}
 
-          <label className="block text-sm font-medium mb-1">Plan ID</label>
+          <label className="block text-sm font-medium mb-1">Plan</label>
           <select
             {...register("planId", { required: "Please select a plan" })}
             className="input-style"
@@ -175,7 +171,8 @@ const PaymentInfoPage = () => {
           <button
             type="submit"
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
+          >SUCCESS
+
             Submit
           </button>
         </form>

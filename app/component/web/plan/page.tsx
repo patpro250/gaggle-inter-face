@@ -1,7 +1,7 @@
 const plans = [
   {
-    name: "Basic",
-    price: "Free",
+    name: "Free",
+    price: "0 RWF/month",
     features: [
       "Add up to 1,000 books",
       "Limited circulations: 300 transactions",
@@ -14,8 +14,8 @@ const plans = [
     highlight: false,
   },
   {
-    name: "Standard",
-    price: "5,000 RWf / Monthly",
+    name: "Plus",
+    price: "5,000 RWf/month",
     features: [
       "Add up to 5,000 books",
       "Unlimited circulations",
@@ -28,8 +28,8 @@ const plans = [
     highlight: true,
   },
   {
-    name: "Premium",
-    price: "10,000 RWF / Monthly",
+    name: "Pro",
+    price: "10,000 RWF/month",
     features: [
       "Library Branches",
       "Inter-Library",
