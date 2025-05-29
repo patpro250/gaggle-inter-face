@@ -23,15 +23,12 @@ export const approveLibrarian = async (payload: {
         body: JSON.stringify({ role: payload.role }),
       }
     );
-    console.log(res);
 
     if (!res.ok) {
       const errorData = await res.json();
 
       throw new Error(errorData.message || "Failed to approve librarian");
     }
-
-    return console.log(await res.json(), "hhhhhhhhhhhhhhhhhhhh");
   } catch (error: any) {
     console.error("Approve librarian error:", error);
     throw new Error(error.message || "Something went wrong");

@@ -9,7 +9,9 @@
 import { RatingDisplay } from "@/app/_components/rating";
 import { getLetterAndBackground } from "@/app/Hooks/profileAvatarColorGenerator";
 import { useSession123 } from "@/app/Hooks/useSession";
+import { Cog, KeySquare } from "lucide-react";
 import Link from "next/link";
+import Starts from "./starts";
 
 // import Link from "next/link";
 // import { getLetterAndBackground } from "@/app/Hooks/profileAvatarColorGenerator";
@@ -272,12 +274,14 @@ export default async function InstitutionProfile() {
           </div>
         </div>
         <div className="flex gap-4">
-          <button className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">
-            Edit Profile
-          </button>
+          <Link href={"/d/admin/Account/setting"}>
+            <button className="px-4 py-2 flex justify-center items-center gap-2 text-md rounded-md bg-primary text-white hover:opacity-80">
+              <Cog size={19} /> Edit Profile
+            </button>
+          </Link>
           <Link href={"/d/admin/Account/cp"}>
-            <button className="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">
-              Change Password
+            <button className="px-4 py-2 flex justify-center items-center gap-2 text-md rounded-md bg-red-400  text-white hover:opacity-80">
+              <KeySquare size={19} /> Change Password
             </button>
           </Link>
         </div>
@@ -318,24 +322,7 @@ export default async function InstitutionProfile() {
       </div>
 
       {/* Stats */}
-      <div className="bg-white rounded-2xl shadow p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
-        <div>
-          <p className="text-xl font-bold">24</p>
-          <p className="text-gray-600">👥 All Librarians</p>
-        </div>
-        <div>
-          <p className="text-xl font-bold">320</p>
-          <p className="text-gray-600">🎓 Total Students </p>
-        </div>
-        <div>
-          <p className="text-xl font-bold">12</p>
-          <p className="text-gray-600">🗂 Total Books</p>
-        </div>
-        {/* <div>
-          <p className="text-xl font-bold">2 hours ago</p>
-          <p className="text-gray-600">🕒 </p>
-        </div> */}
-      </div>
+      <Starts />
     </div>
   );
 }

@@ -2,12 +2,15 @@
 import {
   BarChart,
   CalendarCheck2,
+  ChartSpline,
   ChevronDown,
   CircleDollarSign,
+  CircleUserRound,
   FilePlus2,
   House,
   LibraryBig,
   Settings,
+  ShieldCheck,
   ShieldUser,
   StickyNote,
   TimerReset,
@@ -24,7 +27,7 @@ const poppins = PoppinsFont({
   subsets: ["latin"], // Specify the character set
   weight: ["200"], // Choose the font weights
 });
-const Root = "/d/admin/";
+const Root = "/d/admin";
 const ListGroup = () => {
   const path = usePathname();
   return (
@@ -48,14 +51,14 @@ const ListGroup = () => {
         <li>
           <ListComponent
             title="Librarians"
-            href={`${Root}Librarian`}
+            href={`${Root}/Librarian`}
             SubIcon={null}
-            Icon={ShieldUser}
+            Icon={ShieldCheck}
             Path={path}
           />
         </li>
 
-        <li>
+        {/* <li>
           <ListComponent
             title="Books"
             href="/admin/Book"
@@ -63,7 +66,7 @@ const ListGroup = () => {
             Icon={LibraryBig}
             Path={path}
           />
-        </li>
+        </li> */}
         {/* <li>
           <BorrowingManagement Path={path} />
         </li>
@@ -78,7 +81,7 @@ const ListGroup = () => {
         <li>
           <ListComponent
             title="Payment & Plan"
-            href={`${Root}payment`}
+            href={`${Root}/payment`}
             SubIcon={null}
             Icon={CircleDollarSign}
             Path={path}
@@ -87,10 +90,10 @@ const ListGroup = () => {
 
         <li>
           <ListComponent
-            title="Generate reports "
-            href={`${Root}LibrarianDashboard/reports`}
+            title="Data Analytics"
+            href={`${Root}/LibrarianDashboard/reports`}
             SubIcon={null}
-            Icon={FilePlus2}
+            Icon={ChartSpline}
             Path={path}
           />
         </li>
@@ -100,9 +103,9 @@ const ListGroup = () => {
         <li>
           <ListComponent
             title="Account"
-            href={`${Root}Account`}
+            href={`${Root}/Account`}
             SubIcon={null}
-            Icon={BarChart}
+            Icon={CircleUserRound}
             Path={path}
           />
         </li>
@@ -124,7 +127,7 @@ const ListGroup = () => {
       </ul> */}
 
       {/* Settings Section */}
-      <ul className="space-y-2 list-none">
+      {/* <ul className="space-y-2 list-none">
         <p className="font-sans text-xs mt-2 mb-4 text-black">Settings</p>
         <li>
           <ListComponent
@@ -135,7 +138,7 @@ const ListGroup = () => {
             Path={path}
           />
         </li>
-      </ul>
+      </ul> */}
 
       <div className=" rounded-md p-2 mt-6  bg-gradient-to-br from-[#77afc3] via-[#2dccf9]/50 to-[#2dccf9]/90">
         <div className=" flex justify-end text-right ">
