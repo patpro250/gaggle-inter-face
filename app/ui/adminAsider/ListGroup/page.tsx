@@ -9,6 +9,7 @@ import {
   FilePlus2,
   House,
   LibraryBig,
+  Plane,
   Settings,
   ShieldCheck,
   ShieldUser,
@@ -80,10 +81,19 @@ const ListGroup = () => {
         <p className="font-sans text-xs mt-2 mb-4 text-black">Report</p>
         <li>
           <ListComponent
-            title="Payment & Plan"
+            title="Payment Manager"
             href={`${Root}/payment`}
             SubIcon={null}
             Icon={CircleDollarSign}
+            Path={path}
+          />
+        </li>
+        <li>
+          <ListComponent
+            title="Plans"
+            href={`${Root}/plans`}
+            SubIcon={null}
+            Icon={Plane}
             Path={path}
           />
         </li>

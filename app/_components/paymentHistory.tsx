@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPayments } from "../d/admin/payment/InitiPayment";
-import { CheckCircle, Clock } from "lucide-react";
+import { CheckCircle, Clock, Forward } from "lucide-react";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -54,6 +54,9 @@ const PaymentHistory = () => {
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
                   Status
                 </th>
+                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -73,6 +76,9 @@ const PaymentHistory = () => {
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-700">
                     {payment.amount}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-700">
+                    <Forward />
                   </td>
                   <td className="px-6 py-4">
                     {payment.status === "SUCCESS" ? (

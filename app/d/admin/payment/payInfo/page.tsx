@@ -9,6 +9,7 @@ import { InitiPayment, PlanData } from "../InitiPayment";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 import { Spinner } from "@radix-ui/themes";
+import { PricingPlan } from "@/app/_components/pricing";
 
 async function getMyPlan() {
   return {
@@ -40,13 +41,15 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const PaymentInfoPage = () => {
+const PaymentInfoPage = (Data: any) => {
+  console.log(Data);
   const [plans, setPlans] = useState([]);
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -68,8 +71,22 @@ const PaymentInfoPage = () => {
     getMyPlan().then(setPlanSummary);
   }, []);
 
-  const onSubmit = async (data) => {
-    const response = await InitiPayment(data);
+  useEffect(() => {
+    console.log("Setting form values with Data:", Data);
+
+    if (Data.planId != null) {
+      setValue("planId", Data.planId);
+    }
+    if (Data.duration != null) {
+      setValue("duration", Data.duration);
+    }
+    if (Data.phoneNumber != null) {
+      setValue("phoneNumber", Data.phoneNumber);
+    }
+  }, [Data]);
+
+  const onSubmit = async (Data) => {
+    const response = await InitiPayment(Data);
     if (response.success) {
       toast.success(`${response.message}`);
       redirect("/d/admin/payment/approve");
@@ -79,13 +96,13 @@ const PaymentInfoPage = () => {
       toast.error(`${response.message}`);
       return;
     }
-    console.log("Form Data:", data);
+    console.log("Form Data:", Data);
   };
 
   useEffect(() => {
     async function fetchPlans() {
-      const data = await GetPlan();
-      setPlans(data);
+      const Data = await GetPlan();
+      setPlans(Data);
     }
     fetchPlans();
   }, []);
