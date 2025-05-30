@@ -15,11 +15,11 @@ const AcquisitionsOverview = async () => {
             value: acquisitionStats.totalAcquired,
             icon: <BookCopy className="text-green-500" />,
         },
-        {
-            title: "Suppliers",
-            value: acquisitionStats.totalSuppliers,
-            icon: <Truck className="text-blue-500" />,
-        },
+        // {
+        //     title: "Suppliers",
+        //     value: acquisitionStats.totalSuppliers,
+        //     icon: <Truck className="text-blue-500" />,
+        // },
         {
             title: "Acquired This Month",
             value: acquisitionStats.acquiredThisMonth,

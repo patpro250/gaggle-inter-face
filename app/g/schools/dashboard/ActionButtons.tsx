@@ -5,6 +5,7 @@ import AddBookCopyButton from "./_components/AddBookCopyButton";
 import IssueBookButton from "./_components/IssueBookButton";
 import ReturnBookButton from "./_components/ReturnBookButton";
 import RenewCirculationButton from "../_components/RenewCirculationButton";
+import AcquireBooksButton from "../acquisitions/AcquireBooksButton";
 
 const ActionButtons = () => {
   return (
@@ -15,6 +16,7 @@ const ActionButtons = () => {
       <IssueBookButton />
       <ReturnBookButton />
       <RenewCirculationButton />
+      <AcquireBooksButton />
     </div>
   );
 };
