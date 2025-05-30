@@ -13,19 +13,30 @@ import FormError from "@/app/_components/FormError";
 import { ChangeEvent, useState } from "react";
 import { getSuggestions } from "./getSuggestions";
 import { addBookCopy } from "./addBookCopy";
+import { cleanFormData } from "../utils/cleanFormData";
 
 const bookCopySchema = z.object({
-  book: z.string().nonempty("Book is required"),
   condition: z.enum(["NEW", "GOOD", "DAMAGED", "OLD"]).optional(),
-  dateOfAcquisition: z.string().optional(),
+  dateOfAcquisition: z
+    .string()
+    .nonempty("Date of Acquisition is required")
+    .refine((val) => {
+      const date = new Date(val);
+      return !isNaN(date.getTime()) && date <= new Date();
+    }, {
+      message: "Date of Acquisition must be in the past",
+    }),
+
   callNo: z
     .string()
-    .min(3, "Call number must be at least 3 characters")
     .max(20)
+    .refine((val) => val === "" || val.length >= 3, {
+      message: "Call number must be at least 3 characters",
+    })
     .optional(),
   barCode: z.string().max(15).optional(),
   code: z.string().nonempty("Code is required"),
-  bookId: z.string(),
+  bookId: z.string().nonempty("Book is required"),
 });
 
 export type AddBookCopy = z.infer<typeof bookCopySchema>;
@@ -53,18 +64,20 @@ const AddBookCopyModal = () => {
   const [noSuggestions, setNoSuggestions] = useState<boolean>(false);
 
   const onSubmit = async (data: AddBookCopy) => {
-    delete data.book;
-    console.log(data);
-    const response = await addBookCopy(data);
+    const selectedBookTitle = query;
+    const cleanedData = cleanFormData(data);
+    const response = await addBookCopy(cleanedData);
+
     if (response.success) {
       toast.success(response.message);
       reset();
+      setQuery(selectedBookTitle);
+      setValue("bookId", data.bookId);
     } else {
       toast.error(response.message);
     }
   };
 
-  // Function to fetch suggestions for book title
   const fetchSuggestions = async (query: string) => {
     try {
       setLoading(true);
@@ -79,7 +92,6 @@ const AddBookCopyModal = () => {
     }
   };
 
-  // Handle book title input change
   const handleBookQueryChange = async (
     event: ChangeEvent<HTMLInputElement>
   ) => {
@@ -92,14 +104,13 @@ const AddBookCopyModal = () => {
     }
   };
 
-  // Handle selecting a book suggestion
   const handleSuggestionSelect = (id: string, title: string) => {
     setQuery(title);
     setSuggestions([]);
     setValue("bookId", id);
   };
 
-  const fields: Array<[keyof AddBookCopy, string, string?, boolean?]> = [
+  const fields: Array<[keyof AddBookCopy | "book", string, string?, boolean?]> = [
     ["book", "Book Title"],
     ["barCode", "Barcode", "text", true],
     ["dateOfAcquisition", "Date of Acquisition", "date", true],
@@ -122,15 +133,14 @@ const AddBookCopyModal = () => {
             {fields.map(([name, label, type = "text", isOptional = false]) => (
               <fieldset
                 key={name}
-                className={`flex flex-col gap-2 ${
-                  name === "book" ? "col-span-2" : ""
-                }`}
+                className={`flex flex-col gap-2 ${name === "book" ? "col-span-2" : ""
+                  }`}
               >
                 <label
                   htmlFor={name}
                   className="text-sm font-medium text-gray-700 dark:text-gray-300"
                 >
-                  {label}{" "}
+                  {label} {" "}
                   {!isOptional && <span className="text-red-500">*</span>}
                 </label>
 
@@ -139,7 +149,6 @@ const AddBookCopyModal = () => {
                     <input
                       id={name}
                       type={type}
-                      {...register("book")}
                       value={query}
                       onChange={handleBookQueryChange}
                       className="h-[40px] rounded-md px-3 text-sm text-gray-900 dark:text-white bg-white dark:bg-gray-800 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none transition duration-150 ease-in-out w-full"
@@ -158,7 +167,7 @@ const AddBookCopyModal = () => {
                       {suggestions.map((suggestion) => (
                         <div
                           key={suggestion.id}
-                          className="px-3 py-2 dark:bg-gray-700 hover:bg-primary hover:text-white cursor-pointer"
+                          className="px-3 py-2 dark:bg-gray-800 hover:bg-primary hover:text-white cursor-pointer"
                           onClick={() =>
                             handleSuggestionSelect(
                               suggestion.id,
@@ -172,18 +181,17 @@ const AddBookCopyModal = () => {
                     </div>
                   </div>
                 ) : (
-                  // Other fields
                   <input
                     id={name}
                     type={type}
-                    {...register(name, {
+                    {...register(name as keyof AddBookCopy, {
                       required: !isOptional ? `${label} is required` : false,
                     })}
                     className="h-[40px] rounded-md px-3 text-sm text-gray-900 dark:text-white bg-white dark:bg-gray-800 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none transition duration-150 ease-in-out"
                   />
                 )}
 
-                <FormError error={errors[name]?.message} />
+                <FormError error={errors[name as keyof AddBookCopy]?.message} />
               </fieldset>
             ))}
 
