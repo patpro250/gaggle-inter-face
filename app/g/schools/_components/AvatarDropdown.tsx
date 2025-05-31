@@ -3,10 +3,11 @@
 import { DropdownMenu } from "radix-ui";
 import { Settings, LogOut, Mail } from "lucide-react";
 import Link from "next/link";
-import { signOut } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import UserAvatar from "./UserAvatar";
 
 const AvatarDropdown = () => {
+  const { data } = useSession();
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
@@ -25,7 +26,7 @@ const AvatarDropdown = () => {
                     sideOffset={5}
                 >
                     <DropdownMenu.Item className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">
-                        <Mail size={18} /> pazzo@gmail.com
+                        <Mail size={18} /> {data?.user?.email}
                     </DropdownMenu.Item>
                     <DropdownMenu.Item>
                         <Link href={'/g/schools/settings'} className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:bg-primary hover:text-white dark:hover:bg-primary">
