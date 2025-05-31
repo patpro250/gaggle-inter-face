@@ -8,6 +8,8 @@ type Circulation = {
   fines: string;
   status: string;
   dueDate: string;
+  comment?: string;
+  lendDate: string;
 };
 
 type CirculationsTableProps = {
@@ -15,7 +17,6 @@ type CirculationsTableProps = {
 };
 
 const CirculationsTable = ({ circulations }: CirculationsTableProps) => {
-  console.log('Render from circulations table');
   return (
     <>
       <div className="overflow-x-auto border border-px rounded-xl border-gray-400">
@@ -28,7 +29,9 @@ const CirculationsTable = ({ circulations }: CirculationsTableProps) => {
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Time Since Borrowing</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Status</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Due Date</th>
+              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Lend Date</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Fines</th>
+              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Comment</th>
               <th className="p-4 text-left rounded-tr-lg border-b border-gray-300 dark:border-gray-700">Actions</th>
             </tr>
           </thead>
@@ -41,7 +44,9 @@ const CirculationsTable = ({ circulations }: CirculationsTableProps) => {
                 <td className="table-data">{item.timeSinceBorrowing}</td>
                 <td className="table-data">{item.status}</td>
                 <td className="table-data">{item.dueDate}</td>
+                <td className="table-data">{item.lendDate}</td>
                 <td className="table-data">{item.fines}</td>
+                <td className="table-data">{item.comment}</td>
                 <td className="table-data">
                   <button className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600">
                     <RefreshCw className="w-2 h-2" />

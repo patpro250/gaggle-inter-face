@@ -1,6 +1,5 @@
 import React from "react";
 
-// Sample data for borrowed books by students
 const borrowedBooks = [
   {
     studentCode: "SC12345",
