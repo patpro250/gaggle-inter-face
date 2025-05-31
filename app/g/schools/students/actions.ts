@@ -30,3 +30,13 @@ export async function getStudentsWhoLostBooks() {
         return ex;
     }
 }
+
+export async function getStudentsWhoReturnedBooks() {
+    try {
+        const api = await getApiClient();
+        const students = await api.get('/students/returned');
+        return students.data;
+    } catch (ex) {
+        return ex;
+    }
+}

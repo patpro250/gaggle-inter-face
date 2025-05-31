@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getStudents, getStudentsWhoBorrowed, getStudentsWhoLostBooks } from "./actions";
+import { getStudents, getStudentsWhoBorrowed, getStudentsWhoLostBooks, getStudentsWhoReturnedBooks } from "./actions";
 
 export const useStudentsQuery = () => {
     return useQuery({
@@ -19,5 +19,12 @@ export const useStudentsWhoLostBooksQuery = () => {
     return useQuery({
         queryKey: ['studentsWhoLostBooks'],
         queryFn: getStudentsWhoLostBooks
+    });
+}
+
+export const useStudentsWhoReturnedBooksQuery = () => {
+    return useQuery({
+        queryKey: ['studentsWhoReturnedBooks'],
+        queryFn: getStudentsWhoReturnedBooks
     });
 }

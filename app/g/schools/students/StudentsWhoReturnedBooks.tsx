@@ -1,40 +1,12 @@
-import React from "react";
+"use client";
 
-// Sample data for students who returned books
-const returnedBooks = [
-  {
-    studentCode: "SC12345",
-    studentName: "John Doe",
-    studentClass: "Grade 10",
-    bookTitle: "The Great Gatsby",
-    bookCode: "B001",
-    returnDate: "2025-03-30", // Date when the book was returned
-    author: "F. Scott Fitzgerald",
-    publisher: "Scribner",
-  },
-  {
-    studentCode: "SC12346",
-    studentName: "Jane Smith",
-    studentClass: "Grade 9",
-    bookTitle: "1984",
-    bookCode: "B002",
-    returnDate: "2025-03-25", // Date when the book was returned
-    author: "George Orwell",
-    publisher: "Secker & Warburg",
-  },
-  {
-    studentCode: "SC12347",
-    studentName: "Sam Johnson",
-    studentClass: "Grade 11",
-    bookTitle: "To Kill a Mockingbird",
-    bookCode: "B003",
-    returnDate: "2025-03-28", // Date when the book was returned
-    author: "Harper Lee",
-    publisher: "J.B. Lippincott & Co.",
-  },
-];
+import { Spinner } from "@radix-ui/themes";
+import { useStudentsWhoReturnedBooksQuery } from "./hooks";
 
 const StudentsReturnedBooksTable = () => {
+  const { data: returnedBooks, isLoading, error } = useStudentsWhoReturnedBooksQuery();
+        if (isLoading) return <Spinner />;
+        if (error) return <p>Error occured</p>;
   return (
     <div className="overflow-x-auto rounded-xl">
       <table className="w-full border-collapse text-sm rounded-lg border-gray-300 dark:border-gray-700">
