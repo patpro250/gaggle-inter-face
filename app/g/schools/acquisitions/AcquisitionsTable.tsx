@@ -1,45 +1,62 @@
-import React from "react";
-import Pagination from "../books/Pagination";
+'use client';
 
-const acquisitions = [
-    { bookCode: "BKG123", bookCopies: 50, bookTitle: "The Great Gatsby", supplierName: "Scribner", supplierEmail: "contact@scribner.com" },
-    { bookCode: "BKG124", bookCopies: 30, bookTitle: "1984", supplierName: "Secker & Warburg", supplierEmail: "info@seckerwarburg.com" },
-    { bookCode: "BKG125", bookCopies: 40, bookTitle: "To Kill a Mockingbird", supplierName: "J.B. Lippincott & Co.", supplierEmail: "support@lippincott.com" },
-    { bookCode: "BKG126", bookCopies: 60, bookTitle: "Pride and Prejudice", supplierName: "T. Egerton", supplierEmail: "egerton@t-egerton.com" },
-    { bookCode: "BKG127", bookCopies: 20, bookTitle: "Moby Dick", supplierName: "Harper & Brothers", supplierEmail: "harper@harperbrothers.com" },
-];
+import { useQuery } from '@tanstack/react-query';
+import { fetchAcquisitions } from './actions';
+import NitSkeleton from '@/app/_components/Skeleton';
+
+const SkeletonRow = () => (
+  <tr>
+    {[...Array(4)].map((_, i) => (
+      <td key={i} className="p-4">
+        <NitSkeleton height="1rem" width="100%" />
+      </td>
+    ))}
+  </tr>
+);
 
 const AcquisitionsTable = () => {
-    return (
-        <>
-            <h2 className="library-subtitle mt-6 mb-4">Recent acquisitions</h2>
-            <div className="overflow-x-auto border rounded-xl border-gray-400">
-                <table className="w-full border-collapse text-sm rounded-lg border-gray-300 dark:border-gray-700">
-                    <thead className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                        <tr>
-                            <th className="p-4 text-left rounded-tl-lg border-b border-gray-300 dark:border-gray-700">Book Title</th>
-                            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Code</th>
-                            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Copies</th>
-                            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Supplier Name</th>
-                            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Supplier Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {acquisitions.map((acquisition, index) => (
-                            <tr key={index} className="table-r dark:hover:bg-gray-700 transition-colors">
-                                <td className="table-data">{acquisition.bookTitle}</td>
-                                <td className="table-data">{acquisition.bookCode}</td>
-                                <td className="table-data">{acquisition.bookCopies}</td>
-                                <td className="table-data">{acquisition.supplierName}</td>
-                                <td className="table-data">{acquisition.supplierEmail}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <Pagination />
-        </>
-    );
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['acquisitions'],
+    queryFn: fetchAcquisitions,
+  });
+
+  return (
+    <>
+      <h2 className="library-subtitle mt-6 mb-4">Recent acquisitions</h2>
+      <div className="overflow-x-auto border rounded-xl border-gray-400">
+        <table className="w-full border-collapse text-sm rounded-lg border-gray-300 dark:border-gray-700">
+          <thead className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+            <tr>
+              <th className="p-4 text-left rounded-tl-lg border-b border-gray-300 dark:border-gray-700">Book Title</th>
+              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Code</th>
+              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Copies</th>
+              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Supplier Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {isLoading && [...Array(5)].map((_, index) => <SkeletonRow key={index} />)}
+
+            {isError && (
+              <tr>
+                <td colSpan={4} className="p-4 text-red-500">
+                  Failed to load acquisitions.
+                </td>
+              </tr>
+            )}
+
+            {data?.map((acquisition, index) => (
+              <tr key={index} className="table-r hover:text-white hover:bg-primary transition-colors">
+                <td className="table-data">{acquisition.bookTitle}</td>
+                <td className="table-data">{acquisition.code}</td>
+                <td className="table-data">{acquisition.quantity}</td>
+                <td className="table-data">{acquisition.supplier}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
 };
 
 export default AcquisitionsTable;

@@ -11,10 +11,13 @@ import { ChangeEvent, useState } from "react";
 import CloseButton from "@/app/_components/CloseButton";
 import { getSuggestions } from "./getSuggestions";
 import RequiredFieldsWarning from "@/app/_components/RequiredFieldsWarning";
+import { cleanFormData } from "../utils/cleanFormData";
+import { acquireBooks } from "./acquireBooks";
+import toast from "react-hot-toast";
 
 const acquisitionSchema = z.object({
   bookId: z.string().uuid({ message: "Invalid book ID" }),
-  quantity: z.coerce.number().min(1).max(10000),
+  quantity: z.coerce.number().min(1, "The minimum number of books you can acquire is 1").max(200, "The maximum books you can acquire is 200"),
   supplier: z.string().min(2, "The supplier name must have at least 3 characters"),
   code: z.string().nonempty("Code is required").optional(),
   dateOfAcquisition: z.string().refine((date) => new Date(date) <= new Date(), {
@@ -29,7 +32,6 @@ const AquireBookModal = () => {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors, isSubmitting, isValid },
     setValue,
     reset,
@@ -76,9 +78,18 @@ const AquireBookModal = () => {
   };
 
   const onSubmit = async (data: AddAquistion) => {
-    // Handle submit
-    console.log(data);
-    reset();
+    const selectedBookTitle = query;
+    const cleanedData = cleanFormData(data);
+    const response = await acquireBooks(cleanedData);
+
+    if (response.success) {
+      toast.success(response.message);
+      reset();
+      setQuery(selectedBookTitle);
+      setValue("bookId", data.bookId);
+    } else {
+      toast.error(response.message);
+    }
   };
 
   const fields: Array<[keyof AddAquistion | "book", string, string?, boolean?]> = [
