@@ -7,3 +7,10 @@ export const fetchStartsData = async () => {
   const response = await api.get(`analytics/institution/account`);
   return response.data;
 };
+
+export const fetchStatsUpData = async () => {
+  console.log("Fetching stars data...");
+  const api = await getApiClient();
+  const response = await api.get(`analytics/institution/dashboard`);
+  return response.data;
+};

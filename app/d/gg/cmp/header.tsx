@@ -22,7 +22,11 @@ const Header = async () => {
       <header className="w-full flex justify-between px-6 py-4 bg-gray-50 dark:bg-gray-900 shadow">
         <div>
           <h1 className="text-2xl dark:text-primary font-medium">
-            {user?.permissions[0]!}
+            {user?.permissions && user.permissions.length > 0 && (
+              <span className="text-2xl dark:text-primary font-medium">
+                {user.permissions[0]}
+              </span>
+            )}
           </h1>
           <p className="text-sm text-gray-800 dark:text-indigo-600 font-medium">
             {user?.firstName} {user?.lastName}

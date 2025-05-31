@@ -1,197 +1,8 @@
-// "use client";
-
-// import React, { useState } from "react";
-// import {
-//   BarChart,
-//   Bar,
-//   XAxis,
-//   YAxis,
-//   CartesianGrid,
-//   Tooltip,
-//   ResponsiveContainer,
-// } from "recharts";
-// import { CheckCircle, Clock, Loader2, Send } from "lucide-react";
-// import { useQuery } from "@tanstack/react-query";
-// import { getApiClient } from "@/app/g/schools/axios";
-// import { fetchPayments } from "./gitData";
-
-// export default function AdminPaymentPage() {
-//   const {
-//     data: payments = [],
-//     isLoading,
-//     isError,
-//   } = useQuery({
-//     queryKey: ["payments"],
-//     queryFn: fetchPayments,
-//   });
-
-//   if (isLoading) return <p>Loading...</p>;
-//   if (isError) return <p>Error fetching payments.</p>;
-
-//   // const [loadingId, setLoadingId] = useState<number | null>(null);
-//   // const [requests, setRequests] = useState([
-//   //   {
-//   //     id: 1,
-//   //     name: "Jane Doe",
-//   //     plan: "Pro",
-//   //     phone: "08012345678",
-//   //     status: "pending",
-//   //   },
-//   //   {
-//   //     id: 2,
-//   //     name: "John Smith",
-//   //     plan: "Basic",
-//   //     phone: "09098765432",
-//   //     status: "pending",
-//   //   },
-//   //   {
-//   //     id: 3,
-//   //     name: "Emily Stone",
-//   //     plan: "Pro",
-//   //     phone: "08099998888",
-//   //     status: "completed",
-//   //   },
-//   // ]);
-
-//   // const handleGenerateCode = async (id: number) => {
-//   //   try {
-//   //     setLoadingId(id);
-//   //     // Simulate API request (replace with actual fetch/axios call)
-//   //     await new Promise((res) => setTimeout(res, 1000));
-
-//   //     setRequests((prev) =>
-//   //       prev.map((req) =>
-//   //         req.id === id ? { ...req, status: "completed" } : req
-//   //       )
-//   //     );
-//   //     alert(`Payment code sent for user ID ${id}`);
-//   //   } catch (err) {
-//   //     alert("Failed to send code. Try again.");
-//   //   } finally {
-//   //     setLoadingId(null);
-//   //   }
-//   // };
-
-//   // const stats = [
-//   //   {
-//   //     name: "Payments",
-//   //     Pending: requests.filter((r) => r.status === "pending").length,
-//   //     Completed: requests.filter((r) => r.status === "completed").length,
-//   //   },
-//   // ];
-
-//   return (
-//     <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white p-6">
-//       <h1 className="text-3xl font-bold mb-6">Admin Payment Dashboard</h1>
-
-//       {/* Payment Table */}
-//       <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-//         <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
-//           <thead className="bg-gray-100 dark:bg-gray-700">
-//             <tr>
-//               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-//                 Name
-//               </th>
-//               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-//                 Plan
-//               </th>
-//               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-//                 Phone
-//               </th>
-//               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-//                 Status
-//               </th>
-//               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-//                 Action
-//               </th>
-//             </tr>
-//           </thead>
-//           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-//             {payments.map((payment, index) => (
-//               <tr
-//                 key={payment.id}
-//                 className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
-//               >
-//                 <td className="px-6 py-4">{payment.name}</td>
-//                 <td className="px-6 py-4">{payment.amount}</td>
-//                 <td className="px-6 py-4">{payment.phoneNumber}</td>
-//                 <td className="px-6 py-4">
-//                   {payment.status === "SUCCESS" ? (
-//                     <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
-//                       <CheckCircle size={16} /> {payment.status}
-//                     </span>
-//                   ) : payment.status === "APPROVED" ? (
-//                     <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
-//                       <CheckCircle
-//                         size={16}
-//                         className="text-green-600 dark:text-green-400"
-//                       />{" "}
-//                       {payment.status}
-//                     </span>
-//                   ) : (
-//                     <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
-//                       <Clock size={16} /> {payment.status}
-//                     </span>
-//                   )}
-//                 </td>
-//                 <td className="px-6 py-4">
-//                   {payment.status === "PENDING" ? (
-//                     <button
-//                       // onClick={() => handleGenerateCode(payment.id)}
-
-//                       className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-md disabled:opacity-50"
-//                     >
-//                       {/* {loadingId === payment.id ? (
-//                         <>
-//                           <Loader2 size={16} className="animate-spin" />{" "}
-//                           Sending...
-//                         </>
-//                       ) : (
-//                         <> */}
-//                       <Send size={16} /> Send Code
-//                       {/* </>
-//                       )} */}
-//                     </button>
-//                   ) : (
-//                     <span className="text-sm  text-green-700 ">— Paid_</span>
-//                   )}
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       </div>
-
-//       {/* Chart
-//       <div className="mt-10 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
-//         <h2 className="text-xl font-semibold mb-4">Payment Summary</h2>
-//         <ResponsiveContainer width="100%" height={300}>
-//           <BarChart data={stats}>
-//             <CartesianGrid strokeDasharray="3 3" />
-//             <XAxis dataKey="name" stroke="currentColor" />
-//             <YAxis stroke="currentColor" />
-//             <Tooltip
-//               contentStyle={{
-//                 backgroundColor: "#111827",
-//                 border: "none",
-//                 color: "#fff",
-//               }}
-//             />
-//             <Bar dataKey="Pending" fill="#f97316" />
-//             <Bar dataKey="Completed" fill="#10b981" />
-//           </BarChart>
-//         </ResponsiveContainer>
-//       </div> */}
-//     </div>
-//   );
-// }
-
 "use client";
 
 import React, { useState } from "react";
 import { CheckCircle, Clock, Send } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 import { fetchApproved } from "../cmp/gitData";
 import { IconButton } from "@radix-ui/themes";
 import CopyButton from "@/app/_components/clipboard";
@@ -206,14 +17,13 @@ export default function AdminPaymentPage() {
     queryFn: fetchApproved,
   });
 
-  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // adjust as needed
+  const itemsPerPage = 5;
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error fetching payments.</p>;
 
-  // Calculate pagination values
+  // Pagination calculation
   const totalItems = payments.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -251,44 +61,47 @@ export default function AdminPaymentPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-            {currentPayments.map((payment) => (
-              <tr
-                key={payment.id}
-                className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
-              >
-                <td className="px-6 py-4">{payment.doneAt}</td>
-                <td className="px-6 py-4">{payment.amount}</td>
-                <td className="px-6 py-4">{payment.phoneNumber}</td>
-                <td className="px-6 py-4">
-                  {payment.status === "SUCCESS" ? (
-                    <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
-                      <CheckCircle size={16} /> {payment.status}
+            {(Array.isArray(currentPayments) ? currentPayments : []).map(
+              (payment, index) => (
+                <tr
+                  key={payment.id ?? index} // fallback key to avoid missing keys
+                  className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+                >
+                  <td className="px-6 py-4">
+                    {payment.doneAt
+                      ? new Date(payment.doneAt).toLocaleDateString()
+                      : "N/A"}
+                  </td>
+                  <td className="px-6 py-4">{payment.amount}</td>
+                  <td className="px-6 py-4">{payment.phoneNumber}</td>
+                  <td className="px-6 py-4">
+                    {payment.status === "SUCCESS" ||
+                    payment.status === "APPROVED" ? (
+                      <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
+                        <CheckCircle size={16} /> {payment.status}
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
+                        <Clock size={16} /> {payment.status}
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="inline-flex gap-2 items-center text-green-600 dark:text-green-400 font-medium">
+                      {payment.confirmationCode}
+                      <IconButton
+                        size="1"
+                        aria-label="Copy value"
+                        color="green"
+                        variant="ghost"
+                      >
+                        <CopyButton value={payment.confirmationCode} />
+                      </IconButton>
                     </span>
-                  ) : payment.status === "APPROVED" ? (
-                    <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
-                      <CheckCircle size={16} /> {payment.status}
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
-                      <Clock size={16} /> {payment.status}
-                    </span>
-                  )}
-                </td>
-                <td className="px-6 py-4">
-                  <span className="inline-flex gap-2 items-center gap-1 text-green-600 dark:text-green-400 font-medium">
-                    {payment.confirmationCode}
-                    <IconButton
-                      size="1"
-                      aria-label="Copy value"
-                      color="green"
-                      variant="ghost"
-                    >
-                      <CopyButton value={payment.confirmationCode} />
-                    </IconButton>
-                  </span>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
       </div>

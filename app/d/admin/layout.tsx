@@ -69,7 +69,7 @@ const AdiminLayout = async ({ children }: Props) => {
         <div>
           <AsiderPageAdmin />
         </div>
-        <div className="w-[90%] bg-gray-0 p-4 pb-30 pt-30 overflow-y-auto h-[100vh]">
+        <div className="w-[90%] bg-gray-0 p-4 pb-30 pt-10 overflow-y-auto h-[100vh]">
           {children}
         </div>
       </main>

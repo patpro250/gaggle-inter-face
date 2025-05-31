@@ -21,9 +21,9 @@ import axios from "axios";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function GetPlan(): Promise<Plan[]> {
+export async function GetPlan(id: string): Promise<Plan[]> {
   try {
-    const res = await axios.get<Plan[]>(`${API_URL}/plans`);
+    const res = await axios.get<Plan[]>(`${API_URL}/plans/${id}`);
 
     return res.data;
   } catch (error) {

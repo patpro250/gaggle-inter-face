@@ -23,7 +23,7 @@ const TakePlan = ({ params }: Props) => {
 
   return (
     <>
-      <PaymentInfoPage Data={data} />
+      <PaymentInfoPage id={id} />
     </>
   );
 };
