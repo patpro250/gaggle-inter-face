@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -5,18 +7,23 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { GetPlan } from "./getPlan";
-import { InitiPayment, PlanData } from "../InitiPayment";
+import { InitiPayment } from "../InitiPayment";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 import { Spinner } from "@radix-ui/themes";
-import { PricingPlan } from "@/app/_components/pricing";
 
-async function getMyPlan() {
-  return {
-    name: "Pro Plan",
-    price: 25,
-    duration: 3,
-  };
+interface Plan {
+  id: string;
+  name: string;
+  price: string;
+  duration: number;
+  features: string;
+  status: string;
+  limitations: Record<string, any>;
+  discount: any;
+  freeTrialDays: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const schema = z.object({
@@ -28,9 +35,10 @@ const schema = z.object({
 
   planId: z.string().uuid("Invalid plan selected"),
   amount: z
-    .string({ required_error: "amount number is required" })
-    .regex(/^\d+$/, "amount number must contain only digits")
+    .string({ required_error: "Amount is required" })
+    .regex(/^\d+$/, "Amount must contain only digits")
     .transform((val) => Number(val)),
+
   duration: z
     .number({
       required_error: "Duration is required",
@@ -41,14 +49,17 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const PaymentInfoPage = (Data: any) => {
-  console.log(Data);
-  const [plans, setPlans] = useState([]);
+interface Props {
+  id: string;
+}
+
+const PaymentInfoPage = ({ id }: Props) => {
+  const [plan, setPlan] = useState<Plan | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const {
     register,
     handleSubmit,
-    watch,
     setValue,
     formState: { errors },
   } = useForm<FormData>({
@@ -61,51 +72,36 @@ const PaymentInfoPage = (Data: any) => {
     },
   });
 
-  const [planSummary, setPlanSummary] = useState<{
-    name: string;
-    price: number;
-    duration: number;
-  } | null>(null);
-
   useEffect(() => {
-    getMyPlan().then(setPlanSummary);
-  }, []);
+    async function fetchPlan() {
+      setLoading(true);
+      try {
+        const data = await GetPlan(id);
+        setPlan(data);
 
-  useEffect(() => {
-    console.log("Setting form values with Data:", Data);
+        // Set default form values from fetched plan
+        // setValue("planId", data.id);
+        setValue("amount", data.price);
+        setValue("duration", data.duration);
+      } catch (error) {
+        toast.error("Failed to load plan");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPlan();
+  }, [id, setValue]);
 
-    if (Data.planId != null) {
-      setValue("planId", Data.planId);
-    }
-    if (Data.duration != null) {
-      setValue("duration", Data.duration);
-    }
-    if (Data.phoneNumber != null) {
-      setValue("phoneNumber", Data.phoneNumber);
-    }
-  }, [Data]);
-
-  const onSubmit = async (Data) => {
-    const response = await InitiPayment(Data);
+  console.log(plan);
+  const onSubmit = async (formData) => {
+    const response = await InitiPayment(formData);
     if (response.success) {
-      toast.success(`${response.message}`);
+      toast.success(response.message);
       redirect("/d/admin/payment/approve");
-      return;
     } else {
-      console.log(response);
-      toast.error(`${response.message}`);
-      return;
+      toast.error(response.message);
     }
-    console.log("Form Data:", Data);
   };
-
-  useEffect(() => {
-    async function fetchPlans() {
-      const Data = await GetPlan();
-      setPlans(Data);
-    }
-    fetchPlans();
-  }, []);
 
   return (
     <div className="flex flex-col lg:flex-row max-w-6xl mx-auto p-6 gap-8">
@@ -122,7 +118,7 @@ const PaymentInfoPage = (Data: any) => {
               {...register("phoneNumber")}
               type="tel"
               placeholder="Enter your phone number"
-              className="input-style "
+              className="input-style"
             />
             {errors.phoneNumber && (
               <p className="text-red-500 text-sm">
@@ -131,44 +127,42 @@ const PaymentInfoPage = (Data: any) => {
             )}
           </div>
 
-          {/* Phone Number */}
+          {/* Amount */}
           <div>
             <label className="block text-sm font-medium mb-1">Amount</label>
             <input
               {...register("amount")}
               type="tel"
               placeholder="Enter amount"
-              className="input-style "
+              className="input-style"
             />
             {errors.amount && (
               <p className="text-red-500 text-sm">{errors.amount.message}</p>
             )}
           </div>
 
-          {/* Plan ID */}
-
-          <label className="block text-sm font-medium mb-1">Plan</label>
-          <select
-            {...register("planId", { required: "Please select a plan" })}
-            className="input-style"
-          >
-            <option value="" disabled>
-              Select a plan
-            </option>
-            {!plans && (
-              <option value="" disabled>
-                <Spinner></Spinner>
-              </option>
+          {/* Plan Select */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Plan</label>
+            <select
+              {...register("planId", { required: "Please select a plan" })}
+              className="input-style"
+              disabled={loading}
+            >
+              {/* <option value="" disabled>
+                {loading ? "Loading plans..." : "Select a plan"}
+              </option> */}
+              {plan && (
+                <option key={plan.id} value={plan.id}>
+                  {plan.name}
+                </option>
+              )}
+            </select>
+            {errors.planId && (
+              <p className="text-red-500 text-sm">{errors.planId.message}</p>
             )}
-            {plans.map((plan) => (
-              <option key={plan.id} value={plan.id}>
-                {plan.name}
-              </option>
-            ))}
-          </select>
-          {errors.planId && (
-            <p className="text-red-500 text-sm">{errors.planId.message}</p>
-          )}
+          </div>
+
           {/* Duration */}
           <div>
             <label className="block text-sm font-medium mb-1">
@@ -188,33 +182,35 @@ const PaymentInfoPage = (Data: any) => {
           <button
             type="submit"
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >SUCCESS
-
-            Submit
+            disabled={loading}
+          >
+            Submit Payment
           </button>
         </form>
       </main>
 
-      {/* Static Summary Aside */}
+      {/* Plan Summary */}
       <aside className="w-full lg:w-1/3 bg-gray-50 p-6 border rounded-lg shadow">
-        <h3 className="text-xl font-semibold mb-4">My Plan Summary</h3>
-        {planSummary ? (
+        <h3 className="text-xl font-semibold mb-4">Plan Summary</h3>
+        {loading ? (
+          <p>Loading plan summary...</p>
+        ) : plan ? (
           <>
             <p>
-              <strong>Plan:</strong> {planSummary.name}
+              <strong>Plan:</strong> {plan.name}
             </p>
             <p>
-              <strong>Monthly Price:</strong> ${planSummary.price}
+              <strong>Monthly Price:</strong> ${plan.price}
             </p>
             <p>
-              <strong>Duration:</strong> {planSummary.duration} month(s)
+              <strong>Duration:</strong> {plan.duration} month(s)
             </p>
             <p className="mt-2 font-bold">
-              Total: ${planSummary.price * planSummary.duration}
+              Total: ${Number(plan.price) * plan.duration}
             </p>
           </>
         ) : (
-          <p>Loading your plan info...</p>
+          <p>No plan found.</p>
         )}
       </aside>
     </div>

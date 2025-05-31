@@ -7,3 +7,10 @@ export const fetchSinglePlans = async (id: string) => {
   const response = await api.get(`/plans/${id}`);
   return response.data;
 };
+
+export const fetchSinglePayment = async (id: string) => {
+  console.log("Fetching stars data...");
+  const api = await getApiClient();
+  const response = await api.get(`/payments/${id}`);
+  return response.data;
+};

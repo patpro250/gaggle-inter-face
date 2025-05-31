@@ -3,23 +3,57 @@
 import React, { useRef } from "react";
 import html2canvas from "html2canvas-pro";
 import jsPDF from "jspdf";
+import Image from "next/image";
 
-const paymentData = {
-  id: "7ecdfe0f-ccfb-4b0f-9515-17d684e11a11",
+export interface Payment {
+  id: string;
+  institutionId: string;
+  planId: string;
+  amount: number;
+  currency: string;
+  confirmationCode: string;
+  phoneNumber: string | null;
+  status: "SUCCESS" | "PENDING" | "FAILED"; // add others if needed
+  method: "MOBILE_MONEY" | "BANK_TRANSFER" | "CASH"; // extend if needed
+  doneAt: string; // ISO date string
+
   institution: {
-    name: "g.s mater dei nyanza",
-  },
+    name: string;
+    address?: string; // optional if not always available
+  };
+
   PricingPlan: {
-    name: "Basic",
-  },
-  amount: 5000,
-  confirmationCode: "788905",
-  currency: "RWF",
-  method: "MOBILE_MONEY",
-  doneAt: "2025-05-23T17:35:03.511Z",
+    name: string;
+    features?: string[]; // optional array of plan features
+  };
+
+  client?: {
+    name: string;
+    email?: string;
+    address?: string;
+  };
+}
+
+type InvoiceProps = {
+  paymentData: Payment;
 };
 
-export default function Invoice() {
+// const paymentData = {
+//   id: "7ecdfe0f-ccfb-4b0f-9515-17d684e11a11",
+//   institution: {
+//     name: "g.s mater dei nyanza",
+//   },
+//   PricingPlan: {
+//     name: "Basic",
+//   },
+//   amount: 5000,
+//   confirmationCode: "788905",
+//   currency: "RWF",
+//   method: "MOBILE_MONEY",
+//   doneAt: "2025-05-23T17:35:03.511Z",
+// };
+
+export default function Invoice({ paymentData }: InvoiceProps) {
   const printRef = useRef<HTMLDivElement>(null);
 
   const handleDownloadPdf = async () => {
@@ -71,21 +105,25 @@ export default function Invoice() {
         </div>
 
         <div ref={printRef} className="bg-white text-sm pt-4 pb-4 px-6">
-          <div className="border-b pb-4 mb-4">
-            <p className="text-gray-600">
-              Invoice ID: <strong>{paymentData.id}</strong>
-            </p>
-            <p className="text-gray-600">
-              Date: {new Date(paymentData.doneAt).toLocaleDateString()}
-            </p>
+          <div className="flex items-center justify-between border-b pb-4 ">
+            <div className=" mb-4">
+              <p className="text-gray-600">
+                Invoice ID: <strong>{paymentData.id}</strong>
+              </p>
+              <p className="text-gray-600">
+                Date: {new Date(paymentData.doneAt).toLocaleDateString()}
+              </p>
+            </div>
+
+            <Image width={100} height={100} src={"/image.svg"} alt={""}></Image>
           </div>
 
           <div className="flex justify-between mb-6">
             <div>
-              <h2 className="font-semibold text-gray-800">From:</h2>
-              <p>Gaggle Nit</p>
-              <p>123 Knowledge Street</p>
-              <p>Library City, RW</p>
+              <h2 className="font-semibold text-gray-800 ">From:</h2>
+              <p className=" text-primary  ">Gaggle Niti Group</p>
+              {/* <p>123 Knowledge Street</p>
+              <p>Library City, RW</p> */}
             </div>
             <div className="text-right">
               <h2 className="font-semibold text-gray-800">To:</h2>
@@ -119,7 +157,7 @@ export default function Invoice() {
 
           <div className="flex justify-end mb-2">
             <div className="w-64 space-y-1">
-              <div className="flex justify-between font-bold text-lg text-indigo-700">
+              <div className="flex justify-between font-bold text-lg text-primary">
                 <span>Total Paid:</span>
                 <span>
                   {paymentData.amount} {paymentData.currency}
@@ -131,7 +169,9 @@ export default function Invoice() {
               </div>
               <div className="flex justify-between">
                 <span>Confirmation Code:</span>
-                <span>{paymentData.confirmationCode}</span>
+                <span className=" text-primary font-semibold ">
+                  {paymentData.confirmationCode}
+                </span>
               </div>
             </div>
           </div>

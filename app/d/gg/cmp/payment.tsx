@@ -257,43 +257,45 @@ export default function AdminPaymentPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-            {currentPayments.map((payment) => (
-              <tr
-                key={payment.id}
-                className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
-              >
-                <td className="px-6 py-4">{payment.doneAt}</td>
-                <td className="px-6 py-4">{payment.amount}</td>
-                <td className="px-6 py-4">{payment.phoneNumber}</td>
-                <td className="px-6 py-4">
-                  {payment.status === "SUCCESS" ? (
-                    <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
-                      <CheckCircle size={16} /> {payment.status}
-                    </span>
-                  ) : payment.status === "APPROVED" ? (
-                    <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
-                      <CheckCircle size={16} /> {payment.status}
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
-                      <Clock size={16} /> {payment.status}
-                    </span>
-                  )}
-                </td>
-                <td className="px-6 py-4">
-                  {payment.status === "PENDING" ? (
-                    <button
-                      onClick={() => generateCode(payment.id)}
-                      className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-md disabled:opacity-50"
-                    >
-                      <Send size={16} /> Send Code
-                    </button>
-                  ) : (
-                    <span className="text-sm text-green-700">— Paid_</span>
-                  )}
-                </td>
-              </tr>
-            ))}
+            {(Array.isArray(currentPayments) ? currentPayments : []).map(
+              (payment) => (
+                <tr
+                  key={payment.id}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+                >
+                  <td className="px-6 py-4">{payment.doneAt}</td>
+                  <td className="px-6 py-4">{payment.amount}</td>
+                  <td className="px-6 py-4">{payment.phoneNumber}</td>
+                  <td className="px-6 py-4">
+                    {payment.status === "SUCCESS" ? (
+                      <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
+                        <CheckCircle size={16} /> {payment.status}
+                      </span>
+                    ) : payment.status === "APPROVED" ? (
+                      <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
+                        <CheckCircle size={16} /> {payment.status}
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
+                        <Clock size={16} /> {payment.status}
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
+                    {payment.status === "PENDING" ? (
+                      <button
+                        onClick={() => generateCode(payment.id)}
+                        className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-md disabled:opacity-50"
+                      >
+                        <Send size={16} /> Send Code
+                      </button>
+                    ) : (
+                      <span className="text-sm text-green-700">— Paid_</span>
+                    )}
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
       </div>

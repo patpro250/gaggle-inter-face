@@ -16,7 +16,7 @@ import Table from "@/app/component/table/tbl/page";
 
 const Library = () => {
   return (
-    <div className=" p-4 pb-30 ">
+    <div className="  ">
       <h1 className="mt-5 mb-5 text-xl">Librarian </h1>
 
       <div className="bg-indigo-0 grid grid-cols-1  md:grid-cols-3 p-2 gap-6  min-h-auto mt-10 mb-20">

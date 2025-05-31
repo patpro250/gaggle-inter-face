@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPayments } from "../d/admin/payment/InitiPayment";
-import { CheckCircle, Clock, Forward } from "lucide-react";
+import { CheckCircle, Clock, CloudDownload, Forward, Send } from "lucide-react";
+import Link from "next/link";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -52,7 +53,7 @@ const PaymentHistory = () => {
                   Amount
                 </th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                  Status
+                  payment Status
                 </th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
                   Action
@@ -77,22 +78,42 @@ const PaymentHistory = () => {
                   <td className="px-4 py-2 text-sm text-gray-700">
                     {payment.amount}
                   </td>
-                  <td className="px-4 py-2 text-sm text-gray-700">
-                    <Forward />
-                  </td>
+
                   <td className="px-6 py-4">
                     {payment.status === "SUCCESS" ? (
-                      <span className="inline-flex text-sm items-center gap-1 text-green-600 dark:text-green-400 font-medium">
+                      <span className="inline-flex text-sm lowercase items-center gap-1 text-green-600 dark:text-green-400 font-medium">
                         <CheckCircle size={12} /> {payment.status}
                       </span>
                     ) : payment.status === "APPROVED" ? (
-                      <span className="inline-flex text-sm items-center gap-1 text-primary dark:text-primary font-medium">
+                      <span className="inline-flex lowercase text-sm items-center gap-1 text-primary dark:text-primary font-medium">
                         <CheckCircle size={16} /> {payment.status}
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
+                      <span className="inline-flex lowercase items-center gap-1 text-orange-500 font-medium">
                         <Clock size={16} /> {payment.status}
                       </span>
+                    )}
+                  </td>
+
+                  <td className="px-4 py-2 text-sm text-gray-700 text-center">
+                    {payment.status == "APPROVED" ? (
+                      <Link
+                        href="/your-target-url"
+                        className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition"
+                        aria-label="Send"
+                      >
+                        <Send className="w-4 h-4" />
+                      </Link>
+                    ) : payment.status == "SUCCESS" ? (
+                      <Link
+                        href={`/d/admin/payment/invoice/${payment.id}`}
+                        className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-900 text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition"
+                        aria-label="Send"
+                      >
+                        <CloudDownload className="w-4 h-4" />
+                      </Link>
+                    ) : (
+                      <p className="text-orange-600">pending..</p>
                     )}
                   </td>
                 </tr>
