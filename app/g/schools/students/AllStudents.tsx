@@ -3,37 +3,6 @@
 import { useStudentsQuery } from "./hooks";
 import { Spinner } from "@radix-ui/themes";
 
-// const students = [
-//   {
-//     name: "John Doe",
-//     parentPhone: "123-456-7890",
-//     StudentCode: "Grade 11",
-//     className: "JD889",
-//     status: "Active",
-//     email: "johndoe@example.com",
-//     studentCard: "SC12345",
-//   },
-//   {
-//     name: "Jane Smith",
-//     parentPhone: "987-654-3210",
-//     StudentCode: "Grade 11",
-//     className: "JS548",
-//     status: "Inactive",
-//     email: "janesmith@example.com",
-//     studentCard: "SC12346",
-//   },
-//   {
-//     name: "Sam Johnson",
-//     parentPhone: "555-123-4567",
-//      StudentCode: "Grade 11",
-//     className: "SJ489",
-//     status: "Active",
-
-//     email: "samjohnson@example.com",
-//     studentCard: "SC12347",
-//   },
-// ];
-
 const AllStudents = () => {
   const { data, isLoading, error } = useStudentsQuery();
   if (isLoading) return <Spinner />;

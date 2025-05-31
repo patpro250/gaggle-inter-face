@@ -10,3 +10,23 @@ export async function getStudents() {
         return ex;
     }
 }
+
+export async function getStudentsWhoBorrowed() {
+    try {
+        const api = await getApiClient();
+        const students = await api.get('/students/borrowed');
+        return students.data;
+    } catch (ex) {
+        return ex;
+    }
+}
+
+export async function getStudentsWhoLostBooks() {
+    try {
+        const api = await getApiClient();
+        const students = await api.get('/students/lost');
+        return students.data;
+    } catch (ex) {
+        return ex;
+    }
+}

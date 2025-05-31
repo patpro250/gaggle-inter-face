@@ -8,7 +8,7 @@ import StudentsReturnedBooksTable from "./StudentsWhoReturnedBooks";
 const StudentsContainer = () => {
   return (
     <Tabs
-      tabLabels={["All students", "Borrowed Books", "Lost books", "Returned books"]}
+      tabLabels={["All students", "Borrowed Books", "Unreturned", "Returned books"]}
       tabComponents={[<AllStudents key={1} />, <StudentsBorrowedBooksTable key={2} />, <StudentsLostBooksTable key={3} />, <StudentsReturnedBooksTable key={4} />]}
     />
   );
