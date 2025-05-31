@@ -37,7 +37,6 @@ import { Spinner } from "@radix-ui/themes";
 const AllStudents = () => {
   const { data, isLoading, error } = useStudentsQuery();
   if (isLoading) return <Spinner />;
-  console.log(data);
   if (error) return <p>Error occured</p>;
   return (
     <div className="overflow-x-auto rounded-xl">
@@ -56,11 +55,11 @@ const AllStudents = () => {
         <tbody>
           {data.map((student, index) => (
             <tr key={index} className="table-r dark:hover:bg-gray-700 transition-colors">
-              <td className="table-data">{student.name}</td>
+              <td className="table-data">{`${student.firstName} ${student.lastName}`}</td>
               <td className="table-data">{student.parentPhone}</td>
               <td className="table-data">{student.studentCard}</td>
               <td className="table-data">{student.className}</td>
-              <td className="table-data">{student.StudentCode}</td>
+              <td className="table-data">{student.code}</td>
               <td className="table-data">{student.status}</td>
               <td className="table-data">{student.email}</td>
             </tr>
