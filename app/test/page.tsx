@@ -1,146 +1,95 @@
 "use client";
 
-import React, { useRef } from "react";
-import html2canvas from "html2canvas-pro";
-import jsPDF from "jspdf";
+import React from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
-const paymentData = {
-  id: "7ecdfe0f-ccfb-4b0f-9515-17d684e11a11",
-  institution: {
-    name: "g.s mater dei nyanza",
-  },
-  PricingPlan: {
-    name: "Basic",
-  },
-  amount: 5000,
-  confirmationCode: "788905",
-  currency: "RWF",
-  method: "MOBILE_MONEY",
-  doneAt: "2025-05-23T17:35:03.511Z",
-};
+const data = [
+  { genre: "Noise", copies: 4 },
+  { genre: "Blue Note", copies: 10 },
+  { genre: "K-Pop", copies: 8 },
+  { genre: "Afro-Pop", copies: 5 },
+  { genre: "Chicago Blues", copies: 6 },
+  { genre: "Hard Rock", copies: 5 },
+  { genre: "Britpop", copies: 7 },
+  { genre: "Instrumental", copies: 8 },
+  { genre: "Soundtrack", copies: 7 },
+  { genre: "French Pop", copies: 5 },
+  { genre: "Jackin House", copies: 9 },
+  { genre: "Shaabi", copies: 6 },
+  { genre: "Malay", copies: 5 },
+  { genre: "IDM", copies: 4 },
+  { genre: "Emo", copies: 4 },
+  { genre: "Swamp Pop", copies: 7 },
+  { genre: "New Age", copies: 3 },
+  { genre: "Mugham", copies: 9 },
+  { genre: "Kitsch", copies: 6 },
+  { genre: "Pagode", copies: 4 },
+  { genre: "Tango", copies: 4 },
+  { genre: "Mandopop", copies: 8 },
+  { genre: "Cool Jazz", copies: 6 },
+  { genre: "Southern Rock", copies: 2 },
+  { genre: "March", copies: 5 },
+  { genre: "Baladas y Boleros", copies: 5 },
+  { genre: "Rock", copies: 5 },
+  { genre: "Chicago House", copies: 5 },
+  { genre: "Deep House", copies: 6 },
+  { genre: "J-Pop", copies: 5 },
+  { genre: "Conjunto", copies: 5 },
+  { genre: "Baroque", copies: 2 },
+  { genre: "Garage", copies: 9 },
+  { genre: "Industrial", copies: 5 },
+  { genre: "East Coast Rap", copies: 5 },
+  { genre: "Latin Rap", copies: 7 },
+  { genre: "EDM", copies: 9 },
+  { genre: "Experimental Rock", copies: 6 },
+  { genre: "Krautrock", copies: 5 },
+  { genre: "Synth Pop", copies: 6 },
+  { genre: "World", copies: 7 },
+  { genre: "Underground Rap", copies: 8 },
+  { genre: "Western Swing", copies: 6 },
+  { genre: "Musicals", copies: 4 },
+  { genre: "Electric Blues", copies: 6 },
+  { genre: "Roots Rock", copies: 9 },
+  { genre: "Downtempo", copies: 6 },
+  { genre: "Pop Film", copies: 7 },
+  { genre: "Death Metal", copies: 9 },
+  { genre: "Doo-wop", copies: 8 },
+  { genre: "Breakbeat", copies: 9 },
+];
 
-export default function Invoice() {
-  const printRef = useRef<HTMLDivElement>(null);
-
-  const handleDownloadPdf = async () => {
-    const element = printRef.current;
-    if (!element) return;
-
-    const canvas = await html2canvas(element, { scale: 2 });
-    const imgData = canvas.toDataURL("image/png");
-
-    const pdf = new jsPDF({
-      orientation: "portrait",
-      unit: "px",
-      format: [297, 350],
-    });
-
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-
-    const ratio = Math.min(pdfWidth / canvas.width, pdfHeight / canvas.height);
-    const imgScaledWidth = canvas.width * ratio;
-    const imgScaledHeight = canvas.height * ratio;
-    const marginX = (pdfWidth - imgScaledWidth) / 2;
-    const marginY = (pdfHeight - imgScaledHeight) / 2;
-
-    pdf.addImage(
-      imgData,
-      "PNG",
-      marginX,
-      marginY,
-      imgScaledWidth,
-      imgScaledHeight
-    );
-    pdf.save(`Invoice-${paymentData.id}.pdf`);
-  };
-
+export default function GenreCopiesChartCard() {
   return (
-    <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
-      <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow">
-        <div className="flex justify-between mb-4">
-          <h1 className="text-2xl font-bold text-indigo-700">
-            Payment Invoice
-          </h1>
-          <button
-            onClick={handleDownloadPdf}
-            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+    <div className="max-w-5xl h-70 mx-auto mt-12 p-8 bg-white rounded-xl shadow-lg font-sans">
+      <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-8">
+        Inventory Distribution by Book Genre
+      </h2>
+      <div style={{ width: "100%", height: 600 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={data}
+            layout="vertical"
+            margin={{ top: 20, right: 30, left: 140, bottom: 20 }}
           >
-            Download PDF
-          </button>
-        </div>
-
-        <div ref={printRef} className="bg-white text-sm pt-4 pb-4 px-6">
-          <div className="border-b pb-4 mb-4">
-            <p className="text-gray-600">
-              Invoice ID: <strong>{paymentData.id}</strong>
-            </p>
-            <p className="text-gray-600">
-              Date: {new Date(paymentData.doneAt).toLocaleDateString()}
-            </p>
-          </div>
-
-          <div className="flex justify-between mb-6">
-            <div>
-              <h2 className="font-semibold text-gray-800">From:</h2>
-              <p>Gaggle Nit</p>
-              <p>123 Knowledge Street</p>
-              <p>Library City, RW</p>
-            </div>
-            <div className="text-right">
-              <h2 className="font-semibold text-gray-800">To:</h2>
-              <p>{paymentData.institution.name}</p>
-              <p>Institution ID: {paymentData.id.slice(0, 8)}</p>
-            </div>
-          </div>
-
-          <table className="w-full mb-4 border-collapse">
-            <thead>
-              <tr className="bg-gray-100 text-gray-700">
-                <th className="border px-3 py-2 text-left">Description</th>
-                <th className="border px-3 py-2 text-right">Amount</th>
-                <th className="border px-3 py-2 text-right">Currency</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border px-3 py-2">
-                  {paymentData.PricingPlan.name} Plan ({paymentData.method})
-                </td>
-                <td className="border px-3 py-2 text-right">
-                  {paymentData.amount}
-                </td>
-                <td className="border px-3 py-2 text-right">
-                  {paymentData.currency}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div className="flex justify-end mb-2">
-            <div className="w-64 space-y-1">
-              <div className="flex justify-between font-bold text-lg text-indigo-700">
-                <span>Total Paid:</span>
-                <span>
-                  {paymentData.amount} {paymentData.currency}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span>Method:</span>
-                <span>{paymentData.method.replace("_", " ")}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Confirmation Code:</span>
-                <span>{paymentData.confirmationCode}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 text-xs text-gray-500 text-center">
-            This invoice was generated by Gaggle Nit on{" "}
-            {new Date().toLocaleDateString()}.
-          </div>
-        </div>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis type="number" />
+            <YAxis
+              dataKey="genre"
+              type="category"
+              width={140}
+              tick={{ fill: "#4B5563", fontWeight: "600" }}
+            />
+            <Tooltip />
+            <Bar dataKey="copies" fill="#3B82F6" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

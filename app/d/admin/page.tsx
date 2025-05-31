@@ -1,14 +1,9 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
-import { Sparklines, SparklinesLine } from "react-sparklines";
+import { usePathname } from "next/navigation";
 
-import { BookCheck, BookCopy, LibraryBig, UsersRound } from "lucide-react";
-import Graph from "@/app/component/graphBar/page";
-import LineChartComponent from "@/app/component/graphLine/page";
-import { signOut } from "next-auth/react";
 import WlcomeBurner from "./wlcomeBurner";
-import PeirChart from "./LibrarianDashboard/reports/peirChart";
+import BarChart01 from "@/app/d/admin/LibrarianDashboard/reports/barChart";
 
 const NavBarAdmin = () => {
   const path = usePathname();
@@ -74,7 +69,7 @@ const NavBarAdmin = () => {
 
       {/* analyse */}
       <h1 className="m-5 text-xl">Analytics </h1>
-
+      {/* 
       <div className="grid grid-cols-1  xl:grid-cols-2 p-2 gap-4  min-h-60">
         <div>
           <PeirChart />
@@ -82,6 +77,12 @@ const NavBarAdmin = () => {
 
         <div className="bg-green-0">
           <LineChartComponent />
+        </div>
+      </div> */}
+
+      <div className="border-0 border-gray-200 mt-10 mb-10 px-2  ">
+        <div className="  ">
+          <BarChart01 />
         </div>
       </div>
     </div>

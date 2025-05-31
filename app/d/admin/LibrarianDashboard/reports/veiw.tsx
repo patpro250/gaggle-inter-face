@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import millify from "millify";
 import React from "react";
 import {
   RadialBarChart,
@@ -95,7 +96,7 @@ export default function DashboardStats() {
         >
           <div>
             <h1 className="text-sm uppercase">{stat.title}</h1>
-            <p className="font-medium text-xl">{stat.value}</p>
+            <p className="font-medium text-xl">{millify(stat.value)}</p>
           </div>
 
           <div className="w-full h-24 flex justify-center items-center">

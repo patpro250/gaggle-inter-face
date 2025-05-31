@@ -6,6 +6,7 @@ import PricingCards, {
 import { useQueries, useQuery } from "@tanstack/react-query";
 import React from "react";
 import { fetchPlans } from "./getPlans";
+import { PricingCardSkeleton } from "@/app/_components/PricingCardSkeleton";
 
 const Plans = () => {
   //   const { data } = useQueries({});
@@ -15,7 +16,8 @@ const Plans = () => {
     queryFn: fetchPlans,
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <PricingCardSkeleton />;
+  // {isLoading ?  : <PricingCards pricingPlans={data} />}
   if (isError) return <p>Error fetching payments.</p>;
 
   return (

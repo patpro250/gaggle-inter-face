@@ -1,67 +1,87 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import {
-  CartesianGrid,
+  ResponsiveContainer,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
-  Legend,
-  Bar,
   Tooltip,
-  BarChart,
+  Legend,
+  CartesianGrid,
 } from "recharts";
+import { GetMonthlyBooksLineChart } from "../../Account/getStartsData";
 
-const BarChart01 = () => {
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-    },
-  ];
+interface MonthlyData {
+  month: string;
+  acquired: number;
+  borrowed: number;
+}
+
+export default function MonthlyBooksLineChart() {
+  const { data, isLoading, isError } = useQuery<MonthlyData[]>({
+    queryKey: ["GetMonthlyBooksLineChart"],
+    queryFn: GetMonthlyBooksLineChart,
+  });
+
+  if (isLoading)
+    return (
+      <div className=" border-1 flex  justify-center items-center border-gray-200 rounded-2xl py-20 h-60 w-full bg-gray-200 animate-pulse "></div>
+    );
+
+  if (isError) return <p>fetch error</p>;
+
   return (
-    <div>
-      <BarChart width={930} height={350} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="pv" fill="#3674b5" />
-        <Bar dataKey="uv" fill="#00a2de" />
-      </BarChart>
+    <div className="p-4 bg-white rounded-lg shadow-md w-full max-w-4xl mx-auto">
+      <h2 className="text-2xl font-semibold mb-4 text-center">
+        Monthly Acquired vs Borrowed Books
+      </h2>
+
+      <ResponsiveContainer width="100%" height={350}>
+        <LineChart
+          data={data}
+          margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+          <XAxis dataKey="month" tick={{ fontSize: 14, fill: "#333" }} />
+          <YAxis
+            allowDecimals={false}
+            tick={{ fontSize: 14, fill: "#333" }}
+            label={{
+              value: "Books Count",
+              angle: -90,
+              position: "insideLeft",
+              offset: 10,
+              style: { textAnchor: "middle", fontSize: 14, fill: "#555" },
+            }}
+          />
+          <Tooltip
+            contentStyle={{ backgroundColor: "#fff", borderRadius: 8 }}
+            cursor={{ strokeDasharray: "3 3" }}
+          />
+          <Legend verticalAlign="top" height={36} />
+          <Line
+            type="monotone"
+            dataKey="acquired"
+            stroke="#4f46e5"
+            strokeWidth={3}
+            dot={{ r: 6, fill: "#4f46e5" }}
+            activeDot={{ r: 8 }}
+            name="Acquired"
+          />
+          <Line
+            type="monotone"
+            dataKey="borrowed"
+            stroke="#16a34a"
+            strokeWidth={3}
+            dot={{ r: 6, fill: "#16a34a" }}
+            activeDot={{ r: 8 }}
+            name="Borrowed"
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
-};
-
-export default BarChart01;
+}

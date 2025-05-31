@@ -8,19 +8,21 @@ import toast from "react-hot-toast";
 export interface PricingPlan {
   id: string;
   name: string;
-  price: number; // Use number for math
+  price: number; // convert string price to number when parsing data
   duration: number;
-  features: string;
+  features: string; // keep as string for now (maybe CSV or description)
+  description?: string; // optional, since your data has it separately
+  buttonData?: string; // new optional field from your data
   status: "ACTIVE" | "INACTIVE" | "COMING_SOON";
   limitations: {
     maxLibraries?: number | string;
     maxLibrarians?: number | string;
-    [key: string]: any;
+    [key: string]: any; // for any extra limitation fields
   };
-  discount: number | null;
+  discount: number | null; // can be null
   freeTrialDays: number;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
 }
 
 export type PricingCardsProps = {
@@ -51,8 +53,9 @@ export default function PricingCards({
               plan.price > 0 && plan.status == "ACTIVE" ? "border-primary" : ""
             }  flex-col p-6 w-80 border-gray-200 text-center text-gray-900 bg-white rounded-lg shadow`}
           >
+            <h2 className="mb-4 text-1xl font-light ">{plan.description}</h2>
             <h3 className="mb-4 text-2xl font-semibold">{plan.name}</h3>
-            <div className="flex justify-center items-baseline my-8">
+            <div className="flex text-primary  justify-center items-baseline my-8">
               <span className="mr-2 text-3xl font-extrabold">
                 Rwf {plan.price}
               </span>
@@ -86,7 +89,7 @@ export default function PricingCards({
                   : "bg-primary hover:bg-primary-700 focus:ring-4 focus:ring-primary-200"
               }`}
             >
-              Get plan
+              {plan.buttonData}
             </Button>
           </div>
         );
