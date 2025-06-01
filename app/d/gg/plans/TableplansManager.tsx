@@ -9,7 +9,7 @@ import {
   Trash2,
   PlusCircle,
 } from "lucide-react";
-import { useModalStoreAdmin } from "../stores/useModalAdmin";
+import { useModalStoreAdmin } from "@/app/stores/useModalAdmin";
 
 type Plan = {
   id: string;
