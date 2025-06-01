@@ -47,7 +47,7 @@ export default function CreatePlanModal() {
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && closeModal()}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed   inset-0 bg-black/50 backdrop-blur-sm z-40" />
-        <Dialog.Content className="fixed h-[450px] overflow-scroll top-1/2 left-1/2 max-w-2xl w-full -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl p-6 shadow-xl z-50">
+        <Dialog.Content className="fixed h-[550px] overflow-scroll top-1/2 left-1/2 max-w-2xl w-full -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl p-6 shadow-xl z-50">
           <div className="flex justify-between items-start mb-4">
             <div>
               <Dialog.Title className="text-2xl font-bold">

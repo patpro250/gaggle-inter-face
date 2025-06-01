@@ -3,6 +3,7 @@ import Header from "./cmp/header";
 import Asider from "./cmp/Asider";
 import { auth } from "@/app/auth";
 import { redirect } from "next/navigation";
+import CreatePlanModal from "@/app/_components/plansModal";
 interface Props {
   children: ReactNode;
 }
@@ -17,6 +18,7 @@ const GGLayout = async ({ children }: Props) => {
   return (
     <div className="dark">
       <div className="flex bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-100">
+        <CreatePlanModal />
         {/* Sidebar */}
         <Asider />
         {/* Main Content */}
