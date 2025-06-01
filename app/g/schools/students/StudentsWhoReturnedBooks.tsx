@@ -15,11 +15,12 @@ const StudentsReturnedBooksTable = () => {
             <th className="p-4 text-left rounded-tl-lg border-b border-gray-300 dark:border-gray-700">Student Code</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Name</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Class</th>
+            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Student Code</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Title</th>
-            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Code</th>
-            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Return Date</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Author</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Publisher</th>
+            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Code</th>
+            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Return Date</th>
           </tr>
         </thead>
         <tbody>
