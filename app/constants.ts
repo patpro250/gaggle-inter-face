@@ -1,2 +1,2 @@
-export const APP_NAME = "NitBooks";
-export const COMPANY = "Gaggle NITI Group";
+export const APP_NAME = "NitBook";
+export const COMPANY = "Gaggleniti Group";

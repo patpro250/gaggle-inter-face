@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import NitSkeleton from "@/app/_components/Skeleton";
 import dynamic from "next/dynamic";

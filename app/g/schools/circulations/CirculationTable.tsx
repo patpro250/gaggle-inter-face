@@ -28,8 +28,8 @@ const CirculationsTable = ({ circulations }: CirculationsTableProps) => {
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Code</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Time Since Borrowing</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Status</th>
-              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Due Date</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Lend Date</th>
+              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Due Date</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Fines</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Comment</th>
               <th className="p-4 text-left rounded-tr-lg border-b border-gray-300 dark:border-gray-700">Actions</th>
@@ -43,8 +43,8 @@ const CirculationsTable = ({ circulations }: CirculationsTableProps) => {
                 <td className="table-data">{item.bookCode}</td>
                 <td className="table-data">{item.timeSinceBorrowing}</td>
                 <td className="table-data">{item.status}</td>
-                <td className="table-data">{item.dueDate}</td>
                 <td className="table-data">{item.lendDate}</td>
+                <td className="table-data">{item.dueDate}</td>
                 <td className="table-data">{item.fines}</td>
                 <td className="table-data">{item.comment}</td>
                 <td className="table-data">
