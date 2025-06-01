@@ -6,6 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchApproved } from "../cmp/gitData";
 import { IconButton } from "@radix-ui/themes";
 import CopyButton from "@/app/_components/clipboard";
+import { CopyIcon } from "@radix-ui/react-icons";
+import toast from "react-hot-toast";
 
 export default function AdminPaymentPage() {
   const {
@@ -94,8 +96,14 @@ export default function AdminPaymentPage() {
                         aria-label="Copy value"
                         color="green"
                         variant="ghost"
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            payment.confirmationCode
+                          );
+                          toast.success("Confirmation code copied!");
+                        }}
                       >
-                        <CopyButton value={payment.confirmationCode} />
+                        <CopyIcon />
                       </IconButton>
                     </span>
                   </td>

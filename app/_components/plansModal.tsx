@@ -6,12 +6,16 @@ import { X, PlusCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { InitPlan } from "../d/gg/plans/addPlan"; // your API call
 
+// 1. Zod schema and TypeScript form type
 const planSchema = z.object({
   name: z.string().min(1, "Plan name is required"),
   description: z.string().min(5, "Description must be at least 5 characters"),
   buttonData: z.string().max(100, "Button data max 100 chars"),
-  price: z.coerce.number().min(0.01, "Price must be greater than 0"),
+  price: z.coerce.number().min(0, "Price must be greater than 0"),
   duration: z.coerce.number().int().min(1, "Duration must be at least 1"),
   features: z.string().min(1, "Please add at least one feature"),
   discount: z.coerce.number().min(0).max(0.9).optional(),
@@ -21,12 +25,14 @@ const planSchema = z.object({
 
 type PlanFormData = z.infer<typeof planSchema>;
 
+// 2. CSS class for inputs
 const inputClass =
   "border dark:border-gray-600 border-gray-300 bg-white dark:bg-gray-700 text-gray-800 dark:text-white rounded-md p-2 w-full placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400";
 
 export default function CreatePlanModal() {
   const { isOpen, closeModal } = useModalStoreAdmin();
 
+  // 3. Setup React Hook Form
   const {
     register,
     handleSubmit,
@@ -37,16 +43,34 @@ export default function CreatePlanModal() {
     mode: "onChange",
   });
 
+  // 4. Typed useMutation with React Query v5
+  const mutation: UseMutationResult<
+    any, // return type of InitPlan (adjust if you know the exact return)
+    Error,
+    PlanFormData,
+    unknown
+  > = useMutation({
+    mutationFn: InitPlan,
+    onSuccess: () => {
+      toast.success("Plan created successfully!");
+      reset();
+      closeModal();
+    },
+    onError: (error) => {
+      toast.error(`Error creating plan: ${error.message}`);
+      console.error(error);
+    },
+  });
+
+  // 5. Submit handler
   const onSubmit = (data: PlanFormData) => {
-    console.log("Submitted Plan:", data);
-    reset();
-    closeModal();
+    mutation.mutate(data);
   };
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && closeModal()}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed   inset-0 bg-black/50 backdrop-blur-sm z-40" />
+        <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" />
         <Dialog.Content className="fixed h-[550px] overflow-scroll top-1/2 left-1/2 max-w-2xl w-full -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl p-6 shadow-xl z-50">
           <div className="flex justify-between items-start mb-4">
             <div>
@@ -198,7 +222,7 @@ export default function CreatePlanModal() {
             <div className="md:col-span-2">
               <button
                 type="submit"
-                disabled={!isValid || isSubmitting}
+                disabled={!isValid || isSubmitting || mutation.isPending}
                 className={`mt-4 w-full py-2 px-2 rounded-md flex items-center justify-center gap-2 transition font-semibold
                 ${
                   isValid
@@ -206,7 +230,8 @@ export default function CreatePlanModal() {
                     : "bg-gray-400 dark:bg-gray-600 cursor-not-allowed text-white opacity-70"
                 }`}
               >
-                <PlusCircle className="w-5 h-5" /> Add Plan
+                <PlusCircle className="w-5 h-5" />
+                {mutation.isPending ? "Sending..." : "Submit"}
               </button>
             </div>
           </form>
