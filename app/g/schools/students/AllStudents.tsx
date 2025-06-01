@@ -15,10 +15,11 @@ const AllStudents = () => {
             <th className="p-4 text-left rounded-tl-lg border-b border-gray-300 dark:border-gray-700">Names</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Parent's Phone Number</th>
             <th className="p-4 text-left rounded-tr-lg border-b border-gray-300 dark:border-gray-700">Student Card</th>
-            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Class</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Student Code</th>
+            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Class</th>
+           <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Email</th>
             <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Status</th>
-            <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Email</th>
+
           </tr>
         </thead>
         <tbody>
@@ -27,10 +28,10 @@ const AllStudents = () => {
               <td className="table-data">{`${student.firstName} ${student.lastName}`}</td>
               <td className="table-data">{student.parentPhone}</td>
               <td className="table-data">{student.studentCard}</td>
-              <td className="table-data">{student.className}</td>
               <td className="table-data">{student.code}</td>
-              <td className="table-data">{student.status}</td>
+              <td className="table-data">{student.className}</td>
               <td className="table-data">{student.email}</td>
+              <td className="table-data">{student.status}</td>
             </tr>
           ))}
         </tbody>
