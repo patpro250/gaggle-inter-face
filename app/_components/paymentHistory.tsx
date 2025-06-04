@@ -44,16 +44,16 @@ const PaymentHistory = () => {
                   Phone
                 </th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                  Amount
+                </th>
+                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
                   Currency
                 </th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
                   Payment Method
                 </th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                  Amount
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                  payment Status
+                  Payment Status
                 </th>
                 <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
                   Action
@@ -70,13 +70,13 @@ const PaymentHistory = () => {
                     {payment.phoneNumber}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-700">
+                    {payment.amount}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-700">
                     {payment.currency}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-700">
                     {payment.method}
-                  </td>
-                  <td className="px-4 py-2 text-sm text-gray-700">
-                    {payment.amount}
                   </td>
 
                   <td className="px-6 py-4">
