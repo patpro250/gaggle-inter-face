@@ -1,3 +1,4 @@
+import { getApiClient } from "../g/schools/axios";
 import BookCard from "./BookCard";
 
 export type Book = {
@@ -10,14 +11,10 @@ export type Book = {
 };
 
 const BookList = async () => {
-  const data = await fetch("http://localhost:4000/books/recommended", {
-    headers: {
-      "x-auth-token":
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4OTZkMTQ5LWY5YjEtNDExOC1iNDE3LTBkNmJmOGFhYTI5ZiIsImVtYWlsIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJpYXQiOjE3NDMzOTQ3OTl9.bEO2h5uTalpENh8DoK9H3ANEFETuC0k4ZcsUM5mJfjg",
-    }, 
-    cache: "no-store",
-  });
-  const recommendedBooks = await data.json();
+  const api = await getApiClient();
+
+  const data = await api.get('/books/recommended');
+  const recommendedBooks = data.data;
 
   return (
     <>

@@ -46,9 +46,6 @@ const BookDetailsPage = async ({ params }: Props) => {
             <strong>Bar Code:</strong> {book.barCode || "None"}
           </p>
           <p className="text-gray-600 mb-4">
-            <strong>Call number:</strong> {book.callNo || "None"}
-          </p>
-          <p className="text-gray-600 mb-4">
             <strong>Genre:</strong> {book.genre || "None"}
           </p>
           <p className="text-gray-600 mb-4">

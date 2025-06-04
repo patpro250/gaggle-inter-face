@@ -1,41 +1,26 @@
 import axios from "axios";
 import PersonalInformation from "./PersonalInformation";
+import { getApiClient } from "@/app/g/schools/axios";
 
 export async function fetchSettings() {
-  const response = await fetch(`http://localhost:4000/members/settings`, {
-    headers: {
-      "x-auth-token":
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4OTZkMTQ5LWY5YjEtNDExOC1iNDE3LTBkNmJmOGFhYTI5ZiIsImVtYWlsIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJpYXQiOjE3NDM0MDQyOTN9.lGu6tqwolkLozqzT1ykaFsH8ZuTNft7GoA0L5_WEKWc",
-    },
-  });
+  try {
+    const api = await getApiClient();
+    const response = await api.get("/members/settings");
 
-  if (response.ok) {
-    const book = await response.json();
+    const book = response.data;
     return book;
-  } else {
-    return null;
+  } catch (ex) {
+    return [];
   }
 }
 
 export async function changeSettings(updatedData: PersonalInformation) {
   try {
-    const response = await axios.put(
-      `http://localhost:4000/members`,
-      updatedData,
-      {
-        headers: {
-          "x-auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4OTZkMTQ5LWY5YjEtNDExOC1iNDE3LTBkNmJmOGFhYTI5ZiIsImVtYWlsIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJpYXQiOjE3NDM0MDQyOTN9.lGu6tqwolkLozqzT1ykaFsH8ZuTNft7GoA0L5_WEKWc",
-        },
-      }
-    );
+    const api = await getApiClient();
+    const response = await api.put(`/members`, updatedData);
+    return response.data;
 
-    if (response.status === 200) {
-      return response.data;
-    } else {
-      return null;
-    }
-  } catch (error) {
-    console.error("Error updating settings:", error);
+  } catch (ex) {
+    return null;
   }
 }

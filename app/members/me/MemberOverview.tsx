@@ -35,13 +35,13 @@ const MemberOverview = async () => {
         </div>
 
         {/* Fines */}
-        <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center">
+        {/* <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center">
           <div className="text-4xl flex items-center gap-4 font-semibold text-primary mb-2">
             <DollarSign />
             {stats.inFines}
           </div>
           <div className="text-gray-600 capitalize">In Fines</div>
-        </div>
+        </div> */}
       </div>
     </>
   );

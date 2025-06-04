@@ -1,8 +1,14 @@
+// @ts-nocheck
 import { ReactNode } from "react";
 import { DesktopNav, MobileNav } from "./MembersNavBar";
 import { Toaster } from "react-hot-toast";
+import { auth } from "../auth";
+import { redirect } from "next/navigation";
 
-const MembersLayout = ({ children }: { children: ReactNode }) => {
+const MembersLayout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
+  if (!session || session.user.userType !== 'Member') redirect('/login');
+
   return (
     <>
       <DesktopNav />

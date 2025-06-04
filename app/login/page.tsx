@@ -12,8 +12,12 @@ export const metadata = {
 export default async function Login() {
   const session = await auth();
   if (session) {
-    if (session.user.libraryId) {
+    if (session.user.userType === 'Librarian') {
       redirect("/g/schools/dashboard");
+    } else if (session.user.userType === 'Member') {
+      redirect("/members");
+    } else if (session.user.userType === 'Institution') {
+      redirect("/d/admin");
     } else {
       redirect("/d/gg");
     }

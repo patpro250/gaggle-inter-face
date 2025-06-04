@@ -1,18 +1,13 @@
-export async function fetchReservations() {
-  const response = await fetch(
-    `http://localhost:4000/reservations/my-reservations`,
-    {
-      headers: {
-        "x-auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4OTZkMTQ5LWY5YjEtNDExOC1iNDE3LTBkNmJmOGFhYTI5ZiIsImVtYWlsIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJpYXQiOjE3NDM0MDQyOTN9.lGu6tqwolkLozqzT1ykaFsH8ZuTNft7GoA0L5_WEKWc",
-      },
-    }
-  );
+import { getApiClient } from "@/app/g/schools/axios";
 
-  if (response.ok) {
-    const book = await response.json();
+export async function fetchReservations() {
+  try {
+    const api = await getApiClient();
+    const response = await api.get('/reservations/my-reservations');
+
+    const book = await response.data;
     return book;
-  } else {
+  } catch (ex) {
     return null;
   }
 }

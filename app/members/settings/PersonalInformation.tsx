@@ -90,7 +90,7 @@ const PersonalInformation = () => {
             type="date"
             name="dateOfBirth"
             defaultValue={
-              new Date(settings.dateOfBirth).toISOString().split("T")[0]
+              settings.dateOfBirth
             }
             className="w-full py-2 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition duration-300"
             required
@@ -124,13 +124,13 @@ const PersonalInformation = () => {
             {...register("city")}
             type="text"
             name="city"
-            defaultValue={settings.address.city}
+            defaultValue={settings?.address?.city || ''}
             placeholder="Enter your city"
             className="w-full py-2 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition duration-300"
             required
           />
           {errors.city && (
-            <p className="text-red-500 text-sm">{errors.city.message}</p>
+            <p className="text-red-500 text-sm">{errors?.city?.message}</p>
           )}
         </div>
 
@@ -141,7 +141,7 @@ const PersonalInformation = () => {
             {...register("country")}
             type="text"
             name="country"
-            defaultValue={settings.address.country}
+            defaultValue={settings?.address?.country || ''}
             placeholder="Enter your country"
             className="w-full py-2 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition duration-300"
             required

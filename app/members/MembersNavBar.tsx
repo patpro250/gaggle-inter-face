@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ProfileAvatar from "./ProfileAvatar";
+import AvatarDropdown from "../g/schools/_components/AvatarDropdown";
 
 const iconMap = {
   NotebookTabs: NotebookTabs,
@@ -28,7 +28,7 @@ export const DesktopNav = () => {
   const currentPath = usePathname();
 
   return (
-    <nav className="flex items-center mt-8 mb-8 justify-between w-full px-4">
+    <nav className="flex items-center mt-8 mb-8 max-md:hidden justify-between w-full px-4">
       <ul className="flex gap-10 items-center mx-auto">
         {navLinks.map((link) => {
           const Icon = iconMap[link.icon];
@@ -58,7 +58,7 @@ export const DesktopNav = () => {
       </ul>
 
       {/* Profile Avatar on the Right */}
-      <ProfileAvatar />
+      <AvatarDropdown />
     </nav>
   );
 };
