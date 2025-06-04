@@ -4,11 +4,9 @@ import { Button } from "@radix-ui/themes";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { z } from "zod";
-import { getApiClient } from "../g/schools/axios";
-import { useOnboardingStore } from "../stores/useOnboardingStore";
-import { sentdataapp } from "./sever";
 import { addApprovelib } from "../d/admin/Librarian/approvingLib";
 
+// Define allowed roles
 const Roles = [
   "DIRECTOR",
   "MANAGER",
@@ -27,11 +25,7 @@ const Roles = [
   "VOLUNTEER_COORDINATOR",
 ] as const;
 
-interface FormData01 {
-  id: string;
-  role: string;
-}
-
+// Zod schema for validation
 const roleSchema = z.object({
   role: z.enum(Roles, {
     required_error: "Please select a librarian role",
@@ -39,40 +33,44 @@ const roleSchema = z.object({
   }),
 });
 
+// Component
 const Approve = ({ id }: { id: string }) => {
   const [role, setRole] = useState("");
   const [ikosa, setIkosa] = useState("");
 
+  // Handle form submit
   const onSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      // Validate form input
+      // Validate input
       const result = roleSchema.parse({ role });
 
-      const payload = {
-        id,
-        role: result.role,
-      };
+      // Send approval request
       const response = await addApprovelib(id, result.role);
-      if (response.success) {
-        toast.success(`${response.message}`);
-        return;
+
+      if (response?.success) {
+        toast.success(response.message || "Approved successfully");
       } else {
-        console.log(response.message);
-        // toast.error(`${response.message}`);
-        return;
+        console.warn("Approval failed:", response);
+        toast.error(response?.message || "Approval failed");
       }
     } catch (error: any) {
-      console.error(error);
-      toast.error(error.data[0]?.message || "approve error");
-      setIkosa("Uzuza neza form yawe!!");
+      console.error("Error during approval:", error);
+
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0]?.message || "Invalid input");
+        setIkosa("Uzuza neza form yawe!!");
+      } else {
+        toast.error("Something went wrong");
+      }
     }
   };
 
+  // Handle dropdown change
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setRole(e.target.value);
-    setIkosa(""); // Clear error
+    setIkosa(""); // Clear errors
   };
 
   return (
@@ -94,14 +92,14 @@ const Approve = ({ id }: { id: string }) => {
             <option value="">Choose role</option>
             {Roles.map((roleOption) => (
               <option key={roleOption} value={roleOption}>
-                {roleOption}
+                {roleOption.replace(/_/g, " ")}
               </option>
             ))}
           </select>
           {ikosa && <p className="text-red-700 text-sm p-2">{ikosa}</p>}
         </div>
 
-        <Button type="submit" variant="solid">
+        <Button type="submit" variant="solid" disabled={!role}>
           Approve
         </Button>
       </form>

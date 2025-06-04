@@ -18,6 +18,7 @@ const Profile = async () => {
     openingHours,
     rating,
     createdAt,
+    id,
   } = await useSession123();
 
   const { backgroundColor, letter } = getLetterAndBackground(name);
@@ -49,13 +50,13 @@ const Profile = async () => {
         </div>
 
         <div className="flex gap-4">
-          <Link href={"/d/admin/Account/setting"}>
+          <Link href={`/d/admin/Account/${id}/setting`}>
             <button className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-primary text-white hover:bg-primary/80 transition-colors shadow-sm">
               <Cog className="w-4 h-4" />
               <span className="text-sm font-medium">Edit Profile</span>
             </button>
           </Link>
-          <Link href={"/d/admin/Account/cp"}>
+          <Link href={`/d/admin/Account/${id}/cp`}>
             <button className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-red-400 text-white hover:bg-red-400/80 transition-colors shadow-sm">
               <KeySquare className="w-4 h-4" />
               <span className="text-sm font-medium">Change Password</span>

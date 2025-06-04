@@ -1,6 +1,11 @@
 "use client";
+
 import { useForm } from "react-hook-form";
 import { Building2, MapPin, Phone, Clock, Save } from "lucide-react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { GetInstitution, PostInstitution } from "./getInsititution";
+import toast from "react-hot-toast";
+import React from "react";
 
 type InstitutionSettings = {
   name: string;
@@ -9,25 +14,54 @@ type InstitutionSettings = {
   openingHours: string;
 };
 
-const defaultValues: InstitutionSettings = {
-  name: "G.S Mater Dei Nyanza",
-  address: "Nyanza",
-  phone: "07834500000",
-  openingHours: "09:00 AM",
-};
+interface Props {
+  params: Promise<{ id: string }>;
+}
 
-export default function InstitutionSettingsPage() {
+export default function InstitutionSettingsPage({ params }: Props) {
+  // Unwrap the params Promise as required by Next.js
+  const { id } = React.use(params);
+
+  // Fetch current institution data for default values
+  const {
+    data: defaultValues,
+    isError,
+    isLoading,
+  } = useQuery<InstitutionSettings>({
+    queryKey: ["institution", id],
+    queryFn: () => GetInstitution(id),
+  });
+
+  // Initialize form with default values from API
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<InstitutionSettings>({ defaultValues });
+    reset,
+  } = useForm<InstitutionSettings>({
+    values: defaultValues,
+  });
 
-  const onSubmit = (data: InstitutionSettings) => {
-    alert(data);
-    // Call API here
+  // Mutation to update institution data
+  const mutation = useMutation({
+    mutationFn: PostInstitution,
+    onSuccess: () => {
+      toast.success("Institution settings updated successfully");
+    },
+    onError: () => {
+      toast.error("Failed to update institution settings");
+    },
+  });
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error fetching institution data.</p>;
+
+  // Submit handler to trigger mutation
+  const onSubmit = (data) => {
+    mutation.mutate(data);
   };
 
+  // Styles for inputs
   const inputWrapper =
     "flex items-center border border-gray-300 rounded-xl px-3 py-2 bg-transparent focus-within:ring-2 focus-within:ring-indigo-500";
   const inputStyle = "w-full ml-2 outline-none bg-transparent";
@@ -125,11 +159,11 @@ export default function InstitutionSettingsPage() {
         <div>
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || mutation.isPending}
             className="inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-2 rounded-xl hover:bg-indigo-700 transition"
           >
             <Save size={18} />
-            {isSubmitting ? "Saving..." : "Save Settings"}
+            {isSubmitting || mutation.isPending ? "Saving..." : "Save Settings"}
           </button>
         </div>
       </form>
