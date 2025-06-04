@@ -53,7 +53,7 @@ export default function PlansManager() {
           className="inline-flex items-center gap-2 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition"
         >
           <PlusCircle className="w-5 h-5" />
-          Add New Plan
+          Create New Plan
         </button>
       </div>
 

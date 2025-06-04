@@ -23,7 +23,7 @@ const Header = async () => {
         <div>
           <h1 className="text-2xl dark:text-primary font-medium">
             {user?.permissions && user.permissions.length > 0 && (
-              <span className="text-2xl dark:text-primary font-medium">
+              <span className="text-xl dark:text-primary font-medium">
                 {user.permissions[0]}
               </span>
             )}

@@ -33,7 +33,7 @@ const BooksOverview = async () => {
       icon: <BookOpen className="text-orange-500" />,
     },
     {
-      title: "Total Copies",
+      title: "Total Book Copies",
       value: bookStats.totalCopies,
       icon: <Library className="text-indigo-500" />,
     },
@@ -43,7 +43,7 @@ const BooksOverview = async () => {
       icon: <PlusCircle className="text-cyan-500" />,
     },
     {
-      title: "Damaged Copies",
+      title: "Damaged Book Copies",
       value: bookStats.damaged,
       icon: <XCircle className="text-gray-500" />,
     },
@@ -53,17 +53,17 @@ const BooksOverview = async () => {
       icon: <BookOpen className="text-green-500" />,
     },
     {
-      title: "Missing Copies",
+      title: "Missing Book Copies",
       value: bookStats.missing,
       icon: <ShieldAlert className="text-red-500" />,
     },
     {
-      title: "Checked Out Copies",
+      title: "Checked Out Book Copies",
       value: bookStats.checkedOut,
       icon: <RefreshCcw className="text-yellow-500" />,
     },
     {
-      title: "Reserved Copies",
+      title: "Reserved Book Copies",
       value: bookStats.reserved,
       icon: <Bookmark className="text-purple-500" />,
     },

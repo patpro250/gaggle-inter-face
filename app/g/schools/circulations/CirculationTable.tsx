@@ -25,10 +25,10 @@ const CirculationsTable = ({ circulations }: CirculationsTableProps) => {
             <tr>
               <th className="p-4 text-left rounded-tl-lg border-b border-gray-300 dark:border-gray-700">Borrower Names</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Title</th>
-              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Code</th>
-              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Time Since Borrowing</th>
+              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Book Copy Code</th>
+              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Time Since Borrowed</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Status</th>
-              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Lend Date</th>
+              <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Borrowed Date</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Due Date</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Fines</th>
               <th className="p-4 text-left border-b border-gray-300 dark:border-gray-700">Comment</th>
