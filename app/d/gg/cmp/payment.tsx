@@ -14,9 +14,9 @@ export interface Payment {
   phoneNumber: string;
   confirmationCode: string | null;
   currency: string;
-  status: "PENDING" | "APPROVED" | "REJECTED"; // Adjust if you have more statuses
-  method: "MOBILE_MONEY" | "BANK" | string; // Extend this as needed
-  doneAt: string; // ISO date string (you can use Date if it's parsed)
+  status: "PENDING" | "APPROVED" | "REJECTED"; 
+  method: "MOBILE_MONEY" | "BANK" | string; 
+  doneAt: string; 
   institution: {
     name: string;
   };
@@ -71,10 +71,10 @@ export default function AdminPaymentPage() {
           <thead className="bg-gray-100 dark:bg-gray-700">
             <tr>
               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Done On
+                Name
               </th>
               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Name
+                Phone
               </th>
               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
                 Plan
@@ -82,8 +82,8 @@ export default function AdminPaymentPage() {
               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
                 Amount
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Phone
+               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
+                Done On
               </th>
               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
                 Status
@@ -100,11 +100,11 @@ export default function AdminPaymentPage() {
                   key={payment.id}
                   className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
                 >
-                  <td className="px-6 py-4">{payment.doneAt}</td>
                   <td className="px-6 py-4">{payment.institution?.name}</td>
+                   <td className="px-6 py-4">{payment.phoneNumber}</td>
                   <td className="px-6 py-4">{payment.PricingPlan.name}</td>
                   <td className="px-6 py-4">{payment.amount}</td>
-                  <td className="px-6 py-4">{payment.phoneNumber}</td>
+                  <td className="px-6 py-4">{payment.doneAt}</td>
 
                   <td className="px-6 py-4">
                     {payment.status === "SUCCESS" ? (
