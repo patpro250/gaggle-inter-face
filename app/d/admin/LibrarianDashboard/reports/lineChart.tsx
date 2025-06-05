@@ -17,61 +17,6 @@ interface GenreCopies {
   genre: string;
   copies: number;
 }
-
-const data12 = [
-  { genre: "Noise", copies: 4 },
-  { genre: "Blue Note", copies: 10 },
-  { genre: "K-Pop", copies: 8 },
-  { genre: "Afro-Pop", copies: 5 },
-  { genre: "Chicago Blues", copies: 6 },
-  { genre: "Hard Rock", copies: 5 },
-  { genre: "Britpop", copies: 7 },
-  { genre: "Instrumental", copies: 8 },
-  { genre: "Soundtrack", copies: 7 },
-  { genre: "French Pop", copies: 5 },
-  { genre: "Jackin House", copies: 9 },
-  { genre: "Shaabi", copies: 6 },
-  { genre: "Malay", copies: 5 },
-  { genre: "IDM", copies: 4 },
-  { genre: "Emo", copies: 4 },
-  { genre: "Swamp Pop", copies: 7 },
-  { genre: "New Age", copies: 3 },
-  { genre: "Mugham", copies: 9 },
-  { genre: "Kitsch", copies: 6 },
-  { genre: "Pagode", copies: 4 },
-  { genre: "Tango", copies: 4 },
-  { genre: "Mandopop", copies: 8 },
-  { genre: "Cool Jazz", copies: 6 },
-  { genre: "Southern Rock", copies: 2 },
-  { genre: "March", copies: 5 },
-  { genre: "Baladas y Boleros", copies: 5 },
-  { genre: "Rock", copies: 5 },
-  { genre: "Chicago House", copies: 5 },
-  { genre: "Deep House", copies: 6 },
-  { genre: "J-Pop", copies: 5 },
-  { genre: "Conjunto", copies: 5 },
-  { genre: "Baroque", copies: 2 },
-  { genre: "Garage", copies: 9 },
-  { genre: "Industrial", copies: 5 },
-  { genre: "East Coast Rap", copies: 5 },
-  { genre: "Latin Rap", copies: 7 },
-  { genre: "EDM", copies: 9 },
-  { genre: "Experimental Rock", copies: 6 },
-  { genre: "Krautrock", copies: 5 },
-  { genre: "Synth Pop", copies: 6 },
-  { genre: "World", copies: 7 },
-  { genre: "Underground Rap", copies: 8 },
-  { genre: "Western Swing", copies: 6 },
-  { genre: "Musicals", copies: 4 },
-  { genre: "Electric Blues", copies: 6 },
-  { genre: "Roots Rock", copies: 9 },
-  { genre: "Downtempo", copies: 6 },
-  { genre: "Pop Film", copies: 7 },
-  { genre: "Death Metal", copies: 9 },
-  { genre: "Doo-wop", copies: 8 },
-  { genre: "Breakbeat", copies: 9 },
-];
-
 export default function GenreCopiesChartCard() {
   const { data, error, isLoading } = useQuery<GenreCopies[], Error>({
     queryKey: ["genreCopies"],
@@ -104,10 +49,10 @@ export default function GenreCopiesChartCard() {
               dataKey="genre"
               type="category"
               width={140}
-              tick={{ fill: "#4B5563", fontWeight: "600" }}
+              tick={{ fill: "#3674b5", fontWeight: "600" }}
             />
             <Tooltip />
-            <Bar dataKey="copies" fill="#3B82F6" />
+            <Bar dataKey="copies" fill="#16a34a" />
           </BarChart>
         </ResponsiveContainer>
       </div>
