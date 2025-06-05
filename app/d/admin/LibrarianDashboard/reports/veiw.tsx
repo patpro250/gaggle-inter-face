@@ -29,14 +29,14 @@ interface LibraryStats {
 }
 
 const colorPalette = [
+  "#0000FF",
+  "#FF69B4",
+  "#ff5733",
+  "#16a34a",
   "#3674b5",
-  "#3674b5",
-  "#3674b5",
-  "#3674b5",
-  "#3674b5",
-  "#3674b5",
-  "#3674b5",
-  "#3674b5",
+  "#FF7518",
+  "#FFA500",
+  "#008000",
 ];
 
 // SkeletonCard component for loading state
