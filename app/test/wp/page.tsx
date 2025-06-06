@@ -1,217 +1,148 @@
 "use client";
 
-import { useModalStoreAdmin } from "@/app/stores/useModalAdmin";
-import * as Dialog from "@radix-ui/react-dialog";
-import { X, PlusCircle } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { ResetInstitution, sendResetEmail } from "@/app/Hooks/resetFunc";
 
-const planSchema = z.object({
-  name: z.string().min(1, "Plan name is required"),
-  description: z.string().min(5, "Description must be at least 5 characters"),
-  buttonData: z.string().max(100, "Button data max 100 chars"),
-  price: z.coerce.number().min(0.01, "Price must be greater than 0"),
-  duration: z.coerce.number().int().min(1, "Duration must be at least 1"),
-  features: z.string().min(1, "Please add at least one feature"),
-  discount: z.coerce.number().min(0).max(0.9).optional(),
-  tokens: z.coerce.number().min(5, "Tokens must be at least 5"),
-  status: z.enum(["ACTIVE", "INACTIVE", "COMING_SOON"]),
+const schema = z.object({
+  email: z.string().email("Invalid email address"),
+  role: z.string().min(1, "Please select a role"),
 });
 
-type PlanFormData = z.infer<typeof planSchema>;
+type FormValues = z.infer<typeof schema>;
 
-const inputClass =
-  "border dark:border-gray-600 border-gray-300 bg-white dark:bg-gray-700 text-gray-800 dark:text-white rounded-md p-2 w-full placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400";
-
-export default function CreatePlanModal() {
-  const { isOpen, closeModal } = useModalStoreAdmin();
+export default function ForgotPasswordForm() {
+  const [selectedRole, setSelectedRole] = useState("");
 
   const {
     register,
     handleSubmit,
+    setValue,
+    formState: { errors },
     reset,
-    formState: { errors, isValid, isSubmitting },
-  } = useForm<PlanFormData>({
-    resolver: zodResolver(planSchema),
-    mode: "onChange",
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: PlanFormData) => {
-    console.log("Submitted Plan:", data);
-    reset();
-    closeModal();
+  const mutation = useMutation({
+    mutationFn: async (data: FormValues) => {
+      const res = await fetch("/api/send-reset-link", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        throw new Error("Failed to send reset email");
+      }
+      return res.json();
+    },
+    onSuccess: () => {
+      toast.success("Reset link sent to your email!");
+      reset();
+      setSelectedRole("");
+    },
+    onError: () => {
+      toast.error("Failed to send reset link. Try again.");
+    },
+  });
+
+  const onSubmit = async (dataform) => {
+    if (dataform.role == "Institution") {
+      const response = await ResetInstitution(dataform);
+      if (response.Success) {
+        const email = await sendResetEmail(response.message);
+
+        if (email.success) {
+          toast.success("A password reset link has been sent to your email");
+        } else {
+          toast.error("fail sending email");
+        }
+      } else {
+        toast.error(response.message);
+      }
+    } else {
+      toast.error("not insititution");
+    }
+  };
+
+  const handleRoleSelect = (role: string) => {
+    setSelectedRole(role);
+    setValue("role", role);
   };
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={(open) => !open && closeModal()}>
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed   inset-0 bg-black/50 backdrop-blur-sm z-40" />
-        <Dialog.Content className="fixed h-[450px] overflow-scroll top-1/2 left-1/2 max-w-2xl w-full -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-xl p-6 shadow-xl z-50">
-          <div className="flex justify-between items-start mb-4">
-            <div>
-              <Dialog.Title className="text-2xl font-bold">
-                Create New Plan
-              </Dialog.Title>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                Fill out the form below to add a new subscription plan.
-              </p>
-            </div>
-            <Dialog.Close asChild>
-              <button
-                onClick={closeModal}
-                className="text-gray-500 hover:text-gray-800 dark:hover:text-white transition"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </Dialog.Close>
-          </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-900 shadow-md rounded-md space-y-4"
+    >
+      <h2 className="text-xl font-semibold text-center text-indigo-600 dark:text-indigo-400">
+        Forgot Password
+      </h2>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+      {/* Email Field */}
+      <div>
+        <label className="block text-sm mb-1 text-gray-700 dark:text-gray-300">
+          Email address
+        </label>
+        <input
+          type="email"
+          {...register("email")}
+          className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-800 dark:text-white dark:border-gray-700"
+          placeholder="you@example.com"
+        />
+        {errors.email && (
+          <p className="text-red-500 text-sm">{errors.email.message}</p>
+        )}
+      </div>
+
+      {/* Role Dropdown */}
+      <div>
+        <label className="block text-sm mb-1 text-gray-700 dark:text-gray-300">
+          Select Role
+        </label>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <button
+              type="button"
+              className="w-full px-3 py-2 border rounded-md text-left bg-white dark:bg-gray-800 dark:text-white dark:border-gray-700"
+            >
+              {selectedRole || "Select role"}
+            </button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content
+            className="min-w-[200px] bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-md shadow-md z-50"
+            sideOffset={5}
           >
-            <div>
-              <input
-                className={inputClass}
-                placeholder="Plan Name"
-                {...register("name")}
-              />
-              {errors.name && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
+            {["Librarian", "Member", "Institution", "System Admin"].map(
+              (role) => (
+                <DropdownMenu.Item
+                  key={role}
+                  onSelect={() => handleRoleSelect(role)}
+                  className="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-white"
+                >
+                  {role}
+                </DropdownMenu.Item>
+              )
+            )}
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
+        {errors.role && (
+          <p className="text-red-500 text-sm">{errors.role.message}</p>
+        )}
+      </div>
 
-            <div>
-              <input
-                className={inputClass}
-                placeholder="Description"
-                {...register("description")}
-              />
-              {errors.description && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.description.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <input
-                className={inputClass}
-                placeholder="Button Data"
-                {...register("buttonData")}
-              />
-              {errors.buttonData && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.buttonData.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <input
-                type="number"
-                step="0.01"
-                className={inputClass}
-                placeholder="Price"
-                {...register("price")}
-              />
-              {errors.price && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.price.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <input
-                type="number"
-                className={inputClass}
-                placeholder="Duration (days)"
-                {...register("duration")}
-              />
-              {errors.duration && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.duration.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <input
-                type="number"
-                step="0.01"
-                className={inputClass}
-                placeholder="Discount (0 to 0.9)"
-                {...register("discount")}
-              />
-              {errors.discount && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.discount.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <input
-                type="number"
-                className={inputClass}
-                placeholder="Tokens"
-                {...register("tokens")}
-              />
-              {errors.tokens && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.tokens.message}
-                </p>
-              )}
-            </div>
-
-            <div className="md:col-span-2">
-              <textarea
-                rows={4}
-                className={inputClass}
-                placeholder="Features (comma-separated)"
-                {...register("features")}
-              />
-              {errors.features && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.features.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <select className={inputClass} {...register("status")}>
-                <option value="ACTIVE">Active</option>
-                <option value="INACTIVE">Inactive</option>
-                <option value="COMING_SOON">Coming Soon</option>
-              </select>
-              {errors.status && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.status.message}
-                </p>
-              )}
-            </div>
-
-            <div className="md:col-span-2">
-              <button
-                type="submit"
-                disabled={!isValid || isSubmitting}
-                className={`mt-4 w-full py-2 px-2 rounded-md flex items-center justify-center gap-2 transition font-semibold
-                ${
-                  isValid
-                    ? "bg-primary dark:bg-primary hover:opacity-80 dark:hover:opacity-80 text-white"
-                    : "bg-gray-400 dark:bg-gray-600 cursor-not-allowed text-white opacity-70"
-                }`}
-              >
-                <PlusCircle className="w-5 h-5" /> Add Plan
-              </button>
-            </div>
-          </form>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition disabled:opacity-50"
+      >
+        Send Reset Link
+      </button>
+    </form>
   );
 }
