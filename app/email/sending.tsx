@@ -49,20 +49,23 @@ const ResetPasswordEmail = ({ resetLink, name }: ResetPasswordEmailProps) => {
                       as="h1"
                       className="m-0 mt-[8px] text-2xl font-bold text-white"
                     >
-                      Reset Your Gaggle Niti Password
+                      Reset Your Gaggleniti Password
                     </Heading>
-                    <Text className="mt-[16px] text-base leading-[24px] text-white">
-                      We received a request to reset your password for your
-                      Gaggle Niti account. Click the button below to create a
-                      new password. If you didn't make this request, please
-                      ignore this email.
-                    </Text>
+
                     <Button
                       className="mt-[24px] rounded-[8px] bg-white px-[32px] py-[12px] text-base font-semibold text-indigo-700 hover:bg-gray-100 border border-white border-solid"
                       href={resetLink}
                     >
                       Reset Password
                     </Button>
+
+                    <Text className="mt-[16px] text-base leading-[24px] text-white">
+                      We received a request to reset your password for your
+                      Gaggle Niti account. Click the button below to create a
+                      new password. If you didn't make this request, please
+                      ignore this email.
+                    </Text>
+
                     <Text className="mt-[24px] text-sm text-gray-200">
                       This link is valid for 30 minutes only.
                     </Text>
@@ -72,8 +75,7 @@ const ResetPasswordEmail = ({ resetLink, name }: ResetPasswordEmailProps) => {
             </table>
 
             <Text className="text-xs text-center text-gray-400 mt-6">
-              &copy; {new Date().getFullYear()} Gaggle Niti. All rights
-              reserved.
+              &copy; {new Date().getFullYear()} Gaggleniti. All rights reserved.
             </Text>
           </Container>
         </Body>

@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     }
 
     // Create reset link using token
-    const resetLink = `${apiUrl}/test/?token=${token}`;
+    const resetLink = `${apiUrl}/login/retry?token=${token}`;
 
     // Render email HTML with resetLink and optional name
     const html = await render(
@@ -36,7 +36,6 @@ export async function POST(request: Request) {
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
-    console.error("Email sending failed:", error);
     return new Response(
       JSON.stringify({ success: false, error: String(error) }),
       { status: 500 }

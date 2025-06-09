@@ -49,7 +49,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL_APP; // e.g., "https://yourdomain
 export const sendResetEmail = async (data: ResetData) => {
   const { token, email, name } = data;
 
-  if (!token || !email || !name) {
+  if (!token || !email) {
     return {
       success: false,
       message: "Token and email are required",

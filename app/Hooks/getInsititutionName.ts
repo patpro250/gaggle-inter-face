@@ -1,4 +1,3 @@
-// useVerifyName.ts
 import { useState } from "react";
 import { z } from "zod";
 import axios from "axios";

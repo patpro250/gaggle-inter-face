@@ -2,53 +2,38 @@ import Link from "next/link";
 
 const HeroBanner = () => {
   return (
-    <section className=" min-h-[400px] bg-gradient-to-r  from-blue-50 to-white  py-20 px-6">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-        {/* Left: Text Content */}
-        <div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900  mb-6 leading-tight">
-            Modern Library <span className="text-indigo-600">Management System</span>{" "}
-            <br /> for a Brighter Rwanda
+    <section className="relative overflow-hidden bg-white">
+      {/* Subtle background elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-indigo-50/50 to-transparent"></div>
+      <div className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-gradient-to-t from-indigo-100/20 to-transparent"></div>
+
+      <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 lg:px-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+            Modern Library Systems <br />
+            <span className="text-indigo-600">Built for Rwanda</span>
           </h1>
-          <p className="text-md leading-7 text-gray-700  mb-8">
-            Niti Book is leading a reading revolution — equipping Rwandan
-            schools and institutions with powerful tools to manage libraries,
-            improve reading skills, and bring technology to every corner of the
-            learning experience.
+          <p className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto">
+            NITIBOOK combines affordable pricing with enterprise-grade
+            technology to transform how libraries operate across Rwanda.
           </p>
-<div className="max-w-2xl mx-auto px-4 py-6">
-  <p className="font-sans text-lg text-gray-800 dark:text-primary leading-relaxed tracking-wide">
-    <strong className="text-blue-600 dark:text-blue-400">NITIBOOK</strong> For Pricing Page
-NITIBOOK is built with care, dedication, and significant investment. To keep providing a high-quality experience, we rely on fair pricing that reflects the real value and resources behind the service. For About or Mission Page
-NITIBOOK represents years of effort, thoughtful design, and over 1 million Rwf invested into building a meaningful platform. We're proud to offer a premium experience — not as an entitlement, but as a result of purposeful work. Sign-up
-NITIBOOK is more than just a platform — it’s a service crafted with intention and supported by real people and real resources. We welcome you into a space that values quality, sustainability, and respect.
-  </p>
-</div>
-
-          <Link
-            href="../../../d/auth12/s"
-            className="inline-block border-2 text-sm border-gray-200 bg-indigo-400 hover:bg-indigo-300 text-gray-700 font-normal py-2 px-6 rounded-md  transition"
-          >
-            Get Started
-          </Link>
-        </div>
-
-        {/* Right: Optional Image or Video */}
-        <div className="relative aspect-video max-w-xl max-h-[400px] rounded-xl overflow-hidden shadow-lg">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src="/burner.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <Link
+              href="../../../d/auth12/s"
+              className="rounded-md bg-indigo-600 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
+            >
+              Get started
+            </Link>
+            <Link
+              href="#"
+              className="text-sm font-medium leading-6 text-gray-900 hover:text-indigo-500 transition-colors"
+            >
+              Learn more <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
-    
   );
 };
 

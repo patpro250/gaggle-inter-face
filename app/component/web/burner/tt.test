@@ -1,0 +1,8 @@
+<div className="max-w-2xl mx-auto px-4 py-6">
+  <p className="font-sans text-lg text-gray-800 dark:text-primary leading-relaxed tracking-wide">
+    <strong className="text-blue-600 dark:text-blue-400">NITIBOOK</strong> For Pricing Page
+NITIBOOK is built with care, dedication, and significant investment. To keep providing a high-quality experience, we rely on fair pricing that reflects the real value and resources behind the service. For About or Mission Page
+NITIBOOK represents years of effort, thoughtful design, and over 1 million Rwf invested into building a meaningful platform. We're proud to offer a premium experience — not as an entitlement, but as a result of purposeful work. Sign-up
+NITIBOOK is more than just a platform — it’s a service crafted with intention and supported by real people and real resources. We welcome you into a space that values quality, sustainability, and respect.
+  </p>
+</div>

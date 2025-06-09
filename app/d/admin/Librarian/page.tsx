@@ -19,7 +19,7 @@ const Library = () => {
     <div className="  ">
       <h1 className="mt-5 mb-5 text-xl">Librarian </h1>
 
-      <div className="bg-indigo-0 grid grid-cols-1  md:grid-cols-3 p-2 gap-6  min-h-auto mt-10 mb-20">
+      {/* <div className="bg-indigo-0 grid grid-cols-1  md:grid-cols-3 p-2 gap-6  min-h-auto mt-10 mb-20">
         <div className="bg-green-0 h-20 flex p-2 items-center gap-5 border-1 border-gray-200  rounded-md ">
           <div className="bg-amber-500 text-amber-300 p-4 rounded-full ">
             <UsersRound />
@@ -49,8 +49,8 @@ const Library = () => {
             <p className="font-medium text-xl">0</p>
           </div>
         </div>
-      </div>
-      <h1 className="mt-5 mb-5 text-xl">View </h1>
+      </div> */}
+      {/* <h1 className="mt-5 mb-5 text-xl">View </h1> */}
       <Table />
     </div>
   );

@@ -1,5 +1,5 @@
-import PlansManager from "@/app/test/page";
 import React from "react";
+import PlansManager from "./TableplansManager";
 
 const PlanManger = () => {
   return (

@@ -8,6 +8,8 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { ResetInstitution, sendResetEmail } from "@/app/Hooks/resetFunc";
+import { ForgotPasswordFormData } from "@/app/_components/form";
+import { Spinner } from "@radix-ui/themes";
 
 const schema = z.object({
   email: z.string().email("Invalid email address"),
@@ -30,44 +32,44 @@ export default function ForgotPasswordForm() {
   });
 
   const mutation = useMutation({
-    mutationFn: async (data: FormValues) => {
-      const res = await fetch("/api/send-reset-link", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) {
-        throw new Error("Failed to send reset email");
+    mutationFn: async (data: ForgotPasswordFormData) => {
+      const response = await ResetInstitution(data);
+      if (!response.Success) {
+        throw new Error(response.message);
       }
-      return res.json();
+
+      const email = await sendResetEmail(response.message); // token
+
+      if (!email.success) {
+        throw new Error(email.message);
+      }
+
+      return { message: "A password reset link has been sent to your email." };
     },
-    onSuccess: () => {
-      toast.success("Reset link sent to your email!");
-      reset();
-      setSelectedRole("");
+    onSuccess: (data) => {
+      toast.success(data.message);
+      // setSuccessMessage(data.message);
     },
-    onError: () => {
-      toast.error("Failed to send reset link. Try again.");
+    onError: (error: any) => {
+      toast.error(error.message || "Something went wrong");
     },
   });
 
   const onSubmit = async (dataform) => {
-    if (dataform.role == "Institution") {
-      const response = await ResetInstitution(dataform);
-      if (response.Success) {
-        const email = await sendResetEmail(response.message);
+    // const response = await ResetInstitution(dataform);
+    // if (response.Success) {
+    //   const email = await sendResetEmail(response.message);
 
-        if (email.success) {
-          toast.success("A password reset link has been sent to your email");
-        } else {
-          toast.error("fail sending email");
-        }
-      } else {
-        toast.error(response.message);
-      }
-    } else {
-      toast.error("not insititution");
-    }
+    //   if (email.success) {
+    //     toast.success("A password reset link has been sent to your email");
+    //   } else {
+    //     toast.error(email.message);
+    //   }
+    // } else {
+    //   toast.error(response.message);
+    // }
+
+    mutation.mutate(dataform);
   };
 
   const handleRoleSelect = (role: string) => {
@@ -118,7 +120,7 @@ export default function ForgotPasswordForm() {
             className="min-w-[200px] bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-md shadow-md z-50"
             sideOffset={5}
           >
-            {["Librarian", "Member", "Institution", "System Admin"].map(
+            {["Librarian", "Member", "Institution", "SystemAdmin"].map(
               (role) => (
                 <DropdownMenu.Item
                   key={role}
@@ -141,7 +143,13 @@ export default function ForgotPasswordForm() {
         type="submit"
         className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition disabled:opacity-50"
       >
-        Send Reset Link
+        {mutation.isPending ? (
+          <>
+            <Spinner></Spinner> is loading
+          </>
+        ) : (
+          "Send Reset Link"
+        )}
       </button>
     </form>
   );

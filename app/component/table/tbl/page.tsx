@@ -126,7 +126,7 @@ const Table = async () => {
 
   return (
     <div>
-      <HeaderTable />
+      {/* <HeaderTable /> */}
 
       <div className="overflow-x-auto mt-10 mb-10">
         <table className="w-full !text-[14px] text-left text-gray-600  border-1 border-gray-200 !rounded-md  ">
@@ -184,12 +184,12 @@ const Table = async () => {
                     >
                       <BookCheck size={13} />
                     </Link>{" "}
-                    <Link
+                    {/* <Link
                       className="hover:bg-green-500 hover:text-white ease-in-out text-gray-600  border-1 border-gray-200 flex justify-center items-center h-5 w-5 bg-amber-0 rounded-full transition-all "
                       href={`/d/admin/Librarian/${data.librarianId}/unactivate`}
                     >
                       <CircleSlash size={13} color="#ff000098" />
-                    </Link>
+                    </Link> */}
                     {/* <Link
                       className="hover:bg-green-500 hover:text-white ease-in-out text-gray-600  border-1 border-gray-200 flex justify-center items-center h-5 w-5 bg-amber-0 rounded-full transition-all "
                       href={`/d/admin/Librarian/${data.librarianId}/view`}
@@ -203,7 +203,7 @@ const Table = async () => {
           </tbody>
         </table>
       </div>
-      <FooterTable />
+      {/* <FooterTable /> */}
     </div>
   );
 };

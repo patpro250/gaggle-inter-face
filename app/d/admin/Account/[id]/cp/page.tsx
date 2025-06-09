@@ -5,6 +5,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { PasswordFormData, PutPasswordInstitution } from "@/app/Hooks/geting";
+import toast from "react-hot-toast";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 // Zod schema with password complexity
 const changePasswordSchema = z
@@ -39,10 +43,32 @@ export default function ChangePasswordForm() {
     resolver: zodResolver(changePasswordSchema),
   });
 
-  const onSubmit = async (data: ChangePasswordFormData) => {
-    console.log("Submitted Data:", data);
-    setServerMessage("Password changed successfully.");
-    reset();
+  const mutation = useMutation({
+    mutationFn: PutPasswordInstitution,
+
+    onSuccess: (data) => {
+      setServerMessage("Password changed successfully.");
+      toast.success("Password changed successfully.");
+      reset();
+    },
+    onError: (error: any) => {
+      const message =
+        error.response?.data?.message || error.message || "An error occurred";
+      toast.error(message);
+      setServerMessage(message);
+    },
+  });
+
+  const onSubmit = async (Formdata: ChangePasswordFormData) => {
+    const data = {
+      oldPassword: Formdata.currentPassword,
+      newPassword: Formdata.newPassword,
+    };
+
+    mutation.mutate({ data });
+    // console.log("Submitted Data:", rest);
+    // setServerMessage("Password changed successfully.");
+    // reset();
   };
 
   return (
@@ -124,9 +150,17 @@ export default function ChangePasswordForm() {
 
           <button
             type="submit"
-            className="w-full bg-primary text-white py-2 rounded-lg hover:opacity-87 transition"
+            className="w-full bg-primary text-white py-2 rounded-lg hover:opacity-87 transition flex items-center justify-center gap-2"
+            disabled={mutation.isPending}
           >
-            Change Password
+            {mutation.isPending ? (
+              <>
+                <ReloadIcon className="animate-spin h-4 w-4" />
+                <span>Changing...</span>
+              </>
+            ) : (
+              "Change Password"
+            )}
           </button>
         </form>
       </div>

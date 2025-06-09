@@ -14,9 +14,9 @@ export interface Payment {
   phoneNumber: string;
   confirmationCode: string | null;
   currency: string;
-  status: "PENDING" | "APPROVED" | "REJECTED"; 
-  method: "MOBILE_MONEY" | "BANK" | string; 
-  doneAt: string; 
+  status: "PENDING" | "APPROVED" | "REJECTED";
+  method: "MOBILE_MONEY" | "BANK" | string;
+  doneAt: string;
   institution: {
     name: string;
   };
@@ -82,7 +82,7 @@ export default function AdminPaymentPage() {
               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
                 Amount
               </th>
-               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
+              <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
                 Done On
               </th>
               <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
@@ -98,15 +98,15 @@ export default function AdminPaymentPage() {
               (payment) => (
                 <tr
                   key={payment.id}
-                  className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+                  className="hover:bg-gray-40 text-sm dark:hover:bg-gray-600 transition"
                 >
-                  <td className="px-6 py-4">{payment.institution?.name}</td>
-                   <td className="px-6 py-4">{payment.phoneNumber}</td>
-                  <td className="px-6 py-4">{payment.PricingPlan.name}</td>
-                  <td className="px-6 py-4">{payment.amount}</td>
-                  <td className="px-6 py-4">{payment.doneAt}</td>
+                  <td className="px-3 py-1">{payment.institution?.name}</td>
+                  <td className="px-3 py-1">{payment.phoneNumber}</td>
+                  <td className="px-3 py-1">{payment.PricingPlan.name}</td>
+                  <td className="px-3 py-1">{payment.amount}</td>
+                  <td className="px-3 py-1">{payment.doneAt}</td>
 
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-1">
                     {payment.status === "SUCCESS" ? (
                       <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
                         <CheckCircle size={16} /> {payment.status}

@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { LockKeyholeOpen, Mail } from "lucide-react";
@@ -108,7 +109,7 @@ const LoginForm = () => {
       />
 
       {/* Signup Link */}
-      <div className="text-center w-full">
+      <div className="text-center flex gap-2 flex-col  w-full">
         <Text size="2">
           Don't have an account?{" "}
           <Link
@@ -118,6 +119,10 @@ const LoginForm = () => {
             Sign up
           </Link>
         </Text>
+
+        <Link className="text-primary underline" href="/login/forgot">
+          forgot password?
+        </Link>
       </div>
 
       {/* Submit Button */}
