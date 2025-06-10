@@ -3,7 +3,6 @@
 import { Button } from "@radix-ui/themes";
 import { redirect } from "next/navigation";
 import React from "react";
-import toast from "react-hot-toast";
 
 export interface PricingPlan {
   id: string;
@@ -17,7 +16,7 @@ export interface PricingPlan {
   limitations: {
     maxLibraries?: number | string;
     maxLibrarians?: number | string;
-    [key: string]: any; // for any extra limitation fields
+    [key: string]: unknown; // for any extra limitation fields
   };
   discount: number | null; // can be null
   freeTrialDays: number;
@@ -30,10 +29,7 @@ export type PricingCardsProps = {
   onSelectPlan?: (planId: string) => void;
 };
 
-export default function PricingCards({
-  pricingPlans,
-  onSelectPlan,
-}: PricingCardsProps) {
+export default function PricingCards({ pricingPlans }: PricingCardsProps) {
   return (
     <div className="flex flex-wrap justify-center gap-3 p-2">
       {pricingPlans.map((plan, idx) => {

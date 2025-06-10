@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useRouter, useSearchParams } from "next/navigation";
+
 import { useMutation } from "@tanstack/react-query";
 import { PostReset } from "@/app/Hooks/geting";
 import toast from "react-hot-toast";
@@ -32,18 +32,12 @@ const passwordSchema = z
 
 type PasswordFormData = z.infer<typeof passwordSchema>;
 
-interface FormValues {
-  newPassword: string;
-  confirmPassword: string;
-}
 interface Props {
   basetoken: string;
 }
 
 export default function PasswordResetForm({ basetoken }: Props) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
 
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRetypePassword, setShowRetypePassword] = useState(false);
@@ -51,9 +45,8 @@ export default function PasswordResetForm({ basetoken }: Props) {
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors, isSubmitting },
-    reset,
   } = useForm<PasswordFormData>({
     resolver: zodResolver(passwordSchema),
   });
@@ -71,11 +64,14 @@ export default function PasswordResetForm({ basetoken }: Props) {
       toast.success("🎉 Password reset successful!");
       router.push("/login");
     },
-    onError: (error: any) => {
+    onError: (error) => {
+      // Use type assertion to access response if it exists
+      const err = error as {
+        response?: { data?: { message?: string; error?: string } };
+      };
       const message =
-        error?.response?.data?.message || // Custom server error
-        error?.response?.data?.error || // Alternative error key
-        error?.message || // Axios/fetch error
+        err?.response?.data?.message || // Custom server error
+        err?.response?.data?.error || // Alternative error key
         "Something went wrong. Please try again.";
       toast.error(`${message}`);
     },

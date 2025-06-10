@@ -1,20 +1,7 @@
-import React from "react";
-import { useSession123 } from "@/app/Hooks/useSession";
-const InsititutionInfo = async () => {
-  const {
-    address,
-    email,
-    name,
-    phone,
-    code,
-    expirationDate,
-    plan,
-    purchaseStatus,
-    limitations,
-    openingHours,
-    rating,
-    createdAt,
-  } = await useSession123();
+import { Session123 } from "@/app/Hooks/useSession";
+
+const InstitutionInfo = async () => {
+  const { address, name, code, createdAt } = await Session123();
 
   return (
     <div>
@@ -30,8 +17,7 @@ const InsititutionInfo = async () => {
             <strong>Code:</strong> {code}
           </p>
           <p>
-            <strong>Joined at:</strong>
-            {createdAt}
+            <strong>Joined at:</strong> {new Date(createdAt).toDateString()}
           </p>
         </div>
 
@@ -54,4 +40,4 @@ const InsititutionInfo = async () => {
   );
 };
 
-export default InsititutionInfo;
+export default InstitutionInfo;

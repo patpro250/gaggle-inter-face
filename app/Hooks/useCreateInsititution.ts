@@ -2,7 +2,6 @@ import { useState } from "react";
 import { z } from "zod";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { redirect } from "next/navigation";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 // 1. Institution type enum
@@ -67,13 +66,12 @@ export function useCreateInstitution() {
 
     try {
       setLoading(true);
-      const res = await axios.post(`${API_URL}/institutions`, institution);
+      await axios.post(`${API_URL}/institutions`, institution);
 
       // Or setValid(res.data) if response has useful data
 
       setCreate(true);
-    } catch (err: any) {
-      console.log(err);
+    } catch (err) {
       const errorMessage =
         err.response?.data?.message || // if backend returns { message: "..." }
         err.response?.data || // fallback if response.data is a string

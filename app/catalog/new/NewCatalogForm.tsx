@@ -19,7 +19,7 @@ export default function AddCatalogForm() {
   });
 
   const onSubmit = async (data: Catalog) => {
-    let newDate = new Date(data.published).toISOString();
+    const newDate = new Date(data.published).toISOString();
     data = { ...data, published: newDate };
     const response = await sendCatalog(data);
     if (response.success) {
@@ -84,7 +84,9 @@ export default function AddCatalogForm() {
 
       {/* Published Date */}
       <div className="relative">
-        <label className="block mb-1 text-sm font-medium">Year of Publication</label>
+        <label className="block mb-1 text-sm font-medium">
+          Year of Publication
+        </label>
         <input
           {...register("published")}
           placeholder="Year of Publication"

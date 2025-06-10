@@ -55,7 +55,7 @@ const Approve = ({ id }: { id: string }) => {
         console.warn("Approval failed:", response);
         toast.error(response?.message || "Approval failed");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error during approval:", error);
 
       if (error instanceof z.ZodError) {

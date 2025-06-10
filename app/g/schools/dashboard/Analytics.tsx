@@ -1,21 +1,22 @@
-//@ts-nocheck
 "use client";
 import NitSkeleton from "@/app/_components/Skeleton";
 import dynamic from "next/dynamic";
-
 
 const BorrowingTrendsLineChart = dynamic(
   () => import("./_components/BorrowingTrendsLineChart"),
   {
     ssr: false,
-    loading: () => <NitSkeleton height={300} />,
+    loading: () => <NitSkeleton />,
   }
 );
 
-const TopBooksBarChart = dynamic(() => import("./_components/TopBooksBarChart"), {
-  ssr: false,
-  loading: () => <NitSkeleton height={300} />,
-});
+const TopBooksBarChart = dynamic(
+  () => import("./_components/TopBooksBarChart"),
+  {
+    ssr: false,
+    loading: () => <NitSkeleton />,
+  }
+);
 
 const Analytics = ({ topBooksData, borrowingTrendsData }) => {
   return (

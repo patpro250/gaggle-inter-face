@@ -43,7 +43,6 @@ const PrivacyPolicyPage = () => {
                 <li>Email’s profile picture</li>
                 <li>Phone number</li>
                 <li>Payment information (credit card details)</li>
-
               </ul>
             </div>
 
@@ -160,7 +159,7 @@ const PrivacyPolicyPage = () => {
           </h2>
           <p className="ml-4">
             We may update this Privacy Policy at any time. Changes will be
-            posted here with an updated "Effective Date." Please review it
+            posted here with an updated Effective Date. Please review it
             periodically.
           </p>
         </section>

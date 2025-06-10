@@ -1,12 +1,7 @@
-import React from "react";
-
+import { View } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "@radix-ui/themes";
-import { UserRoundPen, Trash2, View } from "lucide-react";
-import HeaderTable from "../header/page";
-import FooterTable from "../footer/page";
-import HeaderBookTable from "../header/page";
 import FooterBookTable from "../footer/page";
+import HeaderBookTable from "../header/page";
 const bookData = [
   {
     id: "a4e0bc52-bac4-4f69-9d95-bad9ff4d85b4",

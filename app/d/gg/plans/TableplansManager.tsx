@@ -23,7 +23,7 @@ type Plan = {
 export default function PlansManager() {
   const { openModal } = useModalStoreAdmin();
 
-  const [plans, setPlans] = useState<Plan[]>([
+  const [plans] = useState<Plan[]>([
     {
       id: "1",
       name: "Basic Plan",

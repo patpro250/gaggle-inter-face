@@ -1,6 +1,5 @@
-import React from "react";
+import { Bolt, DollarSign, House } from "lucide-react";
 import LinkAsider from "./linkAsider";
-import { Bolt, DollarSign, DollarSignIcon, House } from "lucide-react";
 
 const Asider = () => {
   return (

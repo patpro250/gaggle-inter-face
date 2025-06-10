@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { auth } from "@/app/auth";
 import axios from "axios";
 

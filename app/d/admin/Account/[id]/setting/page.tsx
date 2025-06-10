@@ -37,7 +37,6 @@ export default function InstitutionSettingsPage({ params }: Props) {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
   } = useForm<InstitutionSettings>({
     values: defaultValues,
   });

@@ -1,6 +1,4 @@
 "use client";
-import NavbarCP from "@/app/component/web/nav copy/page";
-import Navbar from "@/app/component/web/nav/page";
 import { useOnboardingStore } from "@/app/stores/useOnboardingStore";
 import Link from "next/link";
 
@@ -9,7 +7,7 @@ import toast from "react-hot-toast";
 
 const Step3 = () => {
   const router = useRouter();
-  const { data, setField } = useOnboardingStore();
+  const { data } = useOnboardingStore();
 
   if (!data.name || !data.email || !data.password) {
     toast.error("Your Data Is ready!!");
@@ -23,9 +21,7 @@ const Step3 = () => {
           <h1 className="text-1xl font-medium text-primary mb-4">
             Your account has been created successfully 🎉
           </h1>
-          <p className="text-gray-700 mb-6">
-             Can't wait to log in!
-          </p>
+          <p className="text-gray-700 mb-6">Can t wait to log in!</p>
           <Link
             href="/login"
             className="inline-block bg-primary w-full text-white px-6 py-2 rounded-md hover:bg-primary transition-colors"

@@ -8,7 +8,7 @@ export async function fetchTrendingBooks() {
     const book = await response.data;
     return book;
   } catch (ex) {
+    console.error("Error fetching trending books:", ex);
     return null;
   }
-
 }

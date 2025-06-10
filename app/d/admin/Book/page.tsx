@@ -1,9 +1,7 @@
 import React from "react";
 
 import {
-  UsersRound,
   UserCheck,
-  UserMinus,
   BookmarkCheck,
   Loader,
   BookmarkX,

@@ -1,14 +1,9 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
 import WlcomeBurner from "./wlcomeBurner";
 import BarChart01 from "@/app/d/admin/LibrarianDashboard/reports/barChart";
 
 const NavBarAdmin = () => {
-  const path = usePathname();
-  const isValid = ["/librarian", "/home", "/page"];
-  const Real = isValid.includes(path);
   return (
     <div className="pb-50">
       <h1 className="m-5 text-xl">Dashboard </h1>

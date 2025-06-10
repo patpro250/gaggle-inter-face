@@ -9,7 +9,7 @@ export async function ConfirmPayment(code: number) {
       success: true,
       message: res.data,
     };
-  } catch (ex: any) {
+  } catch (ex) {
     const errorMsg =
       ex?.response?.data?.message ||
       ex?.response?.data ||

@@ -1,6 +1,4 @@
 import PaymentHistory from "@/app/_components/paymentHistory";
-import DesignerPaymentPlans from "./card";
-import PricingCards from "@/app/test/page";
 
 export default function ManualPaymentForm() {
   return (

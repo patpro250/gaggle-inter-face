@@ -1,6 +1,24 @@
+type Book = {
+  title: string;
+  author: string;
+  publisher: string;
+  published: string | Date;
+  institution: {
+    name: string;
+    address: string;
+  };
+};
+
+type Institution = {
+  name: string;
+  email: string;
+  phone: string;
+  rating: number;
+};
+
 type SearchResultsProps = {
-  books: any[];
-  institutions: any[];
+  books: Book[];
+  institutions: Institution[];
   searched: boolean;
 };
 

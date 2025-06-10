@@ -1,15 +1,10 @@
 "use client";
-import { useState, useEffect } from "react";
-import * as Switch from "@radix-ui/react-switch";
-import * as Label from "@radix-ui/react-label";
 import { Save, Settings, Wrench } from "lucide-react";
 import Image from "next/image";
 import { useTypewriter } from "react-simple-typewriter";
-import useFetchData from "../stateManagement/SettingGetting";
 import Loading from "../loading";
-import { ErrorBoundaryHandler } from "next/dist/client/components/error-boundary";
+import useFetchData from "../stateManagement/SettingGetting";
 
-import { boolean } from "zod";
 import ErrorBox from "@/app/component/ERR0R/page";
 
 function SettingsPage() {

@@ -32,7 +32,7 @@ export const ChangePasswordModal = ({ onClose }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<ChangePasswordForm>({
     resolver: zodResolver(passwordSchema),
     mode: "onChange",

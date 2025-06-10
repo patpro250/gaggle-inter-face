@@ -1,4 +1,4 @@
-import { Captions, LucideIcon, LucideProps } from "lucide-react";
+import { LucideProps } from "lucide-react";
 import React, { FC } from "react";
 interface Props {
   title: string;
@@ -9,7 +9,6 @@ interface Props {
 }
 
 import { Poppins as PoppinsFont } from "next/font/google";
-import Link from "next/link";
 
 const poppins = PoppinsFont({
   subsets: ["latin"], // Specify the character set
@@ -28,7 +27,6 @@ const ListComponentOnly: React.FC<Props> = ({
   const secondSegment = pathSegments[1];
   const newPath = `/${firstSegment}/${secondSegment}`;
 
-  const Icon12 = Icon;
   return (
     <div>
       <button

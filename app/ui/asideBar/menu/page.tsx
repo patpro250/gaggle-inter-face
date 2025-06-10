@@ -1,13 +1,9 @@
-import { Box, Flex, Text } from "@radix-ui/themes";
-import Link from "next/link";
-import React from "react";
-import { HomeIcon, FaceIcon, ImageIcon, SunIcon } from "@radix-ui/react-icons";
-import IconWithText from "./iconLinkRender/page";
+import { Box } from "@radix-ui/themes";
 
 import { CiUser } from "react-icons/ci";
 import { IoHomeOutline } from "react-icons/io5";
-import NavItem from "./iconLinkRender/page";
 import { SiSimpleanalytics } from "react-icons/si";
+import NavItem from "./iconLinkRender/page";
 
 const Menu = () => {
   return (

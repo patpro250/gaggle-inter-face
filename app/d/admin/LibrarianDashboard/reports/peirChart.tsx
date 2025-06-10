@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { PieChart, Pie, Tooltip, Cell } from "recharts";
+import { PieChart, Pie, Tooltip } from "recharts";
 
 const PeirChart = () => {
   const data01 = [

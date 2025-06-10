@@ -1,4 +1,4 @@
-import { BookOpen, Clock, Library, RefreshCcw, Users } from "lucide-react";
+import { BookOpen, Clock, RefreshCcw, Users } from "lucide-react";
 import { getApiClient } from "../axios";
 
 const Overview = async () => {

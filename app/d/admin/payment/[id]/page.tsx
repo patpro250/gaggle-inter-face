@@ -12,7 +12,7 @@ type Props = {
 const TakePlan = ({ params }: Props) => {
   const { id } = React.use(params); // unwrap the Promise using React.use
 
-  const { data, error, isLoading } = useQuery({
+  const { error, isLoading } = useQuery({
     queryKey: ["plan", id],
     queryFn: () => fetchSinglePlans(id),
     enabled: !!id,

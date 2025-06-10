@@ -7,13 +7,9 @@ import {
   Users,
 } from "lucide-react";
 import Link from "next/link";
-import ListComponent from "../../listcompnent/page";
-import ListComponentOnly from "../../listComponentOnly/page";
+import ListComponentOnly from "../../listComponentOnlyButton/page";
 
-interface Props {
-  Path: string;
-}
-const TriggleDropDown1 = ({ Path }: Props) => {
+const TriggleDropDown1 = () => {
   return (
     <div>
       <li className="relative  ">

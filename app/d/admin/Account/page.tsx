@@ -1,11 +1,6 @@
-import { RatingDisplay } from "@/app/_components/rating";
-import { getLetterAndBackground } from "@/app/Hooks/profileAvatarColorGenerator";
-import { useSession123 } from "@/app/Hooks/useSession";
-import { Cog, KeySquare } from "lucide-react";
-import Link from "next/link";
-import Starts from "./starts";
-import Profile from "./profile";
 import InsititutionInfo from "./insititutionInfo";
+import Profile from "./profile";
+import Starts from "./starts";
 
 export default async function InstitutionProfile() {
   return (

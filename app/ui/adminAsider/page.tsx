@@ -1,11 +1,3 @@
-import React from "react";
-import {
-  Smile,
-  ArrowDownWideNarrow,
-  ChevronsDown,
-  Captions,
-} from "lucide-react";
-import ListComponent from "./listcompnent/page";
 import ListGroup from "./ListGroup/page";
 
 const AsiderPageAdmin = () => {

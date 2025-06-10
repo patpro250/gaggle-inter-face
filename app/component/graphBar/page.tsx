@@ -1,7 +1,5 @@
-import React from "react";
-import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts"; // ✅ Import the type
-import { Button } from "@radix-ui/themes";
+import Chart from "react-apexcharts";
 
 const Graph = () => {
   const options: ApexOptions = {

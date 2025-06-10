@@ -1,32 +1,12 @@
 import { Popover } from "@radix-ui/themes";
 import {
-  ArrowRightLeft,
-  BellPlus,
-  BookmarkCheck,
-  BookMinus,
-  BookPlus,
-  ChartCandlestick,
   ChevronDown,
   CircleUserRound,
   Clock9,
-  Cog,
-  Diamond,
-  DiamondPlus,
-  ListFilterPlus,
-  ListOrdered,
-  ListTree,
-  PackagePlus,
   Paperclip,
-  Rss,
-  Settings,
   User,
-  UserRoundCog,
-  Users,
 } from "lucide-react";
-import Link from "next/link";
-import ListComponent from "../../listcompnent/page";
 import ListComponentOnly from "../../listComponentOnlyButton/page";
-import { useRouter, redirect } from "next/navigation";
 import ListPoup from "../ListOnPopupCompnent/page";
 
 interface Props {

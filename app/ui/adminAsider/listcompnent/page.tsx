@@ -1,4 +1,4 @@
-import { Captions, LucideIcon, LucideProps } from "lucide-react";
+import { LucideProps } from "lucide-react";
 import React, { FC } from "react";
 interface Props {
   title: string;
@@ -23,7 +23,6 @@ const ListComponent: React.FC<Props> = ({
   Icon,
   Path,
 }: Props) => {
-  const Icon12 = Icon;
   return (
     <div>
       <Link href={href}>

@@ -1,8 +1,5 @@
 "use client";
-import { Button } from "@radix-ui/themes";
 import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import React from "react";
 interface Props {
   IsLogout: () => void;
 }

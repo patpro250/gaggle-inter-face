@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPayments } from "../d/admin/payment/InitiPayment";
-import { CheckCircle, Clock, CloudDownload, Forward, Send } from "lucide-react";
+import { CheckCircle, Clock, CloudDownload, Send } from "lucide-react";
 import Link from "next/link";
 
 const ITEMS_PER_PAGE = 5;

@@ -1,16 +1,13 @@
-// @ts-nocheck
-
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { GetPlan } from "./getPlan";
-import { InitiPayment } from "../InitiPayment";
 import toast from "react-hot-toast";
-import { redirect } from "next/navigation";
-import { Spinner } from "@radix-ui/themes";
+import { z } from "zod";
+import { InitiPayment } from "../InitiPayment";
+import { GetPlan } from "./getPlan";
 
 interface Plan {
   id: string;
@@ -19,8 +16,8 @@ interface Plan {
   duration: number;
   features: string;
   status: string;
-  limitations: Record<string, any>;
-  discount: any;
+  limitations: Record<string, unknown>;
+  discount: unknown;
   freeTrialDays: number;
   createdAt: string;
   updatedAt: string;
@@ -77,14 +74,20 @@ const PaymentInfoPage = ({ id }: Props) => {
       setLoading(true);
       try {
         const data = await GetPlan(id);
-        setPlan(data);
+        // If data is an array, find the plan with the matching id
+        const selectedPlan = Array.isArray(data)
+          ? data.find((p) => p.id === id)
+          : data;
+        setPlan(selectedPlan);
 
         // Set default form values from fetched plan
-        // setValue("planId", data.id);
-        setValue("amount", data.price);
-        setValue("duration", data.duration);
+        if (selectedPlan) {
+          setValue("planId", selectedPlan.id);
+          setValue("amount", Number(selectedPlan.price));
+          setValue("duration", selectedPlan.duration);
+        }
       } catch (error) {
-        toast.error("Failed to load plan");
+        toast.error(error || "Failed to load plan");
       } finally {
         setLoading(false);
       }

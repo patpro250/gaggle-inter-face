@@ -15,28 +15,26 @@ type Fields = z.infer<typeof searchSchema>;
 
 const send = async (
   data: Fields,
-  setResults: React.Dispatch<React.SetStateAction<any>>,
+  setResults: React.Dispatch<React.SetStateAction<unknown>>,
   setSearched: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  let results = await search(data.query);
+  const results = await search(data.query);
   setResults(results);
   setSearched(true);
 };
 
 const SearchBar = () => {
-  const [results, setResults] = useState<{ books: any[]; institutions: any[] }>(
-    {
-      books: [],
-      institutions: [],
-    }
-  );
+  const [results, setResults] = useState<{ books: []; institutions: [] }>({
+    books: [],
+    institutions: [],
+  });
 
   const [searched, setSearched] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<Fields>({
     resolver: zodResolver(searchSchema),
     mode: "onChange",

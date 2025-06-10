@@ -1,14 +1,14 @@
 "use client";
 
+import { PutPasswordInstitution } from "@/app/Hooks/geting";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import { useMutation } from "@tanstack/react-query";
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
-import { PasswordFormData, PutPasswordInstitution } from "@/app/Hooks/geting";
 import toast from "react-hot-toast";
-import { ReloadIcon } from "@radix-ui/react-icons";
+import { z } from "zod";
 
 // Zod schema with password complexity
 const changePasswordSchema = z
@@ -46,14 +46,13 @@ export default function ChangePasswordForm() {
   const mutation = useMutation({
     mutationFn: PutPasswordInstitution,
 
-    onSuccess: (data) => {
+    onSuccess: () => {
       setServerMessage("Password changed successfully.");
       toast.success("Password changed successfully.");
       reset();
     },
-    onError: (error: any) => {
-      const message =
-        error.response?.data?.message || error.message || "An error occurred";
+    onError: (error) => {
+      const message = error.message || "An error occurred";
       toast.error(message);
       setServerMessage(message);
     },

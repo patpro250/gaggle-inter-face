@@ -1,12 +1,8 @@
 "use client";
-import PricingCards, {
-  PricingCardsProps,
-  PricingPlan,
-} from "@/app/_components/pricing";
-import { useQueries, useQuery } from "@tanstack/react-query";
-import React from "react";
-import { fetchPlans } from "./getPlans";
+import PricingCards, { PricingPlan } from "@/app/_components/pricing";
 import { PricingCardSkeleton } from "@/app/_components/PricingCardSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPlans } from "./getPlans";
 
 const Plans = () => {
   //   const { data } = useQueries({});

@@ -1,6 +1,8 @@
+"use client";
+
 import { Popover } from "@radix-ui/themes";
 import { BellPlus, BookMinus, ChevronDown, Cog, ListTree } from "lucide-react";
-import { useRouter } from "next/navigation";
+
 import ListComponentOnly from "../../listComponentOnlyButton/page";
 import ListPoup from "../ListOnPopupCompnent/page";
 
@@ -8,7 +10,6 @@ interface Props {
   Path: string;
 }
 const BorrowingManagement = ({ Path }: Props) => {
-  const router = useRouter();
   return (
     <div>
       <li className="relative  ">

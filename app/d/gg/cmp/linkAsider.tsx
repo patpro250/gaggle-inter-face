@@ -1,13 +1,13 @@
-import { Home, LucideProps } from "lucide-react";
+import { LucideProps } from "lucide-react";
 import Link from "next/link";
-import React, { FC } from "react";
+import { FC } from "react";
 interface Props {
   title: string;
   href: string;
   Icon: FC<LucideProps>;
   Path: string;
 }
-const LinkAsider = ({ title, href, Icon, Path }: Props) => {
+const LinkAsider = ({ title, href, Icon }: Props) => {
   return (
     <div>
       <Link

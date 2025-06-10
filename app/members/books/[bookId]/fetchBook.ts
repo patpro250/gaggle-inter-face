@@ -6,9 +6,8 @@ export async function fetchBook(id: string) {
     const response = await api.get(`/books/${id}`);
 
     return response.data;
-
   } catch (ex) {
+    console.log("Error fetching book:", ex);
     return null;
   }
-
 }

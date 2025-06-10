@@ -9,23 +9,25 @@ export interface Credentials {
 
 interface LoginResult {
   success: boolean;
-  message: any;
-  data?: any;
+  message: unknown;
+  data?: unknown;
 }
 
-async function checkCredentials(credentials: Credentials): Promise<LoginResult> {
+async function checkCredentials(
+  credentials: Credentials
+): Promise<LoginResult> {
   try {
-    var endpoint: string;
+    let endpoint: string;
     if (credentials.userType === "Librarian") {
-      endpoint = 'librarians';
+      endpoint = "librarians";
     } else if (credentials.userType === "Member") {
-      endpoint = 'members';
+      endpoint = "members";
     } else if (credentials.userType === "Institution") {
-      endpoint = 'director';
+      endpoint = "director";
     } else {
-      endpoint = 'admin';
+      endpoint = "admin";
     }
-    console.log(endpoint)
+    console.log(endpoint);
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/auth/${endpoint}`,
       credentials
@@ -35,7 +37,7 @@ async function checkCredentials(credentials: Credentials): Promise<LoginResult> 
       success: true,
       message: response?.data,
     };
-  } catch (error: any) {
+  } catch (error) {
     const message =
       error.response?.data || error.message || "Unknown error during pre-check";
 
@@ -45,7 +47,6 @@ async function checkCredentials(credentials: Credentials): Promise<LoginResult> 
     };
   }
 }
-
 
 async function login(credentials: Credentials): Promise<LoginResult> {
   const check = await checkCredentials(credentials);
@@ -64,9 +65,14 @@ async function login(credentials: Credentials): Promise<LoginResult> {
     });
 
     if (result?.ok && !result.error) {
+      const user = check.message as {
+        name?: string;
+        firstName?: string;
+        lastName?: string;
+      };
       return {
         success: true,
-        message: `Welcome back ${check.message?.name || check.message?.firstName} ${check.message?.lastName || ''}`,
+        message: `Welcome back ${user?.name || user?.firstName || ""} ${user?.lastName || ""}`,
       };
     }
 
@@ -74,13 +80,12 @@ async function login(credentials: Credentials): Promise<LoginResult> {
       success: false,
       message: result?.error || "Authentication failed",
     };
-  } catch (error: any) {
+  } catch (error) {
     return {
       success: false,
       message: error.message || "Unexpected error during authentication",
     };
   }
 }
-
 
 export default login;

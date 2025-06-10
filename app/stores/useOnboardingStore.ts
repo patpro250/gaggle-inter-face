@@ -12,7 +12,7 @@ type OnboardingData = {
 
 type OnboardingState = {
   data: Partial<OnboardingData>;
-  setField: (key: keyof OnboardingData, value: any) => void;
+  setField: (key: keyof OnboardingData, value: unknown) => void;
 };
 
 export const useOnboardingStore = create<OnboardingState>((set) => ({

@@ -1,33 +1,17 @@
 "use client";
 import {
-  BarChart,
-  CalendarCheck2,
   ChartSpline,
-  ChevronDown,
   CircleDollarSign,
   CircleUserRound,
-  FilePlus2,
   House,
-  LibraryBig,
   Plane,
-  Settings,
   ShieldCheck,
-  ShieldUser,
-  StickyNote,
-  TimerReset,
   X,
 } from "lucide-react";
 
-import { Poppins as PoppinsFont } from "next/font/google";
 import { usePathname } from "next/navigation";
 import ListComponent from "../listcompnent/page";
-import UserManagement from "./UserManagement/page";
-import { Button } from "@radix-ui/themes";
 
-const poppins = PoppinsFont({
-  subsets: ["latin"], // Specify the character set
-  weight: ["200"], // Choose the font weights
-});
 const Root = "/d/admin";
 const ListGroup = () => {
   const path = usePathname();

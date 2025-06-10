@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import { CheckCircle, Clock, Send } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { fetchApproved } from "../cmp/gitData";
-import { IconButton } from "@radix-ui/themes";
-import CopyButton from "@/app/_components/clipboard";
 import { CopyIcon } from "@radix-ui/react-icons";
+import { IconButton } from "@radix-ui/themes";
+import { useQuery } from "@tanstack/react-query";
+import { CheckCircle, Clock } from "lucide-react";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { fetchApproved } from "../cmp/gitData";
 
 export default function AdminPaymentPage() {
   const {

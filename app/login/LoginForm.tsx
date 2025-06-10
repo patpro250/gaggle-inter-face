@@ -1,21 +1,18 @@
-// @ts-nocheck
 "use client";
 
-import { LockKeyholeOpen, Mail } from "lucide-react";
-import { Spinner, Text } from "@radix-ui/themes";
-import Link from "next/link";
-import { z } from "zod";
-import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Credentials } from "./login";
-import { redirect } from "next/navigation";
+import * as Select from "@radix-ui/react-select";
+import { Spinner, Text } from "@radix-ui/themes";
+import { ChevronDown, LockKeyholeOpen, Mail } from "lucide-react";
+import Link from "next/link";
+import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { z } from "zod";
 import FormError from "../_components/FormError";
-import { Select } from "radix-ui";
-import { ChevronDown } from "lucide-react";
 import login from "./login";
 import { redirector } from "./redirect";
 
+// ✅ Schema and Type
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters long"),
@@ -26,6 +23,7 @@ const loginSchema = z.object({
 
 export type LibrarianCredentials = z.infer<typeof loginSchema>;
 
+// ✅ Form Component
 const LoginForm = () => {
   const {
     register,
@@ -36,7 +34,7 @@ const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: Credentials) => {
+  const onSubmit = async (data) => {
     const response = await login(data);
     if (response.success) {
       toast.success(response.message);
@@ -63,6 +61,7 @@ const LoginForm = () => {
       </div>
       <FormError error={errors.email?.message} />
 
+      {/* Password Field */}
       <div className="relative">
         <LockKeyholeOpen
           className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"
@@ -76,6 +75,8 @@ const LoginForm = () => {
         />
       </div>
       <FormError error={errors.password?.message} />
+
+      {/* User Type Select */}
       <Controller
         control={control}
         name="userType"
@@ -107,11 +108,12 @@ const LoginForm = () => {
           </Select.Root>
         )}
       />
+      <FormError error={errors.userType?.message} />
 
-      {/* Signup Link */}
-      <div className="text-center flex gap-2 flex-col  w-full">
+      {/* Signup Links */}
+      <div className="text-center flex gap-2 flex-col w-full">
         <Text size="2">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             className="text-primary underline"
             href="/auth/librarian/signup"
@@ -119,9 +121,8 @@ const LoginForm = () => {
             Sign up
           </Link>
         </Text>
-
         <Link className="text-primary underline" href="/login/forgot">
-          forgot password?
+          Forgot password?
         </Link>
       </div>
 

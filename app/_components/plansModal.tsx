@@ -45,18 +45,18 @@ export default function CreatePlanModal() {
 
   // 4. Typed useMutation with React Query v5
   const mutation: UseMutationResult<
-    any, // return type of InitPlan (adjust if you know the exact return)
+    unknown, // Replace with the actual return type of InitPlan if known
     Error,
     PlanFormData,
     unknown
-  > = useMutation({
+  > = useMutation<unknown, Error, PlanFormData>({
     mutationFn: InitPlan,
     onSuccess: () => {
       toast.success("Plan created successfully!");
       reset();
       closeModal();
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.error(`Error creating plan: ${error.message}`);
       console.error(error);
     },

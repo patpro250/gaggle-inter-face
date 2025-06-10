@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useSearchParams } from "next/navigation";
+
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { PostReset } from "../Hooks/geting";
@@ -15,9 +15,6 @@ interface Props {
 }
 
 export default function ResetPasswordForm({ basetoken }: Props) {
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
-
   const {
     register,
     handleSubmit,
@@ -30,11 +27,11 @@ export default function ResetPasswordForm({ basetoken }: Props) {
     onSuccess: () => {
       toast.success("🎉 Password reset successful!");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       const message =
-        error?.response?.data?.message ||
-        "Something went wrong. Please try again.";
-      toast.error(`${message}`);
+        (error as { response?: { data?: { message?: string } } })?.response
+          ?.data?.message || "Something went wrong. Please try again.";
+      toast.error(message);
     },
   });
 

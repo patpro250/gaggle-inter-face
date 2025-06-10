@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { ReactNode } from "react";
 import Header from "./cmp/header";
 import Asider from "./cmp/Asider";
@@ -10,8 +9,11 @@ interface Props {
 }
 const GGLayout = async ({ children }: Props) => {
   const session = await auth();
-  if (!session || session.user.userType !== "System Admin") redirect('/login');
-  console.log(session.user.userType);
+  if (
+    !session ||
+    (session.user as { userType?: string }).userType !== "System Admin"
+  )
+    redirect("/login");
 
   return (
     <div className="dark">

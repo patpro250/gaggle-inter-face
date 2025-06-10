@@ -1,8 +1,5 @@
 import { DataList, Flex, IconButton } from "@radix-ui/themes";
-import { Badge, Code, CopyIcon, Link } from "lucide-react";
-import React from "react";
 import { getApiClient } from "../g/schools/axios";
-import toast from "react-hot-toast";
 import CopyButton from "./clipboard";
 
 interface Props {

@@ -134,8 +134,8 @@ const TermsPage = () => {
             </li>
             <li>
               <strong>Refund Policy:</strong> Due to the digital nature of our
-              products, all sales are final unless there's an issue with the
-              product.
+              products, all sales are final unless there &apos; s an issue with
+              the product.
             </li>
           </ul>
         </section>
@@ -166,7 +166,7 @@ const TermsPage = () => {
           </h2>
           <ul className="list-disc pl-10 space-y-1">
             <li>
-              <strong>Disclaimers:</strong> Services are provided "as is"
+              <strong>Disclaimers:</strong> Services are provided &apos; as is
               without warranties.
             </li>
             <li>

@@ -7,7 +7,7 @@ import Results from "./Results";
 import SearchCatalog from "./SearchCatalog";
 
 const CatalogPage = () => {
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
 

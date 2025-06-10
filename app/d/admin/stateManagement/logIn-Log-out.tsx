@@ -1,27 +1,27 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+// import React, { createContext, ReactNode, useContext, useState } from "react";
 
-interface FormData {
-  LogInSessionHolder: boolean;
-  setLogInSession: React.Dispatch<React.SetStateAction<any>>;
-}
+// interface FormData {
+//   LogInSessionHolder: boolean;
+//   setLogInSession: React.Dispatch<React.SetStateAction<unknown>>;
+// }
 
-interface Props {
-  children: ReactNode;
-}
+// interface Props {
+//   children: ReactNode;
+// }
 
-const LogInSession = createContext({} as FormData);
+// const LogInSession = createContext({} as FormData);
 
-const InstitutionsetLogInSession = ({ children }: Props) => {
-  const [LogInSessionHolder, setLogInSession] = useState(false);
+// const InstitutionsetLogInSession = ({ children }: Props) => {
+//   const [LogInSessionHolder, setLogInSession] = useState(false);
 
-  return (
-    <LogInSession.Provider value={{ LogInSessionHolder, setLogInSession }}>
-      {children}
-    </LogInSession.Provider>
-  );
-};
+//   return (
+//     <LogInSession.Provider value={{ LogInSessionHolder, setLogInSession }}>
+//       {children}
+//     </LogInSession.Provider>
+//   );
+// };
 
-export default InstitutionsetLogInSession;
-export const usesetLogInSessionContext = () => {
-  return useContext(LogInSession);
-};
+// export default InstitutionsetLogInSession;
+// export const usesetLogInSessionContext = () => {
+//   return useContext(LogInSession);
+// };

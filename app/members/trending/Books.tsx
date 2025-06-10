@@ -9,7 +9,7 @@ const TrendingBooks = async () => {
     <>
       <h1 className="members-subtitle my-2">🔥 Trending Books</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-        {books.map((book, index) => (
+        {books.map((book) => (
           <BookCard key={book.id} {...book} />
         ))}
       </div>

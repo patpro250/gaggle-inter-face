@@ -1,4 +1,4 @@
-import { Book, Bookmark, Clock, DollarSign } from "lucide-react";
+import { Book, Bookmark, Clock } from "lucide-react";
 import { fetchMemberStats } from "./fetchStats";
 
 const MemberOverview = async () => {

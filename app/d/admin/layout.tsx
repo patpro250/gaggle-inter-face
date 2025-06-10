@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { ReactNode } from "react";
 import AsiderPageAdmin from "../../ui/adminAsider/page";
 import NavBarAdminComponent from "../../ui/adminNavBar/page";
@@ -18,8 +16,15 @@ const AdiminLayout = async ({ children }: Props) => {
   }
 
   // useAuthGuard();
-  let name123 = sess.user.name;
-  let code = sess.user.code;
+  interface UserWithCode {
+    name: string;
+    code?: string;
+    [key: string]: unknown;
+  }
+
+  const user = sess.user as UserWithCode;
+  const name123 = user.name;
+  const code = user.code ?? "";
 
   // const [isClient, setIsClient] = useState(false); // Added to check if we're on the client side
 

@@ -1,13 +1,17 @@
-// @ts-nocheck
-import { ReactNode } from "react";
-import { DesktopNav, MobileNav } from "./MembersNavBar";
-import { Toaster } from "react-hot-toast";
-import { auth } from "../auth";
 import { redirect } from "next/navigation";
+import { ReactNode } from "react";
+import { auth } from "../auth";
+import { DesktopNav, MobileNav } from "./MembersNavBar";
 
 const MembersLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
-  if (!session || session.user.userType !== 'Member') redirect('/login');
+  if (
+    !session ||
+    (session.user &&
+      (session.user as { userType?: string }).userType !== "Member")
+  ) {
+    redirect("/login");
+  }
 
   return (
     <>

@@ -1,12 +1,6 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
-import BarChart01 from "./barChart";
-import LineChart from "./lineChart";
-import MyPieChart from "./peirChart";
-import DashboardStats from "./veiw";
-import VeiwCard from "./veiw";
-import { fetchStatsUpData } from "../../Account/getStartsData";
 import GenreCopiesChartCard from "./lineChart";
+import DashboardStats from "./veiw";
 
 const Analytics = () => {
   return (

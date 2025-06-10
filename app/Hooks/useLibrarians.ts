@@ -1,12 +1,10 @@
-//@ts-nocheck
 import { auth } from "@/app/auth";
-
+import { Session } from "next-auth";
+const session = (await auth()) as Session & { accessToken?: string };
 export const approveLibrarian = async (payload: {
   id: string;
   role: string;
 }) => {
-  const session = await auth();
-  console.log(session);
   try {
     if (!session.accessToken) {
       throw new Error("Unauthorized: No session token found");
@@ -29,7 +27,7 @@ export const approveLibrarian = async (payload: {
 
       throw new Error(errorData.message || "Failed to approve librarian");
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error("Approve librarian error:", error);
     throw new Error(error.message || "Something went wrong");
   }

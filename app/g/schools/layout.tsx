@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ReactNode } from "react";
 import Sidebar from "./SideBar";
 import React from "react";
@@ -14,11 +13,20 @@ import { ThemeProvider } from "next-themes";
 import RenewCirculationModal from "./_components/RenewCirculationModal";
 import AquireBookModal from "./_components/AquireBookModal";
 
-const SchoolsDashboardLayout = async ({ children }: { children: ReactNode }) => {
+const SchoolsDashboardLayout = async ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const session = await auth();
-  if (!session || session.user.userType !== 'Librarian') redirect('/login');
+  if (
+    !session ||
+    (session.user &&
+      (session.user as { userType?: string }).userType !== "Librarian")
+  )
+    redirect("/login");
   return (
-    <ThemeProvider attribute={'class'} enableSystem defaultTheme="dark">
+    <ThemeProvider attribute={"class"} enableSystem defaultTheme="dark">
       <div className="flex gap-4 h-screen bg-gray-100 dark:bg-gray-900">
         <Sidebar />
         <div className="flex-1 p-6 overflow-auto">

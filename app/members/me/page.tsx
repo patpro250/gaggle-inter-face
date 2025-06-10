@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { auth } from "@/app/auth";
 import BookLoans from "./BookLoans";
 import MemberOverview from "./MemberOverview";
@@ -9,8 +8,9 @@ import { APP_NAME } from "@/app/constants";
 
 export const metadata: Metadata = {
   title: `My account | ${APP_NAME}`,
-  description: "View all the details of all library activities including borrowings and more..."
-}
+  description:
+    "View all the details of all library activities including borrowings and more...",
+};
 
 const MyActivity = async () => {
   const { user } = await auth();
@@ -18,7 +18,8 @@ const MyActivity = async () => {
     <>
       <h1 className="text-4xl font-bold">
         <span className="text-black">Hello,</span>{" "}
-        <span className="text-primary">{`${user?.firstName} ${user?.lastName} `}</span>!
+        <span className="text-primary">{`${user?.firstName} ${user?.lastName} `}</span>
+        !
       </h1>
       <MemberOverview />
       <BookLoans />

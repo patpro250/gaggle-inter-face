@@ -27,6 +27,8 @@
 
 "use client";
 
+import { Link } from "lucide-react";
+
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-tr from-blue-50 to-purple-100 px-6 text-center">
@@ -73,14 +75,14 @@ export default function NotFound() {
 
       <h1 className="text-7xl font-extrabold text-primary mb-4">404</h1>
       <p className="text-lg text-primary max-w-md mb-8">
-        Looks like this curious cat couldn’t find the page you’re after!
+        Looks like this curious cat couldn t find the page you re after!
       </p>
-      <a
+      <Link
         href="/"
         className="inline-block px-6 py-1 bg-indigo-600 text-white rounded-md font-semibold shadow-lg hover:bg-indigo-700 transition"
       >
         Go back home
-      </a>
+      </Link>
 
       <style jsx>{`
         /* Ears twitch animation */

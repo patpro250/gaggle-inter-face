@@ -10,13 +10,8 @@ type Props = {
 };
 
 const Results = ({ results }: Props) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const resultsPerPage = 5;
-  const totalPages = Math.ceil(results.length / resultsPerPage);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
 
   const startIndex = (currentPage - 1) * resultsPerPage;
   const paginatedResults = results.slice(

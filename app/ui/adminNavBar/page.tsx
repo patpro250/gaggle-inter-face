@@ -1,63 +1,18 @@
 "use client";
-import { HoverCard } from "@radix-ui/themes";
 
-import React, { useState } from "react";
-import Account from "../accountWighet/page";
-import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import LogoutBoxModal from "../logout/page";
-import { auth } from "@/app/auth";
 import AvatarDropdown from "@/app/g/schools/_components/AvatarDropdown";
+import { useState } from "react";
+import LogoutBoxModal from "../logout/page";
 interface Props {
   nameInsititution: string;
 }
 const NavBarAdminComponent = ({ nameInsititution }: Props) => {
   // const firstLetter = nameInsititution.trim().charAt(0).toUpperCase();
-  const firstLetter = "S";
-  const [showBar, setBar] = useState(false);
+
   const [showLogout, setLogout] = useState(false);
-
-  const BackgroundUser = (letter: string) => {
-    const letterColors = {
-      A: "#FF0000", // Red
-      B: "#0000FF", // Blue
-      C: "#00FF00", // Green
-      D: "#FFFF00", // Yellow
-      E: "#FFA500", // Orange
-      F: "#800080", // Purple
-      G: "#008000", // Dark Green
-      H: "#FFC0CB", // Pink
-      I: "#A52A2A", // Brown
-      J: "#D3D3D3", // Light Gray
-      K: "#000000", // Black
-      L: "#FFFFFF", // White
-      M: "#FFD700", // Gold
-      N: "#C0C0C0", // Silver
-      O: "#808080", // Gray
-      P: "#800000", // Maroon
-      Q: "#FF6347", // Tomato
-      R: "#FF4500", // OrangeRed
-      S: "#32CD32", // LimeGreen
-      T: "#40E0D0", // Turquoise
-      U: "#EE82EE", // Violet
-      V: "#F0E68C", // Khaki
-      W: "#FF1493", // DeepPink
-      X: "#8B0000", // DarkRed
-      Y: "#9ACD32", // YellowGreen
-      Z: "#4B0082", // IndigC",
-    };
-    const letter__bg = letterColors[letter];
-    return letter__bg;
-  };
-
-  const bg_color = BackgroundUser(firstLetter);
 
   function Logout() {
     setLogout((prev) => !prev);
-  }
-
-  function menu() {
-    setBar((prev) => !prev);
   }
 
   return (
@@ -82,7 +37,7 @@ const NavBarAdminComponent = ({ nameInsititution }: Props) => {
                         type="button"
                         style={{ backgroundColor: bg_color }}
                         className={`relative flex items-center  justify-center  rounded-full  shadow text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden`}
-                        id="user-menu-button"
+                        id="user-   -button"
                         aria-expanded="false"
                         aria-haspopup="true"
                       >

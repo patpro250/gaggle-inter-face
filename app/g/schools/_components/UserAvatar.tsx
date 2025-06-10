@@ -1,9 +1,6 @@
-// @ts-nocheck
 "use client";
 
-import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
 
 type Props = {
   size?: number;
@@ -11,11 +8,10 @@ type Props = {
 
 export default function UserAvatar({ size = 40 }: Props) {
   const { data: session, status } = useSession();
-  const [imgError, setImgError] = useState(false);
 
   const user = session?.user;
-  const profile = user?.profile || null;
-  const name = user?.firstName;
+  // const profile = user?.profile || null;
+
   const initials = (user?.firstName || user?.name || "U")
     .slice(0, 2)
     .toUpperCase();
@@ -31,23 +27,23 @@ export default function UserAvatar({ size = 40 }: Props) {
     );
   }
 
-  if (profile && !imgError) {
-    return (
-      <div
-        className="rounded-full border-2 border-primary overflow-hidden"
-        style={dimension}
-      >
-        <Image
-          src={profile}
-          alt={name}
-          width={size}
-          height={size}
-          className="object-cover"
-          onError={() => setImgError(true)}
-        />
-      </div>
-    );
-  }
+  // if ( && !imgError) {
+  //   return (
+  //     <div
+  //       className="rounded-full border-2 border-primary overflow-hidden"
+  //       style={dimension}
+  //     >
+  //       <Image
+  //         src={""}
+  //         alt={name}
+  //         width={size}
+  //         height={size}
+  //         className="object-cover"
+  //         onError={() => setImgError(true)}
+  //       />
+  //     </div>
+  //   );
+  // }
 
   // Letter avatar fallback
   return (

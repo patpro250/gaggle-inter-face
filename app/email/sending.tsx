@@ -62,7 +62,7 @@ const ResetPasswordEmail = ({ resetLink, name }: ResetPasswordEmailProps) => {
                     <Text className="mt-[16px] text-base leading-[24px] text-white">
                       We received a request to reset your password for your
                       Gaggle Niti account. Click the button below to create a
-                      new password. If you didn't make this request, please
+                      new password. If you didn t make this request, please
                       ignore this email.
                     </Text>
 

@@ -25,7 +25,7 @@ export async function Approved(id: string) {
       success: true,
       message: res.data,
     };
-  } catch (ex: any) {
+  } catch (ex) {
     const errorMsg =
       ex?.response?.data?.message ||
       ex?.response?.data ||

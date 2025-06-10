@@ -1,12 +1,10 @@
-import { useRouter } from "next/navigation";
-import { auth } from "@/app/auth";
+"use client";
+
 interface Props {
   IsLogout: () => void;
 }
 // const {} = auth();
 const Account = ({ IsLogout }: Props) => {
-  const router = useRouter();
-
   return (
     <>
       <div

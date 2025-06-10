@@ -8,13 +8,6 @@ export const GetInstitution = async (id: string) => {
   return response.data;
 };
 
-interface formData {
-  name: string;
-  address: string;
-  phone: string;
-  openingHours: string;
-}
-
 export const PostInstitution = async (data) => {
   const api = await getApiClient();
   const response = await api.put(`institutions/update`, data);

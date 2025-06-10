@@ -20,7 +20,7 @@ const EmailSent = () => {
         Check Your Inbox
       </h2>
       <p className="text-gray-600 dark:text-gray-300 mt-2">
-        We've sent a password reset link to . Please{" "}
+        We ve sent a password reset link to . Please{" "}
         <span className="text-indigo-600 underline ">
           <Link href={"https://mail.google.com/"}>
             {" "}

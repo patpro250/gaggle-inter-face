@@ -7,7 +7,6 @@ const NavItem = ({
   label = "D",
   Icon = FaHome,
   iconSize = 18,
-  iconAltSize = 14,
   Iconoption = "fahome",
 }) => {
   return (

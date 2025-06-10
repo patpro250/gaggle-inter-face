@@ -60,7 +60,7 @@ const ForgotPasswordForm = () => {
       setSuccessMessage(data.message);
       router.push("/login/s");
     },
-    onError: (error: any) => {
+    onError: (error) => {
       toast.error(error.message || "Something went wrong");
       setSuccessMessage("");
     },

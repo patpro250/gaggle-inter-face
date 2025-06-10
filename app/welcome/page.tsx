@@ -1,6 +1,6 @@
+import { Info } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Info, ArrowRightCircle } from "lucide-react";
 import GoogleSignUpButton from "./SignUpButton";
 
 export default function WelcomePage() {

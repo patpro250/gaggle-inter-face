@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { redirect } from "next/navigation";
 import { auth } from "../auth";
 import { APP_NAME } from "../constants";
@@ -12,11 +11,12 @@ export const metadata = {
 export default async function Login() {
   const session = await auth();
   if (session) {
-    if (session.user.userType === 'Librarian') {
+    const userType = (session.user as { userType?: string }).userType;
+    if (userType === "Librarian") {
       redirect("/g/schools/dashboard");
-    } else if (session.user.userType === 'Member') {
+    } else if (userType === "Member") {
       redirect("/members");
-    } else if (session.user.userType === 'Institution') {
+    } else if (userType === "Institution") {
       redirect("/d/admin");
     } else {
       redirect("/d/gg");

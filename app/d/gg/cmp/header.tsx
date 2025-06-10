@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { auth } from "@/app/auth";
 import AvatarDropdown from "@/app/g/schools/_components/AvatarDropdown";
 import React from "react";

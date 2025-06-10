@@ -1,5 +1,4 @@
 import React from "react";
-import AdiminLayout from "../../layout";
 
 const SearchPage = () => {
   return (

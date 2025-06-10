@@ -14,7 +14,7 @@ const CopyButton = ({ value }: Props) => {
       await navigator.clipboard.writeText(value);
       toast.success("Copied to clipboard!");
     } catch (err) {
-      toast.error("Failed to copy!");
+      toast.error(err || "Failed to copy!");
     }
   };
 

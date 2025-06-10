@@ -1,4 +1,3 @@
-import axios from "axios";
 import PersonalInformation from "./PersonalInformation";
 import { getApiClient } from "@/app/g/schools/axios";
 
@@ -10,6 +9,7 @@ export async function fetchSettings() {
     const book = response.data;
     return book;
   } catch (ex) {
+    console.error("Error fetching settings:", ex);
     return [];
   }
 }
@@ -19,8 +19,8 @@ export async function changeSettings(updatedData: PersonalInformation) {
     const api = await getApiClient();
     const response = await api.put(`/members`, updatedData);
     return response.data;
-
   } catch (ex) {
+    console.error("Error changing settings:", ex);
     return null;
   }
 }

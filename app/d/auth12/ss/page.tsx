@@ -15,7 +15,7 @@ const Step2 = () => {
   const router = useRouter();
   const { loading, valid, verify, errorN } = useVerifyName();
   const { data, setField } = useOnboardingStore();
-  const [email, setEmail] = useState(data.email || "");
+  const [email] = useState(data.email || "");
 
   useEffect(() => {
     if (!data.email) {

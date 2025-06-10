@@ -1,4 +1,3 @@
-import axios from "axios";
 import { ChangePasswordForm } from "./ChangePasswordModal";
 import { getApiClient } from "@/app/g/schools/axios";
 
@@ -8,7 +7,6 @@ export async function changePassword(updatedData: ChangePasswordForm) {
     const response = await api.post(`/members/change-password`, updatedData);
 
     return { success: true, message: response.data };
-
   } catch (error) {
     return {
       success: false,

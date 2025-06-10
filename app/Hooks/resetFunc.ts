@@ -1,7 +1,6 @@
 "use server";
 
 import axios from "axios";
-import { getApiClient } from "../g/schools/axios";
 
 interface DataPayload {
   email: string;
@@ -25,12 +24,7 @@ export const ResetInstitution = async (data: DataPayload) => {
       Success: true,
       message: res.data,
     };
-  } catch (error: any) {
-    console.error(
-      "Reset password error:",
-      error?.response?.data || error.message
-    );
-
+  } catch (error) {
     return {
       Success: false,
       message: error?.response?.data || error.message || "Failed to reset",
@@ -47,7 +41,7 @@ interface ResetData {
 const apiUrl = process.env.NEXT_PUBLIC_API_URL_APP; // e.g., "https://yourdomain.com/api/send-reset"
 
 export const sendResetEmail = async (data: ResetData) => {
-  const { token, email, name } = data;
+  const { token, email } = data;
 
   if (!token || !email) {
     return {
@@ -63,7 +57,7 @@ export const sendResetEmail = async (data: ResetData) => {
       success: true,
       message: response.data,
     };
-  } catch (error: any) {
+  } catch (error) {
     // console.error(
     //   "Error sending reset email:",
     //   error?.response?.data || error.message

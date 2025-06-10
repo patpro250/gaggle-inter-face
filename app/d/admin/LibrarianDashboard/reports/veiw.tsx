@@ -1,5 +1,4 @@
 "use client";
-
 import { useQuery } from "@tanstack/react-query";
 import millify from "millify";
 import React from "react";
@@ -69,7 +68,7 @@ export default function DashboardStats() {
 
   const rawStats = Object.entries(data);
 
-  const globalMax = Math.max(...rawStats.map(([_, v]) => Number(v)), 1);
+  const globalMax = Math.max(...rawStats.map(([v]) => Number(v)), 1);
   const MAX_FILL_PERCENT = 90;
 
   const stats = rawStats.map(([key, val], i) => {

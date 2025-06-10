@@ -1,8 +1,25 @@
-// @ts-nocheck
 import NextAuth from "next-auth";
 import { AuthError } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { Librarian } from "./_types/librarian";
+
+import "next-auth";
+
+declare module "next-auth" {
+  interface User {
+    token?: string;
+  }
+  interface Session {
+    user?: User & { token?: string };
+  }
+}
+// Extend the Session type to include accessToken
+
+declare module "next-auth" {
+  interface Session {
+    accessToken?: string;
+  }
+}
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -47,8 +64,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
 
     async session({ session, token }) {
-      session.user = token.user;
-      session.accessToken = token.accessToken;
+      session.user = token.user as typeof session.user;
+      session.accessToken =
+        typeof token.accessToken === "string" ? token.accessToken : "";
       return session;
     },
   },

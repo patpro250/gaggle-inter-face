@@ -1,12 +1,11 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import React, { FormEvent, useRef, useState } from "react";
-import PageHeader from "../ui/page-header/page";
-import ErrorBox from "../component/ERR0R/page";
+
 import axios from "axios";
-import { LogIn } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React, { FormEvent, useRef, useState } from "react";
+import ErrorBox from "../component/ERR0R/page";
+import PageHeader from "../ui/page-header/page";
 type DataLogin = {
   email: string;
   password: string;
@@ -16,11 +15,6 @@ type erros = {
   verfy: string;
   login: string;
 };
-
-interface StateError {
-  errors: erros;
-  setErrors: React.Dispatch<React.SetStateAction<erros>>;
-}
 
 const LandingPage = () => {
   const router = useRouter();
@@ -47,7 +41,7 @@ const LandingPage = () => {
     obj: DataLogin,
     setErrors: React.Dispatch<React.SetStateAction<erros>>
   ) => {
-    const { who, ...DirectorObject } = obj;
+    const { ...DirectorObject } = obj;
 
     try {
       const sendData = await axios.post(
@@ -66,7 +60,7 @@ const LandingPage = () => {
       localStorage.setItem("x-auth-token", token);
       console.log(token);
       router.push("/admin");
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 400) {
           setErrors((prev) => ({

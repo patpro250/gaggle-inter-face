@@ -1,8 +1,8 @@
 "use client";
 
 import { DropdownMenu } from "radix-ui";
-import { Settings, LogOut, Mail } from "lucide-react";
-import Link from "next/link";
+import { LogOut, Mail } from "lucide-react";
+
 import { signOut, useSession } from "next-auth/react";
 import UserAvatar from "./UserAvatar";
 

@@ -1,3 +1,4 @@
+"use client";
 import { Popover } from "@radix-ui/themes";
 import {
   ArrowRightLeft,
@@ -8,14 +9,13 @@ import {
   Settings,
 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+
 import ListComponentOnly from "../../listComponentOnlyButton/page";
 
 interface Props {
   Path: string;
 }
 const BookInventory = ({ Path }: Props) => {
-  const router = useRouter();
   return (
     <div>
       <li className="relative  ">
