@@ -4,8 +4,7 @@ import Image from "next/image";
 import { useTypewriter } from "react-simple-typewriter";
 import Loading from "../loading";
 import useFetchData from "../stateManagement/SettingGetting";
-
-import ErrorBox from "@/app/component/ERR0R/page";
+import ErrorBox from "@/component2/ERR0R/page";
 
 function SettingsPage() {
   const url =

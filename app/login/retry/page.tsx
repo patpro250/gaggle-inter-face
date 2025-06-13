@@ -1,32 +1,42 @@
-// app/password-reset/page.tsx
-"use client";
-import { redirect, useSearchParams } from "next/navigation";
-import PasswordResetForm from "./retry";
-import { useQuery } from "@tanstack/react-query";
-import { fetchTokenDetail } from "@/app/Hooks/geting";
-import NotFound from "@/app/not-found";
+// // app/password-reset/page.tsx
+// import { Suspense } from "react";
 
-export default function PasswordResetPage() {
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+// // 1️⃣ Wrap a client-side inner component in Suspense
+// function PasswordResetClient() {
+//   "use client";
+//   const { redirect, useSearchParams } = require("next/navigation");
+//   const { useQuery } = require("@tanstack/react-query");
+//   const { fetchTokenDetail } = require("@/app/Hooks/geting");
+//   const PasswordResetForm = require("./retry").default;
+//   const NotFound = require("@/app/not-found").default;
 
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["tokenDetail", token],
-    queryFn: () => fetchTokenDetail(token!),
-    enabled: !!token,
-    retry: 1,
-  });
+//   const searchParams = useSearchParams();
+//   const token = searchParams.get("token");
 
-  if (isLoading) return <p>Loading token info...</p>;
-  if (isError) return <NotFound />;
+//   const { data, isLoading, isError } = useQuery({
+//     queryKey: ["tokenDetail", token],
+//     queryFn: () => fetchTokenDetail(token!),
+//     enabled: !!token,
+//     retry: 1,
+//   });
 
-  if (!data?.token) {
-    redirect("/");
-  }
+//   if (isLoading) return <p>Loading token info...</p>;
+//   if (isError) return <NotFound />;
+//   if (!data?.token) {
+//     redirect("/");
+//   }
 
+//   return <PasswordResetForm basetoken={token!} />;
+// }
+
+import React from "react";
+
+const page = () => {
   return (
-    <main className="min-h-screen dark:bg-gray-800 flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <PasswordResetForm basetoken={token} />
-    </main>
+    <div>
+      <h1>hfj</h1>
+    </div>
   );
-}
+};
+
+export default page;

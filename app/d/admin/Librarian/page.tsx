@@ -1,10 +1,9 @@
 "use server";
+import Table from "@/component2/table/tbl/page";
 import React from "react";
 
 // import Table from "../../component/table/tbl/page";
 // import useAuthGuard from "../../middlwere/AdminGuid/page";
-
-import Table from "@/app/component/table/tbl/page";
 
 const Library = () => {
   return (

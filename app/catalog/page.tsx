@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
-import NavBar from "../ui/nav-bar/page";
+
 import Footer from "./Footer";
 import Intro from "./Intro";
 import Results from "./Results";
 import SearchCatalog from "./SearchCatalog";
+import NavBar from "./NavBar";
 
 const CatalogPage = () => {
   const [results, setResults] = useState<[]>([]);

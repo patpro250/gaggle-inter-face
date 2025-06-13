@@ -1,5 +1,6 @@
+import ManualPaymentForm from "@/app/d/admin/payment/page";
 import React from "react";
-import { ManualPaymentForm } from "./paySelect/page";
+
 const Payment = () => {
   return (
     <div>

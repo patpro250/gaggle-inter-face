@@ -9,6 +9,7 @@ import * as z from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { PostReset } from "@/app/Hooks/geting";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 // Define validation schema
 const passwordSchema = z

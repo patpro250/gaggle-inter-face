@@ -4,8 +4,10 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useRef, useState } from "react";
-import ErrorBox from "../component/ERR0R/page";
-import PageHeader from "../ui/page-header/page";
+
+import PageHeader from "@/components/uix/page-header/page";
+import ErrorBox from "@/component2/ERR0R/page";
+
 type DataLogin = {
   email: string;
   password: string;

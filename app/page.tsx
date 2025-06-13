@@ -1,12 +1,11 @@
-import React from "react";
-import BrandVideoCard from "./component/web/branding/page";
-import HeroBanner from "./component/web/burner/page";
-import Navbar from "./component/web/nav/page";
-import TestimonialsSection from "./component/web/testmony/page";
-import FeaturesSection from "./component/web/features/page";
-import PlansSection from "./component/web/plan/page";
-import CallToAction from "./component/web/calltoaction/page";
-import Footer from "./component/web/footer/page";
+import BrandVideoCard from "@/component2/web/branding/page";
+import HeroBanner from "@/component2/web/burner/page";
+import CallToAction from "@/component2/web/calltoaction/page";
+import FeaturesSection from "@/component2/web/features/page";
+import Navbar from "@/component2/web/nav/page";
+import PlansSection from "@/component2/web/plan/page";
+import TestimonialsSection from "@/component2/web/testmony/page";
+import Footer from "./catalog/Footer";
 
 const Home = () => {
   return (

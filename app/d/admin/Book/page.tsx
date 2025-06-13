@@ -9,7 +9,7 @@ import {
   FileArchive,
   GitPullRequestDraft,
 } from "lucide-react";
-import BookTable from "@/app/component/tableBooks/tbl/page";
+import BookTable from "@/component2/tableBooks/tbl/page";
 
 const BookPage = () => {
   return (

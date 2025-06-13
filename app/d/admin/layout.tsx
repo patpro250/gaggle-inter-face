@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
-import AsiderPageAdmin from "../../ui/adminAsider/page";
-import NavBarAdminComponent from "../../ui/adminNavBar/page";
+
 import { auth } from "@/app/auth";
+import NavBarAdminComponent from "@/components/adminNavBar/page";
+import AsiderPageAdmin from "@/components/uix/adminAsider/page";
 import { redirect } from "next/navigation";
 // import useAuthGuard from "../../pagemiddlwere/AdminGuid/page";
 

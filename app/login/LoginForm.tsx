@@ -37,10 +37,18 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     const response = await login(data);
     if (response.success) {
-      toast.success(response.message);
+      toast.success(
+        typeof response.message === "string"
+          ? response.message
+          : "Login successful"
+      );
       redirector(data.userType);
     } else {
-      toast.error(response?.message || "Invalid email or password");
+      toast.error(
+        typeof response?.message === "string"
+          ? response.message
+          : "Invalid email or password"
+      );
     }
   };
 
