@@ -41,7 +41,7 @@ const AvatarDropdown = () => {
           <DropdownMenu.Separator className="my-2 h-px bg-gray-200 dark:bg-gray-700" />
           <DropdownMenu.Item
             className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-red-600 dark:text-red-500 transition-colors hover:bg-red-500 cursor-pointer hover:text-white dark:hover:bg-red-600/30"
-            onClick={() => signOut()}
+            onClick={() => signOut({redirectTo: "/login"})}
           >
             <LogOut size={18} /> Logout
           </DropdownMenu.Item>
