@@ -1,4 +1,4 @@
-name: 🚀 Deploy App to VPS
+name: 🚀 Deploy App
 
 on:
   push:
@@ -19,13 +19,12 @@ jobs:
           echo "${{ secrets.HOST_SSH_KEY }}" > key.pem
           chmod 600 key.pem
 
-      - name: 🚀 Deploy to Hostinger VPS
+      - name: 🚀 Deploy App to Hostinger VPS
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.HOST_USERNAME }}@${{ secrets.HOST_SERVER_IP }} << 'EOF'
             cd /root/app/
 
             git pull origin production
-
             cd ..
 
             docker-compose down
