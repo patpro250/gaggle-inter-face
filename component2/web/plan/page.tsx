@@ -1,47 +1,49 @@
-const plans = [
-  {
-    name: "Free",
-    price: "0 RWF/month",
-    features: [
-      "Add up to 1,000 books",
-      "Limited circulations: 300 transactions",
-      "Basic reports and analytics",
-      "1 Librarian",
-      "Manage a single library",
-      "Basic librarian tools",
-      "Community-based support only",
-    ],
-    highlight: false,
-  },
-  {
-    name: "Plus",
-    price: "5,000 RWf/month",
-    features: [
-      "Add up to 5,000 books",
-      "Unlimited circulations",
-      "Advanced analytics",
-      "3 Librarians",
-      "Advanced librarian tools",
-      "Advanced reporting features",
-      "Email-only support",
-    ],
-    highlight: true,
-  },
-  {
-    name: "Pro",
-    price: "10,000 RWF/month",
-    features: [
-      "Library Branches",
-      "Inter-Library",
-      "Reservations",
-      "Access Control",
-      "Custom Branding",
-      "Book Code Generation",
-      "Priority support",
-    ],
-    highlight: false,
-  },
-];
+import Plans from "@/components/uix/plans";
+
+// const plans = [
+//   {
+//     name: "Free",
+//     price: "0 RWF/month",
+//     features: [
+//       "Add up to 1,000 books",
+//       "Limited circulations: 300 transactions",
+//       "Basic reports and analytics",
+//       "1 Librarian",
+//       "Manage a single library",
+//       "Basic librarian tools",
+//       "Community-based support only",
+//     ],
+//     highlight: false,
+//   },
+//   {
+//     name: "Plus",
+//     price: "5,000 RWf/month",
+//     features: [
+//       "Add up to 5,000 books",
+//       "Unlimited circulations",
+//       "Advanced analytics",
+//       "3 Librarians",
+//       "Advanced librarian tools",
+//       "Advanced reporting features",
+//       "Email-only support",
+//     ],
+//     highlight: true,
+//   },
+//   {
+//     name: "Pro",
+//     price: "10,000 RWF/month",
+//     features: [
+//       "Library Branches",
+//       "Inter-Library",
+//       "Reservations",
+//       "Access Control",
+//       "Custom Branding",
+//       "Book Code Generation",
+//       "Priority support",
+//     ],
+//     highlight: false,
+//   },
+// ];
 
 const PlansSection = () => {
   return (
@@ -56,7 +58,7 @@ const PlansSection = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {plans.map((plan, i) => (
           <div
             key={i}
@@ -89,7 +91,8 @@ const PlansSection = () => {
             </button>
           </div>
         ))}
-      </div>
+      </div> */}
+      <Plans />
     </section>
   );
 };

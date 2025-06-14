@@ -1,9 +1,10 @@
 "use server";
-import { getApiClient } from "@/app/g/schools/axios";
+// import { getApiClient } from "@/app/g/schools/axios";
+import axios from "axios";
 
 export const fetchPlans = async () => {
-  console.log("Fetching stars data...");
-  const api = await getApiClient();
-  const response = await api.get(`/plans`);
+  const api = process.env.NEXT_PUBLIC_API_URL;
+
+  const response = await axios.get(`${api}/plans`);
   return response.data;
 };
