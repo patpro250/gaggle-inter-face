@@ -1,150 +1,148 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { toast } from "react-hot-toast";
-import { useOnboardingStore } from "@/app/stores/useOnboardingStore";
-import { useEffect, useState } from "react";
-import { z } from "zod";
 import {
-  Institution,
   useCreateInstitution,
+  Institution,
 } from "@/app/Hooks/useCreateInsititution";
+import { useOnboardingStore } from "@/app/stores/useOnboardingStore";
+import { AnimatePresence, motion } from "framer-motion";
 
-// Password validation schema
-const passwordSchema = z
-  .string()
-  .min(8, "Password must be at least 8 characters long")
-  .max(30, "Password must be at most 30 characters long")
-  .regex(/[a-z]/, "Must contain at least one lowercase letter")
-  .regex(/[A-Z]/, "Must contain at least one uppercase letter")
-  .regex(/[0-9]/, "Must contain at least one number")
-  .regex(/[^a-zA-Z0-9]/, "Must contain at least one special character");
-
-// Full form validation schema
-const formSchema = z.object({
-  address: z.string().min(1, "Address is required"),
-  phone: z
-    .string()
-    .min(10, "Phone number must be at least 10 digits")
-    .regex(/^\d+$/, "Phone must contain only digits"),
-  type: z.string().min(1, "Type is required"),
-  openingHours: z.string().min(1, "Opening hour is required"),
-  password: passwordSchema,
-});
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { z } from "zod";
+import { OnboardingContainer } from "../stepHolder";
+import { useRouter } from "next/navigation";
 
 const Step3 = () => {
   const router = useRouter();
   const { data, setField } = useOnboardingStore();
-  const { createInstitution, create, loading } = useCreateInstitution();
+  const { createInstitution, loading } = useCreateInstitution();
 
-  const [address, setAddress] = useState(data.address || "");
-  const [phone, setPhone] = useState(data.phone || "");
-  const [type, setType] = useState(data.type || "");
-  const [openingHours, setOpeningHours] = useState(data.openingHours || "");
-  const [password, setPassword] = useState(data.password || "");
-  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    address: data.address || "",
+    phone: data.phone || "",
+    type: data.type || "",
+    openingHours: data.openingHours || "",
+    password: data.password || "",
+    showPassword: false,
+  });
 
   useEffect(() => {
-    if (!data.email || !data.name) {
-      router.push("/d/auth12/s");
-    }
+    if (!data.email || !data.name) router.push("/d/auth12/s");
   }, [data.email, data.name, router]);
-
-  useEffect(() => {
-    if (create) {
-      toast.success("Institution created successfully!");
-      router.push("../../../d/auth12/ssss/");
-    }
-  }, [create, router]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const formData = {
-      ...data,
-      address,
-      phone,
-      type,
-      openingHours,
-      password,
-    };
+    const passwordSchema = z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(/[A-Z]/, "Must contain uppercase letter")
+      .regex(/[a-z]/, "Must contain lowercase letter")
+      .regex(/[0-9]/, "Must contain number")
+      .regex(/[^A-Za-z0-9]/, "Must contain special character");
 
-    const result = formSchema.safeParse(formData);
+    const result = z
+      .object({
+        address: z.string().min(1, "Address required"),
+        phone: z
+          .string()
+          .min(10, "Phone must be 10 digits")
+          .regex(/^\d+$/, "Digits only"),
+        type: z.string().min(1, "Type required"),
+        openingHours: z.string().min(1, "Opening hours required"),
+        password: passwordSchema,
+      })
+      .safeParse(formData);
+
     if (!result.success) {
       toast.error(result.error.issues[0].message);
       return;
     }
 
     // Update store
-    setField("address", address);
-    setField("phone", phone);
-    setField("type", type);
-    setField("openingHours", openingHours);
-    setField("password", password);
+    Object.entries(formData).forEach(([key, value]) => {
+      if (key !== "showPassword") setField(key as keyof typeof data, value);
+    });
 
-    createInstitution(formData as Institution);
-
-    // if (create) {
-    //   router.push("../../../d/auth12/sss/");
-    // }
+    createInstitution({
+      ...data,
+      ...formData,
+      showPassword: undefined,
+    } as Institution);
   };
 
   return (
-    <div>
-      <h1 className="text-xl font-bold text-center mb-1">
-        Step 3: Institution Details
-      </h1>
-      <div className="w-full overflow-y-auto bg-amber-0 p-30 max-h-[590px] flex flex-col justify-center items-center ">
-        <form
-          onSubmit={handleSubmit}
-          className="w-md mx-auto bg-amber-0    space-y-1"
+    <OnboardingContainer currentStep={3}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key="step3"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 50 }}
+          transition={{ duration: 0.3 }}
         >
-          <div className="flex flex-col">
-            <label className="text-md font-medium flex flex-col gap-2 text-gray-700">
-              Address
-              <input
-                type="text"
-                id="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Institution Address"
-                className="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-            </label>
+          <h2 className="text-2xl font-bold text-gray-800 mb-1">
+            Complete Your Profile
+          </h2>
+          <p className="text-gray-600 mb-6">Final details to get started</p>
 
-            <label className="text-md font-medium flex flex-col gap-2 text-gray-700">
-              Opening Hours
-              <input
-                type="text"
-                id="openingHours"
-                value={openingHours}
-                onChange={(e) => setOpeningHours(e.target.value)}
-                placeholder="Opening Hours"
-                className="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-            </label>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {[
+              {
+                id: "address",
+                label: "Address",
+                type: "text",
+                value: formData.address,
+              },
+              {
+                id: "openingHours",
+                label: "Opening Hours",
+                type: "text",
+                value: formData.openingHours,
+              },
+              {
+                id: "phone",
+                label: "Phone",
+                type: "tel",
+                value: formData.phone,
+              },
+            ].map((field) => (
+              <div key={field.id}>
+                <label
+                  htmlFor={field.id}
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  {field.label}
+                </label>
+                <input
+                  id={field.id}
+                  type={field.type}
+                  value={field.value}
+                  onChange={(e) =>
+                    setFormData({ ...formData, [field.id]: e.target.value })
+                  }
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                />
+              </div>
+            ))}
 
-            <label className="text-md font-medium flex flex-col gap-2 text-gray-700">
-              Phone
-              <input
-                type="tel"
-                id="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="Phone Number"
-                className="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-            </label>
-
-            <label className="text-md font-medium flex flex-col gap-2 text-gray-700">
-              Institution Type
+            <div>
+              <label
+                htmlFor="type"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Institution Type
+              </label>
               <select
                 id="type"
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-                className="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                value={formData.type}
+                onChange={(e) =>
+                  setFormData({ ...formData, type: e.target.value })
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
               >
-                <option value="">Choose Institution Type</option>
+                <option value="">Select type</option>
                 <option value="UNIVERSITY">University</option>
                 <option value="COLLEGE">College</option>
                 <option value="SCHOOL">School</option>
@@ -153,39 +151,56 @@ const Step3 = () => {
                 <option value="NON_PROFIT">Non Profit</option>
                 <option value="OTHER">Other</option>
               </select>
-            </label>
+            </div>
 
-            <label className="text-md font-medium flex flex-col gap-2 text-gray-700">
-              Password
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Password
+              </label>
               <input
-                type={showPassword ? "text" : "password"}
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                type={formData.showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
               />
-            </label>
+              <div className="flex items-center mt-2">
+                <input
+                  type="checkbox"
+                  id="showPassword"
+                  checked={formData.showPassword}
+                  onChange={() =>
+                    setFormData({
+                      ...formData,
+                      showPassword: !formData.showPassword,
+                    })
+                  }
+                  className="mr-2"
+                />
+                <label htmlFor="showPassword" className="text-sm text-gray-700">
+                  Show password
+                </label>
+              </div>
+            </div>
 
-            <label className="text-md font-medium flex py-4 gap-2 text-gray-700">
-              <input
-                type="checkbox"
-                checked={showPassword}
-                onChange={() => setShowPassword((prev) => !prev)}
-              />
-              Show password
-            </label>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary transition-colors"
-          >
-            {loading ? "Wait..." : "Create"}
-          </button>
-        </form>
-      </div>
-    </div>
+            <motion.button
+              type="submit"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
+              disabled={loading}
+            >
+              {loading ? "Creating account..." : "Complete Registration"}
+            </motion.button>
+          </form>
+        </motion.div>
+      </AnimatePresence>
+    </OnboardingContainer>
   );
 };
 
