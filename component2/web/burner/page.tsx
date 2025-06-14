@@ -11,7 +11,7 @@ const HeroBanner = () => {
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
 
-            <span className="text-indigo-600">Niti Book</span>
+            <span className="text-indigo-600">Niti Book</span><br/>
             Modern Library Systems <br />
             <span className="text-indigo-600">Built for Rwanda</span>
           </h1>
