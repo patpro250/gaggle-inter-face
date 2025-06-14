@@ -34,10 +34,10 @@ jobs:
             git reset --hard origin/production
 
             echo "🧼 Cleaning up old containers..."
-            docker compose down --remove-orphans
+            docker-compose down --remove-orphans
 
             echo "🛠️ Building and starting containers..."
-            docker compose up -d --build --pull always
+            docker-compose up -d --build --pull always
 
             echo "✅ Deployment complete."
           EOF
