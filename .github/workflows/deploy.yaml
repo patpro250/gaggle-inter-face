@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: 🛠️ Build & Deploy
+    name: 🛠️ Build & Deploy to VPS
     runs-on: ubuntu-latest
 
     steps:
@@ -19,14 +19,28 @@ jobs:
           echo "${{ secrets.HOST_SSH_KEY }}" > key.pem
           chmod 600 key.pem
 
-      - name: 🚀 Deploy App to Hostinger VPS
+      - name: ✅ Check SSH connection
+        run: |
+          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.HOST_USERNAME }}@${{ secrets.HOST_SERVER_IP }} "echo ✅ SSH connection OK"
+
+      - name: 🚀 Deploy App to VPS
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.HOST_USERNAME }}@${{ secrets.HOST_SERVER_IP }} << 'EOF'
+            set -e  # stop on error
+            echo "🔄 Pulling latest code..."
             cd /root/app/
 
-            git pull origin production
-            cd ..
+            git fetch origin
+            git reset --hard origin/production
 
-            docker-compose down
-            docker-compose up -d --build
+            echo "🧼 Cleaning up old containers..."
+            docker compose down --remove-orphans
+
+            echo "🛠️ Building and starting containers..."
+            docker compose up -d --build --pull always
+
+            echo "✅ Deployment complete."
           EOF
+
+      - name: 🧹 Cleanup
+        run: rm key.pem
