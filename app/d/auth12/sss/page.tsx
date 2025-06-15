@@ -1,9 +1,5 @@
 "use client";
 
-import {
-  useCreateInstitution,
-  Institution,
-} from "@/app/Hooks/useCreateInsititution";
 import { useOnboardingStore } from "@/app/stores/useOnboardingStore";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -12,11 +8,11 @@ import toast from "react-hot-toast";
 import { z } from "zod";
 import { OnboardingContainer } from "../stepHolder";
 import { useRouter } from "next/navigation";
+import { Createinsititution } from "../../admin/payment/approve/confirm";
 
 const Step3 = () => {
   const router = useRouter();
   const { data, setField } = useOnboardingStore();
-  const { createInstitution, loading } = useCreateInstitution();
 
   const [formData, setFormData] = useState({
     address: data.address || "",
@@ -31,7 +27,7 @@ const Step3 = () => {
     if (!data.email || !data.name) router.push("/d/auth12/s");
   }, [data.email, data.name, router]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const passwordSchema = z
@@ -65,11 +61,16 @@ const Step3 = () => {
       if (key !== "showPassword") setField(key as keyof typeof data, value);
     });
 
-    createInstitution({
-      ...data,
-      ...formData,
-      showPassword: undefined,
-    } as Institution);
+    const response = await Createinsititution(data);
+
+    if (response.success) {
+      toast.success(`${response.message}`);
+      router.push("../../../d/auth12/ssss");
+    } else {
+      toast.error(`${response.message}`);
+    }
+
+    console.log(formData);
   };
 
   return (
@@ -193,9 +194,8 @@ const Step3 = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
-              disabled={loading}
             >
-              {loading ? "Creating account..." : "Complete Registration"}
+              Complete Registration
             </motion.button>
           </form>
         </motion.div>

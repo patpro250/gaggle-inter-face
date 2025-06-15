@@ -11,7 +11,7 @@ import { OnboardingContainer } from "../stepHolder";
 
 const Step2 = () => {
   const router = useRouter();
-  const { loading, valid, verify, errorN } = useVerifyName();
+  const { loading, valid, errorN } = useVerifyName();
   const { data, setField } = useOnboardingStore();
   const [name, setName] = useState(data.name || "");
   const [error, setError] = useState("");
@@ -34,12 +34,13 @@ const Step2 = () => {
       return;
     }
 
-    await verify(name);
+    // await verify(name);
     if (errorN) return toast.error(errorN);
     if (valid) return toast.error("Name is taken!");
 
     toast.success(`${name} is available!`);
     setField("name", name);
+    console.log(data);
     router.push("../../../d/auth12/sss/");
   };
 

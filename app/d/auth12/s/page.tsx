@@ -47,7 +47,7 @@ const Step1 = () => {
             Create Your Account
           </h2>
           <p className="text-gray-600 mb-6">
-            Let's get started with your email address
+            Let `&apos` s get started with your email address
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">

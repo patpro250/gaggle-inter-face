@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-// 1. Institution type enum
+
 export enum InstitutionType {
   UNIVERSITY = "UNIVERSITY",
   COLLEGE = "COLLEGE",
@@ -15,7 +15,6 @@ export enum InstitutionType {
   OTHER = "OTHER",
 }
 
-// 2. Institution interface
 export interface Institution {
   name: string;
   email: string;
@@ -26,29 +25,24 @@ export interface Institution {
   type: InstitutionType;
 }
 
-// 3. Zod schema for validation
 const institutionSchema = z.object({
-  name: z
-    .string()
-    .min(3, "Name must be at least 3 characters")
-    .nonempty("Name is required"),
-  email: z.string().email("Invalid email address"),
+  name: z.string().min(3).nonempty(),
+  email: z.string().email(),
   password: z
     .string()
-    .min(6, "Password must be at least 6 characters")
-    .regex(/[A-Z]/, "Password must contain an uppercase letter")
-    .regex(/[a-z]/, "Password must contain a lowercase letter")
-    .regex(/[0-9]/, "Password must contain a number")
-    .regex(/[#?!@$%^&*-]/, "Password must contain a special character"),
-  phone: z.string().min(10, "Phone number must be at least 10 digits"),
-  address: z.string().nonempty("Address is required"),
-  openingHours: z.string().nonempty("Opening hours are required"),
+    .min(6)
+    .regex(/[A-Z]/)
+    .regex(/[a-z]/)
+    .regex(/[0-9]/)
+    .regex(/[#?!@$%^&*-]/),
+  phone: z.string().min(10),
+  address: z.string().nonempty(),
+  openingHours: z.string().nonempty(),
   type: z.nativeEnum(InstitutionType, {
     errorMap: () => ({ message: "Invalid institution type" }),
   }),
 });
 
-// 4. Custom hook
 export function useCreateInstitution() {
   const [loading, setLoading] = useState(false);
   const [errorN, setError] = useState<string | null>(null);
@@ -56,8 +50,6 @@ export function useCreateInstitution() {
 
   const createInstitution = async (institution: Institution) => {
     setError(null);
-
-    // Validate with Zod before submitting
     const result = institutionSchema.safeParse(institution);
     if (!result.success) {
       setError(result.error.errors[0]?.message || "Validation failed");
@@ -66,21 +58,21 @@ export function useCreateInstitution() {
 
     try {
       setLoading(true);
-      await axios.post(`${API_URL}/institutions`, institution);
-
-      // Or setValid(res.data) if response has useful data
-
-      setCreate(true);
+      const res = await axios.post(`${API_URL}/institutions`, institution);
+      if (res?.data) {
+        setCreate(true);
+      } else {
+        throw new Error("Empty response from server");
+      }
     } catch (err) {
       const errorMessage =
-        err.response?.data?.message || // if backend returns { message: "..." }
-        err.response?.data || // fallback if response.data is a string
-        err.message || // general JS Error object
+        err?.response?.data?.message ||
+        (typeof err?.response?.data === "string" && err.response.data) ||
+        err?.message ||
         "Something went wrong";
 
       toast.error(errorMessage);
-
-      setError(err.response?.data?.message || "Something went wrong");
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

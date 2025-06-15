@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type OnboardingData = {
+export type OnboardingData = {
   email: string;
   name: string;
   address: string;
