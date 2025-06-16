@@ -17,8 +17,8 @@ const NavBarAdminComponent = ({ nameInsititution }: Props) => {
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex shrink-0 items-center">
-                <span className="text-xl text-indigo-600 font-medium uppercase ">
-                  {nameInsititution} .
+                <span className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                  {nameInsititution}
                 </span>
               </div>
             </div>

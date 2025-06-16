@@ -69,8 +69,6 @@ const Step3 = () => {
     } else {
       toast.error(`${response.message}`);
     }
-
-    console.log(formData);
   };
 
   return (

@@ -4,6 +4,7 @@ import { auth } from "@/app/auth";
 import NavBarAdminComponent from "@/components/adminNavBar/page";
 import AsiderPageAdmin from "@/components/uix/adminAsider/page";
 import { redirect } from "next/navigation";
+
 // import useAuthGuard from "../../pagemiddlwere/AdminGuid/page";
 
 interface Props {
@@ -64,7 +65,10 @@ const AdiminLayout = async ({ children }: Props) => {
             WELCOME TO <span className="text-amber-900">{name123}</span>
           </span>{" "}
           <span className="bg-indigo-500 ms-5 text-sm font-semibold px-2 rounded-sm">
-            INSTITUTION CODE : <span className="text-amber-900">{code}</span>
+            INSTITUTION CODE :{" "}
+            <span className="text-amber-900 cursor-pointer hover:underline">
+              {code}
+            </span>
           </span>{" "}
         </span>
         <span className="bg-indigo-500 ms-5 text-sm font-semibold px-2 rounded-sm">
