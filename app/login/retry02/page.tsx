@@ -1,13 +1,13 @@
-// app/password-reset/page.tsx
-
 "use client";
+
+import { Suspense } from "react";
 import NotFound from "@/app/not-found";
 import PasswordResetForm from "../../../components/uix/retry";
 import { redirect, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { fetchTokenDetail } from "@/app/Hooks/geting";
 
-// 1️⃣ Wrap a client-side inner component in Suspense
+// 1️⃣ This component stays the same
 function PasswordResetClient() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
@@ -28,4 +28,11 @@ function PasswordResetClient() {
   return <PasswordResetForm basetoken={token!} />;
 }
 
-export default PasswordResetClient;
+// 2️⃣ Wrap it in <Suspense> before exporting
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <PasswordResetClient />
+    </Suspense>
+  );
+}

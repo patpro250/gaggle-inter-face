@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     }
 
     // Create reset link using token
-    const resetLink = `${apiUrl}/components/uxi/retry02?token=${token}`;
+    const resetLink = `${apiUrl}/login/retry02?token=${token}`;
 
     // Render email HTML with resetLink and optional name
     const html = await render(
