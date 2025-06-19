@@ -43,14 +43,14 @@ const HeroBanner = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Modern Library Systems
+              Modern Library Management System
             </motion.span>
             <br />
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-indigo-600"
+              className="primary"
             >
               Built for Rwanda
             </motion.span>
@@ -62,8 +62,7 @@ const HeroBanner = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto"
           >
-            NITIBOOK combines affordable pricing with enterprise-grade
-            technology to transform how libraries operate across Rwanda.
+            NITI BOOK brings powerful, enterprise-grade technology to Rwandan libraries—at a price every institution can afford—revolutionizing the way they manage, serve, and grow.
           </motion.p>
 
           <motion.div
@@ -75,7 +74,7 @@ const HeroBanner = () => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="../../../d/auth12/s"
-                className="rounded-md bg-indigo-600 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-300"
+                className="rounded-md primary px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-300"
               >
                 Get started
               </Link>
