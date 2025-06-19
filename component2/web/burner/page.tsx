@@ -62,7 +62,7 @@ const HeroBanner = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto"
           >
-            "NITI BOOK brings powerful, enterprise-grade technology to Rwandan libraries at a price every institution can afford revolutionizing the way they manage, serve, and grow.
+          NITI BOOK empowers libraries across Rwanda with enterprise-grade technology and affordable pricing to transform the way they manage, serve, and grow.
           </motion.p>
 
           <motion.div
