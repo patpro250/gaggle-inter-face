@@ -1,11 +1,11 @@
 "use client";
 
-import { Suspense } from "react";
-import NotFound from "@/app/not-found";
-import { redirect, useSearchParams } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
 import { fetchTokenDetail } from "@/app/Hooks/geting";
+import NotFound from "@/app/not-found";
+import { useQuery } from "@tanstack/react-query";
 import { Loader2, LockKeyhole } from "lucide-react";
+import { redirect, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import PasswordResetForm from "../../../components/uix/retry";
 
 function PasswordResetClient() {
@@ -52,7 +52,7 @@ function PasswordResetClient() {
             </p>
           </div>
 
-          <PasswordResetIllustration className="w-full h-38 mb-8" />
+          {/* <PasswordResetIllustration className="w-full h-38 mb-8" /> */}
 
           <PasswordResetForm basetoken={token!} />
         </div>
@@ -61,35 +61,35 @@ function PasswordResetClient() {
   );
 }
 
-const PasswordResetIllustration = ({ className }: { className?: string }) => (
-  <svg
-    viewBox="0 0 500 300"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <rect width="500" height="300" fill="#F8FAFC" />
-    <circle cx="250" cy="150" r="120" fill="#EFF6FF" />
-    <rect x="220" y="100" width="60" height="120" rx="30" fill="#3B82F6" />
-    <circle cx="250" cy="130" r="20" fill="#1D4ED8" />
-    <path
-      d="M220 160H280V190C280 205.464 267.464 218 252 218H248C232.536 218 220 205.464 220 190V160Z"
-      fill="#1D4ED8"
-    />
-    <path
-      d="M250 100V80C250 57.9086 268.909 40 291 40H300"
-      stroke="#3B82F6"
-      strokeWidth="8"
-      strokeLinecap="round"
-    />
-    <path
-      d="M200 40H209C231.091 40 250 57.9086 250 80V100"
-      stroke="#3B82F6"
-      strokeWidth="8"
-      strokeLinecap="round"
-    />
-  </svg>
-);
+// const PasswordResetIllustration = ({ className }: { className?: string }) => (
+//   <svg
+//     viewBox="0 0 500 300"
+//     fill="none"
+//     xmlns="http://www.w3.org/2000/svg"
+//     className={className}
+//   >
+//     <rect width="500" height="300" fill="#F8FAFC" />
+//     <circle cx="250" cy="150" r="120" fill="#EFF6FF" />
+//     <rect x="220" y="100" width="60" height="120" rx="30" fill="#3B82F6" />
+//     <circle cx="250" cy="130" r="20" fill="#1D4ED8" />
+//     <path
+//       d="M220 160H280V190C280 205.464 267.464 218 252 218H248C232.536 218 220 205.464 220 190V160Z"
+//       fill="#1D4ED8"
+//     />
+//     <path
+//       d="M250 100V80C250 57.9086 268.909 40 291 40H300"
+//       stroke="#3B82F6"
+//       strokeWidth="8"
+//       strokeLinecap="round"
+//     />
+//     <path
+//       d="M200 40H209C231.091 40 250 57.9086 250 80V100"
+//       stroke="#3B82F6"
+//       strokeWidth="8"
+//       strokeLinecap="round"
+//     />
+//   </svg>
+// );
 
 export default function Page() {
   return (
