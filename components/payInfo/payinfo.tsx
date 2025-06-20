@@ -170,7 +170,7 @@ const PaymentInfoPage = ({ id }: Props) => {
                     </label>
                     <div className="relative rounded-md shadow-sm">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <span className="text-gray-500"> Rwf</span>
+                        <span className="text-gray-500"> Rwf </span>
                       </div>
                       <input
                         {...register("amount")}
@@ -307,7 +307,7 @@ const PaymentInfoPage = ({ id }: Props) => {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Monthly Price:</span>
-                        <span className="font-medium">Rwf{plan.price}</span>
+                        <span className="font-medium">Rwf {plan.price}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Duration:</span>
@@ -321,7 +321,7 @@ const PaymentInfoPage = ({ id }: Props) => {
 
                     <div className="flex justify-between text-lg font-bold mb-6">
                       <span>Total:</span>
-                      <span>Rwf{Number(plan.price) * plan.duration}</span>
+                      <span>Rwf {Number(plan.price) * plan.duration}</span>
                     </div>
 
                     {plan.features && (
