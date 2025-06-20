@@ -90,7 +90,7 @@ export default function PasswordResetForm({ basetoken }: Props) {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
+    <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">
         Reset Password
       </h2>
