@@ -27,75 +27,85 @@ const LibrarianDetail = async ({ id }: Props) => {
   console.log(LibrarianOnly);
   return (
     <div className="bg-amber-0">
-      <DataList.Root>
-        <DataList.Item align="center">
-          <DataList.Label minWidth="88px">Status</DataList.Label>
-          <DataList.Value>
-            <p
-              className={`px-2 rounded-2xl ${
-                LibrarianOnly.status == "PENDING"
-                  ? "bg-amber-300"
-                  : "bg-green-500"
-              } text-sm capitalize`}
-            >
-              {LibrarianOnly.status}
-            </p>
-          </DataList.Value>
-        </DataList.Item>
-        <DataList.Item>
-          <DataList.Label minWidth="88px">Joined At</DataList.Label>
-          <DataList.Value>{LibrarianOnly.createdAt}</DataList.Value>
-        </DataList.Item>
+  <DataList.Root>
+    {/* Name */}
+    <DataList.Item>
+      <DataList.Label minWidth="88px">Names</DataList.Label>
+      <DataList.Value>
+        <p className="text-green-700">
+          {LibrarianOnly.firstName} {LibrarianOnly.lastName}
+        </p>
+      </DataList.Value>
+    </DataList.Item>
 
-        <DataList.Item>
-          <DataList.Label minWidth="88px">Role</DataList.Label>
-          <DataList.Value>
-            <p className="text-indigo-600 font-medium ">{LibrarianOnly.role}</p>
-          </DataList.Value>
-        </DataList.Item>
+    {/* Phone */}
+    <DataList.Item>
+      <DataList.Label minWidth="88px">Phone Number</DataList.Label>
+      <DataList.Value>
+        <Flex align="center" gap="2">
+          <DataList.Label>{LibrarianOnly.phone}</DataList.Label>
+          <IconButton
+            size="1"
+            aria-label="Copy value"
+            color="gray"
+            variant="ghost"
+          >
+            <CopyButton value={LibrarianOnly.phone} />
+          </IconButton>
+        </Flex>
+      </DataList.Value>
+    </DataList.Item>
 
-        <DataList.Item>
-          <DataList.Label minWidth="88px">Name</DataList.Label>
-          <DataList.Value>
-            <p className=" text-green-700 ">
-              {LibrarianOnly.firstName} {LibrarianOnly.lastName}
-            </p>
-          </DataList.Value>
-        </DataList.Item>
-        <DataList.Item>
-          <DataList.Label minWidth="88px">Email</DataList.Label>
-          <DataList.Value>
-            <Flex align="center" gap="2">
-              <DataList.Label>{LibrarianOnly.email}</DataList.Label>
-              <IconButton
-                size="1"
-                aria-label="Copy value"
-                color="gray"
-                variant="ghost"
-              >
-                <CopyButton value={LibrarianOnly.email} />
-              </IconButton>
-            </Flex>
-          </DataList.Value>
-        </DataList.Item>
-        <DataList.Item>
-          <DataList.Label minWidth="88px">Phone</DataList.Label>
-          <DataList.Value>
-            <Flex align="center" gap="2">
-              <DataList.Label>{LibrarianOnly.phone}</DataList.Label>
-              <IconButton
-                size="1"
-                aria-label="Copy value"
-                color="gray"
-                variant="ghost"
-              >
-                <CopyButton value={LibrarianOnly.phone} />
-              </IconButton>
-            </Flex>
-          </DataList.Value>
-        </DataList.Item>
-      </DataList.Root>
-    </div>
+    {/* Email */}
+    <DataList.Item>
+      <DataList.Label minWidth="88px">Email</DataList.Label>
+      <DataList.Value>
+        <Flex align="center" gap="2">
+          <DataList.Label>{LibrarianOnly.email}</DataList.Label>
+          <IconButton
+            size="1"
+            aria-label="Copy value"
+            color="gray"
+            variant="ghost"
+          >
+            <CopyButton value={LibrarianOnly.email} />
+          </IconButton>
+        </Flex>
+      </DataList.Value>
+    </DataList.Item>
+
+    {/* Role */}
+    <DataList.Item>
+      <DataList.Label minWidth="88px">Role</DataList.Label>
+      <DataList.Value>
+        <p className="text-indigo-600 font-medium">{LibrarianOnly.role}</p>
+      </DataList.Value>
+    </DataList.Item>
+
+    {/* Joined At */}
+    <DataList.Item>
+      <DataList.Label minWidth="88px">Joined At</DataList.Label>
+      <DataList.Value>{LibrarianOnly.createdAt}</DataList.Value>
+    </DataList.Item>
+
+    {/* Status */}
+    <DataList.Item align="center">
+      <DataList.Label minWidth="88px">Status</DataList.Label>
+      <DataList.Value>
+        <p
+          className={`px-2 rounded-2xl ${
+            LibrarianOnly.status == "PENDING"
+              ? "bg-amber-300"
+              : "bg-green-500"
+          } text-sm capitalize`}
+        >
+          {LibrarianOnly.status}
+        </p>
+      </DataList.Value>
+    </DataList.Item>
+  </DataList.Root>
+</div>
+
   );
 };
 
