@@ -30,7 +30,7 @@ const PaymentHistory = () => {
   );
 
   return (
-    <div>
+ <div>
       <div className="bg-white shadow rounded-lg p-6 mt-6">
         <h3 className="text-lg font-semibold mb-4">Payment History</h3>
         <div className="overflow-x-auto">
@@ -64,7 +64,12 @@ const PaymentHistory = () => {
               {paginatedPayments.map((payment, index) => (
                 <tr key={index}>
                   <td className="px-4 py-2 text-sm text-gray-700">
-                    {payment.doneAt}
+                    {new Date(payment.doneAt).toLocaleDateString("rw-RW", {
+                      weekday: "short",
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
+                    })}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-700">
                     {payment.phoneNumber}
@@ -78,7 +83,6 @@ const PaymentHistory = () => {
                   <td className="px-4 py-2 text-sm text-gray-700">
                     {payment.method}
                   </td>
-
                   <td className="px-6 py-4">
                     {payment.status === "SUCCESS" ? (
                       <span className="inline-flex text-sm lowercase items-center gap-1 text-green-600 dark:text-green-400 font-medium">
@@ -94,7 +98,6 @@ const PaymentHistory = () => {
                       </span>
                     )}
                   </td>
-
                   <td className="px-4 py-2 text-sm text-gray-700 text-center">
                     {payment.status == "APPROVED" ? (
                       <Link
