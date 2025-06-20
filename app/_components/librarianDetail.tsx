@@ -17,8 +17,8 @@ interface User {
   password: string;
   role: "MANAGER" | "ADMIN" | "USER" | string;
   permissions: string[];
-  createdAt: string; // ISO date string
-  updatedAt: string; // ISO date string
+  createdAt: string;
+  updatedAt: string;
 }
 
 const LibrarianDetail = async ({ id }: Props) => {
@@ -30,7 +30,7 @@ const LibrarianDetail = async ({ id }: Props) => {
   <DataList.Root>
     {/* Name */}
     <DataList.Item>
-      <DataList.Label minWidth="88px">Names</DataList.Label>
+      <DataList.Label minWidth="88px">Name</DataList.Label>
       <DataList.Value>
         <p className="text-green-700">
           {LibrarianOnly.firstName} {LibrarianOnly.lastName}
@@ -40,7 +40,7 @@ const LibrarianDetail = async ({ id }: Props) => {
 
     {/* Phone */}
     <DataList.Item>
-      <DataList.Label minWidth="88px">Phone Number</DataList.Label>
+      <DataList.Label minWidth="88px">Phone</DataList.Label>
       <DataList.Value>
         <Flex align="center" gap="2">
           <DataList.Label>{LibrarianOnly.phone}</DataList.Label>
@@ -85,7 +85,9 @@ const LibrarianDetail = async ({ id }: Props) => {
     {/* Joined At */}
     <DataList.Item>
       <DataList.Label minWidth="88px">Joined At</DataList.Label>
-      <DataList.Value>{LibrarianOnly.createdAt}</DataList.Value>
+      <DataList.Value>
+        {new Date(LibrarianOnly.createdAt).toDateString()}
+      </DataList.Value>
     </DataList.Item>
 
     {/* Status */}
@@ -94,7 +96,7 @@ const LibrarianDetail = async ({ id }: Props) => {
       <DataList.Value>
         <p
           className={`px-2 rounded-2xl ${
-            LibrarianOnly.status == "PENDING"
+            LibrarianOnly.status === "PENDING"
               ? "bg-amber-300"
               : "bg-green-500"
           } text-sm capitalize`}
