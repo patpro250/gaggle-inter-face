@@ -124,7 +124,7 @@ const LoginForm = () => {
           Don&apos;t have an account?{" "}
           <Link
             className="text-primary underline"
-            href="/auth/librarian/signup"
+            href="/signup"
           >
             Sign up
           </Link>
