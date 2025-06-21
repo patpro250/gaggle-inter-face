@@ -4,7 +4,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-const AnimatedCounter = ({ value, duration = 2 }) => {
+const AnimatedCounter = ({ value }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -122,7 +122,7 @@ const TestimonialsSection = () => {
             {
               name: "Emmanuel K.",
               role: "Student – Huye District",
-              text: "I finally enjoy using the library! It's easy to find books and track what I've read. It feels like real tech.",
+              text: "I finally enjoy using the library! It &apos; s easy to find books and track what I &apos; ve read. It feels like real tech.",
             },
           ].map((t, i) => (
             <motion.div
@@ -134,7 +134,7 @@ const TestimonialsSection = () => {
               whileHover={{ y: -5 }}
               className="bg-white shadow rounded-xl p-6 hover:shadow-md transition-all"
             >
-              <p className="text-gray-600 italic">"{t.text}"</p>
+              <p className="text-gray-600 italic">{t.text}</p>
               <div className="mt-4 text-sm text-gray-800 font-semibold">
                 {t.name}
               </div>

@@ -27,6 +27,12 @@ const Asider = () => {
             Icon={Bolt}
             Path={""}
           />
+          <LinkAsider
+            title={"Analytics"}
+            href={"./../../../d/gg/analytics"}
+            Icon={Bolt}
+            Path={""}
+          />
         </nav>
       </aside>
     </div>

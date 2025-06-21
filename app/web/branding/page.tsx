@@ -70,9 +70,9 @@ const BrandVideoCard = () => {
           >
             Niti Book is reimagining how libraries work — bringing smart
             technology, better management tools, and a renewed focus on reading
-            skills to institutions across Rwanda. We're building a future where
-            every reader has access to knowledge, and every library becomes a
-            center of innovation.
+            skills to institutions across Rwanda. We &apos; re building a future
+            where every reader has access to knowledge, and every library
+            becomes a center of innovation.
           </motion.p>
 
           <motion.div

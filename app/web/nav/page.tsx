@@ -70,7 +70,7 @@ const Navbar = () => {
             { name: "Home", path: "/" },
             { name: "Features", path: "/#f" },
             { name: "Plans", path: "/#plan" },
-            { name: "About", path: "/#about" },
+            { name: "About", path: "/web/about" },
             { name: "Catalog", path: "/catalog" },
           ].map((link, index) => (
             <motion.div
@@ -109,13 +109,26 @@ const Navbar = () => {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/login"
-              className={`text-sm font-medium py-2 px-4 rounded-md transition-colors duration-300 ${
+              className={`text-sm font-medium py-2 px-4 rounded-2xl transition-colors duration-300 ${
                 isScrolled
                   ? "bg-blue-600 text-white hover:bg-blue-700"
-                  : "bg-white border border-gray-200 text-gray-700 hover:bg-blue-50"
+                  : " border-0 bg-primary text-white border-gray-0   hover:opacity-80"
               }`}
             >
               Login
+            </Link>
+          </motion.div>
+
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/signup"
+              className={`text-sm font-medium py-2 px-4 rounded-2xl transition-colors duration-300 ${
+                isScrolled
+                  ? "bg-blue-600 text-white hover:bg-blue-700"
+                  : " border-0 bg-primary text-white border-gray-0   hover:opacity-80"
+              }`}
+            >
+              Sign Up
             </Link>
           </motion.div>
         </motion.div>

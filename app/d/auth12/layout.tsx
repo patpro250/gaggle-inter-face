@@ -1,4 +1,4 @@
-import Navbar from "@/component2/web/nav/page";
+import Navbar from "@/app/web/nav/page";
 import React, { ReactNode } from "react";
 interface Props {
   children: ReactNode;

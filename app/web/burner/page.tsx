@@ -21,19 +21,19 @@ const HeroBanner = () => {
         className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-gradient-to-t from-indigo-100/20 to-transparent"
       ></motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 lg:px-8">
+      <div className="relative flex flex-col justify-center items-center max-w-7xl mx-auto px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
+            className="text-4xl font-bold leading-14 w-full p-4 md:w-4xl  tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
           >
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-indigo-600"
+              className="text-primary text-5xl sm:text-6xl lg:text-9xl font-extrabold"
             >
               NITI BOOK
             </motion.span>
@@ -42,6 +42,7 @@ const HeroBanner = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-gray-700  font-semibold"
             >
               Modern Library Management System
             </motion.span>
@@ -50,7 +51,7 @@ const HeroBanner = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-indigo-600"
+              className="text-primary font-semibold  "
             >
               Built for Rwanda
             </motion.span>
@@ -60,7 +61,7 @@ const HeroBanner = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto"
+            className="mt-6 text-sm leading-5 text-gray-600 max-w-xl mx-auto"
           >
             NITI BOOK empowers libraries across Rwanda with enterprise-grade
             technology and affordable pricing to transform the way they manage,
