@@ -36,7 +36,7 @@ export default function AdminPaymentPage() {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white p-6">
+    <div className="min-h-screen  bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white p-6">
       <h1 className="text-xl font-bold mb-6">Approved payment</h1>
 
       {/* Payment Table */}

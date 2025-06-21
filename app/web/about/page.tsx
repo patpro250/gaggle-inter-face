@@ -56,13 +56,13 @@ const AboutPage = () => {
       name: "IRAGUHA Patrick",
       role: "Developer & Co-Founder",
       photo: "/t/patrick.png",
-      bio: "Computer science expert focused on creating scalable library solutions.",
+      bio: " IRAGUHA Patrick 💼 Frontend , UI Specialist & 💼 Computer Science Expert is the co-founder and lead full-stack developer of Gaggle Niti, specializing in backend systems, authentication, and analytics. He drives the platform &#38;s core features and scalable architecture for modern institutional libraries.",
     },
     {
       name: "IRUMVA Jessy Terry",
       role: "Developer",
       photo: "/t/terry.png",
-      bio: "Full-stack developer specializing in user-friendly interfaces.",
+      bio: "IRUMVA Jessy Terry is a full-stack developer at Gaggleniti, focused on building intuitive, responsive user interfaces. He collaborates with Patrick to deliver a seamless experience for librarians and administrators through thoughtful UI and frontend development.",
     },
     {
       name: "TUYITURIKI Gerald",
@@ -233,7 +233,7 @@ const AboutPage = () => {
                 className="relative h-96 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/about-story.jpg"
+                  src="/image.svg"
                   alt="NITI BOOK team collaborating"
                   fill
                   className="object-cover"

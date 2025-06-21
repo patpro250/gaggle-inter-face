@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import Navbar from "../web/nav/page";
 import Link from "next/link";
 interface Props {
   children: ReactNode;

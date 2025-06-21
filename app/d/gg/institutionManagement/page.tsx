@@ -9,7 +9,19 @@ export default function InstitutionManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [planFilter, setPlanFilter] = useState("All");
-  const [selectedInstitution, setSelectedInstitution] = useState(null);
+  type Institution = {
+    id: number;
+    name: string;
+    status: string;
+    plan: string;
+    signupDate: string;
+    librarian: string;
+    paymentStatus: string;
+    address: string;
+  };
+
+  const [selectedInstitution, setSelectedInstitution] =
+    useState<Institution | null>(null);
   const [showDetails, setShowDetails] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const institutionsPerPage = 5;
@@ -91,7 +103,7 @@ export default function InstitutionManagement() {
   };
 
   return (
-    <div className="min-h-screen p-4 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="min-h-[500px] overflow-scroll p-4 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <header className="mb-4">
         <h1 className="text-2xl font-bold">Institution Management</h1>
       </header>

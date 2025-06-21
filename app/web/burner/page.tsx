@@ -27,13 +27,13 @@ const HeroBanner = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl font-bold leading-14 w-full p-4 md:w-4xl  tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
+            className="text-4xl font-bold leading-15 w-full p-4 md:w-4xl  tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
           >
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-primary text-5xl sm:text-6xl lg:text-9xl font-extrabold"
+              className="text-primary text-5xl sm:text-6xl lg:text-8xlfont-extrabold"
             >
               NITI BOOK
             </motion.span>
@@ -77,7 +77,7 @@ const HeroBanner = () => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="../../../d/auth12/s"
-                className="rounded-md bg-indigo-600 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-300"
+                className="rounded-md bg-primary px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-300"
               >
                 Get started
               </Link>
@@ -89,7 +89,7 @@ const HeroBanner = () => {
             >
               <Link
                 href="#"
-                className="text-sm font-medium leading-6 text-gray-900 hover:text-indigo-500 transition-colors duration-300"
+                className="text-sm font-medium leading-6 text-gray-900 hover:text-primary transition-colors duration-300"
               >
                 Learn more <span aria-hidden="true">→</span>
               </Link>
