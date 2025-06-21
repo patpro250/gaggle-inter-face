@@ -81,6 +81,7 @@ async function login(credentials: Credentials): Promise<LoginResult> {
       message: result?.error || "Authentication failed",
     };
   } catch (error) {
+    console.error("Login error:", error);
     return {
       success: false,
       message: error.message || "Unexpected error during authentication",

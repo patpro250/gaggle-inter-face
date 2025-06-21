@@ -5,7 +5,7 @@ import Plans from "@/components/uix/plans";
 
 const PlansSection = () => {
   return (
-    <section className="bg-gray-50 py-20 px-6">
+    <section id="plan" className="bg-gray-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div

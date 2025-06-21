@@ -5,7 +5,10 @@ import Link from "next/link";
 
 const BrandVideoCard = () => {
   return (
-    <section className="px-4 py-12 md:py-24 bg-gradient-to-b from-white to-indigo-50/30">
+    <section
+      id="brand"
+      className="px-4 py-12 md:py-24 bg-gradient-to-b from-white to-indigo-50/30"
+    >
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Video with animated border and shadow */}
         <motion.div

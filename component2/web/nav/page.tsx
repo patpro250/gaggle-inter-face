@@ -68,9 +68,9 @@ const Navbar = () => {
         <nav className="hidden md:flex space-x-8">
           {[
             { name: "Home", path: "/" },
-            { name: "Features", path: "/features" },
-            { name: "Plans", path: "/plans" },
-            { name: "About", path: "/about" },
+            { name: "Features", path: "/#f" },
+            { name: "Plans", path: "/#plan" },
+            { name: "About", path: "/#about" },
             { name: "Catalog", path: "/catalog" },
           ].map((link, index) => (
             <motion.div

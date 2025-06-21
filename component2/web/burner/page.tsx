@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const HeroBanner = () => {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section id="home" className="relative overflow-hidden bg-white">
       {/* Animated background elements */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -62,7 +62,9 @@ const HeroBanner = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto"
           >
-          NITI BOOK empowers libraries across Rwanda with enterprise-grade technology and affordable pricing to transform the way they manage, serve, and grow.
+            NITI BOOK empowers libraries across Rwanda with enterprise-grade
+            technology and affordable pricing to transform the way they manage,
+            serve, and grow.
           </motion.p>
 
           <motion.div
