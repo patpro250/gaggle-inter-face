@@ -50,7 +50,7 @@ const AboutPage = () => {
       name: "NZABONERWANAYO Jean Paul",
       role: "Director & Co-Founder",
       photo: "/t/jean.png",
-      bio: "A co-founder of NITI BOOK and currently serve as a librarian at G.S Materi Dei, a role I have held since November 2023. He earned his Bachelor's degree from the University of Rwanda in 2024, where he studied in the School of Arts and Languages, specializing in Arts and Publishing.",
+      bio: "NZABONERWANAYO Jean Paul, a co-founder of NITI BOOK and currently serve as a librarian at G.S Materi Dei, a role he held since November 2023. He earned his Bachelor's degree from the University of Rwanda in 2024, where he studied in the School of Arts and Languages, specializing in Arts and Publishing.",
     },
     {
       name: "IRAGUHA Patrick",
@@ -68,7 +68,7 @@ const AboutPage = () => {
       name: "TUYITURIKI Gerald",
       role: "Marketer & Customer Care",
       photo: "/t/gerald.png",
-      bio: "Customer experience specialist ensuring client satisfaction. He is a librarian at TTC KABARORE, a role I have held since November 2024. He earned his Bachelor's degree from the University of Rwanda in 2024, where he studied in the School of Arts and Languages, specializing in Arts and Publishing",
+      bio: "TUYITURIKI Gerald, a customer experience specialist ensuring client satisfaction. He is a librarian at TTC KABARORE, a role  he held since November 2024. He earned his Bachelor's degree from the University of Rwanda in 2024, where he studied in the School of Arts and Languages, specializing in Arts and Publishing",
     },
   ];
 
@@ -163,8 +163,8 @@ const AboutPage = () => {
             </h2>
             <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              We modernize libraries through accessible, intelligent systems
-              that make librarians &apos; work easier and more impactful —
+              We modernize libraries through accessible, intelligent system
+              that make librarians work easier and more impactful —
               starting in Rwanda, expanding across Africa.
             </p>
           </motion.div>
@@ -211,7 +211,7 @@ const AboutPage = () => {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   NITI BOOK was born from necessity when school librarian
                   NZABONERWANAYO Jean Paul encountered daily challenges managing
-                  resources. Existing solutions didn &apos;t address Rwanda
+                  resources. Existing solutions didn&apos;t address Rwanda
                   &apos;s unique educational needs.
                 </p>
                 <p className="text-gray-600 mb-6 leading-relaxed">
@@ -311,10 +311,10 @@ const AboutPage = () => {
                   className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all"
                 >
                   <div className="text-blue-600 text-4xl mb-4">
-                    {index === 1 && <span>🏫</span>}         {/* School libraries */}
-                    {index === 2 && <span>👩‍🏫</span>}       {/* Teacher training colleges */}
-                    {index === 3 && <span>🏛️</span>}
-                    {index === 4 && <span>🎓</span>}
+                    {index === 0 && <span>🏫</span>}         {/* School libraries */}
+                    {index === 1 && <span>👩‍🏫</span>}       {/* Teacher training colleges */}
+                    {index === 2 && <span>🏛️</span>}
+                    {index === 3 && <span>🎓</span>}
                     {index === 4 && <span>📚</span>}
 
                   </div>
