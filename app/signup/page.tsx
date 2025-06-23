@@ -157,7 +157,7 @@ export default function InstitutionCodeEntry() {
               className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white font-medium ${
                 isSubmitting
                   ? "bg-blue-400 cursor-not-allowed"
-                  : "bg-primary hover:bg-primary"
+                  : "bg-sub-primary-primary hover:bg-primary"
               } transition`}
             >
               {isSubmitting ? (
