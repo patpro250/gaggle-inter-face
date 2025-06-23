@@ -9,7 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ThemeProvider } from "next-themes";
+// import { ThemeProvider } from "next-themes";
 
 const marcellus = Marcellus({
   subsets: ["latin"],
@@ -46,15 +46,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} overflow-hidden ${marcellus.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SessionProvider>
-            <QueryClientProvider client={queryClient}>
-              <Toaster position="top-center" />
-              <Theme>{children}</Theme>
-              <ReactQueryDevtools />
-            </QueryClientProvider>
-          </SessionProvider>
-        </ThemeProvider>
+        {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
+        <SessionProvider>
+          <QueryClientProvider client={queryClient}>
+            <Toaster position="top-center" />
+            <Theme>{children}</Theme>
+            <ReactQueryDevtools />
+          </QueryClientProvider>
+        </SessionProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

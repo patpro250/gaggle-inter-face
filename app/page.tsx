@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Footer from "./catalog/Footer";
 import BrandVideoCard from "./web/branding/page";
 import HeroBanner from "./web/burner/page";
 import CallToAction from "./web/calltoaction/page";
@@ -7,6 +6,7 @@ import FeaturesSection from "./web/features/page";
 import Navbar from "./web/nav/page";
 import PlansSection from "./web/plan/page";
 import TestimonialsSection from "./web/testmony/page";
+import Footer from "./web/footer/page";
 
 export const metadata: Metadata = {
   title: "GaggleNiti | Smart Library Management System",
