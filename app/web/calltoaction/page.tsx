@@ -24,7 +24,7 @@ const CallToAction = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-indigo-600"
+            className="text-primary"
           >
             Your Library?
           </motion.span>
@@ -52,7 +52,7 @@ const CallToAction = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             href="/signup"
-            className="bg-transparent text-md flex items-center justify-center border-2 border-indigo-600 text-indigo-600 font-medium py-3 px-6 rounded-lg hover:bg-indigo-600 hover:text-white transition-colors duration-300"
+            className="bg-transparent text-md flex items-center justify-center border-2 border-sub-primary text-primary font-medium py-3 px-6 rounded-lg hover:bg-primary hover:text-white transition-colors duration-300"
           >
             Get Started Free
           </motion.a>
@@ -60,7 +60,7 @@ const CallToAction = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             href="/contact"
-            className="border border-indigo-600 text-indigo-600 py-3 px-6 rounded-lg hover:bg-indigo-600 hover:text-white transition-colors duration-300"
+            className="border border-sub-primary text-primary py-3 px-6 rounded-lg hover:bg-primary hover:text-white transition-colors duration-300"
           >
             Contact Us
           </motion.a>

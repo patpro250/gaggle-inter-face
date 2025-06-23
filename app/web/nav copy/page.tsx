@@ -8,14 +8,15 @@ const NavbarCP = () => {
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl flex  items-center justify-center gap-1 font-bold text-blue-600 "
+          className="text-xl flex  items-center justify-center gap-1 font-bold text-primary "
         >
           <span>
             <Image src={"/image.svg"} width={50} height={50} alt={""}></Image>
           </span>{" "}
-          <span className="text-indigo-900">Niti</span>{" "}
-          <span className="text-sky-600">Book</span>
-        </Link>
+          <span className="text-primary">Niti</span>{" "}
+          <span className="text-sub-primary">Book</span>
+        </Link>          <span className="text-primary">Niti</span>{" "}
+
 
         {/* Navigation Links */}
         <nav className="hidden md:flex space-x-6 text-gray-700 ">

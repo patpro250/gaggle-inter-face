@@ -53,7 +53,7 @@ const BrandVideoCard = () => {
           >
             Transforming Libraries Across{" "}
             <motion.span
-              className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500"
+              className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-sub-primary"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -70,7 +70,7 @@ const BrandVideoCard = () => {
           >
             Niti Book is reimagining how libraries work — bringing smart
             technology, better management tools, and a renewed focus on reading
-            skills to institutions across Rwanda. We &apos; re building a future
+            skills to institutions across Rwanda. We&apos;re building a future
             where every reader has access to knowledge, and every library
             becomes a center of innovation.
           </motion.p>
@@ -84,7 +84,7 @@ const BrandVideoCard = () => {
               <motion.span
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400 }}
-                className="text-indigo-600 font-medium text-lg border-b border-indigo-600/0 group-hover:border-indigo-600 transition-all duration-300"
+                className="text-primary font-medium text-lg border-b border-indigo-600/0 group-hover:border-primary transition-all duration-300"
               >
                 Learn More
               </motion.span>
@@ -92,7 +92,7 @@ const BrandVideoCard = () => {
                 initial={{ x: 0 }}
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400 }}
-                className="ml-2 text-indigo-600"
+                className="ml-2 text-primary"
               >
                 →
               </motion.span>

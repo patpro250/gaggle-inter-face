@@ -48,7 +48,7 @@ const TestimonialsSection = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-indigo-600"
+              className="text-primary"
             >
               Real Impact
             </motion.span>{" "}

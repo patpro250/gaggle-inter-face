@@ -23,7 +23,7 @@ const PlansSection = () => {
           >
             Choose the{" "}
             <motion.span
-              className="text-indigo-600"
+              className="text-primary"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
