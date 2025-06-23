@@ -60,9 +60,8 @@ const LandingPage = () => {
 
       // Bika token muri localStorage
       localStorage.setItem("x-auth-token", token);
-      console.log(token);
       router.push("/admin");
-    } catch (error: any) {
+    } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 400) {
           setErrors((prev) => ({
