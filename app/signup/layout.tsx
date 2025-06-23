@@ -7,13 +7,10 @@ interface Props {
 const layout = ({ children }: Props) => {
   return (
     <div>
-  <Link href="/">
-  <button
-    className="inline-flex items-center gap-2 bg-sub-primary hover:bg-primary text-white font-medium px-5 py-5 rounded full shadow-lg transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
-  >
-    <ArrowLeft size={18} className="mt-[3px] my-[3px]" />
-    Back to Home
-  </button>
+  "<Link href={"/"}>
+        <button className=" bg-primary font-semibold text-white rounded-md py-1 px-2 m-2  ">
+          Back to Home
+        </button>"
 </Link>
 
       {/* <Navbar /> */}
