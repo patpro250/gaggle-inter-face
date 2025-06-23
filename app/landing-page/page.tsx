@@ -62,7 +62,7 @@ const LandingPage = () => {
       localStorage.setItem("x-auth-token", token);
       console.log(token);
       router.push("/admin");
-    } catch (error: unknown) {
+    } catch (error: any) {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 400) {
           setErrors((prev) => ({

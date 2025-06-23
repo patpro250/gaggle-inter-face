@@ -50,13 +50,13 @@ const AboutPage = () => {
       name: "NZABONERWANAYO Jean Paul",
       role: "Director & Co-Founder",
       photo: "/t/jean.png",
-      bio: "Former school librarian with deep understanding of library challenges in Rwanda.",
+      bio: "A co-founder of NITI BOOK and currently serve as a librarian at G.S Materi Dei, a role I have held since November 2023. He earned his Bachelor's degree from the University of Rwanda in 2024, where he studied in the School of Arts and Languages, specializing in Arts and Publishing.",
     },
     {
       name: "IRAGUHA Patrick",
       role: "Developer & Co-Founder",
       photo: "/t/patrick.png",
-      bio: " IRAGUHA Patrick 💼 Frontend , UI Specialist & 💼 Computer Science Expert is the co-founder and lead full-stack developer of Gaggle Niti, specializing in backend systems, authentication, and analytics. He drives the platform &#38;s core features and scalable architecture for modern institutional libraries.",
+      bio: " IRAGUHA Patrick Frontend , UI Specialist & Computer Science Expert is the co-founder and lead full-stack developer of Gaggle Niti, specializing in backend systems, authentication, and analytics. He drives the platform, core features and scalable architecture for modern institutional libraries.",
     },
     {
       name: "IRUMVA Jessy Terry",
@@ -68,7 +68,7 @@ const AboutPage = () => {
       name: "TUYITURIKI Gerald",
       role: "Marketer & Customer Care",
       photo: "/t/gerald.png",
-      bio: "Customer experience specialist ensuring client satisfaction.",
+      bio: "Customer experience specialist ensuring client satisfaction. He is a librarian at TTC KABARORE, a role I have held since November 2024. He earned his Bachelor's degree from the University of Rwanda in 2024, where he studied in the School of Arts and Languages, specializing in Arts and Publishing",
     },
   ];
 
@@ -114,7 +114,7 @@ const AboutPage = () => {
     {
       icon: <FaChartLine className="w-8 h-8" />,
       title: "Impact",
-      description: "Systems that transform library operations",
+      description: "System that transform library operations",
     },
   ];
 
@@ -142,7 +142,7 @@ const AboutPage = () => {
               variants={itemVariants}
               className="text-xl md:text-2xl max-w-4xl mx-auto font-light"
             >
-              NITI BOOK empowers librarians with intelligent systems that
+              NITI BOOK empowers librarians with intelligent system that
               simplify operations, increase access, and drive innovation in
               library management.
             </motion.p>
@@ -211,8 +211,8 @@ const AboutPage = () => {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   NITI BOOK was born from necessity when school librarian
                   NZABONERWANAYO Jean Paul encountered daily challenges managing
-                  resources. Existing solutions didn &apos; t address Rwanda
-                  &apos; s unique educational needs.
+                  resources. Existing solutions didn &apos;t address Rwanda
+                  &apos;s unique educational needs.
                 </p>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Partnering with IRAGUHA Patrick, they built a simple PHP
@@ -263,8 +263,8 @@ const AboutPage = () => {
               variants={itemVariants}
               className="text-2xl text-gray-700 font-light leading-relaxed"
             >
-              To become Africa &apos; s leading digital library platform,
-              enabling education through accessible, intelligent systems that
+              To become Africa&apos;s leading digital library platform,
+              enabling education through accessible, intelligent system that
               serve communities of all sizes.
             </motion.p>
           </div>
@@ -298,9 +298,11 @@ const AboutPage = () => {
             >
               {[
                 "School Libraries",
-                "Teacher Colleges",
-                "Public Institutions",
+                "College Libraries",
                 "Universities",
+                "Public Institutions",
+                "Independet Libraries",
+                
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -309,10 +311,12 @@ const AboutPage = () => {
                   className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all"
                 >
                   <div className="text-blue-600 text-4xl mb-4">
-                    {index === 0 && <span>🏫</span>}
-                    {index === 1 && <span>👩‍🏫</span>}
-                    {index === 2 && <span>🏛️</span>}
-                    {index === 3 && <span>🎓</span>}
+                    {index === 1 && <span>🏫</span>}         {/* School libraries */}
+                    {index === 2 && <span>👩‍🏫</span>}       {/* Teacher training colleges */}
+                    {index === 3 && <span>🏛️</span>}
+                    {index === 4 && <span>🎓</span>}
+                    {index === 4 && <span>📚</span>}
+
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
                     {item}
@@ -340,7 +344,7 @@ const AboutPage = () => {
               </h2>
               <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Principles that guide every decision we make
+                Principles that guide us in every decision we make
               </p>
             </motion.div>
 
