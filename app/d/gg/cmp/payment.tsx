@@ -61,118 +61,125 @@ export default function AdminPaymentPage() {
       toast.success(`${res.message}`);
     }
   };
-  return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white p-6">
-      <h1 className="text-3xl font-bold mb-6">Admin Payment Dashboard</h1>
+return (
+  <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white p-6">
+    <h1 className="text-3xl font-bold mb-6">Admin Payment Dashboard</h1>
 
-      {/* Payment Table */}
-      <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-        <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
-          <thead className="bg-gray-100 dark:bg-gray-700">
-            <tr>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Name
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Phone
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Plan
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Amount
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Done On
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Status
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-            {(Array.isArray(currentPayments) ? currentPayments : []).map(
-              (payment) => (
-                <tr
-                  key={payment.id}
-                  className="hover:bg-gray-40 text-sm dark:hover:bg-gray-600 transition"
-                >
-                  <td className="px-3 py-1">{payment.institution?.name}</td>
-                  <td className="px-3 py-1">{payment.phoneNumber}</td>
-                  <td className="px-3 py-1">{payment.PricingPlan.name}</td>
-                  <td className="px-3 py-1">{payment.amount}</td>
-                  <td className="px-3 py-1">{payment.doneAt}</td>
-
-                  <td className="px-3 py-1">
-                    {payment.status === "SUCCESS" ? (
-                      <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
-                        <CheckCircle size={16} /> {payment.status}
-                      </span>
-                    ) : payment.status === "APPROVED" ? (
-                      <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
-                        <CheckCircle size={16} /> {payment.status}
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
-                        <Clock size={16} /> {payment.status}
-                      </span>
-                    )}
-                  </td>
-
-                  <td className="px-6 py-4">
-                    {payment.status === "PENDING" ? (
-                      <button
-                        onClick={() => generateCode(payment.id)}
-                        className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-md disabled:opacity-50"
-                      >
-                        <Send size={16} /> Send Code
-                      </button>
-                    ) : (
-                      <span className="text-sm text-green-700">— Paid_</span>
-                    )}
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Pagination Controls */}
-      <div className="flex justify-center mt-4 space-x-2">
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="px-3 py-1 rounded-md bg-gray-300 dark:bg-gray-700 disabled:opacity-50"
-        >
-          Previous
-        </button>
-
-        {[...Array(totalPages)].map((_, i) => (
-          <button
-            key={i}
-            onClick={() => handlePageChange(i + 1)}
-            className={`px-3 py-1 rounded-md ${
-              currentPage === i + 1
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 dark:bg-gray-700"
-            }`}
-          >
-            {i + 1}
-          </button>
-        ))}
-
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="px-3 py-1 rounded-md bg-gray-300 dark:bg-gray-700 disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
+    {/* Payment Table */}
+    <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+      <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
+        <thead className="bg-gray-100 dark:bg-gray-700">
+          <tr>
+            <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
+              Name
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
+              Phone
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
+              Plan
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
+              Amount
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
+              Done On
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
+              Status
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wide">
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          {(Array.isArray(currentPayments) ? currentPayments : []).map(
+            (payment) => (
+              <tr
+                key={payment.id}
+                className="hover:bg-gray-40 text-sm dark:hover:bg-gray-600 transition"
+              >
+                <td className="px-3 py-1">{payment.institution?.name}</td>
+                <td className="px-3 py-1">{payment.phoneNumber}</td>
+                <td className="px-3 py-1">{payment.PricingPlan.name}</td>
+                <td className="px-3 py-1">{payment.amount}</td>
+                <td className="px-3 py-1">
+                  {new Date(payment.doneAt).toLocaleString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: false,
+                  })}
+                </td>
+                <td className="px-3 py-1">
+                  {payment.status === "SUCCESS" ? (
+                    <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
+                      <CheckCircle size={16} /> {payment.status}
+                    </span>
+                  ) : payment.status === "APPROVED" ? (
+                    <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-medium">
+                      <CheckCircle size={16} /> {payment.status}
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1 text-orange-500 font-medium">
+                      <Clock size={16} /> {payment.status}
+                    </span>
+                  )}
+                </td>
+                <td className="px-6 py-4">
+                  {payment.status === "PENDING" ? (
+                    <button
+                      onClick={() => generateCode(payment.id)}
+                      className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-md disabled:opacity-50"
+                    >
+                      <Send size={16} /> Send Code
+                    </button>
+                  ) : (
+                    <span className="text-sm text-green-700">— Paid_</span>
+                  )}
+                </td>
+              </tr>
+            )
+          )}
+        </tbody>
+      </table>
     </div>
+  {/* Pagination Controls */}
+  <div className="flex justify-center mt-4 space-x-2">
+    <button
+      onClick={() => handlePageChange(currentPage - 1)}
+      disabled={currentPage === 1}
+      className="px-3 py-1 rounded-md bg-gray-300 dark:bg-gray-700 disabled:opacity-50"
+    >
+      Previous
+    </button>
+
+    {[...Array(totalPages)].map((_, i) => (
+      <button
+        key={i}
+        onClick={() => handlePageChange(i + 1)}
+        className={`px-3 py-1 rounded-md ${
+          currentPage === i + 1
+            ? "bg-blue-600 text-white"
+            : "bg-gray-200 dark:bg-gray-700"
+        }`}
+      >
+        {i + 1}
+      </button>
+    ))}
+
+    <button
+      onClick={() => handlePageChange(currentPage + 1)}
+      disabled={currentPage === totalPages}
+      className="px-3 py-1 rounded-md bg-gray-300 dark:bg-gray-700 disabled:opacity-50"
+    >
+      Next
+    </button>
+  </div>
+</div>
   );
 }

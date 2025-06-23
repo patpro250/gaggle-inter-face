@@ -211,8 +211,7 @@ const AboutPage = () => {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   NITI BOOK was born from necessity when school librarian
                   NZABONERWANAYO Jean Paul encountered daily challenges managing
-                  resources. Existing solutions didn&apos;t address Rwanda
-                  &apos;s unique educational needs.
+                  resources. Existing solutions didn&apos;t address Rwanda&apos;s unique educational needs.
                 </p>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Partnering with IRAGUHA Patrick, they built a simple PHP
