@@ -118,7 +118,7 @@ export default function InstitutionCodeEntry() {
               Institution Portal
             </h1>
             <p className="text-gray-600">
-              Enter your institution code to begin the onboarding process
+              Enter your institution code to begin the journey
             </p>
           </div>
 
