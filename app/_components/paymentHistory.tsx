@@ -64,12 +64,16 @@ const PaymentHistory = () => {
               {paginatedPayments.map((payment, index) => (
                 <tr key={index}>
                   <td className="px-4 py-2 text-sm text-gray-700">
-                    {new Date(payment.doneAt).toLocaleDateString("rw-RW", {
-                      weekday: "short",
-                      year: "numeric",
-                      month: "numeric",
-                      day: "numeric",
-                    })}
+                     {payment.doneAt &&
+                      new Date(payment.doneAt).toLocaleString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        hour12: false,
+                      })}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-700">
                     {payment.phoneNumber}

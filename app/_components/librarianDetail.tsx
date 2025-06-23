@@ -86,8 +86,17 @@ const LibrarianDetail = async ({ id }: Props) => {
     <DataList.Item>
       <DataList.Label minWidth="88px">Joined At</DataList.Label>
       <DataList.Value>
-        {new Date(LibrarianOnly.createdAt).toDateString()}
+        {new Date(LibrarianOnly.createdAt).toLocaleString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        })}
       </DataList.Value>
+
     </DataList.Item>
 
     {/* Status */}

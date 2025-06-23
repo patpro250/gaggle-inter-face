@@ -17,8 +17,18 @@ const InstitutionInfo = async () => {
             <strong>Code:</strong> {code}
           </p>
           <p>
-            <strong>Joined at:</strong> {new Date(createdAt).toDateString()}
+  <strong>Joined at:</strong>{" "}
+            {new Date(createdAt).toLocaleString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+              hour12: false,
+            })}
           </p>
+
         </div>
 
         <div className="bg-white rounded-2xl shadow p-6 space-y-2">
