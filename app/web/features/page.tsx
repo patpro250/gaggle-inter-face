@@ -12,32 +12,32 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    icon: <BookOpen className="w-6 h-6 text-blue-600" />,
+    icon: <BookOpen className="w-6 h-6 text-primary" />,
     title: "Smart Book Tracking",
     desc: "Track borrowed books, due dates, and returns automatically with ease.",
   },
   {
-    icon: <LayoutDashboard className="w-6 h-6 text-blue-600" />,
+    icon: <LayoutDashboard className="w-6 h-6 text-primary" />,
     title: "Librarian Dashboard",
     desc: "Control library activity with intuitive tools for inventory and reader management.",
   },
   {
-    icon: <BarChart className="w-6 h-6 text-blue-600" />,
+    icon: <BarChart className="w-6 h-6 text-primary" />,
     title: "Reading Analytics",
     desc: "Gain insights into reading patterns and library usage by students.",
   },
   {
-    icon: <Layers className="w-6 h-6 text-blue-600" />,
+    icon: <Layers className="w-6 h-6 text-primary" />,
     title: "Multi-Library Support",
     desc: "Manage several school or institution libraries from a single account.",
   },
   {
-    icon: <Users className="w-6 h-6 text-blue-600" />,
+    icon: <Users className="w-6 h-6 text-primary" />,
     title: "Reading Skill Tools",
     desc: "Support readers with digital tools to improve literacy and engagement.",
   },
   {
-    icon: <Lock className="w-6 h-6 text-blue-600" />,
+    icon: <Lock className="w-6 h-6 text-primary" />,
     title: "Cloud-Based & Secure",
     desc: "Your data is safe, encrypted, and accessible from anywhere at any time.",
   },
@@ -55,7 +55,7 @@ const FeaturesSection = () => {
         className="max-w-7xl mx-auto text-center mb-16"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-          <span className="text-indigo-600">Powerful Tools for</span> Smarter
+          <span className="text-primary">Powerful Tools for</span> Smarter
           Libraries
         </h2>
         <motion.p

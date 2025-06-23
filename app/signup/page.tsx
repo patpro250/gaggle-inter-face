@@ -47,7 +47,7 @@ export default function InstitutionCodeEntry() {
   return (
     <div className="flex flex-col md:flex-row h-screen overflow-hidden bg-gray-50">
       {/* Illustration Side - Hidden on small screens */}
-      <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-blue-600 to-blue-800 items-center justify-center p-12 text-white">
+      <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-primary to-sub-primary items-center justify-center p-12 text-white">
         <div className="max-w-md w-full">
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-2">Welcome to</h2>
@@ -64,8 +64,8 @@ export default function InstitutionCodeEntry() {
             <rect width="500" height="300" fill="url(#gradient)" />
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#2563eb" />
-                <stop offset="100%" stopColor="#1e40af" />
+                <stop offset="0%" stopColor="#3674b5" />
+                <stop offset="100%" stopColor="#00a2de" />
               </linearGradient>
             </defs>
             <path
@@ -138,7 +138,7 @@ export default function InstitutionCodeEntry() {
                 onChange={handleInputChange}
                 className={`w-full px-4 py-3 border ${
                   errors.institutionCode ? "border-red-300" : "border-gray-300"
-                } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition`}
+                } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition`}
                 autoFocus
               />
               {errors.institutionCode && (
@@ -157,7 +157,7 @@ export default function InstitutionCodeEntry() {
               className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white font-medium ${
                 isSubmitting
                   ? "bg-blue-400 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700"
+                  : "bg-primary hover:bg-primary"
               } transition`}
             >
               {isSubmitting ? (
@@ -193,13 +193,13 @@ export default function InstitutionCodeEntry() {
           <div className="mt-6 text-center text-sm text-gray-500">
             <p>
               Need help?{" "}
-              <a href="#" className="text-blue-600 hover:text-blue-800">
+              <a href="#" className="text-primary hover:text-sub-primary-primary">
                 Contact support
               </a>
             </p>
             <p className="mt-4">
               New librarian?{" "}
-              <a href="/register" className="text-blue-600 hover:text-blue-800">
+              <a href="/register" className="text-primary hover:text-sub-primary-primary">
                 Create an account
               </a>
             </p>
