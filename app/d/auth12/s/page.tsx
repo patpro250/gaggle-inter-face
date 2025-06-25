@@ -47,7 +47,7 @@ const Step1 = () => {
             Create Your Account
           </h2>
           <p className="text-gray-600 mb-6">
-            Let `&apos` s get started with your email address
+            Let&apos;s get started with your email address
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -64,7 +64,7 @@ const Step1 = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition"
               />
               {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
             </div>
@@ -73,7 +73,7 @@ const Step1 = () => {
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
+              className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary transition"
             >
               Continue
             </motion.button>

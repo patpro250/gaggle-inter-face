@@ -9,14 +9,14 @@ import TestimonialsSection from "./web/testmony/page";
 import Footer from "./web/footer/page";
 
 export const metadata: Metadata = {
-  title: "GaggleNiti | Smart Library Management System",
+  title: "Gaggleniti | Smart Library Management System",
   description:
-    "GaggleNiti helps schools and institutions manage books, track borrowing, and analyze library usage with ease and efficiency.",
+    "Gaggleniti help schools and institutions to manage books, track borrowing, and analyze library usage with ease and efficiency.",
   keywords: [
     "library management",
     "school library",
     "book tracking system",
-    "GaggleNiti",
+    "Gaggleniti",
     "library software",
     "digital library",
     "library analytics",
@@ -45,15 +45,15 @@ export const metadata: Metadata = {
     "GaggleNiti Rwanda",
     "student reading tracker",
   ],
-  authors: [{ name: "GaggleNiti Team", url: "https://app.gaggleniti.com" }],
-  creator: "GaggleNiti",
-  publisher: "GaggleNiti",
+  authors: [{ name: "Gaggleniti Team", url: "https://app.gaggleniti.com" }],
+  creator: "Gaggleniti",
+  publisher: "Gaggleniti",
   openGraph: {
-    title: "GaggleNiti – Smart Library Management",
+    title: "Gaggleniti – Smart Library Management",
     description:
-      "Manage, track, and analyze your library’s performance with GaggleNiti’s intuitive tools.",
+      "Manage, track, and analyze your library’s performance with Gaggleniti’s intuitive tools.",
     url: "https://app.gaggleniti.com",
-    siteName: "GaggleNiti",
+    siteName: "Gaggniti",
     locale: "en_US",
     type: "website",
   },

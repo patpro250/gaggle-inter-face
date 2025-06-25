@@ -205,7 +205,7 @@ export default function CreateLibrarian() {
                 type="submit"
                 disabled={isSubmitting}
                 className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white ${
-                  isSubmitting ? "bg-primary" : "bg-sub-primary hover:bg-primary"
+                  isSubmitting ? "bg-primary" : "bg-primary hover:bg-primary"
                 }`}
               >
                 {isSubmitting ? (

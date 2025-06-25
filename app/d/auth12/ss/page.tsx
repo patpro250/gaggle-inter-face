@@ -77,7 +77,7 @@ const Step2 = () => {
                   name && !valid && !errorN
                     ? "border-green-400"
                     : "border-gray-300"
-                } rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition`}
+                } rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition`}
               />
               {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
             </div>
@@ -102,7 +102,7 @@ const Step2 = () => {
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
+              className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary transition"
               disabled={loading}
             >
               {loading ? "Checking availability..." : "Continue"}
