@@ -23,9 +23,9 @@ const ListComponent: React.FC<Props> = ({
         <button
           className={`flex relative ${
             href === Path
-              ? "bg-indigo-100 border-l-4 border-indigo-400 text-white  "
+              ? "bg-indigo-100 border-l-4 border-primary text-white  "
               : "bg-amber-0 "
-          }  hover:bg-indigo-300 border-l-0 px-2 md:px-2 py-3 md:py-2  border-indigo-500 items-center  w-full text-base  font-normal  rounded-lg transition duration-75 group   text-black ml-0 md:ml-1`}
+          }  hover:bg-primary border-l-0 px-2 md:px-2 py-3 md:py-2  border-primary items-center  w-full text-base  font-normal  rounded-lg transition duration-75 group   text-black ml-0 md:ml-1`}
         >
           <div className="text-black mr-2  md:mr-0 text-[20px]  ">
             <Icon size={20} strokeWidth={1} />
