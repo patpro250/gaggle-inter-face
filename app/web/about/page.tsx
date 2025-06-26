@@ -127,7 +127,7 @@ const AboutPage = () => {
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-28 px-4"
+          className="relative bg-gradient-to-r from-primary to-sub-primary text-white py-28 px-4"
         >
           <div className="absolute inset-0 bg-black/30 z-0" />
           <div className="max-w-6xl mx-auto relative z-10 text-center">
@@ -161,7 +161,7 @@ const AboutPage = () => {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Our Mission
             </h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+            <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               We modernize libraries through accessible, intelligent system
               that make librarians work easier and more impactful —
@@ -179,7 +179,7 @@ const AboutPage = () => {
                   key={index}
                   className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow"
                 >
-                  <div className="text-blue-600 text-4xl mb-4">
+                  <div className="text-primary text-4xl mb-4">
                     {index === 0 && <span>📊</span>}
                     {index === 1 && <span>🔓</span>}
                     {index === 2 && <span>💡</span>}
@@ -207,7 +207,7 @@ const AboutPage = () => {
                 <h2 className="text-3xl font-bold text-gray-800 mb-6">
                   Our Story
                 </h2>
-                <div className="w-24 h-1 bg-blue-600 mb-8"></div>
+                <div className="w-24 h-1 bg-primary mb-8"></div>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   NITI BOOK was born from necessity when school librarian
                   NZABONERWANAYO Jean Paul encountered daily challenges managing
@@ -256,7 +256,7 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Our Vision
               </h2>
-              <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+              <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
             </motion.div>
             <motion.p
               variants={itemVariants}
@@ -281,7 +281,7 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Who We Serve
               </h2>
-              <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+              <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
                 Custom solutions for diverse educational institutions across
                 Rwanda
@@ -309,7 +309,7 @@ const AboutPage = () => {
                   whileHover={{ y: -10 }}
                   className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all"
                 >
-                  <div className="text-blue-600 text-4xl mb-4">
+                  <div className="text-primary text-4xl mb-4">
                     {index === 0 && <span>🏫</span>}         {/* School libraries */}
                     {index === 1 && <span>👩‍🏫</span>}       {/* Teacher training colleges */}
                     {index === 2 && <span>🏛️</span>}
@@ -341,7 +341,7 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Our Core Values
               </h2>
-              <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+              <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
                 Principles that guide us in every decision we make
               </p>
@@ -361,7 +361,7 @@ const AboutPage = () => {
                   whileHover={{ scale: 1.05 }}
                   className="bg-white p-6 rounded-xl shadow-md border border-gray-100 text-center"
                 >
-                  <div className="text-blue-600 mb-4 flex justify-center">
+                  <div className="text-primary mb-4 flex justify-center">
                     {value.icon}
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -386,7 +386,7 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Meet Our Team
               </h2>
-              <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+              <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
                 Passionate professionals bridging libraries and technology
               </p>
@@ -418,7 +418,7 @@ const AboutPage = () => {
                     <h3 className="text-xl font-semibold text-gray-800 mb-1">
                       {member.name}
                     </h3>
-                    <p className="text-blue-600 font-medium mb-3">
+                    <p className="text-primary font-medium mb-3">
                       {member.role}
                     </p>
                     <p className="text-gray-600 text-sm">{member.bio}</p>
@@ -441,7 +441,7 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Our Journey
               </h2>
-              <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+              <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
                 Key milestones in our growth story
               </p>
@@ -468,14 +468,14 @@ const AboutPage = () => {
                       className={`w-1/2 px-8 py-4 ${index % 2 === 0 ? "text-right" : "text-left"}`}
                     >
                       <div className="inline-block bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                        <h3 className="text-xl font-bold text-blue-700">
+                        <h3 className="text-xl font-bold text-primary">
                           {milestone.year}
                         </h3>
                         <p className="text-gray-700">{milestone.text}</p>
                       </div>
                     </div>
                     <div className="w-1/2 flex justify-center">
-                      <div className="w-6 h-6 rounded-full bg-blue-600 border-4 border-white shadow-md"></div>
+                      <div className="w-6 h-6 rounded-full bg-primary border-4 border-white shadow-md"></div>
                     </div>
                     <div className="w-1/2"></div>
                   </motion.div>
@@ -491,7 +491,7 @@ const AboutPage = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24 px-4"
+          className="relative bg-gradient-to-r from-primary to-sub-primary text-white py-24 px-4"
         >
           <div className="absolute inset-0 bg-black/30 z-0" />
           <div className="max-w-4xl mx-auto relative z-10 text-center">
@@ -505,7 +505,7 @@ const AboutPage = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-blue-800 font-bold py-4 px-10 rounded-lg hover:bg-blue-100 transition-all text-lg shadow-lg"
+                className="bg-white text-primary font-bold py-4 px-10 rounded-lg hover:bg-blue-100 transition-all text-lg shadow-lg"
               >
                 Get Started Today
               </motion.button>
