@@ -108,7 +108,7 @@ const Navbar = () => {
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
-              href="/login"
+              href="/SystemPortal"
               className={`text-sm font-medium py-2 px-4 rounded-2xl transition-colors duration-300 ${
                 isScrolled
                   ? "bg-primary text-white hover:bg-primary"
