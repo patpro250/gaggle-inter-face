@@ -77,7 +77,7 @@ const HeroBanner = () => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="../../../d/auth12/s"
-                className="rounded-md bg-primary px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-300"
+                className="rounded-md bg-primary px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-sub-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all duration-300"
               >
                 Get started
               </Link>

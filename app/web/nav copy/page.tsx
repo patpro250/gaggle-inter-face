@@ -20,16 +20,16 @@ const NavbarCP = () => {
 
         {/* Navigation Links */}
         <nav className="hidden md:flex space-x-6 text-gray-700 ">
-          <Link href="/" className="hover:text-blue-400  ">
+          <Link href="/" className="hover:text-primary  ">
             Home
           </Link>
-          <Link href="/features" className="hover:text-blue-400  ">
+          <Link href="/features" className="hover:text-primary  ">
             Features
           </Link>
-          <Link href="/plans" className="hover:text-blue-400  ">
+          <Link href="/plans" className="hover:text-primary  ">
             Plans
           </Link>
-          <Link href="/about" className="hover:text-blue-400   ">
+          <Link href="/about" className="hover:text-primary  ">
             About
           </Link>
         </nav>

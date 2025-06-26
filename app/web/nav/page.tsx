@@ -32,7 +32,7 @@ const Navbar = () => {
         >
           <Link
             href="/"
-            className="text-xl flex items-center justify-center gap-1 font-bold text-blue-600"
+            className="text-xl flex items-center justify-center gap-1 font-bold text-primary"
           >
             <motion.span
               initial={{ rotate: 0 }}
@@ -50,14 +50,14 @@ const Navbar = () => {
             <motion.span
               initial={{ x: 0 }}
               whileHover={{ x: 2 }}
-              className="text-indigo-900"
+              className="text-primary"
             >
               Niti
             </motion.span>
             <motion.span
               initial={{ x: 0 }}
               whileHover={{ x: 2 }}
-              className="text-sky-600"
+              className="text-primary"
             >
               Book
             </motion.span>
@@ -86,11 +86,11 @@ const Navbar = () => {
             >
               <Link
                 href={link.path}
-                className="text-gray-700 hover:text-blue-500 font-medium text-sm transition-colors duration-300 relative group"
+                className="text-gray-700 hover:text-primary font-medium text-sm transition-colors duration-300 relative group"
               >
                 {link.name}
                 <motion.span
-                  className="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"
+                  className="absolute left-0 bottom-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"
                   initial={{ width: 0 }}
                   whileHover={{ width: "100%" }}
                 />
@@ -111,7 +111,7 @@ const Navbar = () => {
               href="/login"
               className={`text-sm font-medium py-2 px-4 rounded-2xl transition-colors duration-300 ${
                 isScrolled
-                  ? "bg-blue-600 text-white hover:bg-blue-700"
+                  ? "bg-primary text-white hover:bg-primary"
                   : " border-0 bg-primary text-white border-gray-0   hover:opacity-80"
               }`}
             >
@@ -124,7 +124,7 @@ const Navbar = () => {
               href="/signup"
               className={`text-sm font-medium py-2 px-4 rounded-2xl transition-colors duration-300 ${
                 isScrolled
-                  ? "bg-blue-600 text-white hover:bg-blue-700"
+                  ? "bg-primary text-white hover:bg-primary"
                   : " border-0 bg-primary text-white border-gray-0   hover:opacity-80"
               }`}
             >

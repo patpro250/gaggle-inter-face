@@ -24,7 +24,7 @@ const AnimatedCounter = ({ value }) => {
     <motion.p
       ref={ref}
       animate={controls}
-      className="text-4xl font-extrabold text-blue-600"
+      className="text-4xl font-extrabold text-primary"
     >
       {value}+
     </motion.p>
