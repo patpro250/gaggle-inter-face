@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Select from "@radix-ui/react-select";
 import { Spinner, Text } from "@radix-ui/themes";
-import { ChevronDown, LockKeyholeOpen, Mail } from "lucide-react";
+import { ChevronDown, Eye, EyeOff, LockKeyholeOpen, Mail } from "lucide-react";
 import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -11,6 +11,7 @@ import { z } from "zod";
 import FormError from "../_components/FormError";
 import login from "./login";
 import { redirector } from "./redirect";
+import { useState } from "react";
 
 // ✅ Schema and Type
 const loginSchema = z.object({
@@ -32,7 +33,12 @@ const LoginForm = () => {
     formState: { errors, isValid, isSubmitting },
   } = useForm<LibrarianCredentials>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      userType: "Institution",
+    },
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data) => {
     const response = await login(data);
@@ -78,10 +84,19 @@ const LoginForm = () => {
           />
           <input
             {...register("password")}
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             className="w-full py-3 pl-12 pr-5 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary transition duration-300 dark:bg-gray-800 dark:border-gray-600"
           />
+          <button
+            type="button"
+            tabIndex={-1}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"
+            onClick={() => setShowPassword((prev) => !prev)}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
         </div>
         <FormError error={errors.password?.message} />
 
@@ -90,7 +105,11 @@ const LoginForm = () => {
           control={control}
           name="userType"
           render={({ field }) => (
-            <Select.Root value={field.value} onValueChange={field.onChange}>
+            <Select.Root
+              value={field.value}
+              onValueChange={field.onChange}
+              defaultValue="Institution"
+            >
               <Select.Trigger className="w-full py-3 px-4 rounded-lg border flex border-gray-300 shadow-sm text-left focus:outline-none focus:ring-1 focus:ring-primary dark:bg-gray-800 dark:border-gray-600">
                 <Select.Value placeholder="Select user type" />
                 <Select.Icon className="ml-auto">
@@ -100,7 +119,7 @@ const LoginForm = () => {
               <Select.Portal>
                 <Select.Content className="bg-white dark:bg-gray-800 rounded-md shadow-md overflow-hidden">
                   <Select.Viewport className="p-1">
-                    {["Librarian", "Member", "Institution", "System Admin"].map(
+                    {["Institution", "System Admin"].map(
                       (option) => (
                         <Select.Item
                           key={option}
