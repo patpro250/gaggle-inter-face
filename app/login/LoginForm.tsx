@@ -119,7 +119,7 @@ const LoginForm = () => {
               <Select.Portal>
                 <Select.Content className="bg-white dark:bg-gray-800 rounded-md shadow-md overflow-hidden">
                   <Select.Viewport className="p-1">
-                    {["Institution", "System Admin"].map(
+                    {["Institution", "System Admin", "Librarian"].map(
                       (option) => (
                         <Select.Item
                           key={option}
