@@ -1,9 +1,7 @@
 "use client";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Marcellus } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
