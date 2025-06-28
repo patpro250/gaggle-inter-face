@@ -70,20 +70,6 @@ const LineChartComponent = () => {
       },
     },
   };
-
-  //   return (
-  //     <div className="min-w-xl min-h-xl bg-gray-50">
-  //       <div id="chart">
-  //         <Chart
-  //           options={options}
-  //           series={options.series}
-  //           type="line"
-  //           height={350}
-  //         />
-  //       </div>
-  //     </div>
-  //   );
-
   return (
     <div className=" bg-green-0">
       <div className="bg-green-0 min-w-md  overflow-hidden rounded-md px-10 border-1 border-gray-200 p-3 ">

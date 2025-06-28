@@ -17,7 +17,7 @@ const FooterBookTable = () => {
           <li>
             <a
               href="#"
-              className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700  border-gray-200                text-gray-600"
+              className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="sr-only">Previous</span>
               <svg

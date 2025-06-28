@@ -26,7 +26,7 @@ const GGLayout = async ({ children }: Props) => {
           {/* Header */}
           <Header />
           {/* Main Section */}
-          <main className="p-6 flex-1  overflow-y-auto"> {children}</main>
+          <main className=" flex-1   overflow-y-auto"> {children}</main>
         </div>
       </div>
     </div>

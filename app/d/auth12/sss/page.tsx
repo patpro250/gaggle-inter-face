@@ -121,7 +121,7 @@ const Step3 = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, [field.id]: e.target.value })
                   }
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition"
                 />
               </div>
             ))}
@@ -139,9 +139,9 @@ const Step3 = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, type: e.target.value })
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition"
               >
-                <option value="">Select type</option>
+                <option value="">Select institution type</option>
                 <option value="UNIVERSITY">University</option>
                 <option value="COLLEGE">College</option>
                 <option value="SCHOOL">School</option>
@@ -166,7 +166,7 @@ const Step3 = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition"
               />
               <div className="flex items-center mt-2">
                 <input
@@ -191,7 +191,7 @@ const Step3 = () => {
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
+              className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary transition"
             >
               Complete Registration
             </motion.button>

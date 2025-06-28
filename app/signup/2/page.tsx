@@ -91,12 +91,12 @@ export default function CreateLibrarian() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden flex flex-col max-h-[90vh]">
-        <div className="bg-blue-700 px-6 py-4">
+        <div className="bg-primary px-6 py-4">
           <h2 className="text-2xl font-bold text-white">
             Create New Librarian
           </h2>
           <p className="text-blue-100">
-            Fill in the librarian &lsquo; s details below
+            Fill in the librarian&lsquo;s details below
           </p>
         </div>
 
@@ -165,7 +165,7 @@ export default function CreateLibrarian() {
                         type="radio"
                         value={value}
                         {...register("gender")}
-                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                        className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
                       />
                       <label
                         htmlFor={`gender-${value}`}
@@ -205,7 +205,7 @@ export default function CreateLibrarian() {
                 type="submit"
                 disabled={isSubmitting}
                 className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white ${
-                  isSubmitting ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
+                  isSubmitting ? "bg-primary" : "bg-primary hover:bg-primary"
                 }`}
               >
                 {isSubmitting ? (
@@ -272,7 +272,7 @@ const InputField = ({
         {...register(id)}
         className={`mt-1 block w-full rounded-md border ${
           error ? "border-red-300" : "border-gray-300"
-        } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2`}
+        } shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2`}
       />
       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
     </div>

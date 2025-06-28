@@ -75,7 +75,7 @@ const Step4 = () => {
             >
               <Link
                 href="/login"
-                className="inline-flex items-center justify-center w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition"
+                className="inline-flex items-center justify-center w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary transition"
               >
                 Go to Login
                 <svg

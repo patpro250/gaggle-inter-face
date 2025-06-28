@@ -1,4 +1,11 @@
-import { Bolt, DollarSign, House } from "lucide-react";
+import {
+  BadgeDollarSign,
+  ChartNetwork,
+  FolderKanban,
+  House,
+  Kanban,
+  Landmark,
+} from "lucide-react";
 import LinkAsider from "./linkAsider";
 
 const Asider = () => {
@@ -15,16 +22,35 @@ const Asider = () => {
           />
 
           <LinkAsider
+            title={"Overview"}
+            href={"./../../../d/gg/overview"}
+            Icon={Kanban}
+            Path={""}
+          />
+
+          <LinkAsider
             title={"Payment"}
             href={"./../../../d/gg/payment"}
-            Icon={DollarSign}
+            Icon={BadgeDollarSign}
             Path={""}
           />
 
           <LinkAsider
             title={"Plan Manager"}
             href={"./../../../d/gg/plans"}
-            Icon={Bolt}
+            Icon={FolderKanban}
+            Path={""}
+          />
+          <LinkAsider
+            title={"institution Manager"}
+            href={"./../../../d/gg/institutionManagement"}
+            Icon={Landmark}
+            Path={""}
+          />
+          <LinkAsider
+            title={"Analytics"}
+            href={"./../../../d/gg/analytics"}
+            Icon={ChartNetwork}
             Path={""}
           />
         </nav>

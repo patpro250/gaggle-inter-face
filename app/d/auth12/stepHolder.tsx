@@ -33,7 +33,7 @@ export const OnboardingContainer = ({
             initial={{ width: "0%" }}
             animate={{ width: `${(currentStep / 4) * 100}%` }}
             transition={{ duration: 0.4 }}
-            className="h-full bg-indigo-600"
+            className="h-full bg-primary"
           />
         </div>
 
@@ -45,7 +45,7 @@ export const OnboardingContainer = ({
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center ${
                     step <= currentStep
-                      ? "bg-indigo-600 text-white"
+                      ? "bg-primary text-white"
                       : "bg-gray-200 text-gray-600"
                   } font-medium text-sm transition-colors`}
                 >

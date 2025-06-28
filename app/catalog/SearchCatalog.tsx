@@ -4,14 +4,12 @@ import { Search } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-// Define schema for validation
 const searchCatalogSchema = z.object({
   query: z.string().min(3, "Type at least 1 word to search."),
 });
 
 type SearchCatalogQuery = z.infer<typeof searchCatalogSchema>;
 
-// Accept the `onSearch` function from the parent component as a prop
 type SearchCatalogProps = {
   onSearch: (query: string) => void;
 };
@@ -23,9 +21,8 @@ const SearchCatalog = ({ onSearch }: SearchCatalogProps) => {
     formState: { isValid, errors },
   } = useForm({ resolver: zodResolver(searchCatalogSchema), mode: "onChange" });
 
-  // On submit, pass the query to the `onSearch` function
   const onSubmit = (data: SearchCatalogQuery) => {
-    onSearch(data.query); // Pass the query to the parent
+    onSearch(data.query);
   };
 
   return (
