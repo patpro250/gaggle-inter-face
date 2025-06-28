@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import { Librarian } from "./_types/librarian";
 
 import "next-auth";
+import axios from "axios";
 
 declare module "next-auth" {
   interface User {
@@ -43,7 +44,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       async authorize(credentials) {
         if (credentials.userType === "Librarian") {
-          return await loginLibrarian(credentials);
+          var user = await loginLibrarian(
+            credentials.email as string,
+            credentials.password as string
+          );
         } else if (credentials.userType === "Member") {
           return await loginMember(credentials);
         } else if (credentials.userType === "Institution") {
@@ -51,6 +55,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         } else if (credentials.userType === "System Admin") {
           return await loginAdmin(credentials);
         }
+
+        if (!user || !user.librarianId || (!user.firstName && !user.lastName)) {
+          console.warn("Invalid User Object:", user);
+        }
+
+        return {
+          id: user.librarianId,
+          name: `${user.firstName} ${user.lastName}`,
+          role: user.role,
+          ...user,
+        };
       },
     }),
   ],
@@ -82,33 +97,48 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   secret: process.env.NEXTAUTH_SECRET,
 });
-
-async function loginLibrarian(credentials) {
+async function loginLibrarian(
+  email: string,
+  password: string
+): Promise<(Librarian & { token: string; librarianId: string }) | null> {
   try {
-    const res = await fetch(`${API_URL}/auth/librarians`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: credentials.email,
-        password: credentials.password,
-      }),
-    });
+    const response = await axios.post(
+      `${API_URL}/auth/librarians`,
+      { email, password },
+      {
+        validateStatus: () => true,
+        transitional: { clarifyTimeoutError: true },
+        httpAgent: new (require("http").Agent)({ family: 4 }),
+        httpsAgent: new (require("https").Agent)({ family: 4 }),
+      }
+    );
 
-    const token = res.headers.get("x-auth-token");
-    const user = await res.json();
+    const token = response.headers["x-auth-token"];
+    const data = response.data;
 
-    if (!res.ok || !token) {
-      throw new AuthError(user?.message || "Email or password is incorrect");
+    if (response.status !== 200 || !token) {
+      console.warn("[loginLibrarian] Login failed:", data);
+      return null;
     }
 
-    return {
-      ...(user as Librarian),
+    const normalized = {
+      ...data,
+      librarianId: data.id,
       token,
     };
-  } catch (err) {
-    if (err instanceof AuthError) throw err;
+
+    if (
+      !normalized.librarianId ||
+      !normalized.email ||
+      normalized.status !== "ACTIVE"
+    ) {
+      console.warn("[loginLibrarian] Invalid user:", normalized);
+      return null;
+    }
+
+    return normalized;
+  } catch (error) {
+    console.error("[loginLibrarian] Error:", error);
     return null;
   }
 }
