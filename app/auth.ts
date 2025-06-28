@@ -2,7 +2,8 @@ import NextAuth from "next-auth";
 import { AuthError } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { Librarian } from "./_types/librarian";
-
+import http from "http";
+import https from "https";
 import "next-auth";
 import axios from "axios";
 
@@ -43,8 +44,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
 
       async authorize(credentials) {
+        let user: Librarian;
         if (credentials.userType === "Librarian") {
-          var user = await loginLibrarian(
+          user = await loginLibrarian(
             credentials.email as string,
             credentials.password as string
           );
@@ -108,8 +110,8 @@ async function loginLibrarian(
       {
         validateStatus: () => true,
         transitional: { clarifyTimeoutError: true },
-        httpAgent: new (require("http").Agent)({ family: 4 }),
-        httpsAgent: new (require("https").Agent)({ family: 4 }),
+        httpAgent: new http.Agent({ family: 4 }),
+        httpsAgent: new https.Agent({ family: 4 }),
       }
     );
 
