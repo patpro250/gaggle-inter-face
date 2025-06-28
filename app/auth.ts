@@ -2,12 +2,10 @@ import NextAuth from "next-auth";
 import { AuthError } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { Librarian } from "./_types/librarian";
-
-import "next-auth";
-import axios from "axios";
 import http from "http";
 import https from "https";
-
+import "next-auth";
+import axios from "axios";
 declare module "next-auth" {
   interface User {
     token?: string;
@@ -45,7 +43,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
 
       async authorize(credentials) {
-        let user;
+        let user: Librarian;
         if (credentials.userType === "Librarian") {
           user = await loginLibrarian(
             credentials.email as string,
