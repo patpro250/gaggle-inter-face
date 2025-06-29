@@ -31,8 +31,8 @@ const itemVariants = {
     opacity: 1,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
-    },
+      ease: "easeOut", // use a valid easing keyword from Framer Motion
+    } as const,
   },
 };
 
@@ -163,9 +163,9 @@ const AboutPage = () => {
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              We modernize libraries through accessible, intelligent system
-              that make librarians work easier and more impactful —
-              starting in Rwanda, expanding across Africa.
+              We modernize libraries through accessible, intelligent system that
+              make librarians work easier and more impactful — starting in
+              Rwanda, expanding across Africa.
             </p>
           </motion.div>
 
@@ -211,7 +211,8 @@ const AboutPage = () => {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   NITI BOOK was born from necessity when school librarian
                   NZABONERWANAYO Jean Paul encountered daily challenges managing
-                  resources. Existing solutions didn&apos;t address Rwanda&apos;s unique educational needs.
+                  resources. Existing solutions didn&apos;t address
+                  Rwanda&apos;s unique educational needs.
                 </p>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Partnering with IRAGUHA Patrick, they built a simple PHP
@@ -262,9 +263,9 @@ const AboutPage = () => {
               variants={itemVariants}
               className="text-2xl text-gray-700 font-light leading-relaxed"
             >
-              To become Africa&apos;s leading digital library platform,
-              enabling education through accessible, intelligent system that
-              serve communities of all sizes.
+              To become Africa&apos;s leading digital library platform, enabling
+              education through accessible, intelligent system that serve
+              communities of all sizes.
             </motion.p>
           </div>
         </motion.section>
@@ -301,7 +302,6 @@ const AboutPage = () => {
                 "Universities",
                 "Public Institutions",
                 "Independet Libraries",
-                
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -310,12 +310,12 @@ const AboutPage = () => {
                   className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all"
                 >
                   <div className="text-primary text-4xl mb-4">
-                    {index === 0 && <span>🏫</span>}         {/* School libraries */}
-                    {index === 1 && <span>👩‍🏫</span>}       {/* Teacher training colleges */}
+                    {index === 0 && <span>🏫</span>} {/* School libraries */}
+                    {index === 1 && <span>👩‍🏫</span>}{" "}
+                    {/* Teacher training colleges */}
                     {index === 2 && <span>🏛️</span>}
                     {index === 3 && <span>🎓</span>}
                     {index === 4 && <span>📚</span>}
-
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
                     {item}
@@ -462,10 +462,14 @@ const AboutPage = () => {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className={`relative flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"} items-center`}
+                    className={`relative flex ${
+                      index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                    } items-center`}
                   >
                     <div
-                      className={`w-1/2 px-8 py-4 ${index % 2 === 0 ? "text-right" : "text-left"}`}
+                      className={`w-1/2 px-8 py-4 ${
+                        index % 2 === 0 ? "text-right" : "text-left"
+                      }`}
                     >
                       <div className="inline-block bg-white p-6 rounded-xl shadow-md border border-gray-100">
                         <h3 className="text-xl font-bold text-primary">
