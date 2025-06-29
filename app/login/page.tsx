@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { auth } from "../auth";
+// import { auth } from "../auth";
 import { APP_NAME } from "../constants";
 import LoginForm from "./LoginForm";
 import Navbar from "../web/nav/page";
@@ -10,19 +10,19 @@ export const metadata = {
 };
 
 export default async function Login() {
-  const session = await auth();
-  if (session) {
-    const userType = (session.user as { userType?: string }).userType;
-    if (userType === "Librarian") {
-      redirect("/g/schools/dashboard");
-    } else if (userType === "Member") {
-      redirect("/members");
-    } else if (userType === "Institution") {
-      redirect("/d/admin");
-    } else {
-      redirect("/d/gg");
-    }
-  }
+  // const session = await auth();
+  // if (session) {
+  //   const userType = (session.user as { userType?: string }).userType;
+  //   if (userType === "Librarian") {
+  //     redirect("/g/schools/dashboard");
+  //   } else if (userType === "Member") {
+  //     redirect("/members");
+  //   } else if (userType === "Institution") {
+  //     redirect("/d/admin");
+  //   } else {
+  //     redirect("/d/gg");
+  //   }
+  // }
 
   return (
     <>

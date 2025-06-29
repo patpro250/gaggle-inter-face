@@ -9,9 +9,9 @@ import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 import FormError from "../_components/FormError";
-import login from "./login";
 import { redirector } from "./redirect";
 import { useState } from "react";
+import { login } from "./login";
 
 // ✅ Schema and Type
 const loginSchema = z.object({

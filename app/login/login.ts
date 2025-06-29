@@ -1,86 +1,39 @@
-import axios from "axios";
-import { signIn } from "next-auth/react";
-
-export interface Credentials {
+type Credentials = {
   email: string;
   password: string;
-  userType: string;
-}
+};
 
-interface LoginResult {
+type LoginResult = {
   success: boolean;
-  message: unknown;
-  data?: unknown;
-}
+  message: string;
+};
 
-async function checkCredentials(
-  credentials: Credentials
-): Promise<LoginResult> {
+export async function login(credentials: Credentials): Promise<LoginResult> {
   try {
-    let endpoint: string;
-    if (credentials.userType === "Librarian") {
-      endpoint = "librarians";
-    } else if (credentials.userType === "Member") {
-      endpoint = "members";
-    } else if (credentials.userType === "Institution") {
-      endpoint = "director";
-    } else {
-      endpoint = "admin";
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      return {
+        success: false,
+        message: errorData.error || "Authentication failed",
+      };
     }
-    console.log(endpoint);
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/${endpoint}`,
-      credentials
-    );
+
+    const data = await res.json();
+    const user = data.user;
 
     return {
       success: true,
-      message: response?.data,
+      message: `Welcome back ${user.firstName || ""} ${
+        user.lastName || ""
+      }`.trim(),
     };
-  } catch (error) {
-    const message =
-      error.response?.data || error.message || "Unknown error during pre-check";
-
-    return {
-      success: false,
-      message: typeof message === "string" ? message : "Pre-check failed",
-    };
-  }
-}
-
-async function login(credentials: Credentials): Promise<LoginResult> {
-  const check = await checkCredentials(credentials);
-
-  if (!check.success) {
-    return {
-      success: false,
-      message: check.message,
-    };
-  }
-
-  try {
-    const result = await signIn("credentials", {
-      ...credentials,
-      redirect: false,
-    });
-
-    if (result?.ok && !result.error) {
-      const user = check.message as {
-        name?: string;
-        firstName?: string;
-        lastName?: string;
-      };
-      return {
-        success: true,
-        message: `Welcome back ${user?.name || user?.firstName || ""} ${user?.lastName || ""}`,
-      };
-    }
-
-    return {
-      success: false,
-      message: result?.error || "Authentication failed",
-    };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Login error:", error);
     return {
       success: false,
@@ -88,5 +41,3 @@ async function login(credentials: Credentials): Promise<LoginResult> {
     };
   }
 }
-
-export default login;
