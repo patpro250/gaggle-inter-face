@@ -24,18 +24,6 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
-
 const fadeIn = {
   hidden: { opacity: 0 },
   visible: {
@@ -131,17 +119,11 @@ const AboutPage = () => {
         >
           <div className="absolute inset-0 bg-black/30 z-0" />
           <div className="max-w-6xl mx-auto relative z-10 text-center">
-            <motion.h1
-              variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-            >
+            <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Transforming Libraries <br className="hidden md:block" /> Across
               Rwanda — and Beyond
             </motion.h1>
-            <motion.p
-              variants={itemVariants}
-              className="text-xl md:text-2xl max-w-4xl mx-auto font-light"
-            >
+            <motion.p className="text-xl md:text-2xl max-w-4xl mx-auto font-light">
               NITI BOOK empowers librarians with intelligent system that
               simplify operations, increase access, and drive innovation in
               library management.
@@ -157,22 +139,19 @@ const AboutPage = () => {
           variants={containerVariants}
           className="py-24 px-4 max-w-6xl mx-auto"
         >
-          <motion.div variants={itemVariants} className="text-center mb-16">
+          <motion.div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Our Mission
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              We modernize libraries through accessible, intelligent system
-              that make librarians work easier and more impactful —
-              starting in Rwanda, expanding across Africa.
+              We modernize libraries through accessible, intelligent system that
+              make librarians work easier and more impactful — starting in
+              Rwanda, expanding across Africa.
             </p>
           </motion.div>
 
-          <motion.div
-            variants={itemVariants}
-            className="grid md:grid-cols-3 gap-8"
-          >
+          <motion.div className="grid md:grid-cols-3 gap-8">
             {["Simplify Operations", "Increase Access", "Drive Innovation"].map(
               (item, index) => (
                 <div
@@ -211,7 +190,8 @@ const AboutPage = () => {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   NITI BOOK was born from necessity when school librarian
                   NZABONERWANAYO Jean Paul encountered daily challenges managing
-                  resources. Existing solutions didn&apos;t address Rwanda&apos;s unique educational needs.
+                  resources. Existing solutions didn&apos;t address
+                  Rwanda&apos;s unique educational needs.
                 </p>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Partnering with IRAGUHA Patrick, they built a simple PHP
@@ -252,19 +232,16 @@ const AboutPage = () => {
           className="py-24 px-4 bg-gradient-to-br from-blue-50 to-white"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <motion.div variants={itemVariants}>
+            <motion.div>
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Our Vision
               </h2>
               <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
             </motion.div>
-            <motion.p
-              variants={itemVariants}
-              className="text-2xl text-gray-700 font-light leading-relaxed"
-            >
-              To become Africa&apos;s leading digital library platform,
-              enabling education through accessible, intelligent system that
-              serve communities of all sizes.
+            <motion.p className="text-2xl text-gray-700 font-light leading-relaxed">
+              To become Africa&apos;s leading digital library platform, enabling
+              education through accessible, intelligent system that serve
+              communities of all sizes.
             </motion.p>
           </div>
         </motion.section>
@@ -301,21 +278,19 @@ const AboutPage = () => {
                 "Universities",
                 "Public Institutions",
                 "Independet Libraries",
-                
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  variants={itemVariants}
                   whileHover={{ y: -10 }}
                   className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all"
                 >
                   <div className="text-primary text-4xl mb-4">
-                    {index === 0 && <span>🏫</span>}         {/* School libraries */}
-                    {index === 1 && <span>👩‍🏫</span>}       {/* Teacher training colleges */}
+                    {index === 0 && <span>🏫</span>} {/* School libraries */}
+                    {index === 1 && <span>👩‍🏫</span>}{" "}
+                    {/* Teacher training colleges */}
                     {index === 2 && <span>🏛️</span>}
                     {index === 3 && <span>🎓</span>}
                     {index === 4 && <span>📚</span>}
-
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
                     {item}
@@ -357,7 +332,6 @@ const AboutPage = () => {
               {values.map((value, index) => (
                 <motion.div
                   key={index}
-                  variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
                   className="bg-white p-6 rounded-xl shadow-md border border-gray-100 text-center"
                 >
@@ -402,7 +376,6 @@ const AboutPage = () => {
               {teamMembers.map((member, index) => (
                 <motion.div
                   key={index}
-                  variants={itemVariants}
                   whileHover={{ y: -10 }}
                   className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all"
                 >
@@ -461,11 +434,14 @@ const AboutPage = () => {
                 {milestones.map((milestone, index) => (
                   <motion.div
                     key={index}
-                    variants={itemVariants}
-                    className={`relative flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"} items-center`}
+                    className={`relative flex ${
+                      index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                    } items-center`}
                   >
                     <div
-                      className={`w-1/2 px-8 py-4 ${index % 2 === 0 ? "text-right" : "text-left"}`}
+                      className={`w-1/2 px-8 py-4 ${
+                        index % 2 === 0 ? "text-right" : "text-left"
+                      }`}
                     >
                       <div className="inline-block bg-white p-6 rounded-xl shadow-md border border-gray-100">
                         <h3 className="text-xl font-bold text-primary">
