@@ -145,6 +145,7 @@ async function loginLibrarian(
 }
 
 async function loginMember(credentials) {
+  console.log("[loginMember] API_URL:", API_URL); // Log the API URL
   try {
     const res = await fetch(`${API_URL}/auth/members`, {
       method: "POST",
